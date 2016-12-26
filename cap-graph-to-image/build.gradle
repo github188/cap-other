@@ -1,0 +1,61 @@
+//这里并不希望该子项目的版本与主项目的版本一致变化，这是一个可执行jar 程序中需要知道jar名称去运行
+version = "0.0.1"
+
+//打包前先设置好该项目jar包的依赖jar路径
+jar.doFirst {
+	manifest {
+        attributes 'Main-Class': 'com.comtop.cip.graph.image.GraphToImageTool',
+        'Class-Path': configurations.compile.collect { it.getName() }.join(' ') 
+    }
+}
+
+/*
+jar {
+	manifest {
+        attributes 'Main-Class': 'com.comtop.cip.graph.image.GraphToImageTool'
+    }
+    //该方式是将依赖JAR打包到该项目中
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    //with jar
+}
+*/
+
+ //删除指定目录下的文件目录
+ task cleanTargetDir(type: Delete){
+	 def targetDir = new File(project(':cap-webapp').projectDir, '/src/main/webapp/cap/bm/graph/jar')
+	 delete targetDir
+	 dependsOn 'jar'
+ }
+
+task copyJars(type:Copy) {
+  dependsOn 'cleanTargetDir'
+  from configurations.runtime
+  from new File(project.libsDir, 'comtop-cap-graph-to-image.jar')
+  //from 'libsDirName/comtop-cap-graph-to-image.jar'
+  //into project(':cap-webapp').projectDir /src/main/webapp/cap/bm/graph/jar // 目标位置
+  into new File(project(':cap-webapp').projectDir, '/src/main/webapp/cap/bm/graph/jar')
+}
+
+
+dependencies {
+
+	//cap引入第三方包
+	compile 'org.slf4j:slf4j-api:1.7.5'
+	compile 'ch.qos.logback:logback-classic:1.1.3'
+	compile 'ch.qos.logback:logback-core:1.1.3'
+	compile 'commons-codec:commons-codec:1.3'
+	compile 'qtjambi:qtjambi-core:4.8.6'
+	compile 'qtjambi:qtjambi-designer:4.8.6'
+	compile 'qtjambi:qtjambi-native-win32-msvc2012:4.8.6'
+	compile 'qtjambi:qtjambi-native-win64-msvc2012x64:4.8.6'
+	
+	//bpms引入第三方包
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.1.4'
+	compile 'com.fasterxml.jackson.core:jackson-core:2.1.4'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.1.4'
+	
+	testCompile 'junit:junit:4.11'
+	testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
+	
+}
+

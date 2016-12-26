@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration >
+<configuration scan="true">
+	<contextName>CAP-GRAPH-TO-IMAGE</contextName>
+	<property name="logs.dir" value="${logs.home}/log" />
+	<timestamp key="byDate" datePattern="yyyyMMdd"/>
+	
+	<appender name="graph-to-image" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logs.dir}/graph-to-image.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logs.dir}/graph-to-image.log.%d{yyyyMMdd}</fileNamePattern>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+		<append>true</append>
+		<encoder>
+			<pattern>[%-5level] %date{yyyy-MM-dd HH:mm:ss} %logger \(%file:%line\) - %message%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="graph-to-image" />
+	</root>
+</configuration>

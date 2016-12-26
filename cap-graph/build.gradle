@@ -1,0 +1,27 @@
+//archivesBaseName =''
+dependencies{
+	//compile project(':cap-runtime')
+	compile project(':cap-metadata')
+	compile project(':cap-common')
+	
+	//soa发布包
+	compile 'com.comtop.cap.runtime.soa:comtop-soa-core:' + soaReleaseVersion
+	compile 'com.comtop.cap.runtime.top:comtop-top-module-classify:' + topModuleClassifyVersion
+	
+    //soa重写第三方jar
+	compile 'com.comtop.soa:comtop-soa-integration:2.1.6'
+	compile 'com.comtop.soa:comtop-soa-ws:2.1.6'
+	compile 'dom4j:dom4j:1.6.1'
+	compile 'jaxen:jaxen:1.1.1'
+	
+	compile 'commons-codec:commons-codec:1.3'
+	
+	//bpms引入第三方包
+	compile 'com.fasterxml.jackson.core:jackson-core:2.1.4'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.1.4'
+	compile 'com.fasterxml.jackson.core:jackson-annotations:2.1.4'
+}
+
+javadoc{
+
+}
