@@ -1,0 +1,104 @@
+.w_lzemay {
+    position: absolute; z-index: 4; cursor: move; opacity: 0.8;
+}
+.aLabel {
+	padding: 0.3em; opacity: 0; background-color: white;
+}
+.ep_lzemay1 {
+	width: 16px; height: 16px;  float: right; left:35px;top:34px; cursor: pointer;position: absolute;
+}
+.ep_lzemay3 {
+	width: 16px; height: 16px;  float: right; left:35px;top:34px; cursor: pointer;position: absolute;  background-image:url(../Images/SPS/state_executed.png); background-repeat:no-repeat;display:none
+}
+.ep_lzemay {
+	z-index:9;width: 16px; height: 16px;  float: right; cursor: pointer;position: relative; left:10px;  margin-left:-16px;margin-top:7.5px;background-image:url(../Images/SPS/state_executing.png); background-repeat:no-repeat; display: none;
+}
+.component .ep_lzemay{
+	margin-top:32.5px;
+}
+.ep_lzemay2 {
+	width: 16px; height: 16px;  float: right; left:35px;top:34px; cursor: pointer;position: absolute;  background-image:url(../Images/SPS/state_pre_executing.png); background-repeat:no-repeat;display:none
+}
+.ep_lzemay4 {
+	width: 16px; height: 16px;  float: right; left:35px;top:34px; cursor: pointer;position: absolute;  background-image:url(../Images/SPS/break_pro_execute.png); background-repeat:no-repeat;display:none
+}
+.ep_lzemayUP {
+	width: 76px; height:20px; float: right; left:-12px;top:-14px; cursor: pointer;position: absolute;  text-align:center; overflow:hidden;
+}
+.ep_lzemayDown {
+	width: 76px; left:-12px;top:54px; cursor: pointer;position: absolute;  text-align:center; overflow:hidden;
+}
+._jsPlumb_endpoint {
+	z-index: 3;
+	 margin-left:10px;
+}
+.dragHover {
+	border: 1px dotted red;
+}
+/***6-21new****/
+.renderMode{
+	top: 0px;
+	left: 0;
+	padding: 0;
+	position: static;
+	opacity: 1;
+    box-shadow: none;
+    background-color: none;
+    -o-box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    height: auto;
+    border-radius: 0;
+    width: auto;
+    font-size: 12px;
+}
+.list .w_lzemay{	 
+	width: auto;
+	height: auto;
+}
+.basic-node{
+    width: auto;
+	font-size: 14px;
+	font-weight: bold;
+	overflow:hidden ;
+   white-space：normal ;
+}
+.basic-node img{
+	position: relative;
+	top: 4px;
+	margin-right: 10px;
+}
+.component-node{
+	float: left;
+	height: 81px;
+/* 	min-width: 150px; */
+	overflow: hidden;
+	padding: 8px 7px;
+	font-size: 16px;
+	font-weight: bold;
+	box-sizing: border-box;
+}
+.component-node .mt15 div{	 
+	margin-bottom: 20px;
+	margin-top:-4px;
+}
+ul,li{
+	list-style: none
+}
+.renderMode ul{
+	padding-left: 0;
+	background-color: rgba(204, 204, 204, 0.5);
+}
+.renderMode ul li{
+	padding-left: 30px;
+	min-width: 178px;
+	box-sizing: border-box;
+}
+.list .w_lzemay{
+	position: relative;
+}
+.renderMode .icon-img{
+	position: relative;
+	top: 2px;
+	margin-right: 10px;
+}

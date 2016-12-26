@@ -1,0 +1,109 @@
+.rowspagrid_container{border:1px solid #ddd;position: relative; clear:both; color:#000; font:12px sans-serif,"ËÎÌו"; text-align: left;}
+.rowspagrid_container a, .rowspagrid_container .selected_row .grid_span a{color:#0344af;}
+.rowspagrid_container a:hover, .rowspagrid_container .selected_row .grid_span a:hover{color:#c40;}
+.rowspagrid_container .grid_style{display: none;}
+
+.rowspagrid_container .grid_box{position: relative; background: #fff;overflow: hidden; width:100%;}
+.rowspagrid_container .grid_head{overflow: hidden;width:100%;position: relative;background:#fafafa;}
+.rowspagrid_container .grid_body{overflow: auto; overflow-x: hidden; width:100%;position: relative;}
+.grid_table_box{ width:100%; float: left;}
+.grid_table_hide{overflow: hidden; width:100%; border-bottom: 1px solid #ddd;position: relative;}
+.rowspagrid_container .grid_head_table, .rowspagrid_container .grid_body_table{table-layout: fixed;*border-collapse:collapse;border-spacing:0;empty-cells:show;}
+.rowspagrid_container .grid_body_table{margin-bottom: -1px;}
+
+.rowspagrid_container .grid_empty{display: none; line-height: 27px;text-align: center; color:#191970;}
+
+.rowspagrid_container .grid_head_table th, .rowspagrid_container .grid_body_table td{border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 0;word-break: break-all; font-size: 12px;}
+.rowspagrid_container .grid_head_table th{line-height:30px;height:30px;color:#293657; font-weight: 700; border-color: #ddd; text-align: center;}
+
+.rowspagrid_container .grid_head_table .grid_empty_th{border-right:none;font-size: 0;width:0;line-height: 30px; overflow: hidden;}
+.rowspagrid_container .grid_body_table td{line-height: 22px; height:26px;padding: 0 3px;}
+
+.rowspagrid_container_qm .grid_body_table .grid_fixed{border-right: none;}
+.rowspagrid_container_qm .grid_head_table .grid_fixed{border-right: none;}
+.rowspagrid_container_qm .grid_body_table td{height:auto;}
+.rowspagrid_container_qm .grid_head_table th{height:auto;}
+.rowspagrid_container_qm .grid_ellipsis td{height:27px;}
+.rowspagrid_container_qm .grid_ellipsis th{height:31px;}
+
+.rowspagrid_container td img{vertical-align: middle}
+.rowspagrid_container td button{padding:0 2px;*padding:0; height:23px;; line-height: 17px;}
+
+.rowspagrid_container .grid_highlight{ background:#ffc37d;/* #fcddd7*/}
+.rowspagrid_container .selected_row { background:#fff; /*#99bbff*/ color:#fff;}
+.rowspagrid_container .selected_row a{color:#0344af;}
+.rowspagrid_container .selected_row a:hover{color:#c40;}
+.rowspagrid_container .grid_width_norm{*display: none; }
+.rowspagrid_container .grid_width_norm th{border-bottom:none; height:0; font-size: 0;overflow: hidden; padding: 0; border-right:1px solid #ddd}
+.rowspagrid_container td.grid_select_input{text-align: center; text-indent: 0;}
+.rowspagrid_container input{margin:0; padding: 0; vertical-align: middle; cursor: default;}
+.rowspagrid_container .grid_head_table .grid_all_check{margin:0; padding: 0; vertical-align: middle; cursor: default; /*position:relative; *top:50%; *margin-top:-10px;*/}
+.rowspagrid_container .grid_head_table .grid_null_text{font-size: 0;}
+.cardinal_row{background: #f2f6ff;}/*#edf4fa*/
+.grid_tr_over{background: #e5edff;}
+
+.rowspagrid_container .grid_fixed_d{position: relative;}
+.rowspagrid_container .grid_fixed_s{ display: block;zoom:1; position: relative;}
+.rowspagrid_container_qm .grid_fixed_s{_width: 100%;}
+.rowspagrid_container .grid_thead_text{cursor: text; color: #293657;}
+.rowspagrid_container .grid_all_check_box_qm{position: relative; top:50%; margin-top: -10px; line-height: 20px; display: inline-block;}
+.rowspagrid_container .grid_select{width:12px;right:0;position: absolute; height:30px; top:50%; margin-top: -15px; background:url(images/grid-menu.png) no-repeat left center; cursor: pointer; display: none}
+.rowspagrid_container .grid_select:hover{background-image: url(images/grid-menu_hover.png)}
+.rowspagrid_container .grid_ittab{position: absolute; height:100%; top:0;right:-1px; width:4px; cursor:col-resize; line-height: 30px; display: none;}
+
+.rowspagrid_container .grid_sort .grid_thead_text{cursor: pointer;text-decoration: underline;padding-right: 12px;}
+.rowspagrid_container .grid_sort_desc .grid_thead_text{ background: url(images/arrow_down.png) no-repeat right center; }
+.rowspagrid_container .grid_sort_asc .grid_thead_text{ background: url(images/arrow_up.png) no-repeat right center;}
+
+.rowspagrid_container .grid_fixed{color: #edf5f0; vertical-align: top;}
+.rowspagrid_container .grid_fixed .grid_fixed_s{position: absolute; width:100%;left:0; top:-1px; height:200px;border-right: 1px solid #ddd; border-top: 1px solid #ddd;color: #000;background: #fff; display: block;padding: 2px 0;}
+.grid_head_table .grid_fixed .grid_fixed_s{background: url(images/grid_thead_bg.png) left bottom repeat-x #e5f2ff; padding: 0;border-top-color:#b8c8e5;}
+.rowspagrid_container .grid_fixed .grid_fixed_d{word-break: break-all; padding-bottom:2px;zoom:1}
+.grid_head_table .grid_fixed .grid_fixed_d{padding: 0;}
+
+.rowspagrid_container .grid_thead_mouseover .grid_select,
+.rowspagrid_container .grid_thead_select .grid_select{display: block;}
+.rowspagrid_container th.grid_thead_mouseover,
+.rowspagrid_container th.grid_thead_select{background: url(images/grid_thead_bg_hover.png) left bottom repeat-x;}
+.rowspagrid_container .grid_thead_mouseover .grid_fixed_s,
+.rowspagrid_container .grid_thead_select .grid_fixed_s{background: url(images/grid_thead_bg_hover.png) 0 -999cm repeat-x;}
+.rowspagrid_container .grid_fixed .grid_fixed_s,
+.rowspagrid_container .grid_fixed .grid_fixed_s{background-position:left bottom;}
+
+.rowspagrid_container .grid_ellipsis td,
+.rowspagrid_container .grid_ellipsis .grid_fixed_s,
+.rowspagrid_container_qm .grid_ellipsis .grid_thead_text,
+.rowspagrid_container .grid_body_table button{overflow: hidden;white-space: nowrap; *white-space:pre; -o-text-overflow:ellipsis;text-overflow:ellipsis;word-break:keep-all;*word-break: break-all;_word-break:keep-all;}
+.rowspagrid_container .grid_ellipsis th .grid_fixed_s{height:30px;_white-space:normal;_width:100%;}
+.rowspagrid_container .grid_ellipsis .grid_fixed{overflow: visible;}
+
+.rowspagrid_container .grid_line{border-left:1px solid #ddd; height:5000px; position: absolute; top:0; display: none; width:1px; overflow: hidden; z-index: 39;}
+.rowspagrid_container .grid_scroll{height: 17px;overflow: hidden; overflow-x: scroll; width: 100%; position: absolute; bottom:0; z-index:99; left: -999999px;}
+.rowspagrid_container .grid_scroll div{font-size: 1px;height:1px; overflow: hidden;}
+.rowspagrid_container .grid_overlay{position: absolute;display: none;height:100px; width: 100%;background: url(about:blank) no-repeat -9999cm; opacity: 0; filter:alpha(opacity=0); left: 0; top: 0; z-index: 40;}
+
+.rowspagrid_container .grid_hidecol {outline:none;display:none;position: absolute; width: 134px; left:0; top:0; z-index: 100; border:1px solid #ddd;box-shadow: 5px 5px 5px rgba(0,0,0,.2);background: #fff;margin-top: -1px;}
+.rowspagrid_container .grid_hidecol .grid_hidecol_list{border-bottom:1px solid #ddd; padding: 5px 0; overflow: auto; position: relative; width:100%;}
+.rowspagrid_container .grid_hidecol .grid_hidecol_button{padding:5px 0;background: #f0f0f0;}
+.rowspagrid_container .grid_hidecol_list a{outline:none;line-height: 22px;height:22px; overflow: hidden;color:#222; padding-left: 12px; display: block; text-decoration: none;text-align: left; position: relative;}
+.rowspagrid_container .grid_hidecol_list a:hover{background: #e5edff;color:#222;}
+.rowspagrid_container .grid_hidecol_list a input{margin:4px 4px 0 0;padding:0;float: left;width:13px; height:13px;}
+.rowspagrid_container .grid_hidecol_list a span{position: absolute; height:100%; width:15px;left:11px;top:0; cursor: default; background: #fff; opacity: 0; filter:alpha(opacity=0)}
+.rowspagrid_container .grid_hidecol_button a{text-decoration: none;border: 1px solid #ddd;color: #222;cursor: pointer;height: 21px;line-height: 20px; display: inline-block; padding:0; width:50px; margin:0 0 0 11px; text-align: center; background: url(images/btn_normal_bg.png) repeat-x 0 0;}
+.rowspagrid_container .grid_hidecol_button a:hover{background-position:0 -30px;}
+
+.rowspagrid_container .grid_col_move .grid_fixed_s {cursor: move;}
+.rowspagrid_container .grid_col_move .grid_no_move{cursor: default;}
+.rowspagrid_container .grid_col_move_insert{height:27px; border:2px solid #ddd; width:5px; position: absolute; z-index: 34;display: none; left:-100px; top:0; margin-left: -5px; background: #EEF0F5;}
+.rowspagrid_container .grid_col_move_tag{height:29px; border-left: 1px solid #ddd;border-right: 1px solid #ddd; width:200px;text-align: center; line-height: 30px;display: none;position: absolute; z-index: 30; top:-1px;background: url(images/grid_thead_bg_hover.png) left bottom repeat-x #e5f2ff;}
+
+.rowspagrid_container .grid_tfoot{border-top:1px solid #ddd;padding:8px 5px; height:23px; display: none;background: url(images/grid_thead_bg.png) left bottom repeat-x #e5f2ff;}
+
+.rowspagrid_container .grid_loading_bg{width:100%; height:100%; position: absolute; background: #E5E5E5; opacity: .5; filter: alpha(opacity=50);left:0; top:0; display: none; z-index: 100;}
+.rowspagrid_container .grid_loading_bg_over {opacity:1; filter: alpha(opacity=100);}
+.rowspagrid_container .grid_loading_box{width:102px; height:32px; position: absolute; left:50%; margin-left: -54px; top:50%; margin-top: -19px; border:2px solid #ddd; padding: 2px; background: #fff; display: none; z-index: 101;border-radius: 4px; overflow: hidden;}
+.rowspagrid_container .grid_loading_box span{display: block; line-height: 30px; height:30px; padding-left: 32px; background: url(images/loading.gif) no-repeat 5px 9px; color:#444; font-size:12px; }
+
+.rowspagrid_container .grid_span_none{display: none;}
+.rowspagrid_container .grid_span{ background: #fff}
+.rowspagrid_container .selected_row .grid_span{color:#000}

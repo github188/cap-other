@@ -1,0 +1,39 @@
+.tab_panel{
+	height: 460px;
+	overflow: auto;
+}
+.custom_div{
+	height: 510px;
+	overflow: auto;
+}
+.cap-page {
+ 	padding: 5px;
+}
+.custom-grid th{
+ 	vertical-align: middle;
+}
+.cap-tab{
+  	margin: 0;
+	padding-left: 5px;
+	border-bottom: 1px solid #aaa;
+	text-align: left;
+}
+.cap-tab li {
+	background: #f0f0f0;
+	color:#666;
+	display: inline-block;
+	font-weight: bold;
+	padding: 0 10px;
+	height: 32px;
+	line-height: 32px;
+	cursor: pointer;
+	box-sizing: border-box;
+	font-size: 14px;
+	-moz-border-radius: 15px;
+  	-webkit-border-radius: 15px;
+  	border-radius: 5px 5px 0 0
+}
+.cap-tab li.active {
+	background: #4585e5;
+	color: #fff;
+}
