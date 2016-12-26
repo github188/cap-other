@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="WtDocConfig" type="DocConfigType"/>
+
+  <xs:complexType name="DocConfigType">
+    <xs:sequence>
+      <xs:element name="MarkText" type="xs:string" minOccurs="0"/>
+      <xs:element name="NullValueText" type="xs:string" minOccurs="0"/>
+      <xs:element name="DirText" type="xs:string" minOccurs="0"/>
+      <xs:element name="WtSection" type="SectionElementType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="docNamePattern" type="xs:string"/>
+    <xs:attribute name="bizDomainPattern" type="xs:string"/>
+    <xs:attribute name="diffKey" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="SectionElementType">
+    <xs:complexContent>
+      <xs:extension base="ContainerElementType">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="WtChapter" type="ChapterElementType" nillable="true"/>
+            <xs:element name="span" type="ContentSegElementType" nillable="true"/>
+            <xs:element name="table" type="TableElementType" nillable="true"/>
+            <xs:element name="WtEmbed" type="EmbedObjectElementType" nillable="true"/>
+            <xs:element name="WtGraphic" type="GraphicElementType" nillable="true"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ContainerElementType">
+    <xs:complexContent>
+      <xs:extension base="ConfigElementType">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ConfigElementType" abstract="true">
+    <xs:sequence/>
+    <xs:attribute name="mappingTo" type="xs:string"/>
+    <xs:attribute name="optional" type="xs:boolean"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="maxOccurs" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="ChapterElementType">
+    <xs:complexContent>
+      <xs:extension base="ContainerElementType">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="WtChapter" type="ChapterElementType"/>
+            <xs:element name="span" type="ContentSegElementType"/>
+            <xs:element name="table" type="TableElementType"/>
+            <xs:element name="WtEmbed" type="EmbedObjectElementType"/>
+            <xs:element name="WtGraphic" type="GraphicElementType"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="type" type="chapterType" use="required"/>
+        <xs:attribute name="title" type="xs:string" use="required"/>
+        <xs:attribute name="description" type="xs:string"/>
+        <xs:attribute name="fillDescription" type="xs:string"/>
+        <xs:attribute name="titleAsSelector" type="xs:boolean"/>
+        <xs:attribute name="enable" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ContentSegElementType">
+    <xs:complexContent>
+      <xs:extension base="ConfigElementType">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TableElementType">
+    <xs:complexContent>
+      <xs:extension base="ContentSegElementType">
+        <xs:sequence>
+          <xs:element name="tr" type="TableRowElementType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="type" type="tableType" use="required"/>
+        <xs:attribute name="fillDescription" type="xs:string"/>
+        <xs:attribute name="descriptionBefore" type="xs:string"/>
+        <xs:attribute name="needStore" type="xs:boolean"/>
+        <xs:attribute name="selector" type="xs:string"/>
+        <xs:attribute name="width" type="xs:float"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TableRowElementType">
+    <xs:complexContent>
+      <xs:extension base="ConfigElementType">
+        <xs:sequence>
+          <xs:element name="td" type="TableCellElementType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="extRow" type="xs:boolean"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TableCellElementType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="mappingTo" type="xs:string"/>
+        <xs:attribute name="optional" type="xs:boolean"/>
+        <xs:attribute name="nullAble" type="xs:boolean"/>
+        <xs:attribute name="mergeCellType" type="mergeCellType"/>
+        <xs:attribute name="colspan" type="xs:int"/>
+        <xs:attribute name="rowspan" type="xs:int"/>
+        <xs:attribute name="extCell" type="xs:boolean"/>
+        <xs:attribute name="extData" type="xs:string"/>
+        <xs:attribute name="headerLabel" type="xs:string"/>
+        <xs:attribute name="valueKey" type="xs:string"/>
+        <xs:attribute name="storeStrategy" type="dataStoreStrategy"/>
+        <xs:attribute name="width" type="xs:float"/>
+        <xs:attribute name="contentType" type="cellContentType"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="EmbedObjectElementType">
+    <xs:complexContent>
+      <xs:extension base="ContentSegElementType">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GraphicElementType">
+    <xs:complexContent>
+      <xs:extension base="ContentSegElementType">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="chapterType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FIXED"/>
+      <xs:enumeration value="DYNAMIC"/>
+      <xs:enumeration value="MANUAL"/>
+      <xs:enumeration value="UNDEFINED"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="mergeCellType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="HORIZONTAL"/>
+      <xs:enumeration value="VERTICAL"/>
+      <xs:enumeration value="BOTH"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="dataStoreStrategy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="STORE"/>
+      <xs:enumeration value="NO_STORE"/>
+      <xs:enumeration value="NULL_VALUE_NO_STORE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="cellContentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SIMPLEX"/>
+      <xs:enumeration value="COMPLEX"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tableType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EXT_ROWS"/>
+      <xs:enumeration value="EXT_COLS"/>
+      <xs:enumeration value="FIXED"/>
+      <xs:enumeration value="UNKNOWN"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

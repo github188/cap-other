@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Review id="word文档解析代码走查-20160118">
+  <ReviewIssue id="IJO20FZ3">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-21 :: 17:26:26:271 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-21 :: 17:26:52:835 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李小芬</ReviewerId>
+    <AssignedTo></AssignedTo>
+    <File></File>
+    <Type>item.label.unset</Type>
+    <Severity>item.severity.label.trivial</Severity>
+    <Summary>未使用的代码类，可以删不</Summary>
+    <Description>未使用的代码类，可以删不</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+  <ReviewIssue id="IJO21F3X">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-21 :: 17:27:11:805 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-21 :: 17:27:21:546 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李小芬</ReviewerId>
+    <AssignedTo></AssignedTo>
+    <File></File>
+    <Type>item.label.unset</Type>
+    <Severity>item.severity.label.trivial</Severity>
+    <Summary>测试代码注释掉</Summary>
+    <Description>测试代码注释掉</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+</Review>

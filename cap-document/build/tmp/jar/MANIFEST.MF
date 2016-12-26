@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-company: szcomtop
+Implementation-Title: cap-document
+Implementation-Version: 3.1.0
+Gradle-Version: 2.3
+Build-Jdk: 1.6
+Build-Version: 3.1.0Build20161219104302
+Build-Verdor: 技术研究中心
+Created-Time: 2016-12-19 10:43:02
+

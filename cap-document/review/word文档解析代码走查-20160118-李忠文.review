@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Review id="word文档解析代码走查-20160118">
+  <ReviewIssue id="IJJL1UM6">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:20:33:726 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:21:35:201 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李忠文</ReviewerId>
+    <AssignedTo>李志勇</AssignedTo>
+    <File></File>
+    <Type>item.type.label.other</Type>
+    <Severity>item.label.unset</Severity>
+    <Summary>删除没有必要的代码</Summary>
+    <Description>请将测试性的代码从正式代码中移除，应该迁移到对应的测试用例的类中。</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+  <ReviewIssue id="IJJL4NXB">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:22:45:023 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:23:07:755 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李忠文</ReviewerId>
+    <AssignedTo>李志勇</AssignedTo>
+    <File></File>
+    <Type>item.type.label.codingStandards</Type>
+    <Severity>item.label.unset</Severity>
+    <Summary>代码注释不明确</Summary>
+    <Description>请完善代码的注释。</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+  <ReviewIssue id="IJJL8QWR">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:25:55:515 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:26:18:440 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李忠文</ReviewerId>
+    <AssignedTo>李志勇</AssignedTo>
+    <File></File>
+    <Type>item.type.label.codingStandards</Type>
+    <Severity>item.label.unset</Severity>
+    <Summary>代码注释不符合规范</Summary>
+    <Description>代码注释不符合规范，请完善代码注释。</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+  <ReviewIssue id="IJJLDZKJ">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:30:00:019 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:30:13:137 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李忠文</ReviewerId>
+    <AssignedTo>李志勇</AssignedTo>
+    <File></File>
+    <Type>item.label.unset</Type>
+    <Severity>item.label.unset</Severity>
+    <Summary>不恰当的注解使用</Summary>
+    <Description>该处注解可以删除。</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+</Review>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Review id="Word文档导出写入器代码走查-20151211">
+  <ReviewIssue id="II1BF5R8">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2015-12-11 :: 14:51:25:028 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2015-12-11 :: 14:53:55:357 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李小强</ReviewerId>
+    <AssignedTo>李忠文</AssignedTo>
+    <File line="25">src/main/java/com/comtop/cap/document/word/write/DocxConstants.java</File>
+    <Type>item.type.label.codingStandards</Type>
+    <Severity>item.severity.label.minor</Severity>
+    <Summary>常量命名及注释没有指定使用场景与环境，不易理解</Summary>
+    <Description>常量（DEFAULT、AUTO）命名及注释没有指定使用场景与环境，不易理解</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+  <ReviewIssue id="II5DZ35X">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2015-12-14 :: 11:13:58:725 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2015-12-14 :: 11:14:41:924 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李小强</ReviewerId>
+    <AssignedTo>李忠文</AssignedTo>
+    <File line="69">src/main/java/com/comtop/cap/document/word/write/writer/HTMLWriter.java</File>
+    <Type>item.type.label.optimization</Type>
+    <Severity>item.severity.label.normal</Severity>
+    <Summary>非这四种类型标签如何处理？如果不存在需特殊说明</Summary>
+    <Description></Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+</Review>

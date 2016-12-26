@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Review id="文档表达式代码表达式走查-20151204">
+  <ReviewIssue id="IJO1LFM4">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-21 :: 17:14:45:964 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-21 :: 17:15:07:039 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李小芬</ReviewerId>
+    <AssignedTo>李忠文</AssignedTo>
+    <File></File>
+    <Type>item.label.unset</Type>
+    <Severity>item.severity.label.trivial</Severity>
+    <Summary>方法过长，增加点注释</Summary>
+    <Description>方法过长，增加点注释</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+  <ReviewIssue id="IJO1MHEI">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-21 :: 17:15:34:938 CST</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-21 :: 17:15:38:680 CST</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>李小芬</ReviewerId>
+    <AssignedTo>李忠文</AssignedTo>
+    <File></File>
+    <Type>item.label.unset</Type>
+    <Severity>item.severity.label.trivial</Severity>
+    <Summary>方法过长，增加点注释</Summary>
+    <Description>方法过长，增加点注释</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+</Review>

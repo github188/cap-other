@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<WtDocConfig name="表格测试" version="1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="classpath:DocConfig.xsd">
+	<WtSection name="封面" />
+	<WtSection name="文档基本信息" />
+	<WtSection name="目录" />
+	<WtSection name="正文">
+		<WtChapter type="FIXED" title="测试项目列表" mappingTo="data=#ListData()">
+			<span mappingTo="data.content"/>
+		</WtChapter>
+	</WtSection>
+</WtDocConfig>

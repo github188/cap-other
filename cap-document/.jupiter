@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Property>
+  <Review id="DEFAULT">
+    <Description>property.default.description</Description>
+    <ReviewLevel></ReviewLevel>
+    <ReviewLevelDesc></ReviewLevelDesc>
+    <CodeRow></CodeRow>
+    <Author></Author>
+    <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">1970-01-01 :: 00:00:00:000 GMT-10:00</CreationDate>
+    <Directory>review</Directory>
+    <Reviewers></Reviewers>
+    <Files/>
+    <FieldItems>
+      <FieldItem id="Type" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.type.label.codingStandards"/>
+        <Entry name="item.type.label.programLogic"/>
+        <Entry name="item.type.label.optimization"/>
+        <Entry name="item.type.label.usability"/>
+        <Entry name="item.type.label.clarity"/>
+        <Entry name="item.type.label.other"/>
+      </FieldItem>
+      <FieldItem id="Severity" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.severity.label.critical"/>
+        <Entry name="item.severity.label.major"/>
+        <Entry name="item.severity.label.normal"/>
+        <Entry name="item.severity.label.minor"/>
+        <Entry name="item.severity.label.trivial"/>
+      </FieldItem>
+      <FieldItem id="Resolution" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.resolution.label.validNeedsfixing"/>
+        <Entry name="item.resolution.label.validFixlater"/>
+        <Entry name="item.resolution.label.validDuplicate"/>
+        <Entry name="item.resolution.label.validWontfix"/>
+        <Entry name="item.resolution.label.invalidWontfix"/>
+        <Entry name="item.resolution.label.unsureValidity"/>
+      </FieldItem>
+      <FieldItem id="Status" default="item.status.label.open">
+        <Entry name="item.status.label.open"/>
+        <Entry name="item.status.label.resolved"/>
+        <Entry name="item.status.label.closed"/>
+        <Entry name="item.status.label.reopened"/>
+      </FieldItem>
+    </FieldItems>
+    <Filters>
+      <Phase name="phase.individual" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.team" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="true"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.rework" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="true"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+    </Filters>
+  </Review>
+  <Review id="文档表达式代码表达式走查-20151204">
+    <Description>文档表达式代码表达式走查-20151204</Description>
+    <ReviewLevel></ReviewLevel>
+    <ReviewLevelDesc></ReviewLevelDesc>
+    <CodeRow></CodeRow>
+    <Author>李忠文</Author>
+    <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2015-12-03 :: 10:31:52:738 CST</CreationDate>
+    <Directory>review</Directory>
+    <Reviewers>
+      <Entry id="丁庞" name="丁庞"/>
+      <Entry id="姜子豪" name="姜子豪"/>
+      <Entry id="李小强" name="李小强"/>
+      <Entry id="李小芬" name="李小芬"/>
+      <Entry id="李志勇" name="李志勇"/>
+      <Entry id="李忠文" name="李忠文"/>
+      <Entry id="杨赛" name="杨赛"/>
+    </Reviewers>
+    <Files>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/accessor/AccessException.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/accessor/ConstructorExecutor.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/accessor/ConstructorResolver.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/accessor/MethodExecutor.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/accessor/MethodResolver.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/accessor/PropertyAccessor.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/accessor/ReflectivePropertyAccessor.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/annotation/DocumentObject.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/annotation/Function.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/Assign.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/BooleanLiteral.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/Compound.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/ExprNode.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/ExprNodeImpl.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/Function.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/Indexer.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/IntLiteral.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/IterableVariable.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/Literal.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/LongLiteral.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/MethodRef.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/NullLiteral.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/PropertyRef.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/RealLiteral.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/Reference.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/Service.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/StringLiteral.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ast/Variable.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/Bracket.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/CompositeExpression.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/converter/ConverterUtils.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/converter/ConverteService.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/converter/ITypeConverter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/converter/TypeConverter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/EvaluationContext.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/EvaluationException.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/Expression.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ExpressionException.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ExpressionParser.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ExpressionUtils.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/IExpression.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/IExpressionParser.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/IParseContext.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/ParseException.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/BooleanTypedValue.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/FunctionCache.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/IterableTypedValue.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/MethodParameter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/PropertyTypeDescriptor.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/ServiceCache.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/StandardTypeLocator.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/TypeComparator.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/TypeDescriptor.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/TypedValue.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/TypeLocator.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/support/ValueObjectCache.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/Token.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/Tokenizer.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/TokenKind.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/util/DocCollectionUtils.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/util/DocDateTimeUtils.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/util/DocMathUtils.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/util/DocMD5Utils.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/util/DocRegExUtils.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/util/DocStringUtils.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/expression/VariableScope.java"/>
+    </Files>
+    <FieldItems>
+      <FieldItem id="Type" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.type.label.codingStandards"/>
+        <Entry name="item.type.label.programLogic"/>
+        <Entry name="item.type.label.optimization"/>
+        <Entry name="item.type.label.usability"/>
+        <Entry name="item.type.label.clarity"/>
+        <Entry name="item.type.label.other"/>
+      </FieldItem>
+      <FieldItem id="Severity" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.severity.label.critical"/>
+        <Entry name="item.severity.label.major"/>
+        <Entry name="item.severity.label.normal"/>
+        <Entry name="item.severity.label.minor"/>
+        <Entry name="item.severity.label.trivial"/>
+      </FieldItem>
+      <FieldItem id="Resolution" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.resolution.label.validNeedsfixing"/>
+        <Entry name="item.resolution.label.validFixlater"/>
+        <Entry name="item.resolution.label.validDuplicate"/>
+        <Entry name="item.resolution.label.validWontfix"/>
+        <Entry name="item.resolution.label.invalidWontfix"/>
+        <Entry name="item.resolution.label.unsureValidity"/>
+      </FieldItem>
+      <FieldItem id="Status" default="item.status.label.open">
+        <Entry name="item.status.label.open"/>
+        <Entry name="item.status.label.resolved"/>
+        <Entry name="item.status.label.closed"/>
+        <Entry name="item.status.label.reopened"/>
+      </FieldItem>
+    </FieldItems>
+    <Filters>
+      <Phase name="phase.individual" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.team" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="true"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.rework" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="true"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+    </Filters>
+  </Review>
+  <Review id="Word文档导出写入器代码走查-20151211">
+    <Description>Word文档导出写入器代码走查-20151211</Description>
+    <ReviewLevel></ReviewLevel>
+    <ReviewLevelDesc></ReviewLevelDesc>
+    <CodeRow></CodeRow>
+    <Author>李忠文</Author>
+    <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2015-12-11 :: 14:36:05:743 CST</CreationDate>
+    <Directory>review</Directory>
+    <Reviewers>
+      <Entry id="丁庞" name="丁庞"/>
+      <Entry id="姜子豪" name="姜子豪"/>
+      <Entry id="李小强" name="李小强"/>
+      <Entry id="李小芬" name="李小芬"/>
+      <Entry id="李志勇" name="李志勇"/>
+      <Entry id="李忠文" name="李忠文"/>
+      <Entry id="杨赛" name="杨赛"/>
+    </Reviewers>
+    <Files>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxConstants.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxExportConfiguration.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxHelper.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/ExtXWPFDocument.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/ExtXWPFRelation.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ChapterWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ContentSegmentWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/DocxFragmentWriterFactory.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/DynamicChapterWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/DynamicTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ExpandColumnTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ExpandRowTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/FixedChapterWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/FixedTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/FragmentWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/GraphicWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/HTMLWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/IDocxFragmentWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/SectionWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagAWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagImageWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagPWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TextWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/UnknownTableWriter.java"/>
+    </Files>
+    <FieldItems>
+      <FieldItem id="Type" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.type.label.codingStandards"/>
+        <Entry name="item.type.label.programLogic"/>
+        <Entry name="item.type.label.optimization"/>
+        <Entry name="item.type.label.usability"/>
+        <Entry name="item.type.label.clarity"/>
+        <Entry name="item.type.label.other"/>
+      </FieldItem>
+      <FieldItem id="Severity" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.severity.label.critical"/>
+        <Entry name="item.severity.label.major"/>
+        <Entry name="item.severity.label.normal"/>
+        <Entry name="item.severity.label.minor"/>
+        <Entry name="item.severity.label.trivial"/>
+      </FieldItem>
+      <FieldItem id="Resolution" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.resolution.label.validNeedsfixing"/>
+        <Entry name="item.resolution.label.validFixlater"/>
+        <Entry name="item.resolution.label.validDuplicate"/>
+        <Entry name="item.resolution.label.validWontfix"/>
+        <Entry name="item.resolution.label.invalidWontfix"/>
+        <Entry name="item.resolution.label.unsureValidity"/>
+      </FieldItem>
+      <FieldItem id="Status" default="item.status.label.open">
+        <Entry name="item.status.label.open"/>
+        <Entry name="item.status.label.resolved"/>
+        <Entry name="item.status.label.closed"/>
+        <Entry name="item.status.label.reopened"/>
+      </FieldItem>
+    </FieldItems>
+    <Filters>
+      <Phase name="phase.individual" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.team" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="true"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.rework" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="true"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+    </Filters>
+  </Review>
+  <Review id="Word文档导出写入器代码走查-20151211">
+    <Description>Word文档导出写入器代码走查-20151211</Description>
+    <ReviewLevel></ReviewLevel>
+    <ReviewLevelDesc></ReviewLevelDesc>
+    <CodeRow></CodeRow>
+    <Author>李忠文</Author>
+    <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2015-12-11 :: 14:36:09:326 CST</CreationDate>
+    <Directory>review</Directory>
+    <Reviewers>
+      <Entry id="丁庞" name="丁庞"/>
+      <Entry id="姜子豪" name="姜子豪"/>
+      <Entry id="李小强" name="李小强"/>
+      <Entry id="李小芬" name="李小芬"/>
+      <Entry id="李志勇" name="李志勇"/>
+      <Entry id="李忠文" name="李忠文"/>
+      <Entry id="杨赛" name="杨赛"/>
+    </Reviewers>
+    <Files>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxConstants.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxExportConfiguration.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxHelper.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/ExtXWPFDocument.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/ExtXWPFRelation.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ChapterWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ContentSegmentWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/DocxFragmentWriterFactory.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/DynamicChapterWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/DynamicTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ExpandColumnTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ExpandRowTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/FixedChapterWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/FixedTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/FragmentWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/GraphicWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/HTMLWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/IDocxFragmentWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/SectionWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagAWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagImageWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagPWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TextWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/UnknownTableWriter.java"/>
+    </Files>
+    <FieldItems>
+      <FieldItem id="Type" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.type.label.codingStandards"/>
+        <Entry name="item.type.label.programLogic"/>
+        <Entry name="item.type.label.optimization"/>
+        <Entry name="item.type.label.usability"/>
+        <Entry name="item.type.label.clarity"/>
+        <Entry name="item.type.label.other"/>
+      </FieldItem>
+      <FieldItem id="Severity" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.severity.label.critical"/>
+        <Entry name="item.severity.label.major"/>
+        <Entry name="item.severity.label.normal"/>
+        <Entry name="item.severity.label.minor"/>
+        <Entry name="item.severity.label.trivial"/>
+      </FieldItem>
+      <FieldItem id="Resolution" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.resolution.label.validNeedsfixing"/>
+        <Entry name="item.resolution.label.validFixlater"/>
+        <Entry name="item.resolution.label.validDuplicate"/>
+        <Entry name="item.resolution.label.validWontfix"/>
+        <Entry name="item.resolution.label.invalidWontfix"/>
+        <Entry name="item.resolution.label.unsureValidity"/>
+      </FieldItem>
+      <FieldItem id="Status" default="item.status.label.open">
+        <Entry name="item.status.label.open"/>
+        <Entry name="item.status.label.resolved"/>
+        <Entry name="item.status.label.closed"/>
+        <Entry name="item.status.label.reopened"/>
+      </FieldItem>
+    </FieldItems>
+    <Filters>
+      <Phase name="phase.individual" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.team" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="true"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.rework" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="true"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+    </Filters>
+  </Review>
+  <Review id="Word文档导出写入器代码走查-20151211">
+    <Description>Word文档导出写入器代码走查-20151211</Description>
+    <ReviewLevel></ReviewLevel>
+    <ReviewLevelDesc></ReviewLevelDesc>
+    <CodeRow></CodeRow>
+    <Author>李忠文</Author>
+    <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2015-12-11 :: 14:36:29:095 CST</CreationDate>
+    <Directory>review</Directory>
+    <Reviewers>
+      <Entry id="丁庞" name="丁庞"/>
+      <Entry id="姜子豪" name="姜子豪"/>
+      <Entry id="李小强" name="李小强"/>
+      <Entry id="李小芬" name="李小芬"/>
+      <Entry id="李志勇" name="李志勇"/>
+      <Entry id="李忠文" name="李忠文"/>
+      <Entry id="杨赛" name="杨赛"/>
+    </Reviewers>
+    <Files>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxConstants.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxExportConfiguration.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxHelper.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/DocxWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/ExtXWPFDocument.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/ExtXWPFRelation.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ChapterWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ContentSegmentWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/DocxFragmentWriterFactory.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/DynamicChapterWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/DynamicTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ExpandColumnTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/ExpandRowTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/FixedChapterWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/FixedTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/FragmentWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/GraphicWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/HTMLWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/IDocxFragmentWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/SectionWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagAWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagImageWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagPWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagTableWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TagWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/TextWriter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/write/writer/UnknownTableWriter.java"/>
+    </Files>
+    <FieldItems>
+      <FieldItem id="Type" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.type.label.codingStandards"/>
+        <Entry name="item.type.label.programLogic"/>
+        <Entry name="item.type.label.optimization"/>
+        <Entry name="item.type.label.usability"/>
+        <Entry name="item.type.label.clarity"/>
+        <Entry name="item.type.label.other"/>
+      </FieldItem>
+      <FieldItem id="Severity" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.severity.label.critical"/>
+        <Entry name="item.severity.label.major"/>
+        <Entry name="item.severity.label.normal"/>
+        <Entry name="item.severity.label.minor"/>
+        <Entry name="item.severity.label.trivial"/>
+      </FieldItem>
+      <FieldItem id="Resolution" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.resolution.label.validNeedsfixing"/>
+        <Entry name="item.resolution.label.validFixlater"/>
+        <Entry name="item.resolution.label.validDuplicate"/>
+        <Entry name="item.resolution.label.validWontfix"/>
+        <Entry name="item.resolution.label.invalidWontfix"/>
+        <Entry name="item.resolution.label.unsureValidity"/>
+      </FieldItem>
+      <FieldItem id="Status" default="item.status.label.open">
+        <Entry name="item.status.label.open"/>
+        <Entry name="item.status.label.resolved"/>
+        <Entry name="item.status.label.closed"/>
+        <Entry name="item.status.label.reopened"/>
+      </FieldItem>
+    </FieldItems>
+    <Filters>
+      <Phase name="phase.individual" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.team" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="true"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.rework" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="true"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+    </Filters>
+  </Review>
+  <Review id="word文档解析代码走查-20160118">
+    <Description>word文档解析代码走查-20160118</Description>
+    <ReviewLevel></ReviewLevel>
+    <ReviewLevelDesc></ReviewLevelDesc>
+    <CodeRow></CodeRow>
+    <Author></Author>
+    <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:14:43:403 CST</CreationDate>
+    <Directory>review</Directory>
+    <Reviewers>
+      <Entry id="丁庞" name="丁庞"/>
+      <Entry id="李小强" name="李小强"/>
+      <Entry id="李小芬" name="李小芬"/>
+      <Entry id="李忠文" name="李忠文"/>
+    </Reviewers>
+    <Files>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/BaseDTO.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/CellExtra.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Chapter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/CompElement.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/ComplexSeg.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Container.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/ContentSeg.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/DefaultContentSeg.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/EmbedObject.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Graphic.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Group.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Paragraph.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/ParagraphSet.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Refer.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/RowExtra.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Section.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/SimplexSeg.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Table.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/TableCell.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/TableExtra.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/TableRow.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Text.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/WordDocument.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/WordElement.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docconfig/DocConfig.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docconfig/DocConfigManager.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docconfig/DocConfigType.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/parse/WordParser.java"/>
+    </Files>
+    <FieldItems>
+      <FieldItem id="Type" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.type.label.codingStandards"/>
+        <Entry name="item.type.label.programLogic"/>
+        <Entry name="item.type.label.optimization"/>
+        <Entry name="item.type.label.usability"/>
+        <Entry name="item.type.label.clarity"/>
+        <Entry name="item.type.label.other"/>
+      </FieldItem>
+      <FieldItem id="Severity" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.severity.label.critical"/>
+        <Entry name="item.severity.label.major"/>
+        <Entry name="item.severity.label.normal"/>
+        <Entry name="item.severity.label.minor"/>
+        <Entry name="item.severity.label.trivial"/>
+      </FieldItem>
+      <FieldItem id="Resolution" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.resolution.label.validNeedsfixing"/>
+        <Entry name="item.resolution.label.validFixlater"/>
+        <Entry name="item.resolution.label.validDuplicate"/>
+        <Entry name="item.resolution.label.validWontfix"/>
+        <Entry name="item.resolution.label.invalidWontfix"/>
+        <Entry name="item.resolution.label.unsureValidity"/>
+      </FieldItem>
+      <FieldItem id="Status" default="item.status.label.open">
+        <Entry name="item.status.label.open"/>
+        <Entry name="item.status.label.resolved"/>
+        <Entry name="item.status.label.closed"/>
+        <Entry name="item.status.label.reopened"/>
+      </FieldItem>
+    </FieldItems>
+    <Filters>
+      <Phase name="phase.individual" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.team" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="true"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.rework" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="true"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+    </Filters>
+  </Review>
+  <Review id="word文档解析模型结构及配置解析走查-20160118">
+    <Description>word文档解析模型结构及配置解析走查-20160118</Description>
+    <ReviewLevel></ReviewLevel>
+    <ReviewLevelDesc></ReviewLevelDesc>
+    <CodeRow></CodeRow>
+    <Author>李志勇</Author>
+    <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2016-01-18 :: 14:15:24:218 CST</CreationDate>
+    <Directory>review</Directory>
+    <Reviewers>
+      <Entry id="丁庞" name="丁庞"/>
+      <Entry id="李小强" name="李小强"/>
+      <Entry id="李小芬" name="李小芬"/>
+      <Entry id="李志勇" name="李志勇"/>
+      <Entry id="李忠文" name="李忠文"/>
+      <Entry id="杨赛" name="杨赛"/>
+    </Reviewers>
+    <Files>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/BaseDTO.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/CellExtra.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Chapter.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/CompElement.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/ComplexSeg.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Container.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/ContentSeg.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/DefaultContentSeg.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/EmbedObject.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Graphic.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Group.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Paragraph.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/ParagraphSet.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Refer.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/RowExtra.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Section.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/SimplexSeg.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Table.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/TableCell.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/TableExtra.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/TableRow.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/Text.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/WordDocument.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docmodel/data/WordElement.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docconfig/DocConfig.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docconfig/DocConfigManager.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/docconfig/DocConfigType.java"/>
+      <Entry name="src/main/java/com/comtop/cap/document/word/parse/WordParser.java"/>
+    </Files>
+    <FieldItems>
+      <FieldItem id="Type" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.type.label.codingStandards"/>
+        <Entry name="item.type.label.programLogic"/>
+        <Entry name="item.type.label.optimization"/>
+        <Entry name="item.type.label.usability"/>
+        <Entry name="item.type.label.clarity"/>
+        <Entry name="item.type.label.other"/>
+      </FieldItem>
+      <FieldItem id="Severity" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.severity.label.critical"/>
+        <Entry name="item.severity.label.major"/>
+        <Entry name="item.severity.label.normal"/>
+        <Entry name="item.severity.label.minor"/>
+        <Entry name="item.severity.label.trivial"/>
+      </FieldItem>
+      <FieldItem id="Resolution" default="item.label.unset">
+        <Entry name="item.label.unset"/>
+        <Entry name="item.resolution.label.validNeedsfixing"/>
+        <Entry name="item.resolution.label.validFixlater"/>
+        <Entry name="item.resolution.label.validDuplicate"/>
+        <Entry name="item.resolution.label.validWontfix"/>
+        <Entry name="item.resolution.label.invalidWontfix"/>
+        <Entry name="item.resolution.label.unsureValidity"/>
+      </FieldItem>
+      <FieldItem id="Status" default="item.status.label.open">
+        <Entry name="item.status.label.open"/>
+        <Entry name="item.status.label.resolved"/>
+        <Entry name="item.status.label.closed"/>
+        <Entry name="item.status.label.reopened"/>
+      </FieldItem>
+    </FieldItems>
+    <Filters>
+      <Phase name="phase.individual" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.team" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="" enabled="false"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="true"/>
+        <Filter name="Status" value="item.status.label.open" enabled="false"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+      <Phase name="phase.rework" enabled="true">
+        <Filter name="Interval" value="7" enabled="false"/>
+        <Filter name="Reviewer" value="" enabled="false"/>
+        <Filter name="Type" value="item.label.unset" enabled="false"/>
+        <Filter name="Severity" value="item.label.unset" enabled="false"/>
+        <Filter name="AssignedTo" value="item.reviewer.label.automatic" enabled="true"/>
+        <Filter name="Resolution" value="item.label.unset" enabled="false"/>
+        <Filter name="Status" value="item.status.label.open" enabled="true"/>
+        <Filter name="File" value="" enabled="false"/>
+      </Phase>
+    </Filters>
+  </Review>
+</Property>
