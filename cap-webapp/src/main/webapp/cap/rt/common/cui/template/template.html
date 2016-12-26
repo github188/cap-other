@@ -1,0 +1,557 @@
+<tpls>
+<cmptpl uiType="Menu" var="menuDom" parse="false">
+    <!---// dataStore-->
+    <!---
+        var href, target;
+    -->
+    <div class="menu_box">
+        <ul class="menu">
+            <!--- for(var i = 0; i < dataStore.length; i++){ -->
+            <!---
+                href = typeof dataStore[i].href !== 'undefined' ? dataStore[i].href: 'javascript:;';
+                target = typeof dataStore[i].target !== 'undefined' ? dataStore[i].target: '_self';
+            -->
+            <li id="+-dataStore[i].id-+"  class="menu_item <!---if(dataStore[i].separator) {-->menu_item_line<!---}-->" events="mouseover=_mouseoverHandler;mouseout=_mouseoutHandler;click=_clickHandler">
+                <a href="+-href-+" target="+-target-+" class="menu_item_a">
+                <!--- var title = dataStore[i].title||dataStore[i].label  -->
+                    <span class="menu_item_sp" title="+-title-+">+-dataStore[i].label-+</span><i class="cui-icon">&#xf0da;</i>
+                </a>
+            </li>
+            <!--- } -->
+        </ul>
+        <!---if(comtop.Browser.isIE6){-->
+        <iframe frameborder="0"></iframe>
+        <!---}-->
+    </div>
+</cmptpl>
+
+<cmptpl uiType="Input" var="inputDom" parse="true">
+    <!---// options-->
+    <!---
+        var BC_style = "";
+        if (comtop.Browser.isQM && comtop.Browser.isIE6) {
+            BC_style = "BC_cui_inputCMP";
+        }
+		var width = options.width;
+		if(!/\%|px|em|pt/.test(width)){
+			width = options.width + 'px';
+		}
+		var  isHidden = options.type === 'hidden' ? 'display:none!important;':'';
+    -->
+    <div class="cui_inputCMP_wrap +-options.readonly ? 'cui_inputCMP_readonly':''-+ +-BC_style-+" style="width:+-width-+;+-isHidden-+">
+        <div class="cui_input_empty"></div>
+        <div class="cui_inputCMP" ><input type="+-options.type-+" name="+-options.name-+" id="+-options.id-+"
+        class="cui_inputCMP_input" value="+-options.value-+" +-options.readonly ? 'readonly="readonly"':''-+
+         events="change=_changeHander;focus=_focusHandler;keyup=_keyupHandler;keydown=_keydownHandler;keypress=_keypressHandler;"></div>
+    </div>
+
+</cmptpl>
+
+<cmptpl uiType="ClickInput" var="clickinputDom" parse="true">
+    <!---// options-->
+    <!---
+       var BC_input_wrap = "";
+       var BC_input_box_style = "";
+       if (comtop.Browser.isQM) {
+           BC_input_box_style = "BC_click_input_box";
+           BC_input_wrap = "BC_click_input_wrap";
+       }
+    -->
+    <div id="+-options.id-+_wrap" class="click_input_wrap +-BC_input_wrap-+">
+        <a class="click_input_icon" href="javascript:;"  hidefocus="true" id="+-options.id-+_warp" events="click=_iconclickHandler" <!---if(options.emptytext){-->title="+-options.emptytext-+"<!---}-->>
+            <span class="click_input_icon_bg cui-icon" id="+-options.id-+_icon">&nbsp;&nbsp;</span>
+        </a>
+        <div class="cui_clickinput_empty"></div>
+        <div id="+-options.id-+_box" class="click_input_box +-BC_input_box_style-+">
+            <div>
+                <input type="text" name="+-options.name-+" id="+-options.id-+" class="click_input_base" value="+-options.value-+"
+                       events="change=_changeHander;focus=_focusHandler;blur=_blurHandler;keyup=_keyupHandler;keydown=_keydownHandler;">
+            </div>
+        </div>
+
+    </div>
+
+</cmptpl>
+
+<cmptpl uiType="Pagination" var="pagination" parse="false">
+    <!---// data-->
+    <!---
+   if(data.selectList || selectList.length>0){
+    -->
+    <div class="page-numlist">
+        <span class="page-selector-text common">共+-data.totalItems-+条记录 每页显示</span>
+        <!---
+        for(var i=0; i<data.selectList.length; i++){ var clazz="";if(i===0){clazz="page-size-first";}
+            if(i===data.selectList.length-1){clazz="page-size-last";}
+            if(data.selectList[i] == data.itemsPerPage){
+        --><span class="pagesize-selected +-clazz-+ common">+-data.selectList[i]-+</span><!---
+        } else {
+        --><a href="#" class="page-size +-clazz-+ common" act="sizePage">+-data.selectList[i]-+</a><!---
+            }
+        }
+        -->
+        <!---
+        if(data.customPageSize){ -->
+        <span class="page-skipnum common">
+            <input act="customPageSize" title="自定义单页数量" type="text" class="page-size-num" value="+-data.itemsPerPage-+" maxlength="4"/>
+        </span>
+        <!--- }-->
+        <span class="page-selector-text page-selector-text-t common">条</span>
+        <!---
+       }
+       -->
+    </div>
+
+    <!---
+    if(data.currentPage==1){
+    --><span class="page-first common cui-icon">&#xf0d9;<i>上一页</i></span><!---
+    } else {
+    --><a href="#" class="page-prev common cui-icon" act="prevPage">&#xf0d9;<i>上一页</i></a><!---
+    }
+    --><!---
+    if(data.toFirst > 2){
+    --><a href="#" class="page-num common" act="numPage">1</a><span class="page-break common">...</span><!---
+    } else if(data.toFirst==2){
+    --><a href="#" class="page-num common" act="numPage">1</a><!---
+    }
+    --><!---
+    for(var i= data.displayPreCount; i>=1 && data.currentPage-i >= 1; i--){
+        var num = data.currentPage-i;
+     --><a href="#" class="page-num common" act="numPage">+-num-+</a><!---
+    }
+     --><span class="page-selected common">+-data.currentPage-+</span><!---
+    for(var i=1; i<=data.displayNextCount && data.currentPage+i <= data.totalPage; i++){
+        var num = data.currentPage + i
+    --><a href="#" class="page-num common" act="numPage">+-num-+</a><!---
+    }
+    if(data.toLast<data.totalPage-1){
+    --><span class="page-break common">...</span><a href="#" class="page-num common" act="numPage">+-data.totalPage-+</a><!---
+    } else if(data.toLast == data.totalPage-1){
+    --><a href="#" class="page-num common" act="numPage">+-data.totalPage-+</a><!---
+    }
+    if(data.currentPage==data.totalPage){
+    --><span class="page-end common cui-icon"><i>下一页</i>&#xf0da;</span><!---
+    } else {
+    --><a href="#" class="page-next common cui-icon" act="nextPage"><i>下一页</i>&#xf0da;</a>
+    <!---
+    }
+    -->
+    <span class="page-skip common"><span class="page-skip-text">跳转至</span>
+        <input act="cusPage" type="text" class="page-skip-num" value="+-data.currentPage-+" maxlength="+-data.totalPage.toString().length-+"/>
+        <span class="page-skip-text">页</span></span>
+    <a href="#" class="btn-normal cui-button cui-button-align" act="goPage">GO</a>
+</cmptpl>
+
+<cmptpl uiType="Pagination" var="pagination_min_1" parse="false">
+    <!---// data-->
+    <div class="page-numlist">
+        <!---
+        if(data.selectList || selectList.length>0){
+        -->
+        <span class="page-text">共+-data.totalItems-+条记录&nbsp;每页显示：</span>
+        <span class="page-numlist-num">
+        <!---
+        for(var i=0; i<data.selectList.length; i++){
+        var clazz="";if(i===0){clazz="page-size-first";}
+        if(i===data.selectList.length-1){clazz="page-size-last";}
+            if(data.selectList[i] == data.itemsPerPage){
+        -->
+        <em class="pagesize-selected +-clazz-+">+-data.selectList[i]-+</em>
+        <!---
+        } else {
+        -->
+        <a href="#" class="page-size +-clazz-+" act="sizePage">+-data.selectList[i]-+</a>
+        <!---
+            }
+        }
+        -->
+        <!---
+        if(data.customPageSize){ -->
+        <span class="page-skip common">
+            <input act="customPageSize"  title="自定义单页数量" type="text" class="page-size-num" value="+-data.itemsPerPage-+" maxlength="4"/>
+        </span>
+        <!--- }-->
+        <span class="page-text">条</span></span>
+        <!---
+       }
+       -->
+    </div>
+    <div class="page-opbar">
+        <!---
+        if(data.currentPage!=1){
+        -->
+        <a href="#" class="page-prev cui-icon" act="prevPage">&#xf0d9;<em>上一页</em></a>
+        <!---
+        }
+        -->
+        <span class="page-info"><em>+-data.currentPage-+</em>/+-data.totalPage-+</span>
+        <!---
+        if(data.currentPage!=data.totalPage){
+        -->
+        <a href="#" class="page-next cui-icon" act="nextPage"><em>下一页</em>&#xf0da;</a>
+        <!---
+        }
+        -->
+        <span class="page-skip">跳转至</span><span class="page-skip-input"><input type="text" act="cusPage"
+                                                                               class="page-skip-num" value="+-data.currentPage-+" maxlength="+-data.totalPage.toString().length-+"/></span><span class="page-skip-last">页</span>
+        <a href="#" class="btn-normal cui-button" act="goPage">GO</a>
+    </div>
+</cmptpl>
+
+<cmptpl uiType="Pagination" var="pagination_min_2" parse="false">
+    <!---// data-->
+    <!---if(data.currentPage!=1){-->
+    <a href="#" class="page-prev cui-icon" act="prevPage">&#xf0d9;<em></em></a>
+    <!---}else{-->
+    <span class="page-prev-dis cui-icon">&#xf0d9;<em></em></span>
+    <!---}-->
+    <span class="page-info"><em>+-data.currentPage-+</em>/+-data.totalPage-+</span>
+    <!---if(data.currentPage!=data.totalPage){-->
+    <a href="#" class="page-next cui-icon" act="nextPage"><em></em>&#xf0da;</a>
+    <!---}else{-->
+    <span class="page-next-dis cui-icon"><em></em>&#xf0da;</span>
+    <!---}-->
+</cmptpl>
+
+<cmptpl uiType="Pagination" var="pagination_min_3" parse="false">
+    <!---// data-->
+    <div class="page-numlist">
+        <!---
+        if(data.selectList || selectList.length>0){
+        -->
+        <span>共+-data.totalItems-+条记录</span>
+        <!---
+       }
+       -->
+    </div>
+    <div class="page-opbar">
+        <!---if(data.currentPage!=1){-->
+        <a href="#" class="page-prev cui-icon" act="prevPage">&#xf0d9;<em></em></a>
+        <!---}else{-->
+        <span class="page-prev-dis cui-icon">&#xf0d9;<em></em></span>
+        <!---}-->
+        <span class="page-info"><em>+-data.currentPage-+</em>/+-data.totalPage-+</span>
+        <!---if(data.currentPage!=data.totalPage){-->
+        <a href="#" class="page-next cui-icon" act="nextPage"><em></em>&#xf0da;</a>
+        <!---}else{-->
+        <span class="page-next-dis cui-icon"><em></em>&#xf0da;</span>
+    <!---}-->
+    </div>
+</cmptpl>
+
+<cmptpl uiType="Pagination" var="pagination_min_4" parse="false">
+    <!---// data-->
+    <div class="page-numlist">
+        <!---
+        if(data.selectList || selectList.length>0){
+        -->
+        <span class="page-text">共+-data.totalItems-+条记录&nbsp;每页显示：</span>
+        <span class="page-numlist-num">
+        <!---
+        for(var i=0; i<data.selectList.length; i++){
+        var clazz="";if(i===0){clazz="page-size-first";}
+        if(i===data.selectList.length-1){clazz="page-size-last";}
+            if(data.selectList[i] == data.itemsPerPage){
+        -->
+        <em class="pagesize-selected +-clazz-+">+-data.selectList[i]-+</em>
+        <!---
+        } else {
+        -->
+        <a href="#" class="page-size +-clazz-+" act="sizePage">+-data.selectList[i]-+</a>
+        <!---
+            }
+        }
+        -->
+        <!---
+        if(data.customPageSize){ -->
+        <span class="page-skip common">
+            <input act="customPageSize"  title="自定义单页数量" type="text" class="page-size-num" value="+-data.itemsPerPage-+" maxlength="4"/>
+        </span>
+        <!--- }-->
+        <span class="page-text">条</span></span>
+        <!---
+       }
+       -->
+    </div>
+    <div class="page-opbar">
+        <!---
+        if(data.currentPage!=1){
+        -->
+        <a href="#" class="page-prev cui-icon" act="prevPage">&#xf0d9;<em>上一页</em></a>
+        <!---
+        }
+        -->
+        <span class="page-info"><em>+-data.currentPage-+</em>/+-data.totalPage-+</span>
+        <!---
+        if(data.currentPage!=data.totalPage){
+        -->
+        <a href="#" class="page-next cui-icon" act="nextPage"><em>下一页</em>&#xf0da;</a>
+        <!---
+        }
+        --><span class="page-skip-input">
+        <input type="text" class="page-skip-num" value="+-data.currentPage-+"
+               maxlength="+-data.totalPage.toString().length-+" act="cusPage"/></span>
+        <span class="page-skin-label" act="goPage">GO</span>
+    </div>
+</cmptpl>
+
+<!-- Tab -->
+<cmptpl uiType="Tab" var="tab" parse="true">
+    <div class="cui-tab">
+        <span class="tabs-scroller-left cui-icon">&#xf04a;</span>
+        <span class="tabs-scroller-right cui-icon">&#xf04e;</span>
+        <!---// options-->
+        <div class="cui-tab-head" <!---if(options.head_width){-->style="width: +-options.head_width-+"<!---}-->>
+        <ul class="cui-tab-nav">
+            <!---
+                var tabs = options.tabs,tabTitle,
+                    active_index = options.active_index;
+				var closeable=options.closeable,
+					tab_width=options.tab_width;	
+                for(var i = 0, len = tabs.length; i < len; i++) {
+                    var tab = tabs[i],closeSpan=closeable,tabw=tab_width;
+					if(typeof tab.closeable=="boolean"){closeSpan=tab.closeable;}
+					if(tab.closeable==="true"){closeSpan=true;}
+					if(tab.closeable==="false"){closeSpan=false;}
+					if(typeof tab.tab_width==="number"){tabw=tab.tab_width;}
+                 tabTitle =tab.title.replace(/<.*?>/g, '').replace('"', '＂');
+            -->
+            <li title="+-tabTitle-+" class="+-i===active_index?'cui-active':''-+  +-i===0?'first-tab':''-+" style="width:+-tabw-+px">
+                <span class="cui-tab-title">+-tab.title-+</span>
+				
+				<a href="#" class="cui-tab-close cui-icon" <!---if(!closeSpan){--> style="display:none;" <!---}-->>&#xf00d;</a>
+				
+            </li>
+            <!--- } -->
+        </ul>
+        </div>
+        <div class="cui-tab-content">
+            <!---
+                for(var i = 0, len = tabs.length; i < len; i++) {
+                    var tab = tabs[i],
+                        isIframe = !!tab.url;
+            -->
+            <!---   if(isIframe) {-->            
+                <iframe src="about:blank" frameborder="0"  style="height:100%;display:none;width:100%"></iframe>            
+            <!---   } else {    -->
+                <div style="overflow:auto;height:100%"></div>
+            <!---   }           -->
+            <!--- } -->
+        </div>
+    </div>
+</cmptpl>
+
+<!--
+列表组件
+-->
+<cmptpl uiType="ListBox" var="cListBox" parse="true">
+    <!---// options-->
+    <!--- var datasource = options.datasource,
+              iconPath = options.icon_path,
+              name = options.name,
+              labelField = options.label_field,
+              valueField = options.value_field;
+
+               var listBox_style = "";
+              if (comtop.Browser.isQM) {
+                    listBox_style = "listboxQM";
+              }
+    -->
+    <div class="listbox +-listBox_style-+" >
+        <input type="hidden" name=+-name-+ >
+        <ul class="tr" >
+            <!---
+               if(datasource && typeof datasource != 'function'){
+                  for (var i = 0; i < datasource.length; i++) {
+            -->
+            <li name="+-datasource[i][valueField]-+" class="td" title="+-datasource[i][labelField]-+" events="click=_rowClick;dblclick=_rowDblClick;mouseover=_trhoverin;mouseout=_trhoverout;">
+                <!---
+               if(iconPath != null && iconPath != ""){
+                -->
+                <img src="+-iconPath-+" />
+                <!---
+                }
+                -->
+                +-datasource[i][labelField]-+
+            </li>
+            <!---       } -->
+            <!--- } -->
+        </ul>
+
+    </div>
+</cmptpl>
+
+<cmptpl uiType="ListBox" var="cListBoxRow" parse="false">
+    <!---// options-->
+    <!---
+          var datasource = options.datasource,
+              iconPath = options.icon_path,
+              labelField = options.label_field,
+              valueField = options.value_field;
+   -->
+    <!---
+               if(datasource ){
+                  for (var i = 0; i < datasource.length; i++) {
+            -->
+    <li name="+-datasource[i][valueField]-+" class="td" title="+-datasource[i][labelField]-+"  events="click=_rowClick;dblclick=_rowDblClick;mouseover=_trhoverin;mouseout=_trhoverout;">
+        <!---
+       if(iconPath != null && iconPath != ""){
+        -->
+        <img src="+-iconPath-+">
+        <!---
+        }
+        -->
+        +-datasource[i][labelField]-+
+    </li>
+    <!---       } -->
+    <!--- } -->
+
+</cmptpl>
+<!--
+   列表组件结束
+-->
+
+<!-- Tip -->
+<cmptpl uiType="Tip" var="tip" parse="false">
+    <!---// data-->
+    <div class="ctip" id="+-data.uid-+">
+        <!---
+        if(data.pointee){
+        -->
+        <div class="ctip-arrow"><span class="tip-arrow-border">&#9670</span><span class="tip-arrow-bg">&#9670</span></div>
+        <!---
+        }
+         -->
+        <!---
+        var closed = data.x===true ? 'ctip-closed' : '';
+        -->
+        <div class="ctip-content +-closed-+">
+            <!---
+            if(data.x===true){
+            -->
+            <a class="ctip-x cui-icon" href="#">&#xf00d;</a>
+            <!---
+            }
+            -->
+            <div class="ctip-msg"></div>
+        </div>
+    </div>
+
+</cmptpl>
+
+<!-- Panel -->
+<cmptpl uiType="Panel" var="panel" parse="true">
+    <div class="cui-panel">
+        <!---// options-->
+        <div class="cui-panel-title">
+            <span class="cui-panel-trigger-content"><span class="cui-panel-trigger cui-icon">&#xf068;</span></span>
+            <span class="cui-panel-title-text">+-options.title-+</span>
+        </div>
+        <div class="cui-panel-content">
+            <!--- if(options.url) { -->             
+            <iframe class="cui-panel-iframe" frameborder="0" style="width:100%" src="" ></iframe>             
+            <!---   } else {    -->
+                <div style="overflow:auto;height:100%"></div>
+            <!---   }           -->			
+        </div>
+    </div>
+</cmptpl>
+
+<cmptpl uiType="Customform" var="formDom" parse="true">
+    <!---// options-->
+    <!---
+        var datasource = options.datasource;
+        var columnCount = options.columnCount;
+    -->
+    <table class="+-options.classname-+">
+        <!--- for(var i = 0; i < datasource.length; i++){ -->
+        <!---
+                var item = datasource[i];
+                var newLineBegin = (i % columnCount == 0);
+                var newLineEnd = ((i + 1) % columnCount == 0) || (i + 1) == datasource.length;
+        -->
+        <!--- if (newLineBegin) { --><tr><!--- } -->
+        <td class="td_label">
+            <!--- if (item.required) { -->
+            <span class="td_required">*</span>
+            <!--- } -->
+            +-item.label-+
+        </td>
+        <td class="td_content">
+            <!---
+                var uid = (item.id ? item.id : comtop.guid());
+                item.el = '#' +  uid;
+            -->
+            <div id="+-uid-+"></div>
+        </td>
+        <!--- if (newLineEnd) { --></tr><!--- } -->
+        <!--- } -->
+    </table>
+</cmptpl>
+
+<!--多功能菜单-->
+<cmptpl uiType="MultiNav" var="MultiNavDom" parse="true">
+<ul class="multinav"></ul>
+</cmptpl>
+
+<!--label-->
+<cmptpl uiType="Label" var="label" parse="true">
+    <!---// options-->
+    <span style="letter-spacing:-0.21em;">
+        <!--- if (options.isReddot && !(options.readonly || options.textmode)) { -->
+            <sup style="color:red">*</sup>
+        <!---}  -->
+        <span class="cui-label-text">+-options.value-+</span>
+    </span>
+    <!--- if(options.line){ -->
+        <hr class="cui-label-line" style="border-bottom-style: dashed;">
+    <!--- } -->
+</cmptpl>
+
+<!--label-->
+<cmptpl uiType="Label" var="label1" parse="false">
+    <!---// options-->
+    <!--- var blockCls = options.blockCls||'cui-label-title'  -->
+    <blockquote class="+-blockCls-+">
+        <!--- if (options.isReddot && !(options.readonly || options.textmode)) { -->
+            <sup style="color:red">*</sup>
+        <!---}  -->
+        <span class="cui-label-text">+-options.value-+</span>
+    </blockquote>
+</cmptpl>
+<!-- image -->
+<cmptpl uiType="Image" var="image" parse="true">
+    <!---// options  -->
+    <div class="cui-image">
+        <img title="+-options.name-+" class="+-options.cls-+" name="+-options.name-+" alt="+-options.name-+" height="+-options.height-+" width="+-options.width-+" />
+    </div>
+</cmptpl>
+<!-- Frame -->
+<cmptpl uiType="Frame" var="frame" parse="true">
+    <!---// options  -->
+    <!--- var url = options.designMode?"":options.url -->
+    <iframe style="display:inline-block;" id="+-options.id-+" class="cui-frame" src="+-url-+">
+        
+    </iframe>
+</cmptpl>
+<cmptpl uiType="CodeArea" var="codearea" parse="true">
+    <!---// options  -->
+    <div class="cui-codearea">Code</div>
+</cmptpl>
+<cmptpl uiType="AtmSep" var="AtmSep" parse="true">
+    <!---// options  -->
+    <div class="cui-codearea">AtmSep</div>
+</cmptpl>
+<cmptpl uiType="IncludePage" var="IncludePage" parse="true">
+    <!---// options  -->
+    <div class="cui-codearea">IncludePage</div>
+</cmptpl>
+<cmptpl uiType="Line" var="line" parse="true">
+    <!---// options -->
+    <hr/>
+</cmptpl>
+<cmptpl uiType="Div" var="Div" parse="true">
+     <!---// options  -->
+    <div class="cui-codearea">Custom</div>
+</cmptpl>
+</tpls>
