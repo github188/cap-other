@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.tabEventAction.action.tabSwitch</modelId>
+    <modelName>tabEvent</modelName>
+    <modelPackage>actionlibrary.eventAction.tabEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>切换事件</cname>
+	<description>tab切换事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>tabSwitch</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * tab提供了两个事件：switch、onClose
+ *
+ * switch：切换“任何”Tab标签页时触发该事件，与tabs里面的on_switch有互补作用。
+ *         使用bind方法：obj.bind("switch",function(event, data){……});data为json格式{fromTab: from, toTab: to}
+ *         其中：fromTab:number类型表示切换前的Tab标签页，toTab:number类型表示切换后的Tab标签页。
+ * 
+ * onClose：关闭Tab标签页时触发该事件。使用方法：obj.onClose(function(event, tab){……});其中tab表示关闭的Tab标签页。
+ *
+ * @param event 相应事件对象
+ * @param object 当事件为switch时，object为json格式；当事件为onClose事，object关闭的Tab标签页对象。
+ */
+function {{ename}}(event, object) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

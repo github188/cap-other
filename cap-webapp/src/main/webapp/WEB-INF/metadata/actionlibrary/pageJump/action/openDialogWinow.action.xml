@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.pageJump.action.openDialogWinow</modelId>
+    <modelName>openDialogWinow</modelName>
+    <modelPackage>actionlibrary.pageJump</modelPackage>
+    <modelType>action</modelType>
+    <cname>打开Dialog新窗口</cname>
+	<type>custom</type>
+	<description>打开Dialog新窗口</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+var {{ename}}_dialog; //dialog变量
+/**
+ * {{cname}}
+ */
+function {{ename}}(url){
+	//TODO 弹出窗口前的业务操作
+	<script name="beforeOpenWindow"/>
+	if(!{{ename}}_dialog){
+		var _cuiObj = cui;
+		var width=600; //窗口宽度
+		var height=400;//窗口高度
+		var title = '新窗口';//窗口title
+		//TODO 设置dialog属性值
+		<script name="setAttributeValue"/>
+		{{ename}}_dialog = _cuiObj.dialog({
+			//TODO 根据需要添加dialog属性
+			<script name="setAttribute"/>
+			title : title,
+  		    width : width,
+  		    height : height,
+  		    src : url
+  	    });
+  	}else{
+  		{{ename}}_dialog.reload(url);
+  	}
+	{{ename}}_dialog.show(url);	
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

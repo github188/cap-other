@@ -1,0 +1,34 @@
+{
+	"createTime":1451965762399,
+	"modelId":"template.metadataTmpType.baseType",
+	"modelName":"baseType",
+	"modelPackage":"template",
+	"modelType":"metadataTmpType",
+	"type":[{
+		"type":[
+			{
+				"type":[],
+				"typeCode":"entityMetadataTmp",
+				"typeName":"实体元数据模版"
+			},
+			{
+				"type":[
+					{
+						"type":[],
+						"typeCode":"simpleformTmp",
+						"typeName":"简单表单模版"
+					},
+					{
+						"type":[],
+						"typeCode":"bpmsformTmp",
+						"typeName":"工作流表单模版"
+					}
+				],
+				"typeCode":"pageMetadataTmp",
+				"typeName":"界面元数据模版"
+			}
+		],
+		"typeCode":"root",
+		"typeName":"元数据模版分类"
+	}]
+}

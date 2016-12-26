@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.frame</extend>
+    <modelId>req.uicomponent.common.component.frame</modelId>
+    <modelName>Frame</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>页面</cname>
+	<group>common</group>
+	<description>页面组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>17</sort>
+</component>

@@ -1,0 +1,34 @@
+<basic src="ui-system.txt" name="CUI选择TAB页" type="testStepDefinitions.basics.basic.cui_select_tab" icon="icon-cog-wheel-silhouette" group="systemCombinations" desc="CUI选择TAB页" definition="cui_select_tab">
+    <createTime>1470362719391</createTime>
+    <modelId>testStepDefinitions.basics.basic.cui_select_tab</modelId>
+    <modelName>cui_select_tab</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="id" desc="TAB组件id">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'id',
+                'name': 'id'
+            }
+]]></options>
+        </ctrl>
+        <help>TAB组件id</help>
+    </arg>
+    <arg valueType="String" required="true" name="index" desc="选项索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'index',
+                'name': 'index'
+            }
+]]></options>
+        </ctrl>
+        <help>选项索引</help>
+    </arg>
+    <help><![CDATA[CUI选择TAB页]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[CUI选择TAB页    ${id}    ${index}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

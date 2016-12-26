@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.action.panelChange</modelId>
+    <modelName>panelChange</modelName>
+    <modelPackage>actionlibrary.eventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>panel展开/收起事件</cname>
+	<description>panel展开/收起事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>Panel_on_change</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 当面板展开和收起时均会触发该事件。也可以使用bind("change", function(event, isExpend){……})的方式进行事件注册。
+ *
+ * @param event 当前事件对象
+ * @param isExpend 是否展开（0为收起，1为展开）
+ */
+function {{ename}}(event, isExpend) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.treeAction.action.initTreeDatasource</modelId>
+    <modelName>initTreeDatasource</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.treeAction</modelPackage>
+    <modelType>action</modelType>
+    <type></type>
+    <cname>初始化树的数据源(新版)</cname>
+	<description>初始化树数据源(新版)</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>service_invoke</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 初始化Tree的数据源
+ *
+ * @param obj 树对象
+ */		
+function {{ename}}(obj){
+    //数据源
+	var datasoure = [];
+	
+	var paramArray = [];
+	var paramsStr = '${methodParameter}';
+	if(paramsStr != ''){
+		paramArray = paramsStr.split(',');
+	}
+	var varName = "{{ename}}_tree_mapping";
+	paramArray.splice(0,0,varName);
+	window[varName]={};
+	var mapping= window[varName];
+	//树形结构和实体关系
+	mapping["key"]=cap.getStringLastValue('{{methodOption.treeIdParam}}',".");
+	mapping["parentKey"]=cap.getStringLastValue('{{methodOption.treeParentIdParam}}',".");
+	mapping["title"]=cap.getStringLastValue('{{methodOption.treeNameParam}}',".");
+	mapping["isLazy"]=true;
+	mapping["icon"]="/web/top/sys/images/closeicon.gif";
+	mapping["isExpand"]=false;	   
+	${methodParameter}["_id"]="";
+	//请求前调用
+	<script name="processParamter"/>
+	var aliasEntityId = '{{methodOption.aliasEntityId}}';
+	aliasEntityId = aliasEntityId != '' ? aliasEntityId :  '{{methodOption.entityId}}';
+	dwr.TOPEngine.setAsync(false);
+	var dwrInvokeParam = cap.getDwrInvokeParam(aliasEntityId,'{{methodOption.actionMethodName}}',paramArray);
+	//TODO  调用后台前处理逻辑
+	<script name="before"/>
+	${modelName}Action.convertToTreeJSON(dwrInvokeParam,{callback:function(data){
+		datasoure = cui.utils.parseJSON(data);
+		<script name="afterCallback"/>
+	},
+	errorHandler:function(message, exception){
+		   //TODO 后台异常信息回调
+		   var message ="调用后台服务失败,存在异常信息:"+message;
+		   <script name="saveErrorHandler"/>
+		   cui.message(message);
+	}
+	});
+	dwr.TOPEngine.setAsync(true);
+	//展开根节点
+	datasoure.expand =true;
+	//取消树的末节点的懒加载
+	cap.lookupTreeChild(datasoure.children);
+	//TODO 可自定义修改返回数据源
+	<script name="setReturnVal"/>
+	obj.setDatasource(datasoure);
+}
+		]]>
+	</script>
+	<properties>
+		<property>
+			<cname><![CDATA[<a style='color:red;'>*</a>]]>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<!--文本框F7-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow(\'\',\'true\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.CallServiceMethodPageActionProConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname><![CDATA[<a style='color:red;'>*</a>]]>树形节点ID</cname>
+			<ename>treeIdParam</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>树形参数</description>
+			<!--文本框F7-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'treeIdParam',
+						'ng-model':'treeIdParam',
+						'onclick':'openDataStoreSelect(\'treeIdParam\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname><![CDATA[<a style='color:red;'>*</a>]]>树形父节点ID</cname>
+			<ename>treeParentIdParam</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>树形参数</description>
+			<!--文本框F7-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'treeParentIdParam',
+						'ng-model':'treeParentIdParam',
+						'onclick':'openDataStoreSelect(\'treeParentIdParam\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname><![CDATA[<a style='color:red;'>*</a>]]>树形名称</cname>
+			<ename>treeNameParam</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>树形参数</description>
+			<!--文本框F7-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'treeNameParam',
+						'ng-model':'treeNameParam',
+						'onclick':'openDataStoreSelect(\'treeNameParam\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

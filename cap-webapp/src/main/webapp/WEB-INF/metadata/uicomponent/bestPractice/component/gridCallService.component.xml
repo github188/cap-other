@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <extend>uicomponent.common.component.grid</extend>
+    <modelId>uicomponent.common.component.gridCallService</modelId>
+    <modelName>gridCallService</modelName>
+    <modelPackage>uicomponent.bestPractice</modelPackage>
+    <modelType>component</modelType>
+    <cname>网格（取后台数据）</cname>
+	<group>bestPractice</group>
+	<description>grid组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>1</sort>
+	<properties></properties>
+	<events>
+		<event>
+			<cname>数据源</cname>
+	        <ename>datasource</ename>
+	        <type></type>
+	        <hasAutoCreate>true</hasAutoCreate>
+			<default>initDatasource</default>
+	        <methodTemplate>actionlibrary.bestPracticeAction.gridAction.action.gridDatasource</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>设置数据源。回调函数带两个参数：gridObj：表格组件对象query：Json 包含分页信息和题头排序信息，如：{pageSize:Number每页数据量, pageNo:Number页码, sortName:Array 排序字段名, sortType:Array升序或倒序}。</description>
+	        <commonAttr>true</commonAttr>
+	        <filterRule><![CDATA[{'datasource':'$delete$'}]]></filterRule>
+		</event>
+	</events>
+</component>

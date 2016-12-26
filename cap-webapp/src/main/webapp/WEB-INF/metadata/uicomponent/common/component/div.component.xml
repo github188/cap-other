@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<modelId>uicomponent.common.component.div</modelId>
+	<modelName>Div</modelName>
+	<modelPackage>uicomponent.common</modelPackage>
+	<modelType>component</modelType>
+	<cname>div标签</cname>
+	<group>common</group>
+	<description>div标签</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<disable>true</disable>
+	<sort>20</sort>
+	<js>
+	</js>
+	<css>
+	</css>
+	<designerjs>
+	</designerjs>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Div</default>
+			<description>组件类型。</description>
+			<commonAttr>true</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>labelType</cname>
+			<ename>labelType</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>div</default>
+			<description>labelType</description>
+			<commonAttr>true</commonAttr>
+			<hide>true</hide>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'labelType',
+						'name': 'labelType',
+						'ng-model':'data.labelType'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property> 
+		<property>
+			<cname>width</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>width</description>
+			<commonAttr>true</commonAttr>
+			<hide>true</hide>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>height</cname>
+			<ename>height</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>height</description>
+			<commonAttr>true</commonAttr>
+			<hide>true</hide>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'height',
+						'name': 'height',
+						'ng-model':'data.height'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>div标签</default>
+			<description>组件label名称。</description>
+			<commonAttr>true</commonAttr>
+			<hide>true</hide>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '代码块'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+	</events>
+</component>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.expand.component.includePage</modelId>
+    <modelName>IncludePage</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>动态页面</cname>
+	<group>common</group>
+	<description>动态页面</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>19</sort>
+	<js>
+	</js>
+	<css>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>IncludePage</default>
+			<description>组件类型。</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>page地址</cname>
+			<ename>pageUrl</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>page地址</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pageUrl',
+						'name': 'pageUrl',
+						'ng-model':'data.pageUrl',
+						'on_iconclick':'openPageUrlSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>高度</cname>
+			<ename>height</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>200px</default>
+			<description>面板的高度。如:750。如果不指定该值，则使用默认值为200px。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'height',
+						'name': 'height',
+						'ng-model':'data.height'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>100%</default>
+			<description>面板的宽度。如:750。如果不指定该值，则自适应。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>动态页面</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '图片'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>数据初始化</cname>
+	        <ename>initData</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate></methodTemplate>
+	        <methodOption></methodOption>
+	        <description>数据初始化</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>流程审批回调函数</cname>
+	        <ename>bizCallback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate></methodTemplate>
+	        <methodOption></methodOption>
+	        <description>数据初始化</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+	</events>
+</component>

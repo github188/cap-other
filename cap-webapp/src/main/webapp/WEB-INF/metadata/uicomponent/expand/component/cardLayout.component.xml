@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <extend>uicomponent.common.component.div</extend>
+    <modelId>uicomponent.expand.component.cardLayout</modelId>
+    <modelName>CardLayout</modelName>
+    <modelPackage>uicomponent.expand</modelPackage>
+    <modelType>component</modelType>
+    <cname>卡片式组件</cname>
+	<group>expand</group>
+	<description>卡片式组件</description>
+	<propertyEditor>auto</propertyEditor>  
+	<propertyEditorPage></propertyEditorPage>
+	<sort>303</sort>
+	<js>
+		<list>/cap/rt/expand/js/comtop.ui.card.js</list>
+		<list>/cap/rt/expand/js/cardLayout.js</list>
+	</js>
+	<css>
+	</css>
+	<properties>
+	   <property>
+			<cname>labelType</cname>
+			<ename>labelType</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>span</default>
+			<description>labelType</description>
+			<commonAttr>true</commonAttr>
+			<hide>true</hide>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'labelType',
+						'name': 'labelType',
+						'ng-model':'data.labelType'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>主键字段名</cname>
+			<ename>primarykey</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>CardLayout组件的列表中主键字段名（一般对应数据库主键，值唯一）。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'primarykey',
+						'name': 'primarykey',
+						'ng-model':'data.primarykey',
+						'on_iconclick':'openDataStoreSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	   <property>
+			<cname>列数</cname>
+			<ename>column</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>1</default>
+			<description>卡片式多少列</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'column',
+						'name': 'column',
+						'ng-model':'data.column',
+						'validate': "[{type:'required',rule:{m:'不能为空'}},{type:'numeric',rule:{oi:true,notim:'必须为整数'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+	   </property>
+		<property>
+			<cname>分页信息</cname>
+			<ename>pagination</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default>true</default>
+			<description>CardLayout组件是否显示分页信息。</description>
+			<commonAttr>true</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pagination',
+						'name': 'pagination',
+						'radio_list': [{
+							'text': '显示',
+							'value': true
+						},{
+							'text': '不显示',
+							'value': false
+						}],
+						'value': true,
+						'ng-model':'data.pagination'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>每页显示数据量</cname>
+			<ename>pagesize_list</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>CardLayout组件初始化时每页显示数据量（pagination为true时有效）。</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pagesize_list',
+						'name': 'pagesize_list',
+						'ng-model':'data.pagesize_list'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>分页信息模板</cname>
+			<ename>pagination_model</ename>
+			<label>pagination_<![CDATA[<br>]]>model</label>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>CardLayout组件分页信息模板（pagination为true时有效）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pagination_model',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'pagination_model',
+						'ng-model':'data.pagination_model',
+						'datasource' :"[{id:'pagination',text:'pagination'},{id:'pagination_min_1',text:'pagination_min_1'},{id:'pagination_min_2',text:'pagination_min_2'},{id:'pagination_min_3',text:'pagination_min_3'},{id:'pagination_min_4',text:'pagination_min_4'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>自定义每页显示记录数</cname>
+			<ename>custom_pagesize</ename>'
+			<label>custom_<![CDATA[<br>]]>pagesize</label>
+			<type>Boolean</type>
+			<requried>true</requried>
+			<default>false</default>
+			<description>CardLayout组件初始化时默认有自定义PageSize，如果不需要则设置为false 。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'custom_pagesize',
+						'name': 'custom_pagesize',
+						'radio_list': [{
+							'text': '开启',
+							'value': true
+						},{
+							'text': '不开启',
+							'value': false
+						}],
+						'value': false,
+						'ng-model':'data.custom_pagesize'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		 <property>
+			<cname>卡片最小宽度</cname>
+			<ename>layoutMinWidth</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>卡片最小宽度</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'layoutMinWidth',
+						'name': 'layoutMinWidth',
+						'ng-model':'data.layoutMinWidth'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>默认显示第几页</cname>
+			<ename>pageno</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>CardLayout组件初始化时默认显示在第几页（pagination为true时有效）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pageno',
+						'name': 'pageno',
+						'ng-model':'data.pageno'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>每页显示记录数</cname>
+			<ename>pagesize</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>CardLayout组件初始化时默认每页显示记录数（pagination为true时有效）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pagesize',
+						'name': 'pagesize',
+						'ng-model':'data.pagesize'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>数据源</cname>
+	        <ename>datasource</ename>
+	        <type></type>
+			<default>cardDatasource</default>
+	        <methodTemplate>actionlibrary.eventAction.cardAction.action.cardDatasource</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>设置数据源。回调函数带两个参数：Obj：卡片组件对象query：Json 包含分页信息和题头排序信息，如：{pageSize:Number每页数据量, pageNo:Number页码, sortName:Array 排序字段名, sortType:Array升序或倒序}。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>渲染单元格</cname>
+	        <ename>content</ename>
+	        <type></type>
+			<default>cardContent</default>
+	        <methodTemplate>actionlibrary.eventAction.cardAction.action.cardContent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>CardLayout组件渲染单元格的回调函数，有一个参数：rowData(Json当前行所对应的数据)。示例写法：<![CDATA[var projectState = "新建";if(rowData.flowState==1){projectState = "审批中";}var createDate = new Date(rowData.createDate).Format("yyyy-MM-dd hh:mm");var modifyDate = new Date(rowData.modifyDate).Format("yyyy-MM-dd hh:mm");content="<table style=\"width:99%;\" class=\"dd\"><tr><td style=\"border: 0px solid #000000;width:26%;\"><a class=\"kp-title\" href=\"javascript:jumpToProjectView('"+rowData.tenderProjectId+"')\">"+rowData.tenderProjectCode+"</a></td><td style=\"border: 0px solid #000000;width:26%;\"></td><td style=\"border: 0px solid #000000;width:26%;\" class=\"right\"><span class=\"spz\">"+projectState+"</span></td><td style=\"border: 0px solid #000000;width:20%;padding-right:15px\" class=\"right\"><span class=\"danha\"><nobr>"+rowData.tenderProjectCode+"</nobr></span></td></tr><tr><td style=\"border: 0px solid #000000;\" class=\"\">建设项目名称：<span class=\"xmjsmc\">"+rowData.tenderProjectName+"</span></td><td style=\"border: 0px solid #000000;\">招标项目类型：<span class=\"black-bold\">"+rowData.projectType+"</span></td><td style=\"border: 0px solid #000000;\">采购方式：<span class=\"black-bold\">"+rowData.tenderType+"</span></td><td style=\"border: 0px solid #000000;padding-right:15px\" align=\"right\"><a class=\"button\" href=\"javascript:jumpToTenderFrame('"+rowData.tenderProjectId+"')\">"+rowData.projectCourse+"</a></td></tr><tr><td style=\"border: 0px solid #000000;\">报名截止时间：<span class=\"black-bold\">"+createDate+"</span></td><td style=\"border: 0px solid #000000;\">投标截止时间：<span class=\"black-bold\">"+modifyDate+"</span></td><td style=\"border: 0px solid #000000;\">投标截止时间：<span class=\"black-bold\">"+modifyDate+"</span></td><td style=\"border: 0px solid #000000;\"></td></tr></table><div style=\"height:5px;\"></div>";]]></description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<!--  <event>
+			<cname>新增卡片之后的回调</cname>
+	        <ename>addCard_callback</ename>
+	        <type></type>
+	        <default></default>
+			<hasAutoCreate>false</hasAutoCreate>
+	        <methodTemplate></methodTemplate>
+	        <methodOption></methodOption>
+	        <description>新增卡片之后的回调</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>删除卡片之后的回调</cname>
+	        <ename>removeCard_callback</ename>
+	        <type></type>
+	        <default></default>
+			<hasAutoCreate>false</hasAutoCreate>
+	        <methodTemplate></methodTemplate>
+	        <methodOption></methodOption>
+	        <description>删除卡片之后的回调</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>改变卡片之后的回调</cname>
+	        <ename>changeCard_callback</ename>
+	        <type></type>
+	        <default></default>
+			<hasAutoCreate>false</hasAutoCreate>
+	        <methodTemplate></methodTemplate>
+	        <methodOption></methodOption>
+	        <description>改变卡片之后的回调</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>隐藏卡片之后的回调</cname>
+	        <ename>hideCard_callback</ename>
+	        <type></type>
+	        <default></default>
+			<hasAutoCreate>false</hasAutoCreate>
+	        <methodTemplate></methodTemplate>
+	        <methodOption></methodOption>
+	        <description>隐藏卡片之后的回调</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>加载卡片之后的回调</cname>
+	        <ename>loadcomplate_callback</ename>
+	        <type></type>
+	        <default></default>
+			<hasAutoCreate>false</hasAutoCreate>
+	        <methodTemplate></methodTemplate>
+	        <methodOption></methodOption>
+	        <description>加载卡片之后的回调</description>
+	        <commonAttr>false</commonAttr>
+		</event>-->
+	</events>
+</component>

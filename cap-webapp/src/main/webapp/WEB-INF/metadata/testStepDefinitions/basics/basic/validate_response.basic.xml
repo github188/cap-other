@@ -1,0 +1,12 @@
+<basic definition="validate_response" desc="验证响应数据" group="apielement" icon="icon-check-mark" type="testStepDefinitions.basics.basic.validate_response" name="验证响应数据" src="api-element.txt">
+    <createTime>1470205793350</createTime>
+    <modelName>validate_response</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[验证响应数据]]></help>
+    <lib>Collections</lib>
+    <lib>ComtopLibrary.py</lib>
+    <lib>XML</lib>
+    <lib>RequestsLibrary</lib>
+    <macro><![CDATA[验证响应数据    #${desc}]]></macro>
+</basic>

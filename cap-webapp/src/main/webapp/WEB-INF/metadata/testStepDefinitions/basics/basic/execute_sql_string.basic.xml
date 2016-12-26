@@ -1,0 +1,21 @@
+<basic src="database.txt" name="执行SQL String" type="testStepDefinitions.basics.basic.execute_sql_string" icon="icon-cog-wheel-silhouette" group="databaseOpt" desc="执行SQL String" definition="execute_sql_string">
+    <createTime>1469606798064</createTime>
+    <modelId>testStepDefinitions.basics.basic.execute_sql_string</modelId>
+    <modelName>execute_sql_string</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="sql" desc="sql脚本">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'sql',
+                'name': 'sql'
+            }
+]]></options>
+        </ctrl>
+        <help>sql脚本</help>
+    </arg>
+    <help><![CDATA[执行SQL String]]></help>
+    <lib>DatabaseLibrary</lib>
+    <macro><![CDATA[执行SQL String    ${sql}    #${desc}]]></macro>
+</basic>

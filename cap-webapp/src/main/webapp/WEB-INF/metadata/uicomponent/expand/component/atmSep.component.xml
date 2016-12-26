@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.expand.component.atmSep</modelId>
+    <modelName>AtmSep</modelName>
+    <modelPackage>uicomponent.expand</modelPackage>
+    <modelType>component</modelType>
+    <cname>附件</cname>
+	<group>expand</group>
+	<description>附件</description>
+	<propertyEditor>auto</propertyEditor>  
+	<propertyEditorPage></propertyEditorPage>
+	<sort>300</sort>
+	<js>
+		<list>/top/atm/attachment/js/atm.js</list>
+	</js>
+	<css>
+		<list>/top/atm/css/xtheme-default.css</list>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>AtmSep</default>
+			<description>组件类型。</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>业务单类别编码</cname>
+			<ename>jobTypeCode</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>在附件管理中注册的业务单类别编码，可以通过业务单类别管理功能管理业务单类别编码。</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'jobTypeCode',
+						'name': 'jobTypeCode',
+						'ng-model':'data.jobTypeCode',
+						'validate': "[{type:'required',rule:{m:'不能为空'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>业务单据ID</cname>
+			<ename>objId</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>具体的某业务单的ID，小于等于32位的字符串</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'objId',
+						'name': 'objId',
+						'ng-model':'data.objId',
+						'on_iconclick':'openDataStoreSelect',
+						'validate': "[{type:'required',rule:{m:'不能为空'}}]",
+						'editable' : true
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+				<regular>
+					<entry>
+					    <key>^\$</key>
+					    <value></value>
+					</entry>
+				</regular>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>列表默认高度</cname>
+			<ename>frameHeight</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>300px</default>
+			<description>控制列表显示时，列表框架的高度</description>
+			<commonAttr>false</commonAttr>   
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>  
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'frameHeight',
+						'name': 'frameHeight',
+						'ng-model':'data.frameHeight',
+						'value': '300px'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>操作权限</cname>
+			<ename>operationRight</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>*</default>
+			<description>控制显示在页面的按钮 1、如果不定义show-buttons属性或定义属性值为"*"，则系统会显示所有按钮。 2、如果要有选择地显示按钮，则属性值填写以逗号分隔的按钮标识列表。 具体按钮标识定义如下： 上传：new;删除：delete 编辑附件名称和信息: editname;是否显示"选择已上传附件"页面:relate;是否在页面上显示上下移按钮：move, 3、 不允许下载:disdown（在operateMode=7，8,10，11时可用） 4、如果只能查看附件，则属性值填写除上传：new;删除：delete的其它值，例如"no",则只能查看附件，不能上传、删除、编辑附件了 </description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'operationRight',
+						'name': 'operationRight',
+						'ng-model':'data.operationRight',
+						'value': '*'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>标签模式</cname>
+			<ename>operateMode</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>1</default>
+			<description>1、嵌入附件列表，选择附件需手动点击上传文件操作； 2、附件汇总，配合displayMode，点击汇总，弹出列表，选择附件需手动点击上传文件操作； 3、简洁式列表，只有选择文件按钮，且只能单选文件， 7、嵌入附件列表，选择文件后自动上传。 8、附件汇总，配合displayMode,点击汇总，弹出列表，选择文件自动上传。 9、弹出窗口模式，嵌入附件列表，选择附件需手动点击上传文件操作。 10、简洁式列表，只有选择文件按钮，可以选择多文件上传。（当operationRight=no时，不显示添加文件按钮且附件横向排列） 11、嵌入附件列表，可以进行行编辑，批量保存 </description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'operateMode',
+						'name':'operateMode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'ng-model':'data.operateMode',
+						'datasource' :"[{id:'1',text:'1:嵌入式列表(DIV式上传窗口)'},{id:'2',text:'2：弹出式列表窗口(DIV式上传窗口)'},{id:'3',text:'3：简洁式列表(单选)'},{id:'6',text:'6：停用模式'},{id:'7',text:'7：自动上传'},{id:'8',text:'8：附件汇总'},{id:'9',text:'9：嵌入式列表(弹出式上传窗口)'},{id:'10',text:'10：简洁式列表(多选)'},{id:'11',text:'11：在线编辑'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示扩展属性</cname>
+			<ename>showExtendAttribute</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>否</default>
+			<description>是否显示附件扩展属性，当设置operateMode=1，7，11时可用。默认不显示，当设置为true时上传可以对附件扩展属性进行编辑（1,11），附件列表也会将扩展属性显示出来。若设置为false，扩展属性不能编辑且不显示。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'showExtendAttribute',
+						'name': 'showExtendAttribute',
+						'ng-model': 'data.showExtendAttribute',
+						'radio_list':[{
+							text: '是',
+							value: true
+							},{
+							text: '否',
+							value: false
+						}],
+						'value': 'false'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>附件标签标题</cname>
+			<ename>title</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>附件列表</default>
+			<description>列表页面标题</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'title',
+						'name': 'title',
+						'ng-model':'data.title'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>按钮名称</cname>
+			<ename>hrefName</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>附件上传</default>
+			<description>设置操作链接（按钮或文字）显示的名称</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'hrefName',
+						'name': 'hrefName',
+						'ng-model':'data.hrefName'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>按钮展现形式</cname>
+			<ename>displayMode</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>1</default>
+			<description>1、按钮；2和3、文字和图标（2不可以自己设置图标，3可以自己设置图标）,当operateMode=2,4,8时可用</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'displayMode',
+						'name':'displayMode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'ng-model':'data.displayMode',
+						'datasource' :"[{id:'1',text:'按钮'},{id:'2',text:'文本链接（带附件数量'},{id:'3',text:'附件上传图标'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>业务单据集合</cname>
+			<ename>objectIdList</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>业务单据集合:当附件标签中要展现同一业务单编码下的多条业务单据的附件，并想在标签上拥有操作权限（上传、编辑、删除）时，可使用此属性。列表附件上传时所关联的单据还是objId。(多个用','或者';',简洁式没有作用)</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'objectIdList',
+						'name': 'objectIdList',
+						'ng-model':'data.objectIdList'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>附件类型集合</cname>
+			<ename>attachmentTypeIdList</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>附件类型集合:控制附件列表上附件类型编辑的可选范围。(多个用','或者';',对简洁式没有作用)</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'attachmentTypeIdList',
+						'name': 'attachmentTypeIdList',
+						'ng-model':'data.attachmentTypeIdList'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>控制attachmentTypeIdList</cname>
+			<ename>attachmentTypeControl</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>控制attachmentTypeIdList是否作用于附件列表的过滤条件:true：附件列表上的记录会通过attachmentTypeIdList 属性进行过滤其他值或者不填写：无作用</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'attachmentTypeControl',
+						'name': 'attachmentTypeControl',
+						'ng-model':'data.attachmentTypeControl'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>上传后事件</cname>
+			<ename>afterUpload</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>上传完成后触发的事件，值为页面定义的js方法，不能含有‘javascript’，不支持js语句</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'afterUpload',
+						'name': 'afterUpload',
+						'ng-model':'data.afterUpload'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>删除后事件</cname>
+			<ename>afterDelete</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>删除完成后触发的事件，值为页面定义的js方法，不能含有‘javascript’，不支持js语句</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'afterDelete',
+						'name': 'afterDelete',
+						'ng-model':'data.afterDelete'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>必须上传附件</cname>
+			<ename>isNeeded</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>需上传附件标志，当设置operateMode=1时可用。默认为no，即附件列表可为空，当设置为yes时，列表上会显示（必须上传附件）标志。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'isNeeded',
+						'name': 'isNeeded',
+						'ng-model':'data.isNeeded'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>附件操作扩展类</cname>
+			<ename>extendClass</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>提供附件删除前、删除后、上传后回调方法.</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'extendClass',
+						'name': 'extendClass',
+						'ng-model':'data.extendClass'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>附件图标</cname>
+			<ename>icon</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>附件图标:operateMode=2,4,10且displayMode=2时可用：图标链接形式的附件。(10下可以控制下载按钮图标)</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'icon',
+						'name': 'icon',
+						'ng-model':'data.icon'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>附件图标</cname>
+			<ename>extendParam</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>提供附件删除前、删除后、上传后回调方法.</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'extendParam',
+						'name': 'extendParam',
+						'ng-model':'data.extendParam'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model': 'data.id'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否显示列属性</cname>
+			<ename>showFields</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>*</default>
+			<description>是否显示列属性，控制列表显示哪些字段 如果不定义showFields属性或定义属性值为“*”，则系统会显示所有字段。 如果要有选择地显示字段，则属性值填写以逗号分隔的字段标识列表。 具体字段标识定义如下：修改人:updateUser;创建时间：createTime 文件大小：size 编辑:edit 删除:delete 下载 download 表格下方提示：tip(其中：size,delete,download,tip在operateMode=7，8,10，11时可用)</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'showFields',
+						'name': 'showFields',
+						'ng-model':'data.showFields',
+						'value': '*'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>dwrUrl</cname>
+			<ename>dwrUrl</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>${pageScope.cuiWebRoot}/top/atm/dwr</default>
+			<description>dwr请求地址</description>
+			<filterRule><![CDATA[{'dwrUrl': {'operate': '$replace$', 'regexp': '${pageScope.cuiWebRoot}', 'replacement': eval('webPath')}}]]></filterRule>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'dwrUrl',
+						'name': 'dwrUrl',
+						'ng-model':'data.dwrUrl',
+						'validate': "[{type:'required',rule:{m:'不能为空'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>附件</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '人员选择标签'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>业务单据集合</cname>
+	        <ename>objectIdList</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.bestPracticeAction.action.atmLoadObjectIdList</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>业务单据集合通过“获取附件业务单据集合”行为获取</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+	</events>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<objectClassName>ComponentVO</objectClassName>
+		<checkScope>currentObject</checkScope>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.component.DefaultComponentConsisCheck</checkClass>
+		<expression></expression>
+	</consistencyConfig>
+</component>

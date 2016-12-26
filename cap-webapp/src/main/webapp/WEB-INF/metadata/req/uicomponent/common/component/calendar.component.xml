@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.calender</extend>
+    <modelId>req.uicomponent.common.component.calender</modelId>
+    <modelName>Calender</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>日期</cname>
+	<group>common</group>
+	<description>Calender组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<properties>
+		<property>
+			<ename>databind</ename>
+			<hide>true</hide>
+		</property>
+	</properties>
+</component>

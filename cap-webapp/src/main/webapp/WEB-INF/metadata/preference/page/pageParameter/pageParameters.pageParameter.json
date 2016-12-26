@@ -1,0 +1,24 @@
+{
+	"parameterList":[{
+		"attributeName":"pageMode",
+		"defaultReference":false,
+		"userDefined":false,
+		"attributeType":"String",
+		"attributeValue":"edit",
+		"attributeSelectValues":"[{id:'readonly',text:'只读模式'},{id:'edit',text:'编辑模式'},{id:'textmode',text:'文本模式'}]",
+		"attributeDescription":"页面模式"
+	},
+	{
+		"attributeName":"primaryValue",
+		"defaultReference":false,
+		"userDefined":false,
+		"attributeType":"String",
+		"attributeValue":"",
+		"attributeSelectValues":"",
+		"attributeDescription":"主键ID"
+	}],
+	"modelId":"preference.page.pageParameter.pageParameters",
+	"modelName":"pageParameters",
+	"modelPackage":"preference.page",
+	"modelType":"pageParameter" 
+}

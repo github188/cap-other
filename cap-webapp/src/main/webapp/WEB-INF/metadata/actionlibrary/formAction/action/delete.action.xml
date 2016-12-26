@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.formAction.action.delete</modelId>
+    <modelName>delete</modelName>
+    <modelPackage>actionlibrary.formAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>删除行为</cname>
+	<type>custom</type>
+	<description>删除行为</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(){
+	//删除前操作
+	<script name="before"/>
+	var gridId="{{methodOption.relationGridId}}";
+	var gridObj = cui("#"+gridId);
+	var selects = gridObj.getSelectedRowData();
+	if(selects == null || selects.length == 0){
+		var deletemsg = "请选择要删除的数据。";
+		<script name="deleteMsg"/>
+		cui.alert(deletemsg);
+		return;
+	}
+	var confirmmsg = "确定要删除这"+selects.length+"条数据吗？";
+	<script name="confirmmsg"/>
+	cui.confirm(confirmmsg,{
+		onYes:function(){
+			var paramArray = [];
+			paramArray[0] = selects;
+			var aliasEntityId = '{{methodOption.aliasEntityId}}';
+			aliasEntityId = aliasEntityId != '' ? aliasEntityId :  '{{methodOption.entityId}}';	
+			var dwrInvokeParam = cap.getDwrInvokeParam(aliasEntityId,'{{methodOption.actionMethodName}}',paramArray);
+			${modelName}Action.dwrInvoke(dwrInvokeParam,{callback:function(result){
+				//数据刷新前处理
+				<script name="updateDataBefore"/>
+				
+				if(result){
+					gridObj.loadData();
+					var resultmsg = "删除成功！";
+					<script name="resultmsg"/>
+				 	cui.message(resultmsg,"success");
+				}else{
+					var resultFalsemsg = "删除失败，请重新操作！";
+					<script name="resultFalsemsg"/>
+					cui.error(resultFalsemsg);
+				}
+				
+				//数据刷新后处理
+				<script name="updateDataAfter"/>
+			},
+			errorHandler:function(message, exception){
+			   //TODO 后台异常信息回调
+			   var message ="删除失败,存在异常信息:"+message;
+			   <script name="saveErrorHandler"/>
+			   cui.message(message);
+			}
+			});
+		}
+	});
+	//TODO 可自定义设置返回值
+	<script name="setReturnVal"/>
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow(false)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.CallServiceMethodPageActionProConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>关联GridId</cname>
+			<ename>relationGridId</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>关联GridId</description>
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'relationGridId',
+						'ng-model':'relationGridId',
+						'onclick':'openComponentSelect(1)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

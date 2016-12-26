@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.checkboxGroup</extend>
+    <modelId>req.uicomponent.common.component.checkboxGroup</modelId>
+    <modelName>CheckboxGroup</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>复选框</cname>
+	<group>common</group>
+	<description>复选框组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>7</sort>
+	<properties>
+		<property>
+			<ename>databind</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>dictionary</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>enumdata</ename>
+			<hide>true</hide>
+		</property>
+	</properties>
+</component>

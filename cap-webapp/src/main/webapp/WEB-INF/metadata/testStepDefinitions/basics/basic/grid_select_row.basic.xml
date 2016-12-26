@@ -1,0 +1,34 @@
+<basic src="ui-system.txt" name="选择行" type="testStepDefinitions.basics.basic.grid_select_row" icon="icon-check" group="systemCombinations" desc="选择行" definition="grid_select_row">
+    <createTime>1469606789890</createTime>
+    <modelId>testStepDefinitions.basics.basic.grid_select_row</modelId>
+    <modelName>grid_select_row</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="tableId" desc="表格定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'tableId',
+                'name': 'tableId'
+            }
+]]></options>
+        </ctrl>
+        <help>表格定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="rIndexes" desc="选项索引" default="[0]">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'rIndexes',
+                'name': 'rIndexes'
+            }
+]]></options>
+        </ctrl>
+        <help>选项索引</help>
+    </arg>
+    <help><![CDATA[选择行]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[选择行    ${tableId}    ${rIndexes}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

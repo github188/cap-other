@@ -1,0 +1,11 @@
+<basic src="page.txt" name="关闭所有浏览器" type="testStepDefinitions.basics.basic.close_all_browsers" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="关闭所有浏览器" definition="close_all_browsers">
+    <createTime>1469606781374</createTime>
+    <modelId>testStepDefinitions.basics.basic.close_all_browsers</modelId>
+    <modelName>close_all_browsers</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[关闭所有浏览器]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[关闭所有浏览器    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

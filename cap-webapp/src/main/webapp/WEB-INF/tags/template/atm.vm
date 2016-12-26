@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="${webRoot}/top/atm/css/xtheme-default.css" type="text/css">
+<script type='text/javascript' src='${webRoot}/top/atm/js/jquery-1.5.2.min.js'></script>
+<script type='text/javascript' src='${webRoot}/top/atm/attachment/js/atm.js'></script>
+<table width="100%" style="table-layout: fixed;word-wrap:break-word;text-align:center;border-collapse:collapse">
+	<tr>
+		<td id="atm_div_${id}" valign="middle" align="left" style="border-right-style:none;border-left-style:none;border-top-style:none;border-bottom-style:none">
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+jQuery.noConflict();
+var webRoot = '${webRoot}';
+jQuery(document).ready(function(){
+	var atm_${id} = new Attachment();
+		atm_${id}.setId('${id}');
+		#if($null.isNotEmpty(${frameHeight}))atm_${id}.setFrameHeight('${frameHeight}');#end
+		#if($null.isNotEmpty(${jobTypeCode}))atm_${id}.setJobTypeCode('${jobTypeCode}');#end
+		#if($null.isNotEmpty(${objId}))atm_${id}.setObjId('${objId}');#end
+		#if($null.isNotEmpty(${displayMode}))atm_${id}.setDisplayMode('${displayMode}');#end
+		#if($null.isNotEmpty(${operateMode}))atm_${id}.setOperateMode('${operateMode}');#end
+		#if($null.isNotEmpty(${relateMode}))atm_${id}.setRelateMode('${relateMode}');#end
+		#if($null.isNotEmpty(${operationRight}))atm_${id}.setOperationRight('${operationRight}');#end
+		#if($null.isNotEmpty(${title}))atm_${id}.setTitle('${title}');#end
+		#if($null.isNotEmpty(${hiddenId}))atm_${id}.setHiddenId('${hiddenId}');#end
+		#if($null.isNotEmpty(${webRoot}))atm_${id}.setWebRoot('${webRoot}');#end
+		#if($null.isNotEmpty(${hrefName}))atm_${id}.setHrefName('${hrefName}');#end
+		#if($null.isNotEmpty(${creatorId}))atm_${id}.setCreatorId('${creatorId}');#end
+		#if($null.isNotEmpty(${creatorName}))atm_${id}.setCreatorName('${creatorName}');#end
+		#if($null.isNotEmpty(${afterUpload}))atm_${id}.setAfterUpload('${afterUpload}');#end
+		#if($null.isNotEmpty(${afterDelete}))atm_${id}.setAfterDelete('${afterDelete}');#end
+		#if($null.isNotEmpty(${afterEditFileName}))atm_${id}.setAfterEditFileName('${afterEditFileName}');#end 
+		#if($null.isNotEmpty(${isNeeded}))atm_${id}.setIsNeeded('${isNeeded}');#end
+		#if($null.isNotEmpty(${isShowAttachmentType}))atm_${id}.setIsShowAttachmentType('${isShowAttachmentType}');#end
+		#if($null.isNotEmpty(${showFields}))atm_${id}.setShowFields('${showFields}');#end
+		#if($null.isNotEmpty(${showExtendAttribute}))atm_${id}.setShowExtendAttribute('${showExtendAttribute}');#end
+		#if($null.isNotEmpty(${icon}))atm_${id}.setIcon('${icon}');#end
+		#if($null.isNotEmpty(${extendClass}))atm_${id}.setExtendClass('${extendClass}');#end
+		#if($null.isNotEmpty(${extendParam}))atm_${id}.setExtendParam('${extendParam}');#end
+		#if($null.isNotEmpty(${dwrUrl}))atm_${id}.setDwrUrl('${dwrUrl}');#end
+		#if($null.isNotEmpty(${readOnly}))atm_${id}.setReadOnly('${readOnly}');#end
+		#if($null.isNotEmpty(${returnURL}))atm_${id}.setReturnURL('${returnURL}');#end
+		#if($null.isNotEmpty(${queryClass}))atm_${id}.setQueryClass('${queryClass}');#end
+		#if($null.isNotEmpty(${extendClassify}))atm_${id}.setExtendClassify('${extendClassify}');#end
+		#if($null.isNotEmpty(${objectIdList}))atm_${id}.setObjectIdList('${objectIdList}');#end
+		#if($null.isNotEmpty(${attachmentTypeIdList}))atm_${id}.setAttachmentTypeIdList('${attachmentTypeIdList}');#end
+		#if($null.isNotEmpty(${attachmentTypeControl}))atm_${id}.setAttachmentTypeControl('${attachmentTypeControl}');#end
+		atm_${id}.init(atm_div_${id});
+});
+</script>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.checkboxGroupAction.action.checkboxGroupChange</modelId>
+    <modelName>checkboxGroupChange</modelName>
+    <modelPackage>actionlibrary.eventAction.checkboxGroupAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>值改变时事件</cname>
+	<description>checkboxGroup值改变时事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>CheckboxGroup_on_change</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * @param value 当前checkboxGroup的值（value为数组）
+ */
+function {{ename}}(value) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

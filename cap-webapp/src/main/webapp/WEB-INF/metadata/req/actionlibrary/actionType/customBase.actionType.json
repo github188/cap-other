@@ -1,0 +1,9 @@
+{
+	"createTime":1479264980733,
+	"datasource":[],
+	"extend":"req.actionlibrary.actionType.defaultBase",
+	"modelId":"req.actionlibrary.actionType.customBase",
+	"modelName":"customBase",
+	"modelPackage":"actionlibrary",
+	"modelType":"actionType"
+}

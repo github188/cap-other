@@ -1,0 +1,45 @@
+<basic src="ui-system.txt" name="eGrid日期组件设值" type="testStepDefinitions.basics.basic.select_editgrid_calender" icon="icon-calendar-with-spring-binder-and-date-blocks" group="systemCombinations" desc="eGrid日期组件设值" definition="select_editgrid_calender">
+    <createTime>1469606789872</createTime>
+    <modelId>testStepDefinitions.basics.basic.select_editgrid_calender</modelId>
+    <modelName>select_editgrid_calender</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="tableId" desc="表格定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'tableId',
+                'name': 'tableId'
+            }
+]]></options>
+        </ctrl>
+        <help>表格定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="rowIndex" desc="行索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'rowIndex',
+                'name': 'rowIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>行索引</help>
+    </arg>
+    <arg valueType="String" required="true" name="colIndex" desc="列索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'colIndex',
+                'name': 'colIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>列索引</help>
+    </arg>
+    <help><![CDATA[eGrid日期组件设值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[eGrid日期组件设值    ${tableId}    ${rowIndex}    ${colIndex}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

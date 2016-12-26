@@ -1,0 +1,56 @@
+<basic src="ui-system.txt" name="eGrid下拉框单选设值" type="testStepDefinitions.basics.basic.select_editgrid_pulldown_single" icon="icon-pencil" group="systemCombinations" desc="eGrid下拉框单选设值" definition="select_editgrid_pulldown_single">
+    <createTime>1469606789823</createTime>
+    <modelId>testStepDefinitions.basics.basic.select_editgrid_pulldown_single</modelId>
+    <modelName>select_editgrid_pulldown_single</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="tableId" desc="表格定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'tableId',
+                'name': 'tableId'
+            }
+]]></options>
+        </ctrl>
+        <help>表格定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="rowIndex" desc="行索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'rowIndex',
+                'name': 'rowIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>行索引</help>
+    </arg>
+    <arg valueType="String" required="true" name="colIndex" desc="列索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'colIndex',
+                'name': 'colIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>列索引</help>
+    </arg>
+    <arg valueType="String" required="false" name="rIndex" desc="选项索引" default="1">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'rIndex',
+                'name': 'rIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>选项索引</help>
+    </arg>
+    <help><![CDATA[eGrid下拉框单选设值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[eGrid下拉框单选设值    ${tableId}    ${rowIndex}    ${colIndex}    ${rIndex}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

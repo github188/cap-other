@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.editGridEventAction.action.editableGridEditAfter</modelId>
+    <modelName>editableGridEditAfter</modelName>
+    <modelPackage>actionlibrary.eventAction.editGridEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>编辑后回调函数</cname>
+	<description>editableGrid编辑后回调函数</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>EditableGrid_editafter</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *  
+ * 提供编辑前回调editbefore以及编辑后回调editafter。编辑前回调一般用于判断编辑的条件，编辑后回调一般用于编辑后联动
+ * <pre>
+ * editbefore = function (rowData, bindName) {
+ *	   if (bindName === "name") {
+ *	       if (rowData.id === "1") {
+ *	           return false; //当id列为"1"时，name列不可编辑
+ *	       } else if (rowData.id === "0"){
+ *             //当id列为"0"时，name列用Pulldown编辑方式
+ *	           return { 
+ *	               uitype: "PullDown",
+ *	               mode: "Single"
+ *	           };
+ *         }
+ *	   }
+ * }
+ * editafter = function (rowData, bindName) {
+ *     if (bindName === "a" || bindName === "b") {
+ *         rowData.c = rowData.a * rowData.b;
+ *     }
+ *     return rowData; //如果需要联动请修改rowData的属性值并返回
+ * }
+ * <pre/>
+ *
+ * @param rowData 当前行数据
+ * @param bindName 编辑列的bindName
+ */
+function {{ename}}(rowData,bindName) {
+	var _result;
+	<script name="before"/>
+	return _result;
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

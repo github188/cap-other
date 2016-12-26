@@ -1,0 +1,23 @@
+<basic definition="get_from_list" desc="获取List中的一个数据" group="apielement" icon="icon-indent-right" type="testStepDefinitions.basics.basic.get_from_list" name="获取List中的一个数据" src="api-element.txt">
+    <createTime>1470205793360</createTime>
+    <modelName>get_from_list</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg desc=" 输入需要获取数据的List" name="list" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'list',
+                'name': 'list'
+            }
+]]></options>
+        </ctrl>
+        <help> 输入需要获取数据的List</help>
+    </arg>
+    <help><![CDATA[获取List中的一个数据]]></help>
+    <lib>Collections</lib>
+    <lib>ComtopLibrary.py</lib>
+    <lib>XML</lib>
+    <lib>RequestsLibrary</lib>
+    <macro><![CDATA[获取List中的一个数据    ${list}    #${desc}]]></macro>
+</basic>

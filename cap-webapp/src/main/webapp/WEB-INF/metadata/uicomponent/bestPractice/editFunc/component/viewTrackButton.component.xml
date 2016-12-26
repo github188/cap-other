@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.button</extend>
+    <modelId>uicomponent.bestPractice.editFunc.component.viewTrackButton</modelId>
+    <modelName>viewTrackButton</modelName>
+    <modelPackage>uicomponent.bestPractice.editFunc</modelPackage>
+    <modelType>component</modelType>
+    <cname>查看流程</cname>
+	<group>bestPractice.editFunc</group>
+	<description>查看流程按钮-编辑</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>2</sort>
+	<properties>
+		<property>
+			<ename>label</ename>
+			<requried>true</requried>
+			<default>查看流程</default>
+			<commonAttr>true</commonAttr>
+		</property>
+		<property>
+			<ename>id</ename>
+			<requried>false</requried>
+			<default>btnViewTrack</default>
+			<commonAttr>false</commonAttr>
+		</property>
+		<property>
+			<ename>name</ename>
+			<requried>false</requried>
+			<default>btnViewTrack</default>
+			<commonAttr>false</commonAttr>
+		</property>
+	</properties>
+	<events>
+		<event>
+	        <ename>on_click</ename>
+	        <type></type>
+	        <hasAutoCreate>true</hasAutoCreate>
+			<default>viewTrackOnDetail</default>
+	        <methodTemplate>actionlibrary.workflow.track.action.viewTrackEdit</methodTemplate>
+	        <methodOption></methodOption>
+	        <commonAttr>true</commonAttr>
+		</event>
+	</events>
+</component>

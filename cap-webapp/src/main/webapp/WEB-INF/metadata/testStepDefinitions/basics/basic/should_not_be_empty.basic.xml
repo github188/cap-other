@@ -1,0 +1,23 @@
+<basic definition="should_not_be_empty" desc="数据是否不为空" group="apielement" icon="icon-cog-wheel-silhouette" type="testStepDefinitions.basics.basic.should_not_be_empty" name="数据是否不为空" src="api-element.txt">
+    <createTime>1470205793415</createTime>
+    <modelName>should_not_be_empty</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg desc="判断的数据" name="data" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'data',
+                'name': 'data'
+            }
+]]></options>
+        </ctrl>
+        <help>判断的数据</help>
+    </arg>
+    <help><![CDATA[数据是否不为空]]></help>
+    <lib>XML</lib>
+    <lib>ComtopLibrary.py</lib>
+    <lib>Collections</lib>
+    <lib>RequestsLibrary</lib>
+    <macro><![CDATA[数据是否不为空    ${data}    #${desc}]]></macro>
+</basic>

@@ -1,0 +1,23 @@
+<basic src="ui-system.txt" name="CUI按钮点击" type="testStepDefinitions.basics.basic.click_cui_button" icon="icon-cog-wheel-silhouette" group="systemCombinations" desc="CUI按钮点击" definition="click_cui_button">
+    <createTime>1470362862517</createTime>
+    <modelId>testStepDefinitions.basics.basic.click_cui_button</modelId>
+    <modelName>click_cui_button</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="id" desc="按钮id">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'id',
+                'name': 'id'
+            }
+]]></options>
+        </ctrl>
+        <help>按钮id</help>
+    </arg>
+    <help><![CDATA[CUI按钮点击]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[CUI按钮点击    ${id}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.formAction.action.loadGirdQueryObjFromSession</modelId>
+    <modelName>loadGirdQueryObjFromSession</modelName>
+    <modelPackage>actionlibrary.formAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>加载重置grid查询对象</cname>
+	<group>formAction</group>
+	<type>custom</type>
+	<specialMethod>false</specialMethod>
+	<methodName>loadGirdQueryObjFromSession</methodName>
+	<methodCname>加载重置grid查询对象</methodCname>
+	<methodDescription>从session中取到gird的查询对象的相关数据，如pageNo、pageSize等，对gird的查询对象进行加载重置。</methodDescription>
+	<description>从session中取到gird的查询对象的相关数据，如pageNo、pageSize等，对gird的查询对象进行加载重置。</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/** 
+ * {{cname}} {{description}}
+ * 该函数一般在pageInitBeforeProcess函数中使用。
+ */
+function loadGirdQueryObjFromSession(){
+	var clearSession = <%=com.comtop.top.core.util.JsonUtil.objectToJson(request.getAttribute("clearSession"))%>;
+	if(clearSession === "false" || clearSession === false){
+		uiConfig["{{methodOption.relationGridId}}"].pageno = window["{{methodOption.queryCondition}}"].pageNo;
+		uiConfig["{{methodOption.relationGridId}}"].pagesize = window["{{methodOption.queryCondition}}"].pageSize;
+		uiConfig["{{methodOption.relationGridId}}"].sortname = window["{{methodOption.queryCondition}}"].sortNames;
+		uiConfig["{{methodOption.relationGridId}}"].sorttype = window["{{methodOption.queryCondition}}"].sortTypes;
+	}
+	<script name="after"/>
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname><![CDATA[<a style='color:red;'>*</a>]]>关联GridId</cname>
+			<ename>relationGridId</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>关联GridId</description>
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'relationGridId',
+						'ng-model':'relationGridId',
+						'onclick':'openComponentSelect(1)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		
+		<property>
+			<cname><![CDATA[<a style='color:red;'>*</a>]]>查询对象</cname>
+			<ename>queryCondition</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>查询对象</description>
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'queryCondition',
+						'ng-model':'queryCondition',
+						'onclick':'openDataStoreSelect(\'queryCondition\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		
+	</properties>
+</action>

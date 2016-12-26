@@ -1,0 +1,21 @@
+<basic src="element.txt" name="点击元素" type="testStepDefinitions.basics.basic.click_element" icon="icon-hand-pointing-upward" group="common" desc="点击元素" definition="click_element">
+    <createTime>1469606769643</createTime>
+    <modelId>testStepDefinitions.basics.basic.click_element</modelId>
+    <modelName>click_element</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="元素定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>元素定位</help>
+    </arg>
+    <help><![CDATA[点击元素]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[点击元素    ${locator}    #${desc}]]></macro>
+</basic>

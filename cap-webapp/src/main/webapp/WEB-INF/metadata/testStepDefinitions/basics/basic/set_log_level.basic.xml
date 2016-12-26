@@ -1,0 +1,28 @@
+<basic src="element.txt" name="设置日志" type="testStepDefinitions.basics.basic.set_log_level" icon="icon-cog-wheel-silhouette" group="common" desc="设置日志" definition="set_log_level">
+    <createTime>1469606769799</createTime>
+    <modelId>testStepDefinitions.basics.basic.set_log_level</modelId>
+    <modelName>set_log_level</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="level" desc="日志等级">
+        <ctrl type="Pulldown">
+            <options><![CDATA[
+            {
+                'id': 'level',
+                'name': 'level',
+                'datasource': "[
+						{id:'INFO',text:'INFO'},
+						{id:'TRACE',text:'TRACE'},
+						{id:'DEBUG',text:'DEBUG'},
+						{id:'WARN',text:'WARN'},
+						{id:'NONE',text:'NONE'}
+					]"
+            }
+]]></options>
+        </ctrl>
+        <help>日志等级</help>
+    </arg>
+    <help><![CDATA[设置日志]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[设置日志    ${level}    #${desc}]]></macro>
+</basic>

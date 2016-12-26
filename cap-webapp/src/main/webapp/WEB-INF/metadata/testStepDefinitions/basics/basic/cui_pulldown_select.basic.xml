@@ -1,0 +1,34 @@
+<basic src="ui-system.txt" name="CUI下拉框设值" type="testStepDefinitions.basics.basic.cui_pulldown_select" icon="icon-cog-wheel-silhouette" group="systemCombinations" desc="CUI下拉框设值" definition="cui_pulldown_select">
+    <createTime>1470813036509</createTime>
+    <modelId>testStepDefinitions.basics.basic.cui_pulldown_select</modelId>
+    <modelName>cui_pulldown_select</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="id" desc="下拉框id">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'id',
+                'name': 'id'
+            }
+]]></options>
+        </ctrl>
+        <help>下拉框id</help>
+    </arg>
+    <arg valueType="String" required="false" name="num" desc="多选时选择的数量" default="1">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'num',
+                'name': 'num'
+            }
+]]></options>
+        </ctrl>
+        <help>多选时选择的数量</help>
+    </arg>
+    <help><![CDATA[CUI下拉框设值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[CUI下拉框设值    ${id}    ${num}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

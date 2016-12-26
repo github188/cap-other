@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.gridAction.action.gridColrender</modelId>
+    <modelName>gridColrender</modelName>
+    <modelPackage>actionlibrary.eventAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>渲染单元格</cname>
+	<description>Grid组件渲染单元格</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * Grid组件渲染单元格的回调函数
+ *
+ * @param rowData 当前行所对应的数据（Json）
+ * @param bindName 列绑定属性名（String类型，如果是行渲染，此参数为undefined,即没有此参数，可删除）
+ * @return 一般返回设置单元格的渲染文本
+ */
+function {{ename}}(rowData, bindName) {
+	var content="";
+	<script name="before"/>
+	return content;
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

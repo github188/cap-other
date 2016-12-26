@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.gridAction.action.gridOnstatuschange</modelId>
+    <modelName>gridOnstatuschange</modelName>
+    <modelPackage>actionlibrary.eventAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>持久化（statusChange）</cname>
+	<description>grid持久化</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>Grid_config</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * gird持久化提供了两个函数：onstatuschange、config，只有两个函数同时设置才能开启持久化。
+ * onstatuschange：状态持久化保存配置数据接口。
+ * config：状态持久化读取配置数据接口。
+ * 当用户有改变列宽、列顺序、列隐藏、排序操作时，该函数会立即执行，并把Grid当前状态转换成一个字符串，传入到config。
+ * <pre>
+ * onstatuschange = function (config) {
+ *     
+ *      //这里可以把config用Ajax异步方式的POST请求保存到数据库
+ *      //还原配置字符串时参考setDatasource方法
+ *      
+ * }
+ * config = function (obj) {
+ *     
+ *     //首先去取config数据（onstatuschange保存的数据）
+ *     
+ *     obj.setConfig(config); //开启了持久化setConfig必需要执行，才能渲染grid
+ * }
+ * <pre/>
+ *
+ * @param obj 若为onstatuschange事件，参数为存储grid状态的字符串；若为config事件，参数为gird对象。
+ */
+function {{ename}}(obj) { 
+	<script name="before"/>
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

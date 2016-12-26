@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.layout.component.tableLayout</modelId>
+    <modelName>TableLayout</modelName>
+    <modelPackage>uicomponent.layout</modelPackage>
+    <modelType>component</modelType>
+    <cname>表格布局</cname>
+	<ename>TableLayout</ename>
+	<group>layout</group>
+	<description>TableLayout组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>1</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Td</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>水平对齐方式</cname>
+			<ename>text-align</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>规定单元格内容的水平对齐方式。</description>
+			<commonAttr>true</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'text-align',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'text-align',
+						'ng-model':'data[\'text-align\']',
+						'datasource' :"[{id:'left',text:'左'},{id:'center',text:'居中'},{id:'right',text:'右'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>垂直对齐方式</cname>
+			<ename>vertical-align</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置元素的垂直对齐方式。</description>
+			<commonAttr>true</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'vertical-align',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'vertical-align',
+						'ng-model':'data[\'vertical-align\']',
+						'datasource' :"[{id:'top',text:'顶部'},{id:'middle',text:'居中'},{id:'bottom',text:'底部'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>规定表格单元格的宽度。（不赞成使用，请使用样式取而代之）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>高度</cname>
+			<ename>height</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>规定表格单元格的高度（不赞成使用，请使用样式取而代之）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'height',
+						'name': 'height',
+						'ng-model':'data.height'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>内边距</cname>
+			<ename>padding</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>内边距。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'padding',
+						'name': 'padding',
+						'ng-model':'data.padding'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>外边距</cname>
+			<ename>margin</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>外边距。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'margin',
+						'name': 'margin',
+						'ng-model':'data.margin'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>右边边界</cname>
+			<ename>border-right</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>右边边界。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'border-right',
+						'name': 'border-right',
+						'ng-model':'data[\'border-right\']'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>底部边界</cname>
+			<ename>border-bottom</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>底部边界。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'border-bottom',
+						'name': 'border-bottom',
+						'ng-model':'data[\'border-bottom\']'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>头部边界</cname>
+			<ename>border-top</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>头部边界。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'border-top',
+						'name': 'border-top',
+						'ng-model':'data[\'border-top\']'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>左边边界</cname>
+			<ename>border-left</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>左边边界。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'border-left',
+						'name': 'border-left',
+						'ng-model':'data[\'border-left\']'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>字体颜色</cname>
+			<ename>color</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>字体颜色。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'color',
+						'name': 'color',
+						'ng-model':'data.color'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>背景颜色</cname>
+			<ename>background-color</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>规定单元格的背景颜色（不赞成使用，请使用样式取而代之）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'background-color',
+						'name': 'background-color',
+						'ng-model':'data[\'background-color\']'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model':'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>单元格</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</component>

@@ -1,0 +1,32 @@
+<basic src="element.txt" name="给元素分配临时id" type="testStepDefinitions.basics.basic.assign_id_to_element" icon="icon-cog-wheel-silhouette" group="common" desc="给元素分配临时id" definition="assign_id_to_element">
+    <createTime>1469606769808</createTime>
+    <modelId>testStepDefinitions.basics.basic.assign_id_to_element</modelId>
+    <modelName>assign_id_to_element</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="元素定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>元素定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="myId" desc="元素临时ID">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'myId',
+                'name': 'myId'
+            }
+]]></options>
+        </ctrl>
+        <help>元素临时ID</help>
+    </arg>
+    <help><![CDATA[给元素分配临时id]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[给元素分配临时id    ${locator}    ${myId}    #${desc}]]></macro>
+</basic>

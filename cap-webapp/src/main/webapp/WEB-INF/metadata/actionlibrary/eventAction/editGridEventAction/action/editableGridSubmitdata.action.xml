@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.editGridEventAction.action.editableGridSubmitdata</modelId>
+    <modelName>editableGridSubmitdata</modelName>
+    <modelPackage>actionlibrary.eventAction.editGridEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>保存数据</cname>
+	<description>editableGrid保存数据</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>EditableGrid_submitdata</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 用于编辑完保存数据到数据库的函数，参数返回增、删、改的数据数组。保存完需要调用submitComplete()方法
+ *
+ * @param editableGridObj 编辑gird对象
+ * @param changeData 变化的数据
+ */
+function {{ename}}(editableGridObj,changeData) {
+	var insertData = changeData.insertData, //类型：array
+		updateData = changeData.updateData, //类型：array
+		deleteData = changeData.deleteData;  //类型：array
+	<script name="before"/>
+	//保存成功（失败）以后，必须在回调中调用saveComplete。
+	editableGridObj.submitComplete();
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

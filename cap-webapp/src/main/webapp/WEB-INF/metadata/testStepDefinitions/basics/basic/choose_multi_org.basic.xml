@@ -1,0 +1,45 @@
+<basic src="ui-system.txt" name="组织多选设值" type="testStepDefinitions.basics.basic.choose_multi_org" icon="icon-user-md-symbol" group="systemCombinations" desc="组织多选设值" definition="choose_multi_org">
+    <createTime>1469606789722</createTime>
+    <modelId>testStepDefinitions.basics.basic.choose_multi_org</modelId>
+    <modelName>choose_multi_org</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="id" desc="控件id">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'id',
+                'name': 'id'
+            }
+]]></options>
+        </ctrl>
+        <help>控件id</help>
+    </arg>
+    <arg valueType="String" required="false" name="num" desc="选择的组织数量" default="3">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'num',
+                'name': 'num'
+            }
+]]></options>
+        </ctrl>
+        <help>选择的组织数量</help>
+    </arg>
+    <arg valueType="String" required="false" name="clear" desc="是否清除以前的选项" default="Flase">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'clear',
+                'name': 'clear'
+            }
+]]></options>
+        </ctrl>
+        <help>是否清除以前的选项</help>
+    </arg>
+    <help><![CDATA[组织多选设值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[组织多选设值    ${id}    ${num}    ${clear}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

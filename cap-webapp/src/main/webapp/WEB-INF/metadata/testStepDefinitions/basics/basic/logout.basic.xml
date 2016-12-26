@@ -1,0 +1,23 @@
+<basic src="ui-system.txt" name="退出系统" type="testStepDefinitions.basics.basic.logout" icon="icon-sign-out-option" group="systemCombinations" desc="退出系统" definition="logout">
+    <createTime>1469606789639</createTime>
+    <modelId>testStepDefinitions.basics.basic.logout</modelId>
+    <modelName>logout</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="false" name="locator" desc="登出按钮定位" default="登出">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>登出按钮定位</help>
+    </arg>
+    <help><![CDATA[退出系统]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[退出系统    ${locator}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

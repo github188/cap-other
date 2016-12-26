@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.action.initDatasource</modelId>
+    <modelName>initDatasource</modelName>
+    <modelPackage>actionlibrary.eventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>初始化数据源</cname>
+	<description></description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(obj) {
+	var datasource = [];
+ 	//TODO 自定义初始化数据
+	<script name="before"/>
+	obj.setDatasource(datasource);
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

@@ -1,0 +1,34 @@
+<basic src="ui-system.txt" name="下拉框单选设值" type="testStepDefinitions.basics.basic.pulldown_single_select" icon="icon-pencil" group="systemCombinations" desc="下拉框单选设值" definition="pulldown_single_select">
+    <createTime>1469606789731</createTime>
+    <modelId>testStepDefinitions.basics.basic.pulldown_single_select</modelId>
+    <modelName>pulldown_single_select</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="id" desc="控件id">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'id',
+                'name': 'id'
+            }
+]]></options>
+        </ctrl>
+        <help>控件id</help>
+    </arg>
+    <arg valueType="String" required="false" name="index" desc="选项索引" default="1">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'index',
+                'name': 'index'
+            }
+]]></options>
+        </ctrl>
+        <help>选项索引</help>
+    </arg>
+    <help><![CDATA[下拉框单选设值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[下拉框单选设值    ${id}    ${index}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

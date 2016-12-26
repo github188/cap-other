@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.gridAction.action.gridDatasource</modelId>
+    <modelName>gridDatasource</modelName>
+    <modelPackage>actionlibrary.eventAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>初始化查询行为</cname>
+	<description>列表查询行为方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>Grid_datasource</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(obj, pageQuery) {
+	var gridData = [];
+	var gridDataCount = 0;
+ 	//TODO 自定义列表初始化行为
+	<script name="before"/>
+	obj.setDatasource(gridData,gridDataCount);
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

@@ -1,0 +1,21 @@
+<basic src="element.txt" name="截取当前页面并嵌入到日志" type="testStepDefinitions.basics.basic.capture_page_screenshot" icon="icon-cog-wheel-silhouette" group="common" desc="截取当前页面并嵌入到日志" definition="capture_page_screenshot">
+    <createTime>1469606769818</createTime>
+    <modelId>testStepDefinitions.basics.basic.capture_page_screenshot</modelId>
+    <modelName>capture_page_screenshot</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="picName" desc="图片名称">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'picName',
+                'name': 'picName'
+            }
+]]></options>
+        </ctrl>
+        <help>图片名称</help>
+    </arg>
+    <help><![CDATA[截取当前页面并嵌入到日志]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[截取当前页面并嵌入到日志    ${picName}    #${desc}]]></macro>
+</basic>

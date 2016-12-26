@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.editableGrid</extend>
+    <modelId>req.uicomponent.common.component.editableGrid</modelId>
+    <modelName>EditableGrid</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>编辑网格</cname>
+	<group>common</group>
+	<description>EditableGrid组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>15</sort>
+	<properties>
+		<property>
+			<ename>databind</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>primarykey</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>area</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>areaId</ename>
+			<hide>true</hide>
+		</property>
+	</properties>
+	<events>
+		<event>
+	        <ename>resizeheight</ename>
+	        <default></default>
+		</event>
+	</events>
+</component>

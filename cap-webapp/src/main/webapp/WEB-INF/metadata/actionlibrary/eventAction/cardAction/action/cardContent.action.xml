@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>    
+    <modelId>actionlibrary.eventAction.cardAction.action.cardContent</modelId>
+    <modelName>cardContent</modelName>
+    <modelPackage>actionlibrary.eventAction.cardAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>卡片区域渲染</cname>
+	<description>Card组件渲染卡片区</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * Grid组件渲染单元格的回调函数
+ *
+ * @param rowData 当前行所对应的数据（Json）
+ * @return 返回设置卡片区的渲染文本
+ */
+function {{ename}}(rowData) {
+	var content="";
+	<script name="before"/>
+	return content;
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

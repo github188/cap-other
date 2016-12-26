@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.action.hideCondition</modelId>
+    <modelName>hideCondition</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>条件查询事件-隐藏查询区域</cname>
+	<description>条件查询事件-隐藏查询区域</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+	/**
+    * 隐藏查询区域条件
+    */
+function hiddenQueryAreaTr()   {   		
+	//查询区域少于1行不加隐藏功能
+	if ($("#select_condition tr").length <= 1 
+		|| 	( $("#select_condition tr").length == 2	&& $(".hide_span").length == 0 )){
+		return;
+	}
+	//除第一行，最后一行显示，其它行隐藏
+	$("#select_condition tr:not(:first, :last)").hide();
+	//最后一行，除查询按钮其它控件隐藏
+	$(".hide_span").hide();		
+	//第一行增加一列显示更多按钮
+	$("#select_condition tr:first td:last-child").each(function () {			
+		$(this).after("<td><span class='btn-more' id='btnMoreSpan'>更多&#9660</span></td>");
+	});
+	
+	//其它行增加一列
+	$("#select_condition tr:not(:first) td:last-child").each(function () {			
+		$(this).after("<td>&nbsp;</td>");
+	});		
+}   
+	
+/**
+ * 更多按钮 单击隐藏查询区域条件
+ */
+$("body").on('click', "#btnMoreSpan", function(){ 
+	var isShow = $(this).html().lastIndexOf("▼") > 0;		
+	//除第一行，最后一行，其它行是否显示
+	controlObjectShowHide(isShow, $("#select_condition tr:not(:first, :last)"));	
+	//最后一行，除查询按钮其它控件是否显示			
+	controlObjectShowHide(isShow, $(".hide_span"));	
+	if ( isShow ){			
+		$(this).html("更多&#9650");
+	}else{
+		$(this).html("更多&#9660");
+	}
+});
+/**
+ * 控制对象显示或隐藏
+ */
+function controlObjectShowHide(isShow, obj){
+	if ( isShow ){
+		obj.show();
+	}else{
+		obj.hide();
+	}
+}
+]]>
+	</script>
+	<properties>
+		<property>
+			<cname>关联GridId</cname>
+			<ename>relationGridId</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>关联表格控件选择</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'relationGridId',
+						'ng-model':'relationGridId',
+						'onclick':'openComponentSelect(1)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>选择查询区域数据对象</cname>
+			<ename>queryCondition</ename>
+			<type>Object</type>
+			<requried>true</requried>
+			<default></default>
+			<description>选择查询区域数据对象</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'queryCondition',
+						'ng-model':'queryCondition',
+						'onclick':'openDataStoreSelect(\'queryCondition\',null)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>打开方式</cname>
+			<ename>target</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>location</default>
+			<description>打开方式</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'target',
+						'ng-model':'target',
+						'datasource':"[{id:'location',text:'指定页面'},{id:'win',text:'新窗口'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'select':0
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

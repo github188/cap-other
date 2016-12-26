@@ -1,0 +1,50 @@
+<fixed definition="send_from_list" desc="列表发送" group="fixed"
+	icon="icon-arrow-pointing-right-in-a-circle" type="testStepDefinitions.combinations.fixed.send_from_list"
+	name="列表发送">
+	<createTime>1467616482749</createTime>
+	<modelId>testStepDefinitions.combinations.fixed.send_from_list
+	</modelId>
+	<modelName>send_from_list</modelName>
+	<modelPackage>testStepDefinitions.combinations</modelPackage>
+	<modelType>fixed</modelType>	
+	<arg valueType="String" required="true" name="locator" desc="元素定位" defaultValue="id=btnSendOnList">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator',
+                'required': 'true'
+            }            
+			]]></options>
+        </ctrl>
+        <help>元素定位</help>
+    </arg>
+	<arg valueType="String" required="true" name="text" desc="校验内容">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'text',
+                'name': 'text',
+                'required': 'true'
+            }            
+            ]]></options>
+        </ctrl>
+        <help>校验内容</help>
+    </arg>    
+	<help><![CDATA[列表发送]]></help>
+	<lib>ComtopLibrary.py</lib>
+	<lib>AutoItLibrary</lib>
+	<lib>DatabaseLibrary</lib>
+	<res>element.txt</res>
+    <res>page.txt</res>
+    <res>ui-system.txt</res>
+    <res>database.txt</res>
+	<basic desc="点击列表发送按钮" name="点击列表发送按钮" type="testStepDefinitions.basics.basic.click_element">	
+		<arg name='locator'  value='${locator}'/>
+    </basic>
+	<basic desc="页面包含内容" name="页面包含内容" type="testStepDefinitions.basics.basic.page_should_contain" >
+		<arg name='text'  value='${text}'/>
+	</basic>	
+	<basic desc="退出框架" name="退出框架" type="testStepDefinitions.basics.basic.unselect_frame" />	
+	<basic desc="关浏览器并杀进程" name="关浏览器并杀进程" type="testStepDefinitions.basics.basic.close_all_browser_and_kill_driver" />	
+</fixed>

@@ -1,0 +1,27 @@
+{
+	"createTime":1451525325685,
+	"lstActions":[
+		{
+			"actionId":"actionlibrary.bestPracticeAction.gridAction.action.gridDicRender"
+		},
+		{
+			"actionId":"actionlibrary.bestPracticeAction.gridAction.action.gridEditLinkRender"
+		},
+		{
+			"actionId":"actionlibrary.bestPracticeAction.gridAction.action.gridImgRender"
+		},
+		{
+			"actionId":"actionlibrary.bestPracticeAction.gridAction.action.gridViewLinkRender"
+		},
+		{
+			"actionId":"actionlibrary.bestPracticeAction.gridAction.action.gridWftCurNodeTrackRender"
+		},
+		{
+			"actionId":"actionlibrary.bestPracticeAction.gridAction.action.gridWftLinkRender"
+		}
+	],
+	"modelId":"preference.config.pageTemplateAction.pageTemplateAction",
+	"modelName":"pageTemplateAction",
+	"modelPackage":"preference.page",
+	"modelType":"pageTemplateAction"
+}

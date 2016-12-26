@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.listBox</extend>
+    <modelId>req.uicomponent.common.component.listBox</modelId>
+    <modelName>ListBox</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>列表</cname>
+	<group>common</group>
+	<description>ListBox组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>11</sort>
+	<properties>
+		<property>
+			<ename>databind</ename>
+			<hide>true</hide>
+		</property>
+	</properties>
+</component>

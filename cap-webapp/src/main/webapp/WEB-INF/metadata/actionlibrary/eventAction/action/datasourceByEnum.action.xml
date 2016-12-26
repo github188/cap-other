@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.action.datasourceByEnum</modelId>
+    <modelName>datasourceByEnum</modelName>
+    <modelPackage>actionlibrary.eventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>初始化数据源（枚举）</cname>
+	<type></type>
+	<description>使用枚举类初始化pulldown、checkbox、radio数据源</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+		<list>/cap/dwr/interface/EnumReflectProvider.js</list>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(obj){
+	var datasource = [];
+	dwr.TOPEngine.setAsync(false);
+	EnumReflectProvider.invoke("{{methodOption.enumClasspath}}",function(data) {
+		datasource = data;
+	});
+	dwr.TOPEngine.setAsync(true);
+	//对datasource进行处理
+	<script name="before"/>
+	obj.setDatasource(datasource);
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>枚举类路径</cname>
+			<ename>enumClasspath</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>枚举类的全路径</description>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'enumClasspath',
+						'ng-model':'enumClasspath',
+						'onclick':''
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

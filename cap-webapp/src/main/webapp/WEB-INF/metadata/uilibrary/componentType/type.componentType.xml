@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<componentType>
+    <modelId>uilibrary.componentType.type</modelId>
+    <modelName>type</modelName>
+    <modelPackage>uilibrary</modelPackage>
+    <modelType>componentType</modelType>
+     <type>
+         <typeCode>layout</typeCode>
+         <typeName>布局控件</typeName>
+     </type>
+     <type>
+         <typeCode>container</typeCode>
+         <typeName>容器控件</typeName>
+     </type>
+     <type>
+         <typeCode>common</typeCode>
+         <typeName>基本控件</typeName>
+     </type>
+     <type>
+         <typeCode>bestPractice</typeCode>
+         <typeName>最佳实践</typeName>
+         <subType>
+        	<typeCode>editFunc</typeCode>
+            <typeName>编辑页面控件</typeName>
+         </subType>
+         <subType>
+	        <typeCode>listFunc</typeCode>
+	        <typeName>列表页面控件</typeName>
+         </subType>
+          <subType>
+	        <typeCode>editGridFunc</typeCode>
+	        <typeName>编辑网格操作控件</typeName>
+         </subType>
+         <subType>
+	        <typeCode>wfCommonButton</typeCode>
+	        <typeName>流程审批通用功能控件</typeName>
+         </subType>
+     </type>
+     <type>
+         <typeCode>expand</typeCode>
+         <typeName>扩展控件</typeName>
+     </type>
+     <type>
+         <typeCode>custom</typeCode>
+         <typeName>自定义控件</typeName>
+     </type>
+     <!-- 
+      <type>
+         <typeCode>charts</typeCode>
+         <typeName>图表控件</typeName>
+     </type> -->
+     <type>
+         <typeCode>area</typeCode>
+         <typeName>区块控件</typeName>
+     </type>
+</componentType>

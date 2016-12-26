@@ -1,0 +1,11 @@
+<basic src="page.txt" name="退出框架" type="testStepDefinitions.basics.basic.unselect_frame" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="退出框架" definition="unselect_frame">
+    <createTime>1469606781392</createTime>
+    <modelId>testStepDefinitions.basics.basic.unselect_frame</modelId>
+    <modelName>unselect_frame</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[退出框架]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[退出框架    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

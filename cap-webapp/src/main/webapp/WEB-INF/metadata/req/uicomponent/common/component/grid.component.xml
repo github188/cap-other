@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.grid</extend>
+    <modelId>req.uicomponent.common.component.grid</modelId>
+    <modelName>Grid</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>网格</cname>
+	<group>common</group>
+	<description>grid组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>2</sort>
+	<properties>
+		<property>
+			<ename>primarykey</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>operation</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>area</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>areaId</ename>
+			<hide>true</hide>
+		</property>
+	</properties>
+	<events>
+		<event>
+	        <ename>resizeheight</ename>
+	        <default></default>
+		</event>
+	</events>
+</component>

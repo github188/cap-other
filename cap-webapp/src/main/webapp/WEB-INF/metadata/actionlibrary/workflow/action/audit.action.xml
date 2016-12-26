@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.workflow.action.audit</modelId>
+    <modelName>audit</modelName>
+    <modelPackage>actionlibrary.workflow</modelPackage>
+    <modelType>action</modelType>
+    <cname>自定义流程审批行为</cname>
+	<description>流程审批方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+		<list>/cap/dwr/interface/CapWorkflowAction.js</list>
+		<list>/cap/rt/common/workflow/comtop.cap.rt.workflow.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/**
+* {{cname}} {{description}}
+*/
+function {{ename}}(){
+ 	//getData 是获取要提交的业务数据的js方法
+ 	//flowOperateCallback 是流程处理提交的业务数据后的回调处理方法。
+    cap.rt10.workflow.operate.{{methodOption.workflowMethod}}(false,{{methodOption.getData}},{{methodOption.flowOperateCallback}});
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>流程审批方法</cname>
+			<ename>workflowMethod</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>流程审批方法</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'workflowMethod',
+						'ng-model':'workflowMethod',
+						'datasource':"[{id:'report',text:'上报'},{id:'send',text:'发送'},{id:'back',text:'回退'},{id:'reassign',text:'转发'},{id:'undo',text:'撤回'},{id:'backReport',text:'回退给申请人'},{id:'undoReport',text:'撤回结束到申请人'},{id:'saveNote',text:'保存意见'},{id:'abort',text:'终止流程'},{id:'jump',text:'跳转'},{id:'hungup',text:'挂起'},{id:'overFlow',text:'结束流程'},{id:'recover',text:'恢复'}]",
+						'value_field':'id',
+						'label_field':'text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>获取数据方法</cname>
+			<ename>getData</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>getData</default>
+			<description>打开方式</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+					<script>
+						<![CDATA[ 
+							{
+							'id': 'getData',
+							'ng-model':'getData',
+							'datasource':'getActionList()',
+							'value_field':'id',
+							'label_field':'text'
+							}
+						]]>
+					</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>回调处理方法</cname>
+			<ename>flowOperateCallback</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>flowOperateCallback</default>
+			<description>打开方式</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+					<script>
+						<![CDATA[ 
+							{
+							'id': 'flowOperateCallback',
+							'ng-model':'flowOperateCallback',
+							'datasource':'getActionList()',
+							'value_field':'id',
+							'label_field':'text'
+							}
+						]]>
+					</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

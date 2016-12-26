@@ -1,0 +1,37 @@
+<basic definition="kill_driver" desc="杀driver进程" group="common" icon="icon-cog-wheel-silhouette" type="testStepDefinitions.basics.basic.kill_driver" name="杀driver进程" src="element.txt">
+    <createTime>1469606769732</createTime>
+    <modelName>kill_driver</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg default="os.system(r'taskkill /F /IM chromedriver.exe')" desc="杀chrome浏览器驱动进程表达式" name="expression_killchromedriver" required="true" valueType="String">
+        <ctrl type="Pulldown">
+            <options><![CDATA[
+            {
+                "id": "expression_killchromedriver",
+                "name": "expression_killchromedriver",
+                "datasource": "[
+						{id:'os.system(r\\'taskkill /F /IM chromedriver.exe\\')',text:'杀chrome浏览器驱动进程'}
+					]"
+            }
+			]]></options>
+        </ctrl>
+        <help>杀chrome浏览器驱动进程表达式</help>
+    </arg>
+    <arg default="os.system(r'taskkill /F /IM IEDriverServer.exe')" desc="杀IE浏览器驱动进程表达式" name="expression_killIEdriver" required="true" valueType="String">
+        <ctrl type="Pulldown">
+            <options><![CDATA[
+            {
+                "id": "expression_killIEdriver",
+                "name": "expression_killIEdriver",
+                "datasource": "[
+						{id:'os.system(r\\'taskkill /F /IM IEDriverServer.exe\\')',text:'杀IE浏览器驱动进程'}
+					]"
+            }
+			]]></options>
+        </ctrl>
+        <help>杀IE浏览器驱动进程表达式</help>
+    </arg>
+    <help><![CDATA[杀driver进程]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[杀driver进程    ${expression_killchromedriver}    ${expression_killIEdriver}    #${desc}]]></macro>
+</basic>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.gridAction.action.gridImgRender</modelId>
+    <modelName>gridImgRender</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>图片渲染</cname>
+    <type>gridRender</type>
+	<description>grid图标渲染</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(rd, index, col) { 
+	var imgUrl="";
+	//定义图标URL路径
+	<script name="before"/>
+	var content="<img src='"+webPath+imgUrl+"' onclick='imgClick();'/>";
+	//自定义处理方式
+	<script name="after"/>
+	return content;
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

@@ -1,0 +1,64 @@
+<practice definition="delete_method" desc="实体删除方法测试最佳实践"
+	group="apielement" icon="icon-cog-wheel-silhouette" practiceType="API"
+	type="testStepDefinitions.practices.practice.delete_method"
+	name="实体删除方法测试最佳实践" mapping="delete">
+	<lib>RequestsLibrary</lib>
+	<lib>Collections</lib>
+	<lib>XML</lib>
+	<res>api-element.txt</res>
+	<impl>com.comtop.cap.test.design.practice.api.EntityFacadeMethodTestPracticeImpl</impl>
+	<arg valueType="String" required="true" name="metadata" desc="方法元数据">
+		<ctrl type="Input">
+			<options>
+           <![CDATA[
+            {
+                'id': 'metadata',
+                'name': 'metadata',
+                'required': 'true'
+            }            
+            ]]>
+			</options>
+		</ctrl>
+		<help>请选择方法元数据</help>
+	</arg>
+	<step-ref type="testStepDefinitions.basics.basic.create_session" name="创建Session" desc="创建Session">
+		<arg name="url" value="${url}" />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.login_top" name="登录TOP" desc="登录TOP">
+		<arg name="account" value="${userName}" />
+		<arg name="password" value="${password}" />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.create_request_data" name="创建数据" desc="查询全部数据">
+		<arg name="requestData" value="${query-list-data}" />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.send_request" name="发送请求" desc="发送请求" />
+	<step-ref type="testStepDefinitions.basics.basic.validate_response" name="验证响应数据" desc="验证响应数据" />
+	<step-ref type="testStepDefinitions.basics.basic.get_from_list" name="获取List中的一个数据" desc="获取一条已存在的数据">
+		<arg name="list" value="${data}"  />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.get_from_object" name="获取对象中的属性值" desc="获取ID">
+		<arg name="data" value="${data}"  />
+		<arg name="property" value="${pk}"  />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.create_request_data" name="创建数据" desc="删除数据">
+		<arg name="requestData" value="${delete-data}" />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.send_request" name="发送请求" desc="发送请求" />
+	<step-ref type="testStepDefinitions.basics.basic.validate_response" name="验证响应数据" desc="验证响应数据" />
+	<step-ref type="testStepDefinitions.basics.basic.create_request_data" name="创建数据" desc="创建验证数据请求">
+		<arg name="requestData" value="${load-data}" />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.send_request" name="发送请求" desc="发送请求" />
+	<step-ref type="testStepDefinitions.basics.basic.validate_response" name="验证响应数据" desc="验证响应数据" />
+	<step-ref type="testStepDefinitions.basics.basic.should_be_equal_as_strings" name="两个字符是否相等" desc="验证是否删除成功">
+		<arg name="str1" value="${data}"  />
+		<arg name="str2" value="None"  />
+	</step-ref>
+	<help><![CDATA[实体删除方法测试最佳实践]]></help>
+	<modelName>delete_method</modelName>
+	<modelType>practice</modelType>
+	<modelPackage>testStepDefinitions.practices</modelPackage>
+	<modelId>testStepDefinitions.practices.practice.delete_method
+	</modelId>
+	<createTime>1267616482749</createTime>
+</practice>

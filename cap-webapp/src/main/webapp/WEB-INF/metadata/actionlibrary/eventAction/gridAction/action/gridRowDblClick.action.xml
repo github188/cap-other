@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.gridAction.action.gridRowDblClick</modelId>
+    <modelName>gridRowDblClick</modelName>
+    <modelPackage>actionlibrary.eventAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>双击行回调函数</cname>
+	<description>grid双击行回调函数</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 属性selectrows="no"时回调无效
+ *
+ * @param rowData 单击行的数据
+ * @param index 当前被点击行的索引号
+ */
+function {{ename}}(rowData,index) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

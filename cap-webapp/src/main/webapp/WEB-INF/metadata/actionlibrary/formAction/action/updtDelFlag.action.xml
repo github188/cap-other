@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.formAction.action.updtDelFlag</modelId>
+    <modelName>updtDelFlag</modelName>
+    <modelPackage>actionlibrary.formAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>更新删除标识行为</cname>
+	<type>custom</type>
+	<description>更新删除标识</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{description}} (注:后台方法应选择 update为最佳实践)
+function {{ename}}(){
+    //删除标识和删除标识值
+	var deleteflag="{{methodOption.columnAttribute}}";
+	var deleteflagVal=true;
+
+	//更新删除标识前操作(可以自定义修改 删除标识和删除标识值)
+	<script name="before"/>
+	
+	//gridId如为空,请选择关联GridId进行关联表格Id
+	var gridId="{{methodOption.relationGridId}}";
+	if(!gridId){
+		var isGirdFind = "无法获取表格gridId,请在对应行为中关联对应的表格Id.";
+		<script name="isGirdFind"/>
+	    cui.message(isGirdFind,"error");
+	    return;
+	}
+	var gridObj = cui("#"+gridId);
+	var selects = gridObj.getSelectedRowData();
+	if(selects == null || selects.length == 0){
+		var isSelectMsg = "请选择要更新的数据。";
+		<script name="isSelectMsg"/>
+		cui.alert(isSelectMsg);
+		return;
+	}
+	for(var i=0;i<selects.length;i++){
+		var rowData=selects[i];
+		rowData[deleteflag]=deleteflagVal;
+	}
+	var confirmmsg = "确定要更新这些"+selects.length+"条数据吗？";
+	<script name="confirmmsg"/>
+	cui.confirm(confirmmsg,{
+		onYes:function(){
+			var paramArray = [];
+			paramArray[0] = selects;
+			var aliasEntityId = '{{methodOption.aliasEntityId}}';
+			aliasEntityId = aliasEntityId != '' ? aliasEntityId :  '{{methodOption.entityId}}';
+			var dwrInvokeParam = cap.getDwrInvokeParam(aliasEntityId,'{{methodOption.actionMethodName}}',paramArray);
+			${modelName}Action.dwrInvoke(dwrInvokeParam,function(result){
+				//数据刷新前处理
+				<script name="updateDataBefore"/>
+				if(result){
+					gridObj.loadData();
+					var resultmsg = "更新成功";
+					<script name="resultmsg"/>
+				 	cui.message(resultmsg,"success");
+				}else{
+					var resultFalsemsg = "更新失败，请重新操作";
+					<script name="resultFalsemsg"/>
+					cui.error(resultFalsemsg);
+				}
+				//数据刷新后处理
+				<script name="updateDataAfter"/>
+			});
+		}
+	});
+}
+]]>
+	</script>
+	<properties>
+		<property>
+			<cname><![CDATA[<a style='color:red;'>*</a>]]>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow(false)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.CallServiceMethodPageActionProConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname><![CDATA[<a style='color:red;'>*</a>]]>关联GridId</cname>
+			<ename>relationGridId</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>关联GridId</description>
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'relationGridId',
+						'ng-model':'relationGridId',
+						'onclick':'openComponentSelect(1)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		
+		<property>
+			<cname><![CDATA[<a style='color:red;'>*</a>]]>标识属性</cname>
+			<ename>columnAttribute</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>标识属性选择</description>
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'columnAttribute',
+						'ng-model':'columnAttribute',
+						'onclick':'openDataStoreSelect(1)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

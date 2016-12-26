@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<modelId>uicomponent.common.component.autoGenNumber</modelId>
+	<modelName>AutoGenNumber</modelName>
+	<modelPackage>uicomponent.common</modelPackage>
+	<modelType>component</modelType>
+	<cname>自动编码</cname>
+	<group>common</group>
+	<description>AutoGenNumber组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>14</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+		<list>/cap/rt/common/cui/js/comtop.ui.autogennumber.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<layoutType> 	
+		<list>form</list>
+	</layoutType>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>AutoGenNumber</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>ID</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>ID</description>
+			<commonAttr>false</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model':'data.id'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>自动生成编码表达式</cname>
+			<ename>expression</ename>
+			<type>String</type>  
+			<requried>true</requried>
+			<default></default>
+			<description>自动生成编码表达式,注意：只能使用“_”或者“-”作为连接符，如“$\{meetingId\}-$\{seq('meeetingAutoGenNumber',10,1,1)\}”,则生成编码为“XXX-0000000001” ,其中meetingId为params列表中的一个参数,meeetingAutoGenNumber为自定义的字符串。</description>
+			<commonAttr>true</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'expression',
+						'name': 'expression',
+						'ng-model':'data.expression'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>数据绑定</cname>
+			<ename>databind</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>创建json对像，并在要绑定的组件上用databind关联绑定属性。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型 -->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'databind',
+						'name': 'databind',
+						'ng-model':'data.databind',
+						'on_iconclick':'openDataStoreSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>验证规则</cname>
+			<ename>validate</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>校验函数，如：<![CDATA[<br/>[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'required', 'rule':{m: '缺陷名称不能为空'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'length', 'rule':{max:3,maxm: '缺陷名称小余3个字符'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'numeric', 'rule':{'oi':true,'notim':'学号必是数字'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'numeric', 'rule':{'min':5.4,'max':10.2,minm:'学号应该大于等于5.4',maxm:'学号应该小余等于10'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'format', 'rule':{pattern: '(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)',m: 'IP输入不合法'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'custom', 'rule':{against:'input_custom_validate',m:'输入的学号必须大于10000'}}<br/>]]]></description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型 -->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'validate',
+						'name': 'validate',
+						'ng-model':'data.validate',
+						'on_iconclick':'openValidateAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>参数集合</cname>
+			<ename>params</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>参数集合，例如：{meeting.meetingId},其中meeting为数据模型中的对象，meetingId为对象的属性。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框 -->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'params',
+						'name': 'params',
+						'ng-model':'data.params',
+						'on_iconclick':'openDataStoreSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+
+		<property>
+			<cname>组件名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件名称</description>
+			<commonAttr>false</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否新增显示</cname>
+			<ename>showOnNew</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default>false</default>
+			<description>是否新增显示</description>
+			<commonAttr>false</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'showOnNew',
+						'name':'showOnNew',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'ng-model':'data.showOnNew',
+						'datasource' :"[{id:'true',text:'是'},{id:'false',text:'否'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>最大高度</cname>
+			<ename>maxheight</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>当文本域自动增高时限制最大增大高度。</description>
+			<commonAttr>false</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'maxheight',
+						'name': 'maxheight',
+						'ng-model':'data.maxheight'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>只读</cname>
+			<ename>readonly</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default>true</default>
+			<description>组件是否只读（默认false非只读）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'readonly',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'readonly',
+						'ng-model':'data.readonly',
+						'datasource' :"[{id:'true',text:'只读'},{id:'false',text:'可读写'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>值改变事件</cname>
+			<ename>on_change</ename>
+			<type></type>
+			<default></default>
+			<methodTemplate>actionlibrary.eventAction.action.commonEvent
+			</methodTemplate>
+			<methodOption></methodOption>
+			<description>clickInput组件值改变时回调，包含两个参数：event事件, self组件本身对象。
+			</description>
+			<commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>获得焦点事件</cname>
+			<ename>on_focus</ename>
+			<type></type>
+			<default></default>
+			<methodTemplate>actionlibrary.eventAction.action.commonEvent
+			</methodTemplate>
+			<methodOption></methodOption>
+			<description>clickInput组件获得焦点回调，包含两个参数：event事件, self组件本身对象。
+			</description>
+			<commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>失去焦点事件</cname>
+			<ename>on_blur</ename>
+			<type></type>
+			<default></default>
+			<methodTemplate>actionlibrary.eventAction.action.commonEvent
+			</methodTemplate>
+			<methodOption></methodOption>
+			<description>clickInput组件失去焦点回调，包含两个参数：event事件, self组件本身对象。
+			</description>
+			<commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>松开按键事件</cname>
+			<ename>on_keyup</ename>
+			<type></type>
+			<default></default>
+			<methodTemplate>actionlibrary.eventAction.action.commonEvent
+			</methodTemplate>
+			<methodOption></methodOption>
+			<description>clickInput组件松开按键回调，包含两个参数：event事件, self组件本身对象。
+			</description>
+			<commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>按下按键事件</cname>
+			<ename>on_keydown</ename>
+			<type></type>
+			<default></default>
+			<methodTemplate>actionlibrary.eventAction.action.commonEvent
+			</methodTemplate>
+			<methodOption></methodOption>
+			<description>clickInput组件按下按键回调，包含两个参数：event事件, self组件本身对象。
+			</description>
+			<commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>按下键回调事件</cname>
+			<ename>on_keypress</ename>
+			<type></type>
+			<default></default>
+			<methodTemplate>actionlibrary.eventAction.action.commonEvent
+			</methodTemplate>
+			<methodOption></methodOption>
+			<description>clickInput组件点击图片回调，包含两个参数：event事件, self组件本身对象。
+			</description>
+			<commonAttr>false</commonAttr>
+		</event>
+	</events>
+</component>

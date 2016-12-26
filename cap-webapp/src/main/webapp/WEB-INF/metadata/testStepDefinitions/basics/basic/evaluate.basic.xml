@@ -1,0 +1,32 @@
+<basic src="element.txt" name="运算表达式" type="testStepDefinitions.basics.basic.evaluate" icon="icon-cog-wheel-silhouette" group="common" desc="运算表达式" definition="evaluate">
+    <createTime>1469606769838</createTime>
+    <modelId>testStepDefinitions.basics.basic.evaluate</modelId>
+    <modelName>evaluate</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="expression" desc="表达式">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'expression',
+                'name': 'expression'
+            }
+]]></options>
+        </ctrl>
+        <help>表达式</help>
+    </arg>
+    <arg valueType="String" required="true" name="returnValue" desc="返回值">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'returnValue',
+                'name': 'returnValue'
+            }
+]]></options>
+        </ctrl>
+        <help>返回值</help>
+    </arg>
+    <help><![CDATA[运算表达式]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[${returnValue}    运算表达式    ${expression}    #${desc}]]></macro>
+</basic>

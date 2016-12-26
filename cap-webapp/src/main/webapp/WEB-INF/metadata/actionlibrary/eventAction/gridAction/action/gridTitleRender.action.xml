@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.gridAction.action.gridTitleRender</modelId>
+    <modelName>gridTitleRender</modelName>
+    <modelPackage>actionlibrary.eventAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>单元格title渲染事件</cname>
+	<description>grid单元格title渲染事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * grid组件提供了单元格title的渲染
+ *
+ * @param rowData 当前行所对应的数据（Json）
+ * @param bindName 列绑定属性名（String类型）
+ * @return 一般返回渲染后的title字符串; 
+ */
+function {{ename}}(rowData, bindName) {
+	var _title="";
+	<script name="before"/>
+	return _title;
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

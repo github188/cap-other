@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.ipbIncludePageAction.action.gridViewLinkTodoRender</modelId>
+    <modelName>gridViewLinkTodoRender</modelName>
+    <modelPackage>actionlibrary.ipbIncludePageAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>待办页面查看链接渲染</cname>
+    <type>gridRender</type>
+	<description>待办页面查看链接渲染</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(rd, index, col) { 
+	if(rd[col.bindName] == null){
+		return;
+	}
+	var url=cap.getforwardURL({{methodOption.pageURL}});
+	url = cap.buildURL(url,{'pageMode':'readonly', 'primaryValue':rd['primaryValue']});
+	url=cap.buildURL(url,{taskType:'todo'});
+	url=cap.buildURL(url,{taskId:rd['taskId']});
+	<script name="setURL"/>
+	var content= "<a style=\"cursor:pointer\" onclick=\"cap.pageJump('"+url+"','{{methodOption.target}}',{{methodOption.container}})\">" + rd[col.bindName] + "</a>";
+	//自定义content内容
+	<script name="before"/>
+	return content;
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>页面URL</cname>
+			<ename>pageURL</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>页面选择</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pageURL',
+						'ng-model':'pageURL',
+						'onclick':'openDataStoreSelect(\'pageURL\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.RelationPageUrlPageActionConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>打开目标</cname>
+			<ename>target</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>_self</default>
+			<description>打开方式</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'target',
+						'ng-model':'target',
+						'datasource':"[{id:'_self',text:'当前页面'},{id:'location',text:'指定页面'},{id:'win',text:'新窗口'}]",
+						'value_field':'id',
+						'label_field':'text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>容器</cname>
+			<ename>container</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>window</default>
+			<description>容器选择</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'container',
+						'ng-model':'container',
+						'datasource':"[{id:'window',text:'当前容器'},{id:'window.parent',text:'父容器'}]",
+						'value_field':'id',
+						'label_field':'text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<consistencyConfig>
+			<checkConsistency>true</checkConsistency>
+			<checkClass>com.comtop.cap.bm.metadata.consistency.action.DefaultPageActionConsisCheck</checkClass>
+		</consistencyConfig>
+	</properties>
+</action>

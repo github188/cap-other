@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.actioncall.action.actioncall</modelId>
+    <modelName>actioncall</modelName>
+    <modelPackage>actionlibrary.actioncall</modelPackage>
+    <modelType>action</modelType>
+    <type></type>
+    <cname>action方法</cname>
+	<keyword>后台API接口|action层API接口</keyword>
+	<description>调用action方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>service_invoke</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+function {{ename}}(){
+	//TODO  调用后台前处理逻辑
+	<script name="before"/>
+	dwr.TOPEngine.setAsync({{methodOption.requestMode}});
+	${modelName}Action.{{methodOption.actionMethodName}}(${methodParameter}, function(data){
+		if(""!="{{methodOption.returnValueBind}}"){
+			window["{{methodOption.returnValueBind}}"]=data;
+		}
+		
+		//TODO  后台调用返回后的处理逻辑  
+		<script name="after"/>
+	});
+	dwr.TOPEngine.setAsync(true);
+}
+		]]>
+	</script>
+	<properties>
+		<property>
+			<cname>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow()'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.CallServiceMethodPageActionProConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>请求方式</cname>
+			<ename>requestMode</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>true</default>
+			<description>请求方式</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'requestMode',
+						'ng-model':'requestMode',
+						'datasource':"[{id:'false',text:'同步'},{id:'true',text:'异步'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'editable': false
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

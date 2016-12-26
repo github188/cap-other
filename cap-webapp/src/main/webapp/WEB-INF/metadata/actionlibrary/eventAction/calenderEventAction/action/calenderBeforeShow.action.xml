@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.calenderEventAction.action.calenderBeforeShow</modelId>
+    <modelName>calenderBeforeShow</modelName>
+    <modelPackage>actionlibrary.eventAction.calenderEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>打开日期面板前回调</cname>
+	<description>calender打开日期面板前回调</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>Calender_on_before_show</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * @param self 当前日期组件实例对象
+ * @param value 当前日期组件的值
+ * @return 返回false：表示不打开日期面板；true：表示打开日期面板
+ */
+function {{ename}}(self, value) {
+	//初始化返回值为true
+	var _result = true;
+	<script name="before"/>
+	return _result;
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

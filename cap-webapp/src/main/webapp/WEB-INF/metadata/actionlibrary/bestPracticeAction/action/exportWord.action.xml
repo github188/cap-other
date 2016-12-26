@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.action.exportWord</modelId>
+    <modelName>exportWord</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>导出Word</cname>
+	<description>导出Word操作</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/eic/js/comtop.eic.js</list>
+		<list>/eic/js/comtop.ui.emDialog.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *
+ */
+function {{ename}}() { 
+	//userId  用户ID
+	var userId =globalUserId;
+	//wordId 模板id
+	var wordId ="withoutTemplate01";
+	//webRoot 系统根路径
+	var webRoot = '${pageScope.cuiWebRoot}';
+	//param 自定义参数
+	var param = "";
+	//sysName 子系统名称
+	var sysName = "";
+	//是否异步，如果配置为true，无论数据量大小都进行异步导入；如果配置为false或者不进行配置，在导入文件超过5M时进行异步导入
+	var asyn = "false";
+	//自定义初始始化逻辑
+	var wordId = obj.getAttribute("wordId");
+	<script name="before"/>
+	var params = {"userId": userId, "wordId": wordId, "asyn": asyn, "webRoot": webRoot, "param": encodeURIComponent(encodeURIComponent(param)), "sysName": sysName};
+	iWordExport(params);
+}
+]]>
+	</script>
+	<properties>
+	</properties>
+</action>

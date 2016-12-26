@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="GB2312"?>
+<excels>
+	<excel id="userImport" maxBlankRow="10" operation="com.comtop.top.sys.usermanagement.user.action.UserImportOperationImpl">
+		<sheet name="人员导入" table="" startRow="5" mincolumn="" maxcolumn="" className="com.comtop.top.sys.usermanagement.user.model.UserDTO" validateClass="com.comtop.top.sys.usermanagement.user.action.UserImportValidate">
+			<property name="employeeName" column="1" dataType="java.lang.String" nullable="no" columnName="" defaultValue="" expression="^[\u4E00-\u9FA5A-Za-z0-9_]+$"/>
+			<property name="account" column="2" dataType="java.lang.String" nullable="no" columnName="" defaultValue="" expression="^[\u4E00-\u9FA5A-Za-z0-9_.]+$"/>
+			<property name="password" column="3" dataType="java.lang.String" nullable="no" columnName="" defaultValue="" expression=""/>
+			<property name="strEducation" column="4" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="strSex" column="5" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="code" column="6" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="birthDayExport" column="7" dataType="java.util.Date" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="strJobStatus" column="8" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="identityCard" column="9" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="mobilePhone" column="10" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression="^[0-9-/]+$"/>
+			<property name="fixPhone" column="11" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression="^[0-9-/]+$"/>
+			<property name="address" column="12" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="email" column="13" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression="^([a-z0-9A-Z]+[-|\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\.)+[a-zA-Z]{2,}$"/>
+			<property name="zip" column="14" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression="^[0-9]{6}$"/>
+			<property name="note" column="15" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="strMarriage" column="16" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            
+             <!-- 扩展属性 -->
+            <property name="attribute_1" column="17" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_2" column="18" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_3" column="19" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_4" column="20" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_5" column="21" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_6" column="22" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_7" column="23" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_8" column="24" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_9" column="25" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_10" column="26" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_11" column="27" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_12" column="28" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_13" column="29" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_14" column="30" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_15" column="31" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_16" column="32" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_17" column="33" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_18" column="34" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_19" column="35" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_20" column="36" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+		</sheet>
+	</excel>
+	
+	<excel id="organizationImport" maxBlankRow="10" operation="com.comtop.top.sys.usermanagement.organization.action.OrganizationImportOperationImpl">
+		<sheet name="组织导入" table="" startRow="5" mincolumn="" maxcolumn="" className="com.comtop.top.sys.usermanagement.organization.model.OrganizationDTO" validateClass="com.comtop.top.sys.usermanagement.organization.action.OrganizationImportValidate">
+			<property name="orgName" column="1" dataType="java.lang.String" nullable="no" columnName="" defaultValue="" expression="^[\u4E00-\u9FA5A-Za-z0-9_]+$"/>
+			<property name="orgCode" column="2" dataType="java.lang.String" nullable="no" columnName="" defaultValue="" expression="^[0-9A-Za-z]*$"/>
+			<property name="areaId" column="3" dataType="int" nullable="" columnName="no" defaultValue="" expression=""/>
+			<property name="flowArea" column="4" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="strOrgType" column="5" dataType="java.lang.String" nullable="no" columnName="" defaultValue="" expression=""/>
+			<property name="strOrgProperty" column="6" dataType="java.lang.String" nullable="no" columnName="" defaultValue="" expression=""/>
+			<property name="childControlArea" column="7" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="orgDuty" column="8" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			
+			<property name="baseOrgCode" column="9" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="note" column="10" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+			<property name="emailAddress" column="11" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            
+             <!-- 扩展属性 -->
+            <property name="attribute_1" column="12" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_2" column="13" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_3" column="14" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_4" column="15" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_5" column="16" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_6" column="17" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_7" column="18" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_8" column="19" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_9" column="20" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_10" column="21" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_11" column="22" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_12" column="23" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_13" column="24" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_14" column="25" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_15" column="26" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_16" column="27" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_17" column="28" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_18" column="29" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_19" column="30" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+            <property name="attribute_20" column="31" dataType="java.lang.String" nullable="" columnName="" defaultValue="" expression=""/>
+		</sheet>
+	</excel>
+	
+	
+</excels>
+

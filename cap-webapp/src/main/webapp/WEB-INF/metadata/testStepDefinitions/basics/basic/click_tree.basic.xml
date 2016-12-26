@@ -1,0 +1,23 @@
+<basic src="ui-system.txt" name="树节点定位" type="testStepDefinitions.basics.basic.click_tree" icon="icon-branch-with-leaves-black-shape" group="systemCombinations" desc="树节点定位" definition="click_tree">
+    <createTime>1469606789631</createTime>
+    <modelId>testStepDefinitions.basics.basic.click_tree</modelId>
+    <modelName>click_tree</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="linkName" desc="链接名称">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'linkName',
+                'name': 'linkName'
+            }
+]]></options>
+        </ctrl>
+        <help>链接名称</help>
+    </arg>
+    <help><![CDATA[树节点定位]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[树节点定位    ${linkName}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.workflow.action.auditList</modelId>
+    <modelName>auditList</modelName>
+    <modelPackage>actionlibrary.workflow</modelPackage>
+    <modelType>action</modelType>
+    <cname>列表页面流程审批行为</cname>
+	<description>上报多条记录，一般在列表页面使用</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+		<list>/cap/dwr/interface/CapWorkflowAction.js</list>
+		<list>/cap/rt/common/workflow/comtop.cap.rt.workflow.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/**
+* {{cname}} {{description}}
+*/
+function {{ename}}(){
+   	//getData 是获取要提交的业务数据的js方法
+   	 var gridId= '{{methodOption.relationGridId}}';
+   	 var gridObj = cui("#"+gridId);
+  	 var getData = function(){
+   		var selectDatas = gridObj.getSelectedRowData();
+   		if(selectDatas == null || selectDatas.length == 0){
+   			var isSelectMsg = "请选择要提交的数据。";
+   			<script name="isSelectMsg"/>
+			cui.alert(isSelectMsg);
+   			return;
+   		}
+   		var checkResult = true;
+   		//TODO 校验选择的数据是否能提交
+   		<script name="check"/>
+   		if(checkResult){
+   			return selectDatas
+   		}
+   		
+  		return [];
+  	};
+   	//var flowOperateCallback = null; //业务数据流程审批操作后的回调处理方法。
+	//TODO 自定义回调处理逻辑 给flowOperateCallback赋值即可，如：
+	var flowOperateCallback = function(result){
+		if(Object.prototype.toString.call(result) === "[object Boolean]"){
+			var rsMsg = "批量操作成功!";
+			<script name="rsMsg"/>
+			cui.message(rsMsg, 'success', {'callback':function(){
+	             <script name="batchSuccessBefore"/>
+	   			 gridObj.loadData();
+	   			 <script name="batchSuccessAfter"/>
+	   		}});
+		}else if(result["totalCounts"]==1){
+	        if(result["successes"]==1){
+	          	 var resultMsg = "操作成功!";
+			 	 <script name="resultMsg"/>
+	         	 cui.message(resultMsg, 'success', {'callback':function(){
+	             <script name="successBefore"/>
+	   			 gridObj.loadData();
+	   			 <script name="successAfter"/>
+	   		  }});
+	        }
+	        
+	        if(result["errors"]==1){
+	          var resultFalseMsg = "操作失败!<br>详细信息:"+result["message"];
+			  <script name="resultFalseMsg"/>
+	          cui.alert(resultFalseMsg);
+	          <script name="errorCallback"/>
+	          gridObj.loadData();
+	        }
+		   
+	    }else{
+		 	var mesage="总共操作:"+result["totalCounts"]+"单数据,<br>成功:"+result["successes"]+"单数据,<br>"
+	        +"失败:"+result["errors"]+"单数据";
+	        if(result["message"]){
+	        	mesage+=",<br>详细信息:"+result["message"]
+	        }
+	        <script name="mesage"/>
+	   		cui.alert(mesage);
+	   		<script name="batchCallback"/>
+	   	    gridObj.loadData();
+	    }
+   	}
+	<script name="callBack"/>
+   cap.rt10.workflow.operate.{{methodOption.workflowMethod}}(false,getData,flowOperateCallback);
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>关联GridId</cname>
+			<ename>relationGridId</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>流程审批获取数据的列表对象。</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'relationGridId',
+						'ng-model':'relationGridId',
+						'onclick':'openComponentSelect(1)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>流程审批方法</cname>
+			<ename>workflowMethod</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>流程审批方法</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'workflowMethod',
+						'ng-model':'workflowMethod',
+						'datasource':"[{id:'report',text:'上报'},{id:'send',text:'发送'},{id:'back',text:'回退'},{id:'reassign',text:'转发'},{id:'undo',text:'撤回'},{id:'backEntry',text:'回退给申请人'},{id:'undoReport',text:'撤回结束到申请人'},{id:'saveNote',text:'保存意见'},{id:'abort',text:'终止流程'},{id:'jump',text:'跳转'},{id:'hungup',text:'挂起'},{id:'overFlow',text:'结束流程'},{id:'recover',text:'恢复'}]",
+						'value_field':'id',
+						'label_field':'text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

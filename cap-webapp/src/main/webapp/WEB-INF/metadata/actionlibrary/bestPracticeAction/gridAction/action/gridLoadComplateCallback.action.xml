@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.gridAction.action.gridLoadComplateCallback</modelId>
+    <modelName>gridLoadComplateCallback</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>grid附件回调函数</cname>
+	<type>gridRender</type>
+	<description>grid附件回调函数</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(gridObj) { 
+	var atm = { "hrefName":"附件上传",
+	        	"operateMode":"{{methodOption.operateMode}}",
+	        	"jobTypeCode":"{{methodOption.jobTypeCode}}",
+	        	"title":"附件列表",
+		        "operationRight":"*",
+		        "displayMode":"{{methodOption.displayMode}}",
+	    	    "dwrUrl":"/web/cap/dwr",
+	        	"frameHeight":"300px"
+    	};
+    	
+    //自定义内容
+	<script name="after"/>
+   	$("div.div-atm").each(function(){
+   		var id = $(this).attr('id');
+   		var varName = 'atm_'+id.split("_")[1];
+	    window[varName] = new Attachment();
+		window[varName].jobTypeCode = atm.jobTypeCode;
+		window[varName].operateMode = atm.operateMode;
+		window[varName].displayMode = atm.displayMode;
+		window[varName].operationRight = atm.operationRight;
+		window[varName].frameHeight = atm.frameHeight;
+		window[varName].hrefName = atm.hrefName;
+		window[varName].title = atm.title;
+		window[varName].dwrUrl = atm.dwrUrl;
+		window[varName].creatorId=globalUserId;
+		window[varName].objId = id.split("_")[1];
+		window[varName].id = id;
+		window[varName].init(id);
+	});
+}
+]]>
+	</script>
+	<properties>
+		<property>
+			<cname>operateMode</cname>
+			<ename>operateMode</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>8</default>
+			<description>页面选择</description>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'operateMode',
+						'ng-model':'operateMode'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>displayMode</cname>
+			<ename>displayMode</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>2</default>
+			<description>页面选择</description>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'displayMode',
+						'ng-model':'displayMode'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>jobTypeCode</cname>
+			<ename>jobTypeCode</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>attachment</default>
+			<description>页面选择</description>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'jobTypeCode',
+						'ng-model':'jobTypeCode'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="config">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="base" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="top" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="base">
+		<xs:complexType>
+			<xs:sequence>
+			    <xs:element ref="loginURL" />
+			    <xs:element ref="mainFrameURL" />
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="project" />
+					<xs:element ref="version" />
+					<xs:element ref="isBasic" />
+					<xs:element ref="isMasterQuartz" />
+					<xs:element ref="systemName" />
+					<xs:element ref="chineseSystemName" />
+					<xs:element ref="redirectURL" />
+					<xs:element ref="verifyCode" />
+					<xs:element ref="httpsPort" />
+					<xs:element ref="httpPort" />
+					<xs:element ref="SSOTicketService" />
+					<xs:element ref="SSO4AUnitcode" />
+					<xs:element ref="SSO4AAppid" />
+					<xs:element ref="SSO4AProtocol" />
+					<xs:element ref="SSO4APort" />
+					<xs:element ref="SSO4ASwitchAccount" />
+					<xs:element ref="SSO4ASwitchPwd" />
+					<xs:element ref="SSO4ASwitchAdress" />
+					<xs:element ref="SSO4ALoginAddress" />
+					<xs:element ref="SSO4ATicketValiAddr" />
+					<xs:element ref="SSO4ALogoutAddress" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="top">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="version" />
+					<xs:element ref="includes" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+     <xs:element name="project" type="xs:string"/>
+     <xs:element name="version" type="xs:string"/>
+     <xs:element name="isBasic" type="xs:string"/>
+	 <xs:element name="isMasterQuartz" type="xs:string"/>
+	 <xs:element name="systemName" type="xs:string"/>
+	 <xs:element name="chineseSystemName" type="xs:string"/>
+	 <xs:element name="redirectURL" type="xs:string"/>
+	 <xs:element name="mainFrameURL" type="xs:string"/>
+	 <xs:element name="loginURL" type="xs:string"/>
+	 <xs:element name="verifyCode" type="xs:string"/>
+	 <xs:element name="httpsPort" type="xs:string"/>
+	 <xs:element name="httpPort" type="xs:string"/>
+	 <xs:element name="includes" type="xs:string"/>
+	 <xs:element name="SSOTicketService" type="xs:string"/>
+	 <xs:element name="SSO4AUnitcode" type="xs:string"/>
+	 <xs:element name="SSO4AAppid" type="xs:string"/>
+	 <xs:element name="SSO4AProtocol" type="xs:string"/>
+	 <xs:element name="SSO4APort" type="xs:string"/>
+	 <xs:element name="SSO4ASwitchAccount" type="xs:string"/>
+	 <xs:element name="SSO4ASwitchPwd" type="xs:string"/>
+	 <xs:element name="SSO4ASwitchAdress" type="xs:string"/>
+	 <xs:element name="SSO4ALoginAddress" type="xs:string"/>
+	 <xs:element name="SSO4ATicketValiAddr" type="xs:string"/>
+	 <xs:element name="SSO4ALogoutAddress" type="xs:string"/>
+</xs:schema>

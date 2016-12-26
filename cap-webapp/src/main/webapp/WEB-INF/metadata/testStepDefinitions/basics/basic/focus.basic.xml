@@ -1,0 +1,21 @@
+<basic src="element.txt" name="获取焦点" type="testStepDefinitions.basics.basic.focus" icon="icon-cog-wheel-silhouette" group="common" desc="获取焦点" definition="focus">
+    <createTime>1469606769679</createTime>
+    <modelId>testStepDefinitions.basics.basic.focus</modelId>
+    <modelName>focus</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="焦点定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>焦点定位</help>
+    </arg>
+    <help><![CDATA[获取焦点]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[获取焦点    ${locator}    #${desc}]]></macro>
+</basic>

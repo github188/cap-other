@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.input</extend>
+    <modelId>req.uicomponent.common.component.input</modelId>
+    <modelName>Input</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>文本框</cname>
+	<group>common</group>
+	<description>Input组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>3</sort>
+	<properties>
+		<property>
+			<ename>databind</ename>
+			<hide>true</hide>
+		</property>
+	</properties>
+</component>

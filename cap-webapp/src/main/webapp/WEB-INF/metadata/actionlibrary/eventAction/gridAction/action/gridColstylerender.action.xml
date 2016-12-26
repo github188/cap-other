@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.gridAction.action.gridColstylerender</modelId>
+    <modelName>gridColstylerender</modelName>
+    <modelPackage>actionlibrary.eventAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>渲染单元格样式</cname>
+	<description>Grid组件渲染单元格样式</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * grid组件的样式渲染提供了单元格样式渲染colstylerender以及行样式渲染rowstylerender 
+ *
+ * @param rowData 当前行所对应的数据（Json）
+ * @param bindName 列绑定属性名（String类型，如果是行渲染，此参数为undefined,即没有此参数，可删除）
+ * @return 一般返回设置背景色的css样式，如return "background:#d8ffb6;color:red;"; 
+ */
+function {{ename}}(rowData, bindName) {
+	var _css="";
+	<script name="before"/>
+	return _css;
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

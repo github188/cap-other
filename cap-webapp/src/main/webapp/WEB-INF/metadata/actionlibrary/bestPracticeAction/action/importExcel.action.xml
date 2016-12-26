@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.action.importExcel</modelId>
+    <modelName>importExcel</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>导入Excel</cname>
+	<description>导入Excel操作</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/eic/js/comtop.eic.js</list>
+		<list>/eic/js/comtop.ui.emDialog.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *
+ */
+function {{ename}}() { 
+	//userId  用户ID
+	var userId =globalUserId;
+	//excelId 模板id
+	var excelId ="withoutTemplate01";
+	//webRoot 系统根路径
+	var webRoot = '${pageScope.cuiWebRoot}';
+	//param 自定义参数
+	var param = "";
+	//exportType 导出类型分为正常导出和动态导出：normal、dyan
+	var exportType = "normal";
+	//sysName 子系统名称
+	var sysName = "";
+	//是否异步，如果配置为true，无论数据量大小都进行异步导入；如果配置为false或者不进行配置，在导入文件超过5M时进行异步导入
+	var asyn = "false";
+	//回调函数
+	var callback = "";
+	//自定义初始始化逻辑
+	<script name="before"/>
+	doExcelImportByJs(webRoot,sysName,userId,excelId,asyn,callback,param);
+}
+]]>
+	</script>
+	<properties>
+	</properties>
+</action>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.echartsEventAction.action.echartsInitData</modelId>
+    <modelName>echartsInitData</modelName>
+    <modelPackage>actionlibrary.eventAction.echartsEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>图表初始化事件</cname>
+	<description>图表初始化事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *
+ */
+function {{ename}}(echarDomId) { 
+	//获取Ecahrt实例
+	var echartObj = echarts.getInstanceByDom(document.getElementById(echarDomId));
+    var paramArray = [];
+	var paramsStr = '${methodParameter}';
+	if(paramsStr != ''){
+		paramArray = paramsStr.split(',');
+	}
+	//对参数paramArray进行处理
+	<script name="processParamter"/>
+	var aliasEntityId = '{{methodOption.aliasEntityId}}';
+	aliasEntityId = aliasEntityId != '' ? aliasEntityId :  '{{methodOption.entityId}}';	
+	var dwrInvokeParam = cap.getDwrInvokeParam(aliasEntityId,'{{methodOption.actionMethodName}}',paramArray);
+	dwr.TOPEngine.setAsync(false);
+	${modelName}Action.dwrInvoke(dwrInvokeParam,function(result){
+		//TODO 数据设置前操作
+		<script name="setDataBefore"/>
+		{{methodOption.returnValueBind}}=result;
+	});
+	dwr.TOPEngine.setAsync(true);
+	echartObj.update({{methodOption.returnValueBind}});//调用update方法，图表填充数据
+    //TODO 数据加载完成后操作
+    //获取echarts的option对象，设置相关的属性(如果需要修改，则可以在此处理)
+	//var option = echartObj.getOption();
+	//var title ={text:'修改后的标题'};
+	// option.title=title;
+	//把option重新设置到echarts对象中
+	//echartObj.setOption(option);
+	<script name="dataLoadAfter"/>
+}]]>
+	</script>
+	<properties>
+	<property>
+			<cname>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow()'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<!--  <property>
+			<cname>关联GridId</cname>
+			<ename>relationGridId</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>关联ECharts控件选择</description> -->
+			<!--页面选择控件
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'relationGridId',
+						'ng-model':'relationGridId',
+						'onclick':'openComponentSelect(1)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>-->
+	</properties>
+</action>

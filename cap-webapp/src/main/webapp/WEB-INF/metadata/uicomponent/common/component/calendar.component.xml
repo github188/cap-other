@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.calender</modelId>
+    <modelName>Calender</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>日期</cname>
+	<group>common</group>
+	<description>Calender组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<hasInputType>true</hasInputType>
+	<sort>5</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<layoutType>
+		<list>form</list>
+		<list>edittype</list>
+	</layoutType>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Calender</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>数据绑定</cname>
+			<ename>databind</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>创建json对像，并在要绑定的组件上用databind关联绑定属性。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'databind',
+						'name': 'databind',
+						'ng-model':'data.databind',
+						'on_iconclick':'openDataStoreSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>值</cname>
+			<ename>value</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>默认值。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'value',
+						'name': 'value',
+						'ng-model':'data.value'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>验证规则</cname>
+			<ename>validate</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>校验函数，如：<![CDATA[<br/>[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'required', 'rule':{m: '不能为空'}}<br/>]]]></description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'validate',
+						'name': 'validate',
+						'ng-model':'data.validate',
+						'on_iconclick':'openValidateAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>功能模式</cname>
+			<ename>model</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Calender功能模式，默认为date，可选值有：date、year、quarter、month、week、all。</description>
+			<commonAttr>true</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'model',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'model',
+						'ng-model':'data.model',
+						'datasource' :"[{id:'all',text:'全能'},{id:'date',text:'日期'},{id:'year',text:'年度'},{id:'quarter',text:'季度'},{id:'month',text:'月份'},{id:'week',text:'周'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>日期选择模式</cname>
+			<ename>isrange</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>日期选择范围模式（默认为false单日期选择模式）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'isrange',
+						'name': 'isrange',
+						'radio_list': [{
+							'text': '单日期选择模式',
+							'value': false
+						},{
+							'text': '日期选择范围模式',
+							'value': true
+						}],
+						'ng-model':'data.isrange'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>日期格式</cname>
+			<ename>format</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>控制输入/输出时的日期格式（y代表年、M代表月、d代表日、h代表小时、m代表分、s代表秒、q代表季度、w代表周）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'format',
+						'name': 'format',
+						'ng-model':'data.format'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>手动输入</cname>
+			<ename>entering</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>日期输入框是否可以手动输入。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'entering',
+						'name': 'entering',
+						'radio_list': [{
+							'text': '允许',
+							'value': true
+						},{
+							'text': '不允许',
+							'value': false
+						}],
+						'ng-model':'data.entering'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>提示内容</cname>
+			<ename>emptytext</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>没有设置日期时显示的提示内容。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'emptytext',
+						'name': 'emptytext',
+						'ng-model':'data.emptytext'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>只读</cname>
+			<ename>readonly</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置日期组件是否为只读（默认为false非只读）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'readonly',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'readonly',
+						'ng-model':'data.readonly',
+						'datasource' :"[{id:'true',text:'只读'},{id:'false',text:'可读写'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>禁用</cname>
+			<ename>disable</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否禁用按钮（默认false）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'disable',
+						'name': 'disable',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.disable'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>图标</cname>
+			<ename>icon</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>输入框后是否追加图标（默认为true有图标）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'icon',
+						'name': 'icon',
+						'radio_list': [{
+							'text': '显示日期图标',
+							'value': true
+						},{
+							'text': '不显示日期图标',
+							'value': false
+						}],
+						'ng-model':'data.icon'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>文本模式</cname>
+			<ename>textmode</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置组件是否为文本模式（默认为false非文本模式只显示值）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'textmode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'textmode',
+						'ng-model':'data.textmode',
+						'datasource' :"[{id:'true',text:'文本模式'},{id:'false',text:'非文本模式'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>面板数量</cname>
+			<ename>panel</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>日期组件显示的面板数量。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'panel',
+						'name': 'panel',
+						'ng-model':'data.panel'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>多面板的日期递增</cname>
+			<ename>panel_increase</ename>
+			<label>panel_<![CDATA[<br/>]]>increase</label>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>多面板的日期是否是递增的，比如，面板1是2月，则，面板2是3月  TODO此功能还没有完全开发。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'panel_increase',
+						'name': 'panel_increase',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.panel_increase'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>层级</cname>
+			<ename>zindex</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件显示的层级（多用于处理样式的层级干扰）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'zindex',
+						'name': 'zindex',
+						'ng-model':'data.zindex'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置输入框宽度（带图标时设置的宽度等于输入框宽加图标宽），如'100px'、'95%'。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>“确定”按钮</cname>
+			<ename>okbtn</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置“确定”按钮是否可用，如果可用，则选择完日期，需要点击“确定”才能完成日期选择（默认为false选择日期后不需点击确定按钮）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'okbtn',
+						'name': 'okbtn',
+						'radio_list': [{
+							'text': '禁用',
+							'value': false
+						},{
+							'text': '可用',
+							'value': true
+						}],
+						'ng-model':'data.okbtn'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>“清空”按钮</cname>
+			<ename>clearbtn</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置“清空”按钮是否可用。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'clearbtn',
+						'name': 'clearbtn',
+						'radio_list': [{
+							'text': '禁用',
+							'value': false
+						},{
+							'text': '可用',
+							'value': true
+						}],
+						'ng-model':'data.clearbtn'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>最小日期</cname>
+			<ename>mindate</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<description>指定最小日期范围（model必须为'date'，model为[year、month、quarter、week]时均不支持此功能）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'mindate',
+						'name': 'mindate',
+						'ng-model':'data.mindate'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>最大日期</cname>
+			<ename>maxdate</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<description>指定最大日期范围（model必须为'date'，model为[year、month、quarter、week]时均不支持此功能）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'maxdate',
+						'name': 'maxdate',
+						'ng-model':'data.maxdate'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>最大/最小日期是否包含当天</cname>
+			<ename>nocurrent</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>最大/最小日期剔除当天（默认为false包含当天），如：最大日期为2012-11-19，但不包含2012-11-19。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'nocurrent',
+						'name': 'nocurrent',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.nocurrent'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>星期算法</cname>
+			<ename>iso8601</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否使用iso8601标准星期算法（默认为false不使用）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'iso8601',
+						'name': 'iso8601',
+						'radio_list': [{
+							'text': 'iso8601',
+							'value': true
+						},{
+							'text': '非iso8601',
+							'value': false
+						}],
+						'ng-model':'data.iso8601'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>星期日是否为一周的第一天</cname>
+			<ename>sunday_first</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置星期日是否为一周的第一天，默认为false一周第一天为星期一。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'sunday_first',
+						'name': 'sunday_first',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.sunday_first'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>分隔符</cname>
+			<ename>separator</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否保留区间分隔符。在选择日期区间模式时，单日期是否保留“~”符号。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'separator',
+						'name': 'separator',
+						'radio_list': [{
+							'text': '保留',
+							'value': true
+						},{
+							'text': '不保留',
+							'value': false
+						}],
+						'ng-model':'data.separator'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>日期</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '日期'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>触发方式</cname>
+			<ename>trigger</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>打开日期选择面板的事件触发方式，可选值有：click、mouseover。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'trigger',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'trigger',
+						'ng-model':'data.trigger',
+						'datasource' :"[{id:'click',text:'click'},{id:'mouseover',text:'mouseover'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件ID，默认为空。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model':'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件名称，默认为空。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>打开前的回调事件</cname>
+	        <ename>on_before_show</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.calenderEventAction.action.calenderBeforeShow</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>打开前的回调事件，返回true则继续执行代码，否则则中止。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>内容更改事件</cname>
+	        <ename>on_change</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.calenderEventAction.action.calenderChange</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>回调函数，在点选日期后执行。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+	</events>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<objectClassName>ComponentVO</objectClassName>
+		<checkScope>currentObject</checkScope>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.component.DefaultComponentConsisCheck</checkClass>
+		<expression></expression>
+	</consistencyConfig>
+</component>

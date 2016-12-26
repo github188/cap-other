@@ -1,0 +1,119 @@
+<fixed definition="login_in_app" desc="登录并进入应用" group="fixed"
+	icon="icon-map-marker" type="testStepDefinitions.combinations.fixed.login_in_app"
+	name="登录并进入应用">
+	<createTime>1467616482749</createTime>
+	<modelId>testStepDefinitions.combinations.fixed.login_in_app
+	</modelId>
+	<modelName>login_in_app</modelName>
+	<modelPackage>testStepDefinitions.combinations</modelPackage>
+	<modelType>fixed</modelType>	
+	<arg valueType="String" required="true" name="url" desc="登录地址">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'url',
+                'name': 'url',
+                'required': 'true'
+            }            
+			]]></options>
+        </ctrl>
+        <help>登录地址</help>
+    </arg>
+    <arg valueType="String" required="true" name="browser" desc="浏览器类型">
+        <ctrl type="Pulldown">
+            <options><![CDATA[
+            {
+                'id': 'browser',
+                'name': 'browser',
+                'required': 'true',
+                'datasource': "[
+						{id:'firefox',text:'FireFox'},
+						{id:'ie',text:'Internet Explorer'},
+						{id:'chrome',text:'Google Chrome'},
+						{id:'${browser}',text:'${browser}'}
+					]"
+            }            
+			]]></options>
+        </ctrl>
+        <help>浏览器类型</help>
+    </arg>
+    <arg valueType="String" required="true" name="userName" desc="用户名">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'userName',
+                'name': 'userName',
+                'required': 'true'
+            }            
+			]]></options>
+        </ctrl>
+        <help>用户名</help>
+    </arg>
+    <arg valueType="String" required="true" name="password" desc="登录密码">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'password',
+                'name': 'password',
+                'required': 'true'
+            }            
+			]]></options>
+        </ctrl>
+        <help>登录密码</help>
+    </arg>
+    <arg valueType="String" required="true" name="appName" desc="应用名称">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'appName',
+                'name': 'appName',
+                'required': 'true'
+            }            
+			]]></options>
+        </ctrl>
+        <help>应用名称</help>
+    </arg>	
+    <arg valueType="String" required="true" name="appCode" desc="应用编码">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'appCode',
+                'name': 'appCode',
+                'required': 'true'
+            }            
+]]></options>
+        </ctrl>
+        <help>应用编码</help>
+    </arg>
+    <arg valueType="String" required="true" name="locator" desc="应用定位" default="应用">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator',
+                'required': 'true'
+            }            
+			]]></options>
+        </ctrl>
+        <help>应用定位</help>
+    </arg>
+	<help><![CDATA[登录并进入应用]]></help>
+	<lib>ComtopLibrary.py</lib>
+	<lib>AutoItLibrary</lib>
+	<lib>DatabaseLibrary</lib>
+	<res>element.txt</res>
+    <res>page.txt</res>
+    <res>ui-system.txt</res>
+    <res>database.txt</res>
+	<basic desc="登录系统" name="登录系统" type="testStepDefinitions.basics.basic.login" >
+		<arg name='url'  value='${url}'/>
+        <arg name='browser'  value='${browser}'/>
+        <arg name='userName'  value='${userName}'/>
+        <arg name='password'  value='${password}'/>
+	</basic>	
+	<basic desc="进入我的应用" name="进入我的应用" type="testStepDefinitions.basics.basic.enter_app" >
+		<arg name='appName'  value='${appName}'/>
+		<arg name='appCode'  value='${appCode}'/>
+		<arg name='locator'  value='${locator}'/>
+	</basic>	
+</fixed>

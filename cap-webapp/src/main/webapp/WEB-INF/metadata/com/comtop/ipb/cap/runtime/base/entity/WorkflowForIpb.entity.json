@@ -1,0 +1,21 @@
+{
+	"attributes":[],
+	"bizObjectIds":[],
+	"chName":"WorkflowForIpb",
+	"classPattern":"abstract",
+	"createTime":1459577410378,
+	"createrId":"001",
+	"createrName":"CAP超级管理员",
+	"description":"",
+	"engName":"WorkflowForIpb",
+	"entityType":"exist_entity",
+	"generateCode":true,
+	"lstRelation":[],
+	"methods":[],
+	"modelId":"com.comtop.ipb.cap.runtime.base.entity.WorkflowForIpb",
+	"modelName":"WorkflowForIpb",
+	"modelPackage":"com.comtop.ipb.cap.runtime.base",
+	"modelType":"entity",
+	"packageId":"529BA285550A4953BE0B42A00924361F",
+	"parentEntityId":"com.comtop.cap.runtime.base.entity.CapWorkflow"
+}

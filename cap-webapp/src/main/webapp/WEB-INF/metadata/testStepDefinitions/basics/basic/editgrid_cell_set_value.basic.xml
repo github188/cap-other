@@ -1,0 +1,34 @@
+<basic src="ui-system.txt" name="eGrid单元格设值" type="testStepDefinitions.basics.basic.editgrid_cell_set_value" icon="icon-pencil" group="systemCombinations" desc="eGrid单元格设值" definition="editgrid_cell_set_value">
+    <createTime>1469606789900</createTime>
+    <modelId>testStepDefinitions.basics.basic.editgrid_cell_set_value</modelId>
+    <modelName>editgrid_cell_set_value</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="单元格定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>单元格定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="JScode" desc="JS代码">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'JScode',
+                'name': 'JScode'
+            }
+]]></options>
+        </ctrl>
+        <help>JS代码</help>
+    </arg>
+    <help><![CDATA[eGrid单元格设值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[eGrid单元格设值    ${locator}    ${JScode}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

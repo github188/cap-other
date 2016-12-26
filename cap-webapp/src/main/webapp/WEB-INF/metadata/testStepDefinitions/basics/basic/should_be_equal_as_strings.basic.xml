@@ -1,0 +1,34 @@
+<basic definition="should_be_equal_as_strings" desc="两个字符是否相等" group="apielement" icon="icon-cog-wheel-silhouette" type="testStepDefinitions.basics.basic.should_be_equal_as_strings" name="两个字符是否相等" src="api-element.txt">
+    <createTime>1470205793390</createTime>
+    <modelName>should_be_equal_as_strings</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg desc="比较的第一个字符" name="str1" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'str1',
+                'name': 'str1'
+            }
+]]></options>
+        </ctrl>
+        <help>比较的第一个字符</help>
+    </arg>
+    <arg desc=" 比较的第二个字符" name="str2" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'str2',
+                'name': 'str2'
+            }
+]]></options>
+        </ctrl>
+        <help> 比较的第二个字符</help>
+    </arg>
+    <help><![CDATA[两个字符是否相等]]></help>
+    <lib>XML</lib>
+    <lib>ComtopLibrary.py</lib>
+    <lib>Collections</lib>
+    <lib>RequestsLibrary</lib>
+    <macro><![CDATA[两个字符是否相等    ${str1}    ${str2}    #${desc}]]></macro>
+</basic>

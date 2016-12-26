@@ -1,0 +1,58 @@
+<dynamic definition="auto_input_grid" desc="新增自动录入表格数据" group="dynamic" icon="icon-pencil" 
+    type="testStepDefinitions.combinations.dynamic.auto_input_grid" name="新增自动录入表格数据">
+    <createTime>1277617986980</createTime>
+    <modelId>testStepDefinitions.combinations.dynamic.auto_input_grid
+    </modelId>
+    <modelName>auto_input_grid</modelName>
+    <modelPackage>testStepDefinitions.combinations</modelPackage>
+    <modelType>dynamic</modelType>
+    <arg desc="选择表格" name="editPageGrid" required="true" valueType="String">
+        <ctrl type="ClickInput">
+            <options>
+                <![CDATA[{
+                        'id': 'editPageGrid',
+                        'name': 'editPageGrid',
+                        'required':'true',
+                        'on_iconclick':'openSelectEditGridWindow'
+                    }]]>
+            </options>
+            <script>
+            <![CDATA[
+                 function openSelectEditGridWindow(event, self) {
+                	var url = webPath + '/cap/bm/test/common/SelectGridPage.jsp?packageId=' + packageId + '&editPageGrid=' + self.$input[0].value + '&argName=' + self.options.name;
+                    var height = 550;
+                    var width = 700;
+                    var top=(window.screen.availHeight-height)/2;
+		    	    var left=(window.screen.availWidth-width)/2;
+		    	    window.open(url, "editPage", "Scrollbars=no,Toolbar=no,Location=no,titlebar=no,Direction=no,Resizeable=no,alwaysLowered=yes,Width="+width+" ,Height="+height+",top="+top+",left="+left);
+                }
+            ]]>
+            </script>
+        </ctrl>
+        <help>请选择EditableGrid</help>
+    </arg>
+    <arg desc="录入策略" name="strategy" required="true" valueType="String">
+        <ctrl type="Pulldown">
+            <options>
+                <![CDATA[{
+                        'id': 'strategy',
+                        'name': 'strategy',
+                        'required':'true',
+                        'datasource':"[{id:'auto',text:'自动生成'},{id:'dynamic',text:'动态随机'},{id:'dictionary',text:'字典获取'},{id:'manual',text:'手动录入'}]"}
+                ]]>
+            </options>
+        </ctrl>
+        <help>请选择录入策略</help>
+    </arg>
+    <help>
+        <![CDATA[录入表格数据]]>
+    </help>
+    <lib>ComtopLibrary.py</lib>
+	<lib>AutoItLibrary</lib>
+	<lib>DatabaseLibrary</lib>
+	<res>element.txt</res>
+    <res>page.txt</res>
+    <res>ui-system.txt</res>
+    <res>database.txt</res>
+    <scan>com.comtop.cap.test.definition.scan.AutoInputGridDynamicStep</scan>
+</dynamic>

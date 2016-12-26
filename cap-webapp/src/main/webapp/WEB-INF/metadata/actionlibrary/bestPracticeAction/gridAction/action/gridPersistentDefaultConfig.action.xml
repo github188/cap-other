@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.gridAction.action.gridPersistentDefaultConfig</modelId>
+    <modelName>gridConfig</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>默认持久化-配置数据</cname>
+	<description>grid默认持久化-配置数据</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/**
+* 配合方法onstatuschange做列宽的持久化
+*/
+function {{ename}}(obj){
+	var seesionUrl = window.location.pathname +'/${code}';
+	obj.setConfig(cui.utils.getCookie(seesionUrl));
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

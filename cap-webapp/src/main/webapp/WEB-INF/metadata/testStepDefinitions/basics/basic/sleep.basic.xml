@@ -1,0 +1,21 @@
+<basic src="element.txt" name="暂停" type="testStepDefinitions.basics.basic.sleep" icon="icon-cog-wheel-silhouette" group="common" desc="暂停" definition="sleep">
+    <createTime>1469606769670</createTime>
+    <modelId>testStepDefinitions.basics.basic.sleep</modelId>
+    <modelName>sleep</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="false" name="time" desc="暂停时间" default="1">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'time',
+                'name': 'time'
+            }
+]]></options>
+        </ctrl>
+        <help>暂停时间</help>
+    </arg>
+    <help><![CDATA[暂停]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[暂停    ${time}    #${desc}]]></macro>
+</basic>

@@ -1,0 +1,53 @@
+<practice definition="list_workflow_send" desc="列表页面发送最佳实践" group="practice" icon="icon-thumbs-up" 
+    type="testStepDefinitions.practices.practice.list_workflow_send" name="列表页面发送最佳实践" practiceType="FUNCTION" mapping="send">
+    <createTime>1467617986980</createTime>
+    <modelId>testStepDefinitions.practices.practice.list_workflow_send</modelId>
+    <modelName>list_workflow_send</modelName>
+    <modelPackage>testStepDefinitions.practices</modelPackage>
+    <modelType>practice</modelType>
+   <step-ref type="testStepDefinitions.combinations.fixed.login_in_app" desc="进入应用" name="进入应用">
+        <arg name="url" required="true" value="${url}"/>
+        <arg name="browser" required="true" value="${browser}"/>
+        <arg name="userName" required="true" value="${userName}"/>
+        <arg name="password" required="true" value="${password}"/>
+        <arg name="appName" required="true" value="${appName}"/>
+        <arg name="appCode" required="true" value="${appCode}"/>
+        <arg name="locator" required="true" value="${locator}"/>
+   </step-ref> 
+    <step-ref type="testStepDefinitions.basics.basic.select_window"  desc="应用页获取焦点"   name="选择窗口" >
+        <arg name="locator" required="true" value="${locator-home}"/><!-- 工作流应用-中国南方电网 -->
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.click_link" desc="进入列表页面" name="点击链接" >
+        <arg name="locator" required="true" value="${locator-link}"/><!-- link=工作流测试列表-->
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.select_frame" desc="列表页获取焦点"  name="选择框架" >
+        <arg name="locator" required="true" value="id=mainFrame"/>
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.cui_select_tab" desc="选择tab页"  name="选择框架" >
+        <arg name="id" required="true" value="${tab-id}"/>
+        <arg name="index" required="false" value="${tab-index}"/>
+    </step-ref>    
+    <step-ref type="testStepDefinitions.basics.basic.grid_select_row" desc="grid前端数据选中"  name="选择行" >
+        <arg name="tableId" required="true" value="${tableId}"/><!-- uiid-2007403086638078 -->
+        <arg name="rIndexes" required="true" value="${rIndexes}"/><!-- [0,1] -->
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.click_element" desc="点击列表发送按钮"  name="点击列表发送按钮" >
+        <arg name="locator" required="true" value="${locator-sendBtn}"/><!-- id=btnEntryOnList -->
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.current_frame_contains" desc="保存后的校验" name="iframe页面包含内容">
+        <arg name="text" required="true" value="失败:0单"/>
+    </step-ref>      
+    <step-ref type="testStepDefinitions.basics.basic.unselect_frame" desc="退出框架"  name="退出框架" />
+    <step-ref desc="关浏览器并杀进程" name="关浏览器并杀进程" type="testStepDefinitions.basics.basic.close_all_browser_and_kill_driver" />	
+    <help>
+        <![CDATA[列表页面发送最佳实践]]>
+    </help>
+    <impl>com.comtop.cap.test.design.practice.function.workflow.WorkflowPracticeImpl</impl>
+	<lib>ComtopLibrary.py</lib>
+	<lib>AutoItLibrary</lib>
+	<lib>DatabaseLibrary</lib>
+	<res>element.txt</res>
+    <res>page.txt</res>
+    <res>ui-system.txt</res>
+    <res>database.txt</res>
+</practice>

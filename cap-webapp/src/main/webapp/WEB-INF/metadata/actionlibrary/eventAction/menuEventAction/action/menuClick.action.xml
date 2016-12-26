@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.menuEventAction.action.menuClick</modelId>
+    <modelName>menuClick</modelName>
+    <modelPackage>actionlibrary.eventAction.menuEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>点击事件</cname>
+	<description>menu点击事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * @param self 点击的Menu选项对象本身 数据格式为json，如{id:'item22',label:'选项22',disabled:false,...}
+ */
+function {{ename}}(self) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

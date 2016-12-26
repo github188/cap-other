@@ -1,0 +1,35 @@
+<fixed definition="exist_out" desc="退出并关闭浏览器" group="fixed"
+	icon="icon-sign-out-option" type="testStepDefinitions.combinations.fixed.exist_out"
+	name="退出">
+	<createTime>1267616482749</createTime>
+	<modelId>testStepDefinitions.combinations.fixed.exist_out
+	</modelId>
+	<modelName>exist_out</modelName>
+	<modelPackage>testStepDefinitions.combinations</modelPackage>
+	<modelType>fixed</modelType>	
+	<arg valueType="String" required="true" name="locator" desc="登出按钮定位" default="登出">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator',
+                'required': 'true'
+            }            
+            ]]></options>
+        </ctrl>
+        <help>登出按钮定位</help>
+    </arg>	
+	<help><![CDATA[退出并关闭浏览器]]></help>
+	<lib>ComtopLibrary.py</lib>
+	<lib>AutoItLibrary</lib>
+	<lib>DatabaseLibrary</lib>
+	<res>element.txt</res>
+    <res>page.txt</res>
+    <res>ui-system.txt</res>
+    <res>database.txt</res>
+	<basic desc="关闭窗口" name="关闭窗口" type="testStepDefinitions.basics.basic.close_window" />	
+	<basic desc="退出系统" name="退出系统" type="testStepDefinitions.basics.basic.logout" >
+		<arg name="locator" value="${locator}"/>
+    </basic>
+	<basic desc="关闭浏览器" name="关闭浏览器" type="testStepDefinitions.basics.basic.close_browser" />
+</fixed>

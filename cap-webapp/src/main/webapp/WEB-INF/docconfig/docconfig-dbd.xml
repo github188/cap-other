@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WtDocConfig diffKey="数据库设计" version="1.0" name="数据库设计说明文档V1.1"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../classes/DocConfig.xsd"
+>
+	<WtSection name="正文">
+		
+		<WtChapter title="数据库E-R关系图" type="FIXED" >
+			 <WtGraphic mappingTo="$CAPDocDBHelper_getDataBaseErGraphHtml($packageId,$cookiesJsonStr,$httpUrl)"/> <!---->
+		</WtChapter>
+		
+		<WtChapter title="数据库对象清单" type="FIXED">
+			<WtChapter title="数据表对象清单" type="FIXED">
+				<table type="EXT_ROWS" name="数据表列表" mappingTo="objectItem[]=#DBObject(packageId=$packageId,type=1)">
+					<tr>
+						<td mappingTo="objectItem.name" nullAble="true">Name</td>
+						<td mappingTo="objectItem.code" nullAble="true">Code</td>
+						<td mappingTo="objectItem.comment" nullAble="true">Comment</td>
+					</tr>
+				</table>
+			</WtChapter>
+			
+			<WtChapter title="视图对象清单" type="FIXED">
+				<table type="EXT_ROWS" name="数据表列表" mappingTo="objectItem[]=#DBObject(packageId=$packageId,type=2)">
+					<tr>
+						<td mappingTo="objectItem.name" nullAble="true">Name</td>
+						<td mappingTo="objectItem.code" nullAble="true">Code</td>
+						<td mappingTo="objectItem.comment" nullAble="true">Comment</td>
+					</tr>
+				</table>
+			</WtChapter>
+			
+			<WtChapter title="存储过程清单" type="FIXED">
+				<table type="EXT_ROWS" name="存储过程列表" mappingTo="objectItem[]=#DBObject(packageId=$packageId,type=3)">
+					<tr>
+						<td mappingTo="objectItem.name" nullAble="true">Name</td>
+						<td mappingTo="objectItem.code" nullAble="true">Code</td>
+						<td mappingTo="objectItem.comment" nullAble="true">Comment</td>
+					</tr>
+				</table>
+			</WtChapter>
+			
+			<WtChapter title="函数清单" type="FIXED">
+				<table type="EXT_ROWS" name="函数列表" mappingTo="objectItem[]=#DBObject(packageId=$packageId,type=4)">
+					<tr>
+						<td mappingTo="objectItem.name" nullAble="true">Name</td>
+						<td mappingTo="objectItem.code" nullAble="true">Code</td>
+						<td mappingTo="objectItem.comment" nullAble="true">Comment</td>
+					</tr>
+				</table>
+			</WtChapter>
+			
+		</WtChapter>
+		
+		<WtChapter title="数据库对象结构" type="FIXED">
+		
+			<WtChapter title="数据表结构" type="FIXED">			
+				<WtChapter title="$StringUtils_getDBObjectTitle(objectItem.name,objectItem.code)" type="DYNAMIC"
+					mappingTo="objectItem[]=#DBObject(packageId=$packageId,type=1)">
+					<table type="EXT_ROWS" name="数据表结构"  mappingTo="columnItem[]=objectItem.columnList">
+						<tr>
+							<td mappingTo="columnItem.name" nullAble="true" width="2.5">Name</td>
+							<td mappingTo="columnItem.code" nullAble="true"  width="3">Code</td>
+							<td mappingTo="columnItem.dataType" nullAble="true"  width="2.5">Data Type</td>
+							<td mappingTo="columnItem.length" nullAble="true"  width="2">length</td>
+							<td mappingTo="columnItem.precision" nullAble="true" width="1">precision</td>
+							<td mappingTo="columnItem.enableNull" nullAble="true" width="1">null?</td>						
+							<td mappingTo="columnItem.comment" nullAble="true" width="3">Comment</td>
+						</tr>
+					</table>
+				</WtChapter>
+			</WtChapter>
+			
+			<WtChapter title="视图结构" type="FIXED">			
+				<WtChapter title="$StringUtils_getDBObjectTitle(objectItem.name,objectItem.code)" type="DYNAMIC"
+					mappingTo="objectItem[]=#DBObject(packageId=$packageId,type=2)">
+					<table type="EXT_ROWS" name="视图结构"  mappingTo="columnItem[]=objectItem.columnList">
+						<tr>
+							<td mappingTo="columnItem.name" nullAble="true" width="3">Name</td>
+							<td mappingTo="columnItem.code" nullAble="true" width="3">Code</td>
+							<td mappingTo="columnItem.dataType" nullAble="true" width="3">Data Type</td>	
+							<td mappingTo="columnItem.length" nullAble="true" width="2">length</td>
+							<td mappingTo="columnItem.precision" nullAble="true" width="1">precision</td>					
+							<td mappingTo="columnItem.comment" nullAble="true" width="3">Comment</td>
+						</tr>
+					</table>
+				</WtChapter>
+			</WtChapter>
+			
+			<WtChapter title="存储过程结构" type="FIXED">			
+				<WtChapter title="$StringUtils_getDBObjectTitle(objectItem.name,objectItem.code)" type="DYNAMIC"
+					mappingTo="objectItem[]=#DBObject(packageId=$packageId,type=3)">
+					<table type="EXT_ROWS" name="存储过程结构"  mappingTo="columnItem[]=objectItem.columnList">
+						<tr>
+							<td mappingTo="columnItem.code" nullAble="true" width="3.5">Code</td>
+							<td mappingTo="columnItem.columnType" nullAble="true" width="3.5">Param Type</td>
+							<td mappingTo="columnItem.dataType" nullAble="true" width="3.5">Data Type</td>	
+							<td mappingTo="columnItem.length" nullAble="true" width="2">length</td>				
+							<td mappingTo="columnItem.comment" nullAble="true" width="3.5">Comment</td>
+						</tr>
+					</table>
+				</WtChapter>
+			</WtChapter>
+			
+			<WtChapter title="函数结构" type="FIXED">			
+				<WtChapter title="$StringUtils_getDBObjectTitle(objectItem.name,objectItem.code)" type="DYNAMIC"
+					mappingTo="objectItem[]=#DBObject(packageId=$packageId,type=4)">
+					<table type="EXT_ROWS" name="函数结构"  mappingTo="columnItem[]=objectItem.columnList">
+						<tr>
+							<td mappingTo="columnItem.code" nullAble="true" width="3.5">Code</td>
+							<td mappingTo="columnItem.columnType" nullAble="true" width="3.5">Param Type</td>
+							<td mappingTo="columnItem.dataType" nullAble="true" width="3.5">Data Type</td>	
+							<td mappingTo="columnItem.length" nullAble="true" width="2">length</td>				
+							<td mappingTo="columnItem.comment" nullAble="true" width="3.5">Comment</td>
+						</tr>
+					</table>
+				</WtChapter>
+			</WtChapter>
+			
+		</WtChapter>
+	</WtSection>
+</WtDocConfig>

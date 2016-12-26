@@ -1,0 +1,78 @@
+<practice definition="edit_workflow_saveAndreport" desc="编辑页面保存并上报最佳实践" group="practice" icon="icon-thumbs-up" 
+    type="testStepDefinitions.practices.practice.edit_workflow_saveAndreport" name="编辑页面保存并上报最佳实践" practiceType="FUNCTION" mapping="editSaveAndReport">
+    <createTime>1467617986980</createTime>
+    <modelId>testStepDefinitions.practices.practice.edit_workflow_saveAndreport</modelId>
+    <modelName>edit_workflow_saveAndreport</modelName>
+    <modelPackage>testStepDefinitions.practices</modelPackage>
+    <modelType>practice</modelType>
+   <step-ref type="testStepDefinitions.combinations.fixed.login_in_app" desc="进入应用" name="进入应用">
+        <arg name="url" required="true" value="${url}"/>
+        <arg name="browser" required="true" value="${browser}"/>
+        <arg name="userName" required="true" value="${userName}"/>
+        <arg name="password" required="true" value="${password}"/>
+        <arg name="appName" required="true" value="${appName}"/>
+        <arg name="appCode" required="true" value="${appCode}"/>
+        <arg name="locator" required="true" value="${locator}"/>
+   </step-ref> 
+    <step-ref type="testStepDefinitions.basics.basic.select_window"  desc="应用页获取焦点"   name="选择窗口" >
+        <arg name="locator" required="true" value="${locator-home}"/><!-- 工作流应用-中国南方电网 -->
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.click_link" desc="进入列表页面" name="点击链接" >
+        <arg name="locator" required="true" value="${locator-link}"/><!-- link=工作流测试列表-->
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.select_frame" desc="列表页获取焦点"  name="选择框架" >
+        <arg name="locator" required="true" value="id=mainFrame"/>
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.cui_select_tab" desc="选择tab页"  name="选择框架" >
+        <arg name="id" required="true" value="${tab-id}"/>
+        <arg name="index" required="true" value="${tab-index}"/>
+    </step-ref>    
+    <step-ref type="testStepDefinitions.basics.basic.click_element" desc="新增单据"  name="点击元素" >
+        <arg name="locator" required="true" value="${locator-btnAdd}"/><!--点击新增按钮 -->
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.unselect_frame" desc="退出框架"  name="退出框架" />
+    <step-ref type="testStepDefinitions.basics.basic.select_window"  desc="应用页获取焦点"   name="选择窗口" >
+        <arg name="locator" required="true" value="${locator-editPage}"/><!-- 工作流测试编辑页面-->
+    </step-ref>
+    <step-ref type="testStepDefinitions.combinations.dynamic.auto_input_field" desc="录入字段">
+        <arg name="editPage" required="true" value="${editPage}"/>
+        <arg name="inputOption" required="true" value="${inputOption}"/>
+        <arg name="strategy" required="true" value="${strategy}"/>
+    </step-ref>
+     <aggregation definition="EditGrid" description="EditGrid数据录入步骤">
+	    <step-ref type="testStepDefinitions.basics.basic.grid_select_row" desc="选中删除的tr数据"  name="选择行数据" >
+	        <arg name="tableId" required="true" value="${egrid-tableId}"/><!-- uiid-2007403086638078-->
+	        <arg name="rIndexes" required="false" value="${rIndexes}"/><!-- 1-->
+	    </step-ref>
+	    <step-ref type="testStepDefinitions.basics.basic.click_element" desc="点击eGrid删除按钮"  name="点击eGrid删除按钮" >
+	        <arg name="locator" required="true" value="${locator-btnDeleteOnEGrid}"/>
+	    </step-ref> 
+	    <!-- 新增一条子记录 -->
+	    <step-ref type="testStepDefinitions.basics.basic.click_element" desc="点击eGrid新增按钮"  name="点击元素" >
+	        <arg name="locator" required="true" value="${locator-btnAddOnEGird}"/><!-- id=btnAddOnEGird -->
+	    </step-ref>
+	    <!-- 录入grid数据 -->
+	    <step-ref type="testStepDefinitions.combinations.dynamic.auto_input_grid" desc="录入字段" name="editGrid单元格设值">
+	        <arg name="editPageGrid" required="true" value="${editPageGrid}"/><!-- com.comtop.cap.demo.treeModule.page.ProjectEditPage;uiid-7901557899778709 -->
+	        <arg name="strategy" required="true" value="${editPageStrategy}"/>
+	    </step-ref>  
+    </aggregation>
+    <step-ref type="testStepDefinitions.basics.basic.click_element" desc="点击编辑页面保存并上报按钮"  name="点击元素" >
+        <arg name="locator" required="true" value="${locator-saveAndReportBtn}"/><!-- id=uiid-4611748957123523-->
+    </step-ref>
+    <step-ref type="testStepDefinitions.basics.basic.current_frame_contains" desc="保存后的校验" name="iframe页面包含内容">
+        <arg name="text" required="true" value="${report-text}"/>
+    </step-ref>
+    <step-ref desc="关浏览器并杀进程" name="关浏览器并杀进程" type="testStepDefinitions.basics.basic.close_all_browser_and_kill_driver" />
+    <help>
+        <![CDATA[编辑页面保存并上报最佳实践]]>
+    </help>
+    <impl>com.comtop.cap.test.design.practice.function.workflow.WorkflowPracticeImpl</impl>
+	<lib>ComtopLibrary.py</lib>
+	<lib>AutoItLibrary</lib>
+	<lib>DatabaseLibrary</lib>
+	<res>element.txt</res>
+    <res>page.txt</res>
+    <res>ui-system.txt</res>
+    <res>database.txt</res>
+</practice>

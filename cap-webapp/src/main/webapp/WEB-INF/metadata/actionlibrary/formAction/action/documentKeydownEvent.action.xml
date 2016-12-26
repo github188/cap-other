@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.formAction.action.documentKeydownEvent</modelId>
+    <modelName>documentKeydownEvent</modelName>
+    <modelPackage>actionlibrary.formAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>页面键盘监听行为</cname>
+	<description>页面键盘监听行为</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<specialMethod>true</specialMethod>
+	<methodName>documentKeydownEvent</methodName>
+	<methodCname>页面键盘监听行为</methodCname>
+	<methodDescription>页面键盘监听行为</methodDescription>
+	<type></type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+document.onkeydown = function(event){
+	//TODO 监听事件之前做的操作
+	<script name="before"/>
+	var e = event || window.event || arguments.callee.caller.arguments[0];
+	if(!e){
+        return;
+    }
+    if(e.keyCode == '13'){ //监听回车事件
+    	//重新设置焦点，使控件获取最新值
+    	cap.resetFocus();
+    	// TODO 业务逻辑操作
+    	<script name="doBizOperate"/>
+    }
+	//TODO 监听事件之后做的操作
+	<script name="dataLoadAfter"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

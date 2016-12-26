@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.formAction.action.saveForm</modelId>
+    <modelName>saveForm</modelName>
+    <modelPackage>actionlibrary.formAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>保存表单行为</cname>
+	<description>保存表单行为</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(){
+	//校验前操作
+	<script name="before"/>
+	var saveContinue={{methodOption.saveContinue}};
+	if(cap.validateForm()){
+		cap.beforeSave();
+		//提交数据前操作
+		<script name="sendBefore"/>
+		var paramArray = [];
+		var paramsStr = '${methodParameter}';
+		if(paramsStr != ''){
+			paramArray = paramsStr.split(',');
+		}
+		var aliasEntityId = '{{methodOption.aliasEntityId}}';
+		aliasEntityId = aliasEntityId != '' ? aliasEntityId :  '{{methodOption.entityId}}';
+		var dwrInvokeParam = cap.getDwrInvokeParam(aliasEntityId,'{{methodOption.actionMethodName}}',paramArray);
+		var result;
+		dwr.TOPEngine.setAsync(false);
+		${modelName}Action.dwrInvoke(dwrInvokeParam,{callback:function(_result){
+			//赋值前操作
+			result = _result;
+			if(""!="{{methodOption.returnValueBind}}"){
+				eval("{{methodOption.returnValueBind}}=_result");
+			}
+			<script name="setDataBefore"/>
+			
+			//默认保存成功
+			var type = 'success';
+			var message = '{{methodOption.successMessage}}';
+			<script name="message"/>
+			cui.message(message, type,{'callback':function(){
+				//回调的操作
+				<script name="end"/>
+				if(type != "success"){
+					return;
+				}
+				var pWindow = cap.searchParentWindow("reloadGridData");
+				if(pWindow && typeof pWindow["reloadGridData"] === "function"){
+					pWindow["reloadGridData"]();
+				}
+				if(saveContinue==1){
+					window.location=window.location;
+				}else if(saveContinue==2){
+					window.close();
+				}else if(saveContinue==4){
+					var reloadURL = window.location.href;
+					var localURL = window.location.href;
+					var primaryValue = '{{methodOption.returnValueBind}}';
+					if(localURL.indexOf("?")>0){
+						if(localURL.indexOf("primaryValue")<0){
+							reloadURL = localURL +"&primaryValue="+primaryValue; 
+						}
+					}else{
+						reloadURL = localURL +"?primaryValue="+primaryValue; 
+					}
+					window.location.href=reloadURL;
+				}
+			}});
+    	},
+    	errorHandler:function(message, exception){
+		   //TODO 后台异常信息回调
+		   var type = 'error';
+		   var message ="保存失败,存在异常信息:"+message;
+		   <script name="saveErrorHandler"/>
+		   cui.message(message);
+		}
+    	});
+    	dwr.TOPEngine.setAsync(true);
+	}
+	//TODO 可自定义设置返回值
+	<script name="setReturnVal"/>
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow()'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.CallServiceMethodPageActionProConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>页面刷新方式</cname>
+			<ename>saveContinue</ename>
+			<type>Number</type>
+			<requried>true</requried>
+			<default>2</default>
+			<description>页面刷新方式</description>
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'saveContinue',
+						'ng-model':'saveContinue',
+						'datasource':"[{id:1,text:'保存继续'},{id:2,text:'关闭窗口'},{id:3,text:'不刷新'},{id:4,text:'保存并刷新'}]",
+						'value_field':'id',
+						'label_field':'text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>保存成功提示</cname>
+			<ename>successMessage</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>保存成功！</default>
+			<description>是否保存继续</description>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'successMessage',
+						'ng-model':'successMessage'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

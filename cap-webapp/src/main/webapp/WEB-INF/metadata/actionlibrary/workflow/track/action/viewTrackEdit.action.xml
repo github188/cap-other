@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.workflow.track.action.viewTrackEdit</modelId>
+    <modelName>viewTrackEdit</modelName>
+    <modelPackage>actionlibrary.workflow.track</modelPackage>
+    <modelType>action</modelType>
+    <cname>编辑页面查看流程跟踪</cname>
+	<description>查看流程跟踪</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+		<list>/cap/dwr/interface/CapWorkflowAction.js</list>
+		<list>/cap/rt/common/workflow/comtop.cap.rt.workflow.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/**
+* {{cname}} {{description}}
+*/
+function {{ename}}(){
+	var selectData =  {{methodOption.dataStore}};//选择数据集
+	if(selectData == null){
+		var isSelectMsg = "请选择数据。";
+		<script name="isSelectMsg"/>
+		cui.alert(isSelectMsg);
+		return;
+	}
+	cap.rt10.workflow.operate.flowTrack('{{methodOption.processId}}',selectData.processInsId);
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>审批数据</cname>
+			<ename>dataStore</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>要查看跟踪业务数据。</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'dataStore',
+						'ng-model':'dataStore',
+						'onclick':'openDataStoreSelect(\'dataStore\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>流程编号</cname>
+			<ename>processId</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>流程编号</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'processId',
+						'ng-model':'processId'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

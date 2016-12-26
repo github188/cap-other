@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.editor</modelId>
+    <modelName>Editor</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>富文本编辑器</cname>
+	<group>common</group>
+	<description>富文本编辑器。</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<hasInputType>true</hasInputType>
+	<sort>10</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+		<list>/cap/rt/common/cui/js/comtop.ui.editor.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<layoutType>
+		<list>form</list>
+		<list>edittype</list>
+	</layoutType>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Editor</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>数据绑定</cname>
+			<ename>databind</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>创建json对像，并在要绑定的组件上用databind关联绑定属性。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'databind',
+						'name': 'databind',
+						'ng-model':'data.databind',
+						'on_iconclick':'openDataStoreSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>验证规则</cname>
+			<ename>validate</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>校验函数，如：<![CDATA[<br/>[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'required', 'rule':{m: '不能为空'}}<br/>]]]></description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'validate',
+						'name': 'validate',
+						'ng-model':'data.validate',
+						'on_iconclick':'openValidateAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>iframe的最小高度</cname>
+			<ename>min_frame_height</ename>
+			<label>min_frame_<![CDATA[<br/>]]>height</label>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>富文本编辑器中iframe的最小高度（不带px单位）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'min_frame_height',
+						'name': 'min_frame_height',
+						'ng-model':'data.min_frame_height'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>只读</cname>
+			<ename>readonly</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件是否只读（默认false非只读）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'readonly',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'readonly',
+						'ng-model':'data.readonly',
+						'datasource' :"[{id:'true',text:'只读'},{id:'false',text:'可读写'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>初始化时富文本编辑器的内容</cname>
+			<ename>initial_content</ename>
+			<label>initial_<![CDATA[<br/>]]>content</label>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>初始化时富文本编辑器的内容。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'initial_content',
+						'name': 'initial_content',
+						'ng-model':'data.initial_content'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>字符数统计</cname>
+			<ename>word_count</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否开启输入字符数统计。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'word_count',
+						'name': 'word_count',
+						'radio_list': [{
+							'text': '开启',
+							'value': true
+						},{
+							'text': '不开启',
+							'value': false
+						}],
+						'ng-model':'data.word_count'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>最大字符数</cname>
+			<ename>maximum_words</ename>
+			<label>maximum_<![CDATA[<br/>]]>words</label>
+			<type>Number</type>
+			<requried>false</requried>
+			<default>10000</default>
+			<description>允许输入的最大字符数，输入字符数超过最大限制时，编辑器将给出提示但不会截断输入（word_count属性为false时不会给出提示）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'maximum_words',
+						'name': 'maximum_words',
+						'ng-model':'data.maximum_words'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>富文本编辑器的宽度。如果不指定该值，则自适应。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>文本模式</cname>
+			<ename>textmode</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件是否为文本模式，默认false非文本模式。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'textmode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'textmode',
+						'ng-model':'data.textmode',
+						'datasource' :"[{id:'true',text:'文本模式'},{id:'false',text:'非文本模式'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>初始化时获得焦点</cname>
+			<ename>focus</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default>false</default>
+			<description>初始化时是否让富文本编辑器获得焦点。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'focus',
+						'name': 'focus',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'value': false,
+						'ng-model':'data.focus'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>工具条配置</cname>
+			<ename>toolbars</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>工具条配置，下面是开放的功能（注：图片上传需要后端功能配置，具体可以参考配置） 如：<![CDATA[<br/>[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'anchor', //锚点, <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'undo', //撤销, <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'redo', //重做<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'redo', //重做<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'bold', //加粗<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'indent', //首行缩进<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'italic', //斜体<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'underline', //下划线<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'strikethrough', //删除线<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'subscript', //下标<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'fontborder', //字符边框<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'superscript', //上标<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'formatmatch', //格式刷<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'source', //源代码<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blockquote', //引用<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'pasteplain', //纯文本粘贴模式<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'selectall', //全选<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'print', //打印<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'preview', //预览<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'horizontal', //分隔线<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'removeformat', //清除格式<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'time', //时间<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date', //日期<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'unlink', //取消链接<br/>] <a href="http://10.10.50.7/CUI/api/doc/editorDoc.html" target="_blank">进入CUI_API查看更多</a>]]></description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'toolbars',
+						'name': 'toolbars',
+						'ng-model':'data.toolbars',
+						'on_iconclick':'openCodeEditAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>服务地址</cname>
+			<ename>server_url</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>${pageScope.cuiWebRoot}/cap/rt/common/cui/js/uedit/jsp/controller.jsp</default>
+			<description>后端服务处理地址。详细请参考百度UEditor。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'server_url',
+						'name': 'server_url',
+						'ng-model':'data.server_url'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>富文本编辑器</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '富文本编辑器'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model':'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件名称，默认为空。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<objectClassName>ComponentVO</objectClassName>
+		<checkScope>currentObject</checkScope>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.component.DefaultComponentConsisCheck</checkClass>
+		<expression></expression>
+	</consistencyConfig>
+</component>

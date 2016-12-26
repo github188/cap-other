@@ -1,0 +1,33 @@
+<basic src="page.txt" name="等待元素显示" type="testStepDefinitions.basics.basic.wait_until_element_is_visible" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="等待元素显示" definition="wait_until_element_is_visible">
+    <createTime>1469606781457</createTime>
+    <modelId>testStepDefinitions.basics.basic.wait_until_element_is_visible</modelId>
+    <modelName>wait_until_element_is_visible</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="元素定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>元素定位</help>
+    </arg>
+    <arg valueType="String" required="false" name="timeout" desc="超时时间" default="60">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'timeout',
+                'name': 'timeout'
+            }
+]]></options>
+        </ctrl>
+        <help>超时时间</help>
+    </arg>
+    <help><![CDATA[等待元素显示]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[等待元素显示    ${locator}    ${timeout}    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

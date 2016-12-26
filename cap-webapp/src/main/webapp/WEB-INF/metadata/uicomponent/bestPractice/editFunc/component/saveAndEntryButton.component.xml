@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.button</extend>
+    <modelId>uicomponent.bestPractice.editFunc.component.btnSaveAndEntryAuditButton</modelId>
+    <modelName>auditButton</modelName>
+    <modelPackage>uicomponent.bestPractice.editFunc</modelPackage>
+    <modelType>component</modelType>
+    <cname>保存并上报</cname>
+	<group>bestPractice.editFunc</group>
+	<description>Button组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>9</sort>
+	<properties>
+		<property>
+			<ename>label</ename>
+			<requried>true</requried>
+			<default>保存并上报</default>
+			<commonAttr>true</commonAttr>
+		</property>
+		<property>
+			<ename>id</ename>
+			<requried>false</requried>
+			<default>btnSaveAndEntryAudit</default>
+			<commonAttr>false</commonAttr>
+		</property>
+		<property>
+			<ename>name</ename>
+			<requried>false</requried>
+			<default>btnSaveAndEntryAudit</default>
+			<commonAttr>false</commonAttr>
+		</property>
+	</properties>
+	<events>
+		<event>
+	        <ename>on_click</ename>
+	        <type></type>
+	        <hasAutoCreate>true</hasAutoCreate>
+		
+	        <commonAttr>true</commonAttr>
+	        <actionDefine>
+	        	<![CDATA[
+					{
+						"modelId": "actionlibrary.workflow.action.saveAndAuditEdit",
+						"cname": "保存并发送行为",
+						"ename": "saveAndEntrytAudit",
+						"description":"保存并发送行为",
+						"methodOption": {
+							"workflowMethod":"report",
+							"actionType":"editSaveAndReport"
+						}
+					}
+				]]>
+			</actionDefine>
+		</event>
+	</events>
+</component>

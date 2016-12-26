@@ -1,0 +1,21 @@
+<basic src="element.txt" name="点击链接" type="testStepDefinitions.basics.basic.click_link" icon="icon-hand-pointing-upward" group="common" desc="点击链接" definition="click_link">
+    <createTime>1469606769661</createTime>
+    <modelId>testStepDefinitions.basics.basic.click_link</modelId>
+    <modelName>click_link</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="链接定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>链接定位</help>
+    </arg>
+    <help><![CDATA[点击链接]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[点击链接    ${locator}    #${desc}]]></macro>
+</basic>

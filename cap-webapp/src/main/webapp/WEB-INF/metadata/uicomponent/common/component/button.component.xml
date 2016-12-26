@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.button</modelId>
+    <modelName>Button</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>按钮</cname>
+	<group>common</group>
+	<description>Button组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>3</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Button</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>按钮</default>
+			<description>按钮的标题，显示的按钮文本。</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '按钮'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>菜单</cname>
+			<ename>menu</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>下拉菜单（menu的数据对象）或者（返回menu数据的方法），如： <![CDATA[<br/>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;datasource:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'item1',label:'选项1'},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'item2',label:'选项2'}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on_click:function(obj){<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>}]]></description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<properties>
+					<property>
+						<cname>id</cname>
+						<ename>id</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<default></default>
+						<description>Json对象中的id属性。</description>
+						<!--文本框（字符串）-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'id',
+									'name': 'id',
+									'ng-model':'data.id'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>显示文本</cname>
+						<ename>label</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<default></default>
+						<description>Json对象中的label属性。</description>
+						<!--文本框（字符串）-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'label',
+									'name': 'label',
+									'ng-model':'data.label'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+				</properties>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'menu',
+						'name': 'menu',
+						'ng-model':'data.menu',
+						'on_iconclick':'openCodeEditAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>图标</cname>
+			<ename>icon</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置按钮图标。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框（字符串）-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'icon',
+						'name': 'icon',
+						'ng-model':'data.icon'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>禁用</cname>
+			<ename>disable</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否禁用按钮（默认false）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'disable',
+						'name': 'disable',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.disable'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>隐藏</cname>
+			<ename>hide</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否隐藏按钮（默认false不隐藏）。</description>
+			<commonAttr>false</commonAttr>
+			<filterRule><![CDATA[{'hide':'$delete$'}]]></filterRule>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'hide',
+						'name': 'hide',
+						'radio_list': [{text: '是',value: true},{text: '否',value: false}],
+						'ng-model':'data.hide'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>标识</cname>
+			<ename>mark</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>给当前Button一个唯一的标识（多用来给on_click的回调传参数）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框（字符串）-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'mark',
+						'name': 'mark',
+						'ng-model':'data.mark'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>样式</cname>
+			<ename>button_type</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>按钮样式配置，默认提供blue-button,red-button,green-button,orange-button。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'button_type',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'button_type',
+						'ng-model':'data.button_type',
+						'datasource' :"[{'id':'null','text':'默认'},{'id':'blue-button','text':'蓝色'},{'id':'red-button','text':'红色'},{'id':'green-button','text':'绿色'},{'id':'orange-button','text':'橙色'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model': 'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件名称。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>按钮点击</cname>
+	        <ename>on_click</ename>
+	        <type>custom</type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.buttonEventAction.action.buttonClick</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>click的回调函数，传入一个方法的索引，有三个参数：(event, self, mark)。</description>
+	        <commonAttr>true</commonAttr>
+	        <filterRule><![CDATA[{'on_click':'$delete$'}]]></filterRule>
+		</event>
+	</events>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<objectClassName>ComponentVO</objectClassName>
+		<checkScope>currentObject</checkScope>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.component.DefaultComponentConsisCheck</checkClass>
+		<expression></expression>
+	</consistencyConfig>
+</component>

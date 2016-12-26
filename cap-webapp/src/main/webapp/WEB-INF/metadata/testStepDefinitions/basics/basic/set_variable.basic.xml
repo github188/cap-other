@@ -1,0 +1,32 @@
+<basic src="element.txt" name="设置变量值" type="testStepDefinitions.basics.basic.set_variable" icon="icon-cog-wheel-silhouette" group="common" desc="设置变量值" definition="set_variable">
+    <createTime>1469606769829</createTime>
+    <modelId>testStepDefinitions.basics.basic.set_variable</modelId>
+    <modelName>set_variable</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="value" desc="变量值">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'value',
+                'name': 'value'
+            }
+]]></options>
+        </ctrl>
+        <help>变量值</help>
+    </arg>
+    <arg valueType="String" required="true" name="returnValue" desc="返回值">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'returnValue',
+                'name': 'returnValue'
+            }
+]]></options>
+        </ctrl>
+        <help>返回值</help>
+    </arg>
+    <help><![CDATA[设置变量值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[${returnValue}    设置变量值    ${value}    #${desc}]]></macro>
+</basic>

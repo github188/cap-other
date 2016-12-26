@@ -1,0 +1,22 @@
+<basic src="ui-system.txt" name="自定义控件关键字" type="testStepDefinitions.basics.basic.custom_set_value" icon="icon-cog-wheel-silhouette" group="systemCombinations" desc="自定义控件关键字" definition="custom_set_value">
+    <createTime>1470128115567</createTime>
+    <modelId>testStepDefinitions.basics.basic.custom_set_value</modelId>
+    <modelName>custom_set_value</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="id" desc="控件ID">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'id',
+                'name': 'id'
+            }            
+]]></options>
+        </ctrl>
+        <help>控件ID</help>
+    </arg>
+    <help><![CDATA[自定义控件关键字]]></help>
+    <lib>ComtopLibrary.py</lib>    
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

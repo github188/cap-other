@@ -1,0 +1,14 @@
+<step-groups>
+    <createTime>1467111099128</createTime>
+    <modelId>testStepDefinitions.group.step_groups</modelId>
+    <modelName>step_groups</modelName>
+    <modelPackage>testStepDefinitions</modelPackage>
+    <modelType>group</modelType>
+    <group code="common" icon="icon-android-character-symbol" name="基础元素"/>
+    <group code="apielement" icon="icon-bug" name="API测试"/>
+    <group code="fixed" icon="icon-retweet-arrows-symbol" name="固定组合步骤"/>
+    <group code="dynamic" icon="icon-refresh-page-option" name="动态组合步骤"/>
+    <group code="pageOpt" icon="icon-blank-file" name="页面操作"/>
+    <group code="systemCombinations" icon="icon-bar-graph-on-a-rectangle" name="系统组合"/>
+    <group code="databaseOpt" icon="icon-android-character-symbol" name="数据库操作"/>
+</step-groups>

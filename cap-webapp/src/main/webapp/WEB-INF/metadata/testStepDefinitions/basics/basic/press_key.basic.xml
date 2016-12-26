@@ -1,0 +1,32 @@
+<basic src="element.txt" name="按键" type="testStepDefinitions.basics.basic.press_key" icon="icon-cog-wheel-silhouette" group="common" desc="按键" definition="press_key">
+    <createTime>1469606769790</createTime>
+    <modelId>testStepDefinitions.basics.basic.press_key</modelId>
+    <modelName>press_key</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="元素定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>元素定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="key" desc="按键值">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'key',
+                'name': 'key'
+            }
+]]></options>
+        </ctrl>
+        <help>按键值</help>
+    </arg>
+    <help><![CDATA[按键]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[按键    ${locator}    ${key}    #${desc}]]></macro>
+</basic>

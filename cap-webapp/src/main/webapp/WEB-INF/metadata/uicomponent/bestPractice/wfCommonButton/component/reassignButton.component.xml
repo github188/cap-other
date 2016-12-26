@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <extend>uicomponent.common.component.button</extend>
+    <modelId>uicomponent.bestPractice.wfCommonButton.component.reassignButton</modelId>
+    <modelName>reassignButton</modelName>
+    <modelPackage>uicomponent.bestPractice.wfCommonButton</modelPackage>
+    <modelType>component</modelType>
+    <cname>转发</cname>
+	<group>bestPractice.wfCommonButton</group>
+	<description>Button组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>2</sort>
+	<properties>
+		<property>
+			<ename>label</ename>
+			<requried>true</requried>
+			<default>转发</default>
+			<commonAttr>true</commonAttr>
+		</property>
+		<property>
+			<ename>id</ename>
+			<requried>false</requried>
+			<default>btnReassign</default>
+			<commonAttr>false</commonAttr>
+		</property>
+		<property>
+			<ename>name</ename>
+			<requried>false</requried>
+			<default>btnReassign</default>
+			<commonAttr>false</commonAttr>
+		</property>
+	</properties>
+	<events>
+		<event>
+	        <ename>on_click</ename>
+	        <type></type>
+	        <hasAutoCreate>true</hasAutoCreate>
+			<!-- <default>reassign</default>
+	        <methodTemplate>actionlibrary.workflow.action.audit</methodTemplate>
+	        <methodOption>{workflowMethod:'reassign'}</methodOption> -->
+	        <commonAttr>true</commonAttr>
+	        <actionDefine>
+	        	<![CDATA[
+					{
+						"modelId": "actionlibrary.workflow.action.audit",
+						"cname": "流程转发行为",
+						"ename": "workFlowReassign",
+						"description":"流程转发行为",
+						"methodOption": {
+							"workflowMethod":"reassign"
+						}
+					}
+				]]>
+			</actionDefine>
+		</event>
+	</events>
+</component>

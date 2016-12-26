@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.pageJump.action.pageJump</modelId>
+    <modelName>pageJump</modelName>
+    <modelPackage>actionlibrary.pageJump</modelPackage>
+    <modelType>action</modelType>
+    <cname>页面跳转方法</cname>
+	<type>custom</type>
+	<description>页面跳转方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/rt/common/base/js/comtop.cap.rt.js</list>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(){
+	var pageJumpURL=cap.getforwardURL({{methodOption.pageURL}});
+	var container={{methodOption.container}};
+	//TODO  调用后台前处理逻辑
+	<script name="before"/>
+	//当打开的页面为新窗口，并且当前window实现了{{ename}}_pageJump方法，则调用{{ename}}_pageJump方法来打开新页面
+  	var _openWindow = window["{{ename}}_pageJump"]; 
+  	if("{{methodOption.target}}" == "win" && _openWindow && typeof(_openWindow) == "function"){
+  		_openWindow(pageJumpURL);
+  	}else{
+		cap.pageJump(pageJumpURL,"{{methodOption.target}}",container);
+  	}
+	
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>页面URL</cname>
+			<ename>pageURL</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>''</default>
+			<description>页面选择</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pageURL',
+						'ng-model':'pageURL',
+						'onclick':'openDataStoreSelect(\'pageURL\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.RelationPageUrlPageActionConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>容器</cname>
+			<ename>container</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>window</default>
+			<description>容器选择</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'container',
+						'ng-model':'container',
+						'datasource':"[{id:'window',text:'当前页面'},{id:'window.parent',text:'父页面'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'select':0
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		
+		<property>
+			<cname>打开方式</cname>
+			<ename>target</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>location</default>
+			<description>打开方式</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'target',
+						'ng-model':'target',
+						'datasource':"[{id:'location',text:'指定页面'},{id:'win',text:'新窗口'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'select':0
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<consistencyConfig>
+			<checkConsistency>true</checkConsistency>
+			<checkClass>com.comtop.cap.bm.metadata.consistency.action.DefaultPageActionConsisCheck</checkClass>
+		</consistencyConfig>
+	</properties>
+</action>

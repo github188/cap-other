@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+	
+	<display-name>CIP</display-name>
+	<description>CIP</description>
+	<session-config>  
+	     <!-- 值为:24*60 = 1440 -->
+         <session-timeout>1440</session-timeout>  
+    </session-config>
+
+	<listener>
+		<listener-class>com.comtop.eic.view.EicContextListener</listener-class>
+	</listener>
+	
+	<!--TOP添加能够提供工具类获取Request对象的监听类 -->
+	<listener>
+		<listener-class>com.comtop.top.component.common.systeminit.TopServletListener</listener-class>
+	</listener>
+		
+	<!-- Spring容器初始化监听器,如果存在不需重复添加 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	
+	<context-param>
+		<!-- 是否启动OpenOffice,如果配置不为false或者没有配置该参数，会在服务器启动时，默认启动OpenOffice服务 -->
+		<param-name>com.comtop.eic.startOpenOffice</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	
+	<!-- 无共享架构过滤器  -->
+	<filter> 
+	   <filter-name>sessionShareFilter</filter-name>
+	   <filter-class>com.comtop.top.component.app.sna.SessionShareFilter</filter-class>
+	   <init-param>
+			<param-name>exludeRequest</param-name>
+			<param-value>.js;.css;/img/;/image/;/images/</param-value>
+		</init-param>
+	</filter> 
+	 <filter-mapping>
+		<filter-name>sessionShareFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Cap登录过滤器 正式环境中请注释或者将enabled改成false-->
+    <filter>
+		<filter-name>capSessionFilter</filter-name>
+		<filter-class>
+			com.comtop.cap.ptc.login.filter.CapSessionFilter
+		</filter-class>
+		<init-param>
+			<param-name>freePages</param-name>
+			<param-value>
+			MainFrame.jsp;TrackDWR.handleTrack.dwr;PlatFormAction.do;Login.jsp;CapLogin.ac;CapInitLogin.ac;certificate.ac;ssoLogin.ac;login.ac;initLogin.ac;pcasLogin.ac;Default.jsp;CapReLogin.jsp;PasswordFind.jsp;CheckAccount.jsp;LoginAction.js;FindByEmail.jsp;web/;ContactPerson.jsp;FindPasswordAction.validateAccount.dwr;FindPasswordAction.validatePassword.dwr;FindPasswordAction.validateQuestion.dwr;FindPasswordAction.getQuestion.dwr;FindPasswordAction.getQuestion.dwr;FindPasswordAction.isAnswerCorrect.dwr;FindPasswordAction.getConfigValue.dwr;FindPasswordAction.resetPassword.dwr;FindPasswordAction.validateEmail.dwr;FindPasswordAction.isValidateLink.dwr;FindPasswordAction.sendEmail.dwr;ResetPasswordByEmail.jsp;FindPasswordAction.isEmailCorrect.dwr;ContactPersonShow.jsp;ContactPersonAction.getContactPersonList.dwr;ContactPersonAction.getContactPersonShow.dwr;OnlineUser.jsp;TestWebSpeed.jsp;checkWebSpeed.ac;TestWebSpeed.jsp;ssoDMLoginAction.ac;filter4ASSO.ac
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>regexFreePages</param-name>
+			<param-value>
+			.*/cap/dwr/.*;.*/cap/rt/.*;.*/workbench/component/.*;.*/bpms/.*;.*/workbench/base/.*;.*/login/.*;.*/top/component/.*;.*/top/js/.*;.*/cxf/.*;.*/soa/.*;.*/CapReLogin.jsp.*;.*/ReLogin.jsp.*;.*/filter4ASSO.*;.*/authroute.*;.*/signout.*;.*/initLogin4A.*;.*/interface4ASSO.*;.*/graph/.*
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>mainFrameName</param-name>
+			<param-value>mainFrame;fram_work_Main</param-value>
+		</init-param>
+		<init-param>
+			<param-name>enabled</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>capSessionFilter</filter-name>
+		<url-pattern>/CapInitLogin.ac</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>capSessionFilter</filter-name>
+		<url-pattern>/cap/*</url-pattern>
+	</filter-mapping>
+	<!-- Cap登录过滤器  end 正式环境中请注释 或者将enabled改成false-->
+	<!-- Cap过滤器  end-->
+	<!-- 登录过滤器 -->
+    <filter>
+		<filter-name>SessionFilter</filter-name>
+		<filter-class>
+			com.comtop.top.sys.login.action.SessionFilter
+		</filter-class>
+		<init-param>
+			<param-name>freePages</param-name>
+			<param-value>
+			MainFrame.jsp;TrackDWR.handleTrack.dwr;PlatFormAction.do;Login.jsp;CapLogin.ac;CapInitLogin.ac;certificate.ac;ssoLogin.ac;login.ac;initLogin.ac;pcasLogin.ac;Default.jsp;ReLogin.jsp;PasswordFind.jsp;CheckAccount.jsp;LoginAction.js;FindByEmail.jsp;web/;ContactPerson.jsp;FindPasswordAction.validateAccount.dwr;FindPasswordAction.validatePassword.dwr;FindPasswordAction.validateQuestion.dwr;FindPasswordAction.getQuestion.dwr;FindPasswordAction.getQuestion.dwr;FindPasswordAction.isAnswerCorrect.dwr;FindPasswordAction.getConfigValue.dwr;FindPasswordAction.resetPassword.dwr;FindPasswordAction.validateEmail.dwr;FindPasswordAction.isValidateLink.dwr;FindPasswordAction.sendEmail.dwr;ResetPasswordByEmail.jsp;FindPasswordAction.isEmailCorrect.dwr;ContactPersonShow.jsp;ContactPersonAction.getContactPersonList.dwr;ContactPersonAction.getContactPersonShow.dwr;OnlineUser.jsp;TestWebSpeed.jsp;checkWebSpeed.ac;TestWebSpeed.jsp;ssoDMLoginAction.ac;filter4ASSO.ac
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>regexFreePages</param-name>
+			<param-value>
+			.*/img/.*;.*/image/.*;.*/images/.*;.*/workbench/component/.*;.*/bpms/.*;.*/workbench/base/.*;.*/login/.*;.*/top/component/.*;.*/top/js/.*;.*/cxf/.*;.*/soa/.*;.*/ReLogin.jsp.*;.*/filter4ASSO.*;.*/authroute.*;.*/signout.*;.*/initLogin4A.*;.*/interface4ASSO.*;.*/graph/.*
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>toPage</param-name>
+			<param-value>/initLogin.ac</param-value>
+		</init-param>
+		<init-param>
+			<param-name>mainFrameName</param-name>
+			<param-value>mainFrame;fram_work_Main</param-value>
+		</init-param>
+		<init-param>
+			<param-name>mainPage</param-name>
+			<param-value>/top/workbench/PlatFormAction/initPlatform.do</param-value>
+		</init-param>
+	</filter>
+	 <filter-mapping>
+		<filter-name>SessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- cap pdm 导入导出 servlet start-->
+	<servlet>
+		<servlet-name>PdmExport</servlet-name>
+		<servlet-class>com.comtop.cap.bm.metadata.pdm.facade.PdmExportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PdmExport</servlet-name>
+		<url-pattern>*.pdmExport</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>PdmImport</servlet-name>
+		<servlet-class>com.comtop.cap.bm.metadata.pdm.facade.PdmImportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PdmImport</servlet-name>
+		<url-pattern>*.pdmImport</url-pattern>
+	</servlet-mapping>
+	<!-- cap pdm 导入导出 servlet end-->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/spring/servlet-config.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>*.bpms</url-pattern>
+	</servlet-mapping>
+	
+		
+	<!--JODD容器初始化、启动 JODD MVC -->
+	<filter>
+		<filter-name>madvoc</filter-name>
+		<filter-class>com.comtop.top.component.common.systeminit.MadvocExtServletFilter</filter-class>
+		<init-param>
+			<param-name>madvoc.webapp</param-name>
+			<param-value>com.comtop.top.component.common.systeminit.WebApplication</param-value>
+		</init-param>
+		<init-param>
+			<param-name>madvoc.params</param-name>
+			<param-value>/top-mvc.props</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>madvoc</filter-name>
+		<url-pattern>*.ac</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>madvoc</filter-name>
+		<url-pattern>*.do</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<!-- cap热加载过滤器  start-->
+	<filter>
+		<filter-name>capBmReloadFilter</filter-name>
+		<filter-class>
+			com.comtop.cap.bm.webapp.core.CapBmReloadFilter
+		</filter-class>
+	</filter>
+	<!-- cap热加载过滤器  end-->
+	<!-- 轻量化平台-DWR初始化 -->
+	<servlet>
+		<servlet-name>dwr_invoker</servlet-name>
+		<servlet-class>com.comtop.top.component.common.systeminit.DwrExtServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<!-- 以下两项配置 解决 dwr CSRF Security Error 问题 -->
+		<init-param>
+			<param-name>allowScriptTagRemoting</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>crossDomainSessionSecurity</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param> 
+      		<param-name>config-bpms-track</param-name> 
+      		<param-value>WEB-INF/bpms/track_dwr.xml</param-value> 
+       </init-param>
+       <init-param> 
+      		<param-name>config-cap-dwr</param-name> 
+      		<param-value>WEB-INF/cap_dwr.xml</param-value> 
+       </init-param>
+       <init-param> 
+      		<param-name>comtop.org.directwebremoting.extend.ConverterManager</param-name> 
+      		<param-value>com.comtop.cap.runtime.base.dwr.CAPConverterManager</param-value> 
+       </init-param>
+       <!-- cap 建模功能使用配置 start-->
+       <init-param> 
+      		<param-name>config-cap-bm-dwr</param-name> 
+      		<param-value>WEB-INF/cap_bm_dwr_tomcat6.xml</param-value> 
+       </init-param>
+       <init-param> 
+      		<param-name>comtop.org.directwebremoting.dwrp.FileUpload</param-name> 
+      		<param-value>com.comtop.cap.runtime.dwr.CapFileUpload</param-value> 
+       </init-param>
+       <!-- cap 建模功能使用配置 end-->
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dwr_invoker</servlet-name>
+		<url-pattern>/top/cfg/dwr/*</url-pattern>
+	</servlet-mapping>
+	 <servlet-mapping>
+		<servlet-name>dwr_invoker</servlet-name>
+		<url-pattern>/top/sys/dwr/*</url-pattern>
+	 </servlet-mapping>
+	 <servlet-mapping>
+		<servlet-name>dwr_invoker</servlet-name>
+		<url-pattern>/top/workbench/dwr/*</url-pattern>
+	 </servlet-mapping>
+	 <servlet-mapping>
+		<servlet-name>dwr_invoker</servlet-name>
+		<url-pattern>/cip/dwr/*</url-pattern>
+	</servlet-mapping> 
+	 <servlet-mapping>
+		<servlet-name>dwr_invoker</servlet-name>
+		<url-pattern>/lzyt/dwr/*</url-pattern>
+	</servlet-mapping> 
+	<servlet-mapping>
+		<servlet-name>dwr_invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping> 
+	 <servlet-mapping>
+		<servlet-name>dwr_invoker</servlet-name>
+		<url-pattern>/cap/dwr/*</url-pattern>
+	</servlet-mapping>
+	<!-- SOA -->
+	<servlet>
+		<servlet-name>SoaHessianService</servlet-name>
+		<servlet-class>comtop.soa.com.caucho.hessian.server.HessianServlet
+		</servlet-class>
+		<init-param>
+			<param-name>home-class</param-name>
+			<param-value>com.comtop.soa.bus.channels.hessian.HessianProviderInvoker
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>home-api</param-name>
+			<param-value>com.comtop.soa.bus.channels.IChannelCall</param-value>
+		</init-param>
+		<load-on-startup>10</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SoaHessianService</servlet-name>
+		<url-pattern>/soa/ServiceChannels</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SoaServlet</servlet-name>
+		<servlet-class>com.comtop.soa.init.SOAServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SoaServlet</servlet-name>
+		<url-pattern>/soa/SoaServlet/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SoaCXFServlet</servlet-name>
+		<servlet-class>com.comtop.soa.init.PublishTbiWsServlet</servlet-class>
+		<load-on-startup>10</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SoaCXFServlet</servlet-name>
+		<url-pattern>/soa/cxf/*</url-pattern>
+	</servlet-mapping>
+	<!-- END -->
+	
+	
+	<!-- EIC servlet-->
+	<servlet>
+		<servlet-name>monitorAsynTask</servlet-name>
+		<servlet-class>com.comtop.eic.view.asyn.servlet.MonitorAsynTaskServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>monitorAsynTask</servlet-name>
+		<url-pattern>*.monitorAsynTask</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>fileDownload</servlet-name>
+		<servlet-class>com.comtop.eic.view.FileDownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fileDownload</servlet-name>
+		<url-pattern>*.fileDownload</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	    <servlet-name>excelImport</servlet-name>
+	    <servlet-class>com.comtop.eic.view.excelimport.servlet.ExcelImportServlet
+	    </servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>excelImport</servlet-name>
+	    <url-pattern>*.excelImport</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	     <servlet-name>excelExport</servlet-name>
+	     <servlet-class>com.comtop.eic.view.excelexport.servlet.ExcelExportServlet</servlet-class>
+	 </servlet>
+	 <servlet-mapping>
+	     <servlet-name>excelExport</servlet-name>
+	     <url-pattern>*.excelExport</url-pattern>
+	 </servlet-mapping>
+	 <servlet>
+	    <servlet-name>wordExport</servlet-name>
+	    <servlet-class>com.comtop.eic.view.wordexport.servlet.WordExportServlet</servlet-class>
+	 </servlet>
+	 <servlet-mapping>
+	    <servlet-name>wordExport</servlet-name>
+	    <url-pattern>*.wordExport</url-pattern>
+	 </servlet-mapping>
+	 
+	<!-- 导入组件开始 -->
+	<servlet>
+		<servlet-name>TopExcelImport</servlet-name>
+		<servlet-class>com.comtop.top.component.app.office.excelimport.servlet.ExcelImportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TopExcelImport</servlet-name>
+		<url-pattern>*.topExcelImportServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>TopExcelImportMessage</servlet-name>
+		<servlet-class>com.comtop.top.component.app.office.excelimport.servlet.ExcelImportProcessMessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TopExcelImportMessage</servlet-name>
+		<url-pattern>*.topExcelImportMessage</url-pattern>
+	</servlet-mapping>
+	<!-- 导入组件结束 -->
+	 
+	<!-- BPMS start -->
+	<!-- 设置Spring组配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext_bpmsmonitor.xml,
+		classpath:applicationContext_bpmsengine_bpms_evn.xml</param-value>
+	</context-param>
+
+
+	<!-- BPMS设计器(start) -->
+	<listener>
+		<listener-class>flex.messaging.HttpFlexSession</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>MessageBrokerServlet</servlet-name>
+		<servlet-class>flex.messaging.MessageBrokerServlet</servlet-class>
+		<init-param>
+			<param-name>services.configuration.file</param-name>
+			<param-value>/WEB-INF/flex/services-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MessageBrokerServlet</servlet-name>
+		<url-pattern>/messagebroker/*</url-pattern>
+	</servlet-mapping>
+	<!-- BPMS设计器(end) -->
+	 <servlet>
+	  <servlet-name>workbenchServlet</servlet-name>
+	  <servlet-class>com.comtop.top.workbench.personal.action.WorkbenchServlet</servlet-class>
+	</servlet>
+    <servlet-mapping>
+		<servlet-name>workbenchServlet</servlet-name>
+		<url-pattern>/top/workbench/workbenchServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- BPMS引擎(start) -->
+	<servlet>
+		<servlet-name>webservice</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>webservice</servlet-name>
+		<url-pattern>/bpms/webservice/*</url-pattern>
+	</servlet-mapping>
+	<!-- BPMS引擎(end) -->	
+	
+	<!-- BPMS监控平台过滤器 -->
+	<filter>
+		<filter-name>monitorFilter</filter-name>
+		<filter-class>com.comtop.bpms.monitor.filter.MonitorSecuityFilter</filter-class>
+		<init-param>
+			<param-name>regex</param-name>
+			<param-value><![CDATA[
+			<script>|</script>|<IMG|http://demo|\sand\s|\sor\s|\s\+\s|'\s\+\s'|'\s\||\s'|ScanHeader|javascript|<iframe|expression|<A HREF=|0\+0|/\*\*/and/\*\*/|/\*\*/or/\*\*/|view'|WFXSSProbe|having 1=1-|view%uFF07|WF'SQL|';|%uFF07|\+and\+|\+or\+|select\sundefined|using sub select|.*DECLARE.*CAST.*EXEC.*|/viewsource.jsp|/SessionServlet|xpression|xss|alert(\s)*\(|select(\s)*null|view"|/PrEsSiOn\(|prompt\(|injected_by_wvs|\(\):;|%3Cscript%3E|%3C%2Fscript%3E|%3Cimg|%3Ciframe|\\x73\\x63\\x72\\x69\\x70\\x74
+			]]></param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>monitorFilter</filter-name>
+		<url-pattern>/bpms/flex/MonitorUI.swf</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>monitorFilter</filter-name>
+		<url-pattern>/bpms/flex/MonitorUI.jsp</url-pattern>
+	</filter-mapping>
+	
+	<!-- DWR配置（start）注意：如果和TOP集成，不需要配置此项 -->
+	 <!-- BPMS DWR配置(流程跟踪) -->
+	 
+	 <!-- DWR配置（end） -->
+	<!-- BPMS end -->
+	
+	<jsp-config>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+			<taglib-location>/WEB-INF/tags/tld/c.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jstl/fmt</taglib-uri>
+			<taglib-location>/WEB-INF/tags/tld/fmt.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jstl/fn</taglib-uri>
+			<taglib-location>/WEB-INF/tags/tld/fn.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://www.slf4j.org/taglib/tld</taglib-uri>
+			<taglib-location>/WEB-INF/tags/tld/slf4j.tld</taglib-location>
+		</taglib>
+		<taglib>
+		    <taglib-uri>http://www.szcomtop.com/top</taglib-uri>
+		    <taglib-location>/WEB-INF/tags/tld/top.tld</taglib-location>
+		</taglib>
+	    <taglib>
+			<taglib-uri>http://www.szcomtop.com/soa/cui</taglib-uri>
+			<taglib-location>/WEB-INF/tags/tld/soa.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://www.szcomtop.com/eic </taglib-uri>
+			<taglib-location>/WEB-INF/eic/tld/eic.tld</taglib-location>
+		</taglib>
+		<!-- 
+		<taglib>
+			<taglib-uri>http://www.szcomtop.com/topui/atm</taglib-uri>
+			<taglib-location>/WEB-INF/tags/tld/topui-atm.tld</taglib-location>
+		</taglib>
+		 -->
+		 <taglib>
+			<taglib-uri>http://www.szcomtop.com/topui/atm</taglib-uri>
+			<taglib-location>/WEB-INF/tags/tld/capui-atm.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	
+	<!-- 错误/异常页面 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/top/component/common/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/top/component/common/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/top/component/common/503.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/top/component/common/error.jsp</location>
+	</error-page>
+	<welcome-file-list>
+		<welcome-file>/top/Login.jsp</welcome-file>
+	</welcome-file-list>
+	 
+	
+
+</web-app>

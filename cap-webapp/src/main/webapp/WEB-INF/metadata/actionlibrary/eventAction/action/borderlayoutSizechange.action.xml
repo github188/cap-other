@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.action.borderlayoutSizechange</modelId>
+    <modelName>borderlayoutSizechange</modelName>
+    <modelPackage>actionlibrary.eventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>borderlayout宽高改变事件</cname>
+	<description>borderlayout宽高改变事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>Borderlayout_on_sizechange</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 布局宽高改变时回调。（当面板调用setHeight()、setWidth()、setCollapse()方法，点击折叠按钮、拖动边框导致面板大小改变时会触发此回调，window的resize事件导致的布局变化不会触发此事件）
+ *
+ */
+function {{ename}}() { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

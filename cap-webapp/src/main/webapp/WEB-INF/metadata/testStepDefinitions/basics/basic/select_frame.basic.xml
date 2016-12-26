@@ -1,0 +1,22 @@
+<basic src="page.txt" name="选择框架" type="testStepDefinitions.basics.basic.select_frame" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="选择框架" definition="select_frame">
+    <createTime>1469606781383</createTime>
+    <modelId>testStepDefinitions.basics.basic.select_frame</modelId>
+    <modelName>select_frame</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="框架定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>框架定位</help>
+    </arg>
+    <help><![CDATA[选择框架]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[选择框架    ${locator}    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

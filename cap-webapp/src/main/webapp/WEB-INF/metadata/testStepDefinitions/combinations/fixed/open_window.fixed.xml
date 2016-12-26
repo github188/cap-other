@@ -1,0 +1,48 @@
+<fixed definition="open_window" desc="打开编辑窗口" group="fixed"
+	icon="icon-desktop-monitor" type="testStepDefinitions.combinations.fixed.open_window"
+	name="打开编辑窗口">
+	<createTime>1467616482453</createTime>
+	<modelId>testStepDefinitions.combinations.fixed.open_window
+	</modelId>
+	<modelName>open_window</modelName>
+	<modelPackage>testStepDefinitions.combinations</modelPackage>
+	<modelType>fixed</modelType>	
+	<arg valueType="String" required="true" name="buttonlocator" desc="按钮定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'buttonlocator',
+                'name': 'buttonlocator',
+                'required': 'true'
+            }            
+            ]]></options>
+        </ctrl>
+        <help>按钮定位</help>
+    </arg>
+	<arg valueType="String" required="true" name="windowlocator" desc="窗口定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'windowlocator',
+                'name': 'windowlocator',
+                'required': 'true'
+            }            
+            ]]></options>
+        </ctrl>
+        <help>窗口定位</help>
+    </arg>	
+	<help><![CDATA[打开编辑窗口]]></help>
+	<lib>ComtopLibrary.py</lib>
+	<lib>AutoItLibrary</lib>
+	<lib>DatabaseLibrary</lib>
+	<res>element.txt</res>
+    <res>page.txt</res>
+    <res>ui-system.txt</res>
+    <res>database.txt</res>
+	<basic desc="点击按钮" name="点击按钮" type="testStepDefinitions.basics.basic.click_button">	
+        <arg name="locator" ref="buttonlocator" value="${locator}"/>
+    </basic>
+    <basic desc="选择窗口" name="选择窗口" type="testStepDefinitions.basics.basic.select_window">    
+        <arg name="locator" ref="windowlocator" value="${locator}"/>
+    </basic>
+</fixed>

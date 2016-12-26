@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.action.initAsynTaskImage</modelId>
+    <modelName>initAsynTaskImage</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>初始化异步任务页面图标</cname>
+	<group>bestPracticeAction</group>
+	<description>初始化异步任务页面图标，当点击此图标时，可显示所有异步任务的列表</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *
+ */
+function {{ename}}() { 
+	//window.top的页面上需要引入eic的js及css
+	window.top.initOpenBottomImage("${pageScope.cuiWebRoot}/eic/view/MonitorAsynTaskList.jsp?userId="+globalUserId+"&init=true");
+}
+]]>
+	</script>
+	<properties>
+	</properties>
+</action>

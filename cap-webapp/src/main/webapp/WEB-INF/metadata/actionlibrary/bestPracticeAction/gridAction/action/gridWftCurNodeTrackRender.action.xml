@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.gridAction.action.gridWftCurNodeTrackRender</modelId>
+    <modelName>gridWftCurNodeTrackRender</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>流程跟踪节点列渲染</cname>
+    <type>gridRender</type>
+	<description>grid流程跟踪节点列渲染</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+		<list>/cap/dwr/interface/CapWorkflowAction.js</list>
+		<list>/cap/rt/common/workflow/comtop.cap.rt.workflow.js</list>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(rd, index, col) {
+	if(!rd.nodeName || rd.nodeName == null){
+		return '';
+	}
+	//用户自行调整显示文本
+	<script name="before"/>
+	var onclick="cap.rt10.workflow.operate.flowTrack(\'"+rd.processId+"\',\'"+rd.processInsId+"\')";
+	var content= '<a href="#" class="btn" onclick="'+onclick+'">'+rd.nodeName+'</a>';
+	//自定义渲染
+	<script name="after"/>
+	return content;
+}]]>
+	</script>
+	<properties>
+		
+	</properties>
+</action>

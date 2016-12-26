@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.tab</extend>
+    <modelId>req.uicomponent.common.component.tab</modelId>
+    <modelName>Tab</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>tab标签页</cname>
+	<group>common</group>
+	<description>tab组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>2</sort>
+	
+</component>

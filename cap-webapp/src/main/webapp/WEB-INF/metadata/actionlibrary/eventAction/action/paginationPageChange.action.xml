@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.action.paginationPageChange</modelId>
+    <modelName>paginationPageChange</modelName>
+    <modelPackage>actionlibrary.eventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>pagination页数改变事件</cname>
+	<description>pagination页数改变事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>Pagination_on_page_change</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 点击某一页时的回调函数（组件会给该事件的回调函数传递两个参数，pageno和pagesize）
+ *
+ * @param pageno 当前页数(Number类型)
+ * @param pagesize 每页显示条数(Number类型)
+ */
+function {{ename}}(pageno, pagesize) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.action.atmLoadObjectIdList</modelId>
+    <modelName>atmLoadObjectIdList</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>获取附件业务单据集合</cname>
+	<group>bestPracticeAction.gridAction</group>
+	<type>bestPracticeAction</type>
+	<description>获取附件业务单据集合</description>
+	<propertyEditor>auto</propertyEditor> 
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}() {
+	var content="";
+	//自定义内容
+	<script name="after"/>
+	return content;
+}
+]]>
+	</script>
+</action>

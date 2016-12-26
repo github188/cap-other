@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.action.commonEvent</modelId>
+    <modelName>commonEvent</modelName>
+    <modelPackage>actionlibrary.eventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>普通事件的回调</cname>
+	<description>普通事件的回调</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>commonEvent</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * Input、ClickInput、Textarea组件的所有事件的回调函数
+ *
+ * @param event 当前事件对象
+ * @param self 当前组件实例对象
+ */
+function {{ename}}(event, self) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

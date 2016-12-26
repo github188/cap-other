@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.gridAction.action.gridRemoveCallback</modelId>
+    <modelName>gridRemoveCallback</modelName>
+    <modelPackage>actionlibrary.eventAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>删除数据回调函数</cname>
+	<description>grid删除数据回调函数</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>Grid_removedata_callback</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * gird组件提供了添加数据adddata_callback和删除数据removedata_callback的回调函数。
+ *
+ * @param rowData 操作的数据
+ */
+function {{ename}}(rowData) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.pulldownEventAction.action.pulldownFilter</modelId>
+    <modelName>pulldownFilter</modelName>
+    <modelPackage>actionlibrary.eventAction.pulldownEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>过滤事件</cname>
+	<description>pulldown过滤事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *
+ * 此函数只在mode="Single"且auto_complete="true"时才生效 
+ *
+ * @param self 组件对象本身
+ * @param value 输入的值
+ * @return 布尔数组（表示与对应下拉列表项是否匹配），如[true, false, true]表示与第1,3个列表项匹配成功，其他匹配不成功。
+ */
+function {{ename}}(self, value) {
+	//声明一个数组（用于存储Boolean值），数组长度与组件的下拉列表项个数一致
+	var _array = new Array(self.data.length); 
+	<script name="before"/>
+	return _array;
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

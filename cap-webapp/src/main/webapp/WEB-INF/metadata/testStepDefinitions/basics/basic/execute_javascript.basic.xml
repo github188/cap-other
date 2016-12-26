@@ -1,0 +1,21 @@
+<basic src="element.txt" name="执行JavaScript" type="testStepDefinitions.basics.basic.execute_javascript" icon="icon-pencil" group="common" desc="执行JavaScript" definition="execute_javascript">
+    <createTime>1469606769714</createTime>
+    <modelId>testStepDefinitions.basics.basic.execute_javascript</modelId>
+    <modelName>execute_javascript</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="code" desc="JavaScript代码">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'code',
+                'name': 'code'
+            }
+]]></options>
+        </ctrl>
+        <help>JavaScript代码</help>
+    </arg>
+    <help><![CDATA[执行JavaScript]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[执行JavaScript    ${code}    #${desc}]]></macro>
+</basic>

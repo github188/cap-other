@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.pageJump.action.openFixedWinow</modelId>
+    <modelName>openFixedWinow</modelName>
+    <modelPackage>actionlibrary.pageJump</modelPackage>
+    <modelType>action</modelType>
+    <cname>打开定高定宽新窗口</cname>
+	<type>custom</type>
+	<description>打开定高定宽新窗口</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/**
+ * {{cname}} {{description}}
+ */
+function {{ename}}(url){
+	var width=600; //窗口宽度
+	var height=400;//窗口高度
+	var top=(window.screen.height-30-height)/2;
+	var left=(window.screen.width-10-width)/2;
+	var windowName = "_blank";
+	//TODO 改变新窗口的高、宽以、位置及窗口名称
+	<script name="before"/>
+	window.open(url, windowName, "Scrollbars=yes,Toolbar=no,Location=no,titlebar=no,Direction=no,Resizeable=no,alwaysLowered=yes,Width="+width+" ,Height="+height+",top="+top+",left="+left);	
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

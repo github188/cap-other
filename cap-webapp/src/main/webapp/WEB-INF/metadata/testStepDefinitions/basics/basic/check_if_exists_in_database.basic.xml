@@ -1,0 +1,21 @@
+<basic src="database.txt" name="确认数据存在于数据库中" type="testStepDefinitions.basics.basic.check_if_exists_in_database" icon="icon-cog-wheel-silhouette" group="databaseOpt" desc="确认数据存在于数据库中" definition="check_if_exists_in_database">
+    <createTime>1469606798074</createTime>
+    <modelId>testStepDefinitions.basics.basic.check_if_exists_in_database</modelId>
+    <modelName>check_if_exists_in_database</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="sql" desc="sql脚本">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'sql',
+                'name': 'sql'
+            }
+]]></options>
+        </ctrl>
+        <help>sql脚本</help>
+    </arg>
+    <help><![CDATA[确认数据存在于数据库中]]></help>
+    <lib>DatabaseLibrary</lib>
+    <macro><![CDATA[确认数据存在于数据库中    ${sql}    #${desc}]]></macro>
+</basic>

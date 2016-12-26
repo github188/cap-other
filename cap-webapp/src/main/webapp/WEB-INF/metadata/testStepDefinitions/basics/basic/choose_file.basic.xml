@@ -1,0 +1,30 @@
+<basic src="element.txt" name="选择文件" type="testStepDefinitions.basics.basic.choose_file" icon="icon-cog-wheel-silhouette" group="common" desc="选择文件" definition="choose_file">
+    <createTime>1469606769723</createTime>
+    <modelId>testStepDefinitions.basics.basic.choose_file</modelId>
+    <modelName>choose_file</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+    </arg>
+    <arg valueType="String" required="true" name="filepath">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'filepath',
+                'name': 'filepath'
+            }
+]]></options>
+        </ctrl>
+    </arg>
+    <help><![CDATA[选择文件]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[选择文件    ${locator}    ${filepath}    #${desc}]]></macro>
+</basic>

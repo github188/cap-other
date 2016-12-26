@@ -1,0 +1,11 @@
+{
+	"chName":"会议室异常",
+	"createTime":1458556645771,
+	"description":"会议室异常",
+	"engName":"RoomException",
+	"message":"会议室异常",
+	"modelId":"com.comtop.meeting.exception.roomException",
+	"modelName":"roomException",
+	"modelPackage":"com.comtop.meeting",
+	"modelType":"exception"
+}

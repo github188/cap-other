@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Preferences>
+    <createTime>1451538757035</createTime>
+    <modelId>preference.config.preferenceConfig.Preferences</modelId>
+    <modelName>Preferences</modelName>
+    <modelPackage>preference.config</modelPackage>
+    <modelType>preferenceConfig</modelType>
+    
+    <!-- 父实体配置 -->
+    <subConfig>
+        <configKey>defaultParentEntityId</configKey>
+        <configValue></configValue>
+    </subConfig>
+    <!-- 父流程实体配置 -->
+    <subConfig>
+        <configKey>defaultWorkflowParentEntityId</configKey>
+        <configValue></configValue>
+    </subConfig>
+    <!-- 父流程实体匹配规则配置 -->
+    <subConfig>
+        <configKey>defaultWorkflowMatchRule</configKey>
+        <configValue>PROCESS_INS_ID,FLOW_STATE</configValue>
+    </subConfig>
+    <!-- 页面路径生成规则 -->
+    <subConfig>
+        <configKey>pagePrefixConfig</configKey>
+        <configValue>com.comtop.</configValue>
+    </subConfig>
+    <!-- 代码框架 -->
+    <subConfig>
+        <configKey>generateframework</configKey>
+        <configValue>jodd</configValue>
+    </subConfig>
+    <!-- jodd默认请求后缀 -->
+    <subConfig>
+        <configKey>joddPageUrlSuffix</configKey>
+        <configValue>.ac</configValue>
+    </subConfig>
+    <!-- spring默认请求后缀 -->
+    <subConfig>
+        <configKey>springPageUrlSuffix</configKey>
+        <configValue>.bpms</configValue>
+    </subConfig>
+    <!-- 是否执行soa远端服务 -->
+    <subConfig>
+        <configKey>callSoaService</configKey>
+        <configValue>false</configValue>
+    </subConfig>
+     <!-- 是否元数据一致性校验 -->
+    <subConfig>
+        <configKey>isConsistency</configKey>
+        <configValue>false</configValue>
+    </subConfig>
+    <!-- 代码生成工程路径 filePath -->
+    <subConfig>
+        <configKey>projectFilePath</configKey>
+        <configValue>D:/CAP/BM/code/CAP/cap-webapp</configValue>
+    </subConfig>
+    <!-- java代码路径 -->
+    <subConfig>
+        <configKey>javaMainFilePath</configKey>
+        <configValue>src/main/java/</configValue>
+    </subConfig>
+    <!-- 配置文件路径 -->
+    <subConfig>
+        <configKey>resourcesFilePath</configKey>
+        <configValue>src/main/resources/</configValue>
+    </subConfig>
+    <!-- 界面文件路径-->
+    <subConfig>
+        <configKey>webappFilePath</configKey>
+        <configValue>src/main/webapp/</configValue>
+    </subConfig>
+    <!-- 测试用例代码路径-->
+    <subConfig>
+        <configKey>testDemoCodePath</configKey>
+        <configValue>/src/test</configValue>
+    </subConfig>
+    <!-- 导入实体时，表前缀默认忽略值 -->
+    <subConfig>
+        <configKey>tablePrefixIngore</configKey>
+        <configValue>2</configValue>
+    </subConfig>
+    <!-- 导入实体时，表字段的前缀默认忽略值-->
+    <subConfig>
+        <configKey>tableColumnPrefixIngore</configKey>
+        <configValue>0</configValue>
+    </subConfig>
+    <!-- CAP主页面-->
+    <subConfig>
+        <configKey>capMainpage</configKey>
+        <configValue>/cap/ptc/index/CAPIndex.jsp</configValue>
+    </subConfig>
+    <!-- CAP登录页面-->
+    <subConfig>
+        <configKey>capLoginURL</configKey>
+        <configValue>/cap/ptc/login/jsp/CapLogin.jsp</configValue>
+    </subConfig>
+    <!-- 实体导入数据库驱动-->
+    <subConfig>
+        <configKey>driverClassName</configKey>
+        <configValue>oracle.jdbc.driver.OracleDriver</configValue>
+    </subConfig>
+    <!-- 实体导入数据库jdbcURL-->
+    <subConfig>
+        <configKey>jdbcURL</configKey>
+        <configValue></configValue>
+    </subConfig>
+    <!-- 实体导入数据库jdbcUserName-->
+    <subConfig>
+        <configKey>jdbcUserName</configKey>
+        <configValue></configValue>
+    </subConfig>
+    <!-- 实体导入数据库jdbcPassword-->
+    <subConfig>
+        <configKey>jdbcPassword</configKey>
+        <configValue></configValue>
+    </subConfig>
+    <!-- CAP生成代码的编译路径以及热加载文件变化监听路径，配置绝对路径；为空时，系统默认取/WEB-INF/classes目录-->
+    <subConfig>
+        <configKey>compileThermalPath</configKey>
+        <configValue></configValue>
+    </subConfig>
+    <!-- CUI发布服务路径-->
+    <subConfig>
+        <configKey>cuiServerURLPath</configKey>
+        <configValue>http://localhost:8080/</configValue>
+    </subConfig>
+    <!-- 界面原型图片导出路径-->
+    <subConfig>
+        <configKey>prototypeImagePath</configKey>
+        <configValue>src/main/webapp/prototype/</configValue>
+    </subConfig>
+</Preferences>

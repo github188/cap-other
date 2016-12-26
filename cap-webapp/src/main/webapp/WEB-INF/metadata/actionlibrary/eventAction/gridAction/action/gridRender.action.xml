@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.gridAction.action.gridRender</modelId>
+    <modelName>gridRender</modelName>
+    <modelPackage>actionlibrary.eventAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>自定义列渲染</cname>
+    <type>gridRender</type>
+	<description>grid列渲染方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(rd, index, col) { 
+	var content="";
+	<script name="before"/>
+	return content;
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

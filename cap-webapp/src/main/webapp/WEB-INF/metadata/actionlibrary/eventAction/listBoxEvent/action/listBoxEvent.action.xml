@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.listBoxEvent.action.listBoxEvent</modelId>
+    <modelName>listBoxEvent</modelName>
+    <modelPackage>actionlibrary.eventAction.listBoxEvent</modelPackage>
+    <modelType>action</modelType>
+    <cname>增加|删除|改变|双击事件</cname>
+	<description>listBox各种事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * listBox组件的各种事件均有以下value参数，且默认没有返回值。
+ * 事件为on_dbclick时，value数据格式为{}。
+ * 事件为on_select_change时，如果组件属性multi为true（多选），value数据格式为[{},....]，如果multi为false（单选），value数据格式为{}。
+ * 事件为on_add和on_remove时，value数据格式均为[{},....]
+ *
+ * @param value 被操作（增加、删除、改变、双击）的数据
+ */
+function {{ename}}(value) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

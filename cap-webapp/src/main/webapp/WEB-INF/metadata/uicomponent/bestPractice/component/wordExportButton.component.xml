@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <extend>uicomponent.common.component.button</extend>
+    <modelId>uicomponent.bestPractice.component.wordExportButton</modelId>
+    <modelName>wordExportButton</modelName>
+    <modelPackage>uicomponent.bestPractice</modelPackage>
+    <modelType>component</modelType>
+    <cname>word导出按钮</cname>
+	<group>bestPractice</group>
+	<description>Button组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>13</sort>
+	<properties>
+		<property>
+			<ename>label</ename>
+			<requried>true</requried>
+			<default>导出word</default>
+			<commonAttr>true</commonAttr>
+		</property>
+		<property>
+			<ename>id</ename>
+			<requried>false</requried>
+			<default>btnWorkExport</default>
+			<commonAttr>false</commonAttr>
+		</property>
+		<property>
+			<ename>name</ename>
+			<requried>false</requried>
+			<default>btnWorkExport</default>
+			<commonAttr>false</commonAttr>
+		</property>
+	</properties>
+	<events>
+		<event>
+	        <ename>on_click</ename>
+	        <!--系统内置行为类型-->
+	        <type></type>
+			<default>exportWord</default>
+	        <methodTemplate>actionlibrary.bestPracticeAction.action.exportWord</methodTemplate>
+	        <methodOption></methodOption>
+	        <commonAttr>true</commonAttr>
+		</event>
+	</events>
+</component>

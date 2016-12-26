@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.layout.component.tableLayout</extend>
+    <modelId>req.uicomponent.layout.component.tableLayout</modelId>
+    <modelName>TableLayout</modelName>
+    <modelPackage>req.uicomponent.layout</modelPackage>
+    <modelType>component</modelType>
+    <cname>表格布局</cname>
+	<ename>TableLayout</ename>
+	<group>layout</group>
+	<description>TableLayout组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+</component>

@@ -1,0 +1,34 @@
+<basic definition="should_be_equal" desc="两个对象是否相等" group="apielement" icon="icon-cog-wheel-silhouette" type="testStepDefinitions.basics.basic.should_be_equal" name="两个对象是否相等" src="api-element.txt">
+    <createTime>1470205793426</createTime>
+    <modelName>should_be_equal</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg desc="比较的第一个字符" name="obj1" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'obj1',
+                'name': 'obj1'
+            }
+]]></options>
+        </ctrl>
+        <help>比较的第一个字符</help>
+    </arg>
+    <arg desc=" 比较的第二个字符" name="obj2" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'obj2',
+                'name': 'obj2'
+            }
+]]></options>
+        </ctrl>
+        <help> 比较的第二个字符</help>
+    </arg>
+    <help><![CDATA[两个对象是否相等]]></help>
+    <lib>XML</lib>
+    <lib>ComtopLibrary.py</lib>
+    <lib>Collections</lib>
+    <lib>RequestsLibrary</lib>
+    <macro><![CDATA[两个对象是否相等    ${obj1}    ${obj2}    #${desc}]]></macro>
+</basic>

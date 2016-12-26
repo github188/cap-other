@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WtDocConfig diffKey="概要设计" version="1.0" name="概要设计说明书模板" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="../classes/DocConfig.xsd">
+    <MarkText>^\s*数据项信息.*[：:]|^\s*数据项说明.*[：:]|.*关联信息.*[：:]</MarkText>
+    <WtSection name="封面"/>
+    <WtSection name="目录"/>
+    <WtSection name="正文">
+        <WtChapter title="综述" type="FIXED">
+            <WtChapter title="编制目的" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.makePurpose')">
+            	<span mappingTo="dsg.value"/>
+            </WtChapter>
+            <WtChapter title="适用范围" type="FIXED"  mappingTo="dsg=#DefaultContentSeg(key='hld.suitRange')">
+            	<span mappingTo="dsg.value"/>
+            </WtChapter>
+            <WtChapter title="参考依据" type="FIXED"  mappingTo="dsg=#DefaultContentSeg(key='hld.reference')">
+            	<span mappingTo="dsg.value"/>
+            </WtChapter>
+            <WtChapter title="约束定义" type="FIXED" >
+                <WtChapter title="文字符号约束" type="FIXED" />
+                <WtChapter title="图元约束" type="FIXED"/>
+                <WtChapter title="层次定义" type="FIXED"/>
+            </WtChapter>
+            <WtChapter title="导读说明" type="FIXED"  mappingTo="dsg=#DefaultContentSeg(key='hld.readingInstructions')">
+            	<span mappingTo="dsg.value"/>
+            </WtChapter>
+        </WtChapter>
+        <WtChapter title="系统架构规划" type="FIXED">
+            <WtChapter title="工作背景" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.sys_architecture_plant_working_background')">
+	       		<span mappingTo="dsg.value"/>
+	        </WtChapter>
+            <WtChapter title="设计原则" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.sys_architecture_plant_design_philosophy')">
+	       		<span mappingTo="dsg.value"/>
+	        </WtChapter>
+            <WtChapter title="系统架构总览" type="FIXED">
+                <WtChapter title="架构需求" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.sys_architecture_wgi')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="应用架构设计" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.sys_architecture_application')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="数据架构设计" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.sys_architecture_data')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="技术架构设计" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.sys_architecture_tech')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+            </WtChapter>
+        </WtChapter>
+        <WtChapter title="应用架构" type="FIXED">
+            <WtChapter title="应用域和应用" type="FIXED"/>
+            <WtChapter title="应用模块" type="FIXED">
+           	 <WtGraphic mappingTo="$CAPDocDBHelper_getGraphic2DocByType('APP_MODULE_STURCE',$packageId,$cookiesJsonStr,$httpUrl)"/>
+            </WtChapter>
+            <WtChapter title="应用功能" type="FIXED">
+                <WtChapter title="功能优化设计" type="FIXED" >
+                	<table name="功能优化设计" type="EXT_ROWS" mappingTo="am[]=#AppModule(packageId=$packageId)">
+						<tr>
+		                	<td colspan="2">二级应用模块	</td>
+		                	<td colspan="2">一级应用功能</td>
+		                	<td colspan="4">对应的需求规格中的功能项或功能子项</td>
+	                	</tr>
+	                	<tr>
+		                	<td mappingTo="am.secondLevelModuleCode" >编码</td>
+		                	<td mappingTo="am.secondLevelModuleName" >名称</td>
+		                	<td mappingTo="am.firstLevelAppCode" >编码</td>
+		                	<td mappingTo="am.firstLevelAppName" >名称</td>
+		                	<td mappingTo="am.funcSubItemCodes" >功能子项编码</td>
+		                	<td mappingTo="am.funcSubItemNames" >功能子项名称</td>
+		                	<td mappingTo="am.funcItemCodes" >功能项编码</td>
+		                	<td mappingTo="am.funcItemNames" >功能项名称</td>
+	                	</tr>
+                	</table>
+                </WtChapter>
+                <WtChapter  type="DYNAMIC" mappingTo="p1[]=#Package(parentId=$packageId,type=3,typeLevel=1)" title="p1.name">
+               		<WtGraphic mappingTo="$CAPDocDBHelper_getGraphic2DocByType('APP_MODULE_STURCE',p1.id,$cookiesJsonStr,$httpUrl)"/> 
+                    <WtChapter  type="DYNAMIC" mappingTo="p2[]=#Package(parentId=p1.id,type=3,typeLevel=1)" title="p2.name">
+                     	<WtGraphic mappingTo="$CAPDocDBHelper_getGraphic2DocByType('APP_MODULE_STURCE',p2.id,$cookiesJsonStr,$httpUrl)"/> 
+                    	<table name="功能设计" type="EXT_ROWS" mappingTo="p3[]=#Package(parentId=p2.id,type=2,typeLevel=1,cascadeQuery=1)">
+	                    	<tr>
+			                	<td mappingTo="p3.code" >编号</td>
+			                	<td mappingTo="p3.name" >模块/功能名称</td>
+			                	<td mappingTo="" >依赖模块/功能</td>
+			                	<td mappingTo="p3.description" >模块/功能内容描述</td>
+	                		</tr>
+                    	</table>
+                    </WtChapter>
+						<table name="功能设计" type="EXT_ROWS" mappingTo="p4[]=#Package(parentId=p1.id,type=2,typeLevel=1)">
+	                    	<tr>
+			                	<td mappingTo="p4.code" >编号</td>
+			                	<td mappingTo="p4.name" >模块/功能名称</td>
+			                	<td mappingTo="" >依赖模块/功能</td>
+			                	<td mappingTo="p4.description" >模块/功能内容描述</td>
+	                		</tr>
+                    	</table>
+                </WtChapter>
+            </WtChapter>
+            <WtChapter title="应用实现" type="FIXED">
+                <WtChapter title="应用实现视图" type="FIXED"/>
+                <WtChapter title="组件清单" type="FIXED">
+                	<table name="组件清单" type="EXT_ROWS" mappingTo="component[]=#Component(packageId=$packageId)">
+                		<tr>
+		                	<td>组件编号</td>
+		                	<td>组件名称</td>
+		                	<td>支撑的应用功能</td>
+		                	<td>非功能性要求</td>
+		                	<td>部署层级</td>
+                		</tr>
+                	</table>
+                </WtChapter>
+                <WtChapter title="服务清单" type="FIXED">
+                	<table name="服务清单" type="EXT_ROWS" mappingTo="service1[]=#Service(packageId=$packageId)">
+	                	<tr>
+		                	<td mappingTo="service1.code">服务编号</td>
+		                	<td mappingTo="service1.cnName">服务名称</td>
+		                	<td>对内/对外</td>
+		                	<td>对应的组件</td>
+		                	<td>支撑的应用功能</td>
+	                	</tr>
+                	</table>
+                </WtChapter>
+            </WtChapter>
+            <WtChapter title="应用交互" type="FIXED">
+            	<table name="应用交互" type="EXT_ROWS" mappingTo="interaction[]=#Interaction(packageId=$packageId)">
+            		<tr>
+	                	<td>编号</td>
+	                	<td>交互名称</td>
+	                	<td>源应用</td>
+	                	<td>源功能</td>
+	                	<td>目标应用</td>
+	                	<td>目标功能</td>
+	                	<td>源到目标信息</td>
+	                	<td>目标返回信息</td>
+	                	<td>交互描述</td>
+                	</tr>
+            	</table>
+            </WtChapter>
+            <WtChapter title="应用集成" type="FIXED">
+                <WtChapter title="系统集成" type="FIXED">
+                	<table  name="系统集成" type="EXT_ROWS" mappingTo="systemIntegration[]=#SystemIntegration(packageId=$packageId)">
+                		<tr>
+		                	<td>系统集成编号</td>
+		                	<td colspan="5">描述</td>
+		                	<td>集成方式</td>
+		                	<td>对应应用交互</td>
+		                	<td>实现方式</td>
+	                	</tr>
+	                	<tr>
+		                	<td/>
+		                	<td>源系统</td>
+		                	<td>目标系统</td>
+		                	<td>频率</td>
+		                	<td>实时性</td>
+		                	<td>数据量</td>
+		                	<td/>
+		                	<td/>
+		                	<td/>
+	                	</tr>
+                	</table>
+                </WtChapter>
+                <WtChapter title="组件集成" type="FIXED">
+                	<table name="组件集成"  type="EXT_ROWS" mappingTo="componetIntegration[]=#ComponetIntegration(packageId=$packageId)">
+	                	<tr>
+		                	<td>组件集成编号</td>
+		                	<td colspan="5">描述</td>
+		                	<td>集成方式</td>
+		                	<td>对应应用交互（如果是与非总体架构中的应用系统交互，本列可不填）</td>
+	                	</tr>
+	                	<tr>
+		                	<td/>
+		                	<td>源系统</td>
+		                	<td>源系统组件/服务</td>
+		                	<td>目标系统</td>
+		                	<td>目标系统组件/服务</td>
+		                	<td>传递的数据（与逻辑实体一致）</td>
+		                	<td/>
+		                	<td/>
+	                	</tr>
+                	</table>
+                </WtChapter>
+            </WtChapter>
+            <WtChapter title="应用角色" type="FIXED">
+            	<table name="应用角色" type="EXT_ROWS" mappingTo="constraint[]=#RoleDataConstraint(packageId=$packageId)">
+            		<tr>
+	               		<td mappingTo="constraint.code" >编号</td>
+						<td mappingTo="constraint.name" >角色名称</td>
+						<td mappingTo="constraint.remark" >角色说明</td>
+						<td mappingTo="" >数据约束</td>
+						<td mappingTo="" >对应组织岗位</td>
+					</tr>
+            	</table>
+            </WtChapter>
+            <WtChapter title="应用分布" type="FIXED"/>
+        </WtChapter>
+        <WtChapter title="数据架构" type="FIXED">
+            <WtChapter title="数据域" type="FIXED" />
+            <WtChapter title="数据主题" type="FIXED"/>
+            <WtChapter title="概念数据模型" type="FIXED">
+                <WtChapter type="DYNAMIC" mappingTo="p[]=#Package(parentId=$packageId,type=2,typeLevel=1,cascadeQuery=1)" title="p.name">
+                	<WtGraphic mappingTo="$CAPDocDBHelper_getDataBaseErGraphHtml(p.id,$cookiesJsonStr,$httpUrl)"/>
+                 </WtChapter>
+            </WtChapter>
+            <WtChapter title="逻辑数据模型" type="FIXED">
+                 <WtChapter type="DYNAMIC" mappingTo="p[]=#Package(parentId=$packageId,type=2,typeLevel=1,cascadeQuery=1)" title="p.name">
+                 	<table  name="逻辑数据模型" type="EXT_ROWS" mappingTo="dataItem[]=#EntityItem(packageId=p.id)">
+						<tr>
+	                		<td mappingTo="dataItem.dbObjectCode" >表代码</td>
+							<td mappingTo="dataItem.dbObjectName" >表名称</td>
+							<td mappingTo="dataItem.dbObjectDescription" >表说明</td>
+							<td mappingTo="dataItem.fieldName" >字段名</td>
+							<td mappingTo="dataItem.fieldCode" >字段代码</td>
+							<td mappingTo="dataItem.fieldDescription" >注释</td>
+							<td mappingTo="dataItem.dataType" >数据类型</td>
+							<td mappingTo="dataItem.primaryKey" >主键</td>
+							<td mappingTo="dataItem.foreignKey" >外键</td>
+							<td mappingTo="dataItem.allowNull" >非空</td>
+							<td mappingTo="dataItem.mainDataItem" >是否主数据项</td>
+							<td mappingTo="dataItem.codeStandard" >引用编码标准</td>
+							<td mappingTo="dataItem.qualityReq" >数据质量要求</td>
+							<td mappingTo="dataItem.bizObjects" >对应的业务对象</td>
+							<td mappingTo="dataItem.bizObjectDataItem" >数据项</td>
+							<td mappingTo="dataItem.dbObjectName" >对应的基本表名称</td>
+							<td mappingTo="dataItem.code" >属性标识</td>
+							<td mappingTo="dataItem.cnName" >属性名称</td>
+						</tr>
+					</table>
+                 </WtChapter>
+            </WtChapter>
+            <WtChapter title="数据分布" type="FIXED">
+                <WtChapter title="概念实体分布" type="FIXED">
+                	<table name="概念实体分布"  type="EXT_COLS" mappingTo="ed[]=#EntityDistribution(packageId=$packageId)">
+	                	<tr>
+	                		<td mappingTo="ed.firstLevelAppName" rowspan="2" mergeCellType="VERTICAL">主题</td>
+	                		<td rowspan="2" mappingTo="ed.name">概念实体</td>
+	                		<td extCell="true" extData="ext[]=#Package(parentId=$packageId,type=3,typeLevel=1)" headerLabel="ext.name" />
+	                	</tr>
+	                	<tr>
+	                		<td  extCell="true" mappingTo="ed.distributionMap" extData="ext2[]=#Package(parentId=ext.id,type=2,typeLevel=1,cascadeQuery=1)" headerLabel="ext2.name" valueKey="ext2.id"/>
+	                	</tr>
+                	</table>
+                </WtChapter>
+                <WtChapter title="逻辑模型分布" type="FIXED">
+                	<table name="逻辑模型分布"  type="EXT_ROWS" mappingTo="eid[]=#EntityItemDistribution(packageId=$packageId)">
+	                	<tr>
+	                		<td width="1.5" mappingTo="eid.sortIndex">序号</td>
+	                		<td mappingTo="eid.systemName" mergeCellType="VERTICAL">应用</td>
+	                		<td mappingTo="eid.moduleName"  mergeCellType="VERTICAL">模块/功能名称</td>
+	                		<td mappingTo="eid.entityCnName" mergeCellType="VERTICAL">逻辑模型</td>
+	                		<td mappingTo="eid.cnName">字段名</td>
+	                		<td mappingTo="eid.distributeRule">创建/引用</td>
+	                	</tr>
+                	</table>
+                </WtChapter>
+                <WtChapter title="逻辑模型与概念实体对应关系" type="FIXED">
+                	<WtChapter type="DYNAMIC" mappingTo="ds[]=#Package(parentId=$packageId,type=3,typeLevel=1)" title="ds.name">
+                		<table name="逻辑模型与概念实体对应关系"  type="EXT_ROWS" mappingTo="em[]=#Entity(packageId=ds.id)">
+                			<tr>
+		                		<td mappingTo="em.cnName">逻辑实体</td>
+		                		<td mappingTo="em.cnName">对应的概念实体</td>
+		                		<td mappingTo="em.bizObjectNames">对应的业务对象</td>
+	                		</tr>
+                		</table>
+                	</WtChapter>
+                </WtChapter>
+                <WtChapter title="数据流转" type="FIXED">
+                	<table name="数据流转" type="EXT_COLS" mappingTo="dataFlow[]=#DataFlow(packageId=$packageId)">
+	                	<tr>
+	                		<td mappingTo="dataFlow.entityCnName">逻辑实体</td>
+	                		<td extCell="true" mappingTo="dataFlow.flowMap" extData="ext[]=#Package(parentId=$packageId,type=2,typeLevel=1,cascadeQuery=1)" headerLabel="ext.name" valueKey="ext.id"/>
+	                	</tr>
+                	</table>
+                </WtChapter>
+            </WtChapter>
+        </WtChapter>
+        <WtChapter title="技术架构" type="FIXED">
+            <WtChapter title="概述" type="FIXED">
+                <WtChapter title="技术路线" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.tech_architecture_tech_route')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="逻辑模型" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.tech_architecture_logic_model')">
+		       		<span mappingTo="dsg.value"/>
+		       		<WtChapter title="用户交互层" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.tech_architecture_logic_model_ui')">
+			       		<span mappingTo="dsg.value"/>			       		
+			        </WtChapter>
+			        <WtChapter title="业务功能层" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.tech_architecture_logic_model_buss')">
+			       		<span mappingTo="dsg.value"/>			       		
+			        </WtChapter>
+			        <WtChapter title="服务接入层" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.tech_architecture_logic_model_service_interface')">
+			       		<span mappingTo="dsg.value"/>			       		
+			        </WtChapter>
+			        <WtChapter title="服务实现层" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.tech_architecture_logic_model_service_impl')">
+			       		<span mappingTo="dsg.value"/>			       		
+			        </WtChapter>
+			        <WtChapter title="系统资源层" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.tech_architecture_logic_model_res')">
+			       		<span mappingTo="dsg.value"/>			       		
+			        </WtChapter>
+			        <WtChapter title="企业信息集成平台" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.tech_architecture_logic_model_tbi')">
+			       		<span mappingTo="dsg.value"/>			       		
+			        </WtChapter>
+		        </WtChapter>
+                <WtChapter title="实现方案" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.tech_architecture_impl_scheme')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+            </WtChapter>
+            <WtChapter title="技术平台接入设计" type="FIXED">
+	            	<table name="技术平台接入设计"  type="FIXED" mappingTo="dataItem[]=#PlafFormRequirement(packageId=$packageId)">
+		            	<tr><td>需求名称</td><td>所需平台</td><td>功能性需求</td><td>非功能性需求</td></tr>
+						<tr><td>开发平台需求</td><td/><td/><td/></tr>
+						<tr><td>用户交互需求</td><td/><td/><td/></tr>
+						<tr><td>应用支撑需求</td><td/><td/><td/></tr>
+						<tr><td>系统集成需求</td><td/><td/><td/></tr>
+						<tr><td>数据管理需求</td><td/><td/><td/></tr>
+						<tr><td>安全管理需求</td><td/><td/><td/></tr>
+						<tr><td>系统运维需求</td><td/><td/><td/></tr>
+	            	</table>
+                <WtChapter title="开发平台需求" type="FIXED">
+                    <WtChapter title="开发技术路线" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.development_platform_requirements_tech_roadmap')">
+				    	<span mappingTo="dsg.value"/>
+				    </WtChapter>
+                    <WtChapter title="开发环境" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.development_platform_requirements_development_env')">
+				    	<span mappingTo="dsg.value"/>
+				    </WtChapter>
+                    <WtChapter title="质量工具" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.development_platform_requirements_quality_tools')">
+				    	<span mappingTo="dsg.value"/>
+				    </WtChapter>
+                </WtChapter>
+                <WtChapter title="用户交互需求" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.user_interaction_requirements')">
+			    	<span mappingTo="dsg.value"/>
+			    </WtChapter>
+                <WtChapter title="应用支撑需求" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.application_support_demand')">
+			    	<span mappingTo="dsg.value"/>
+			    </WtChapter>
+                <WtChapter title="系统集成需求" type="FIXED">
+                    <WtChapter title="集成方式" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.integration_mode')">
+			       		<span mappingTo="dsg.value"/>
+			        </WtChapter>
+                    <WtChapter title="内部系统集成" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.internal_system_integration')">
+			       		<span mappingTo="dsg.value"/>
+			        </WtChapter>
+                    <WtChapter title="4A平台接入需求" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.4a_access_requirements')">
+			       		<span mappingTo="dsg.value"/>
+			        </WtChapter>
+                    <WtChapter title="门户接入需求" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.portal_access_requirements')">
+			       		<span mappingTo="dsg.value"/>
+			        </WtChapter>
+                    <WtChapter title="内外网数据安全交换平台接入需求" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.inout_data_exchange_platform_requirements')">
+			       		<span mappingTo="dsg.value"/>
+			        </WtChapter>
+                </WtChapter>
+                <WtChapter title="数据管理需求" type="FIXED">
+                    <WtChapter title="主数据资源管理平台需求" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.master_data_platform_requirements')">
+			       		<span mappingTo="dsg.value"/>
+			        </WtChapter>
+                </WtChapter>
+                <WtChapter title="安全管理需求" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.safety_management_requirements')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="系统运维需求" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.operation_maintenance_requirements')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+            </WtChapter>
+            <WtChapter title="基础设施使用设计" type="FIXED">
+                <WtChapter title="部署单元设计" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.deployment_unit_design')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="部署节点设计" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.deployment_node_design')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+            </WtChapter>
+            <WtChapter title="非功能设计" type="FIXED">
+                <WtChapter title="高稳定" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.not_functional_Stable')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="高性能" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.not_functional_performance')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="高安全" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.not_functional_security')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="易维护" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.not_functional_maintain')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+                <WtChapter title="易扩展" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='hld.not_functional_extend')">
+		       		<span mappingTo="dsg.value"/>
+		        </WtChapter>
+            </WtChapter>
+            <WtChapter title="附录：与总体架构和可研差异表" type="FIXED"/>
+        </WtChapter>
+    </WtSection>
+</WtDocConfig>

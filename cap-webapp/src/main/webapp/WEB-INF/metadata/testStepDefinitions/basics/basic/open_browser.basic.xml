@@ -1,0 +1,40 @@
+<basic src="page.txt" name="打开浏览器" type="testStepDefinitions.basics.basic.open_browser" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="打开浏览器" definition="open_browser">
+    <createTime>1469606781323</createTime>
+    <modelId>testStepDefinitions.basics.basic.open_browser</modelId>
+    <modelName>open_browser</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="url" desc="登录地址">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'url',
+                'name': 'url'
+            }
+]]></options>
+        </ctrl>
+        <help>登录地址</help>
+    </arg>
+    <arg valueType="String" required="true" name="browser" desc="浏览器类型">
+        <ctrl type="Pulldown">
+            <options><![CDATA[
+            {
+                'id': 'browser',
+                'name': 'browser',
+                'datasource': "[
+						{id:'firefox',text:'FireFox'},
+						{id:'ie',text:'Internet Explorer'},
+						{id:'chrome',text:'Google Chrome'},
+						{id:'opera',text:'Opera'},
+						{id:'${browser}',text:'${browser}'}
+					]"
+            }
+            ]]></options>
+        </ctrl>
+        <help>浏览器类型</help>
+    </arg>
+    <help><![CDATA[打开浏览器]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[打开浏览器    ${url}    ${browser}    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

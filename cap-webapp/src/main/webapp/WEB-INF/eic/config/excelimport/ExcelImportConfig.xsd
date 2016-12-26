@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- ***********************Excel导入配置***************************** -->
+	<xs:element name="config">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="excel" minOccurs="0" maxOccurs="unbounded" />
+				<!-- ***********************引入其他配置文件***************************** -->
+				<xs:element name="import" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							引入其他配置文件，可以实现各个模块的配置分离。
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="path" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ***********************WorkBook配置***************************** -->
+	<xs:element name="excel">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="vo_validator_operator" />
+				<!-- ***********************Sheet配置***************************** -->
+				<xs:element name="sheet" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:group ref="vo_validator_operator" />
+							<!-- ***********************Column配置***************************** -->
+							<xs:element name="column" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="convertor" minOccurs="0"
+											maxOccurs="1" />
+										<xs:element ref="validator" minOccurs="0"
+											maxOccurs="unbounded" />
+										<xs:element ref="exproperty" minOccurs="0"
+											maxOccurs="unbounded" />
+									</xs:sequence>
+									<xs:attribute name="property" type="xs:string"
+										use="required" />
+									<xs:attribute name="colIndex" type="xs:positiveInteger"
+										use="required" />
+									<xs:attribute name="dataType" type="xs:string"
+										default="java.lang.String" />
+									<xs:attribute name="pattern" type="xs:string" />
+									<xs:attribute name="defaultValue" type="xs:string" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" />
+						<xs:attribute name="startRowIndex" type="xs:long"
+							default="2" />
+						<xs:attribute name="minColumn" type="xs:positiveInteger" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="replace" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="name">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="replace" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="maxBlankRow" type="xs:positiveInteger" default="3"/>
+			<xs:attribute name="transSupport" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:group name="vo_validator_operator">
+		<xs:sequence>
+			<xs:element name="vo" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						业务VO，对业务数据进行封装，可以不配置。如果没有指定业务VO，那么默认封装为Map格式。
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="className" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="validator" minOccurs="0" maxOccurs="1" />
+			<xs:element ref="operator" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:group>
+
+	<xs:element name="convertor">
+		<xs:annotation>
+			<xs:documentation>
+				数据转换器器，可以配置名称，详见枚举convertor-name。也可以实现自定义的转换器，并配置相应的全类名。
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="name" type="convertor-name" />
+			<xs:attribute name="className" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="validator">
+		<xs:annotation>
+			<xs:documentation>
+				数据验证器，可以配置名称，详见枚举validator-name。并且指定相应验证属性。也可以实现自定义的验证器，并配置相应的全类名。
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="name" type="validator-name" />
+			<xs:attribute name="className" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="operator">
+		<xs:annotation>
+			<xs:documentation>
+				数据操作者，目前只支持业务数据操作者，所配置的类名称必须是com.comtop.eic.core.excelimport.operator.IBizOperator接口的实现类
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="className" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="param">
+		<xs:annotation>
+			<xs:documentation>
+				参数元素，一般用来指定转换器或者验证器中所需参数的值。其中name必须是转换器或者验证器实现中提供Set方法的属性。
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="value" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="exproperty">
+		<xs:annotation>
+			<xs:documentation>
+				扩展属性（暂不支持）。
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="convertor" minOccurs="0" />
+				<xs:element ref="validator" minOccurs="0" />
+			</xs:choice>
+			<xs:attribute name="property" type="xs:string" use="required" />
+			<xs:attribute name="dataType" type="xs:string" />
+			<xs:attribute name="defaultValue" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ***********************转换器名称枚举***************************** -->
+	<xs:simpleType name="convertor-name">
+		<xs:annotation>
+			<xs:documentation>
+				转换器名称可以指定以下值 ：{
+				基本数据类型 ：{boolean, byte, char,
+				double, float,int,long,short},
+				包装数据类型：{Boolean,Byte,Character,Double,Float,Integer,Long,Short,BigDecimal,BigInteger},
+				常用数据类型:{String,Date,Class,sqlDate,sqlTime,sqlTimestamp,
+				数据导入特有转换器:{cell,row}};
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<!--基本数据类型  -->
+			<xs:enumeration value="boolean" />
+			<xs:enumeration value="byte" />
+			<xs:enumeration value="char" />
+			<xs:enumeration value="double" />
+			<xs:enumeration value="float" />
+			<xs:enumeration value="int" />
+			<xs:enumeration value="long" />
+			<xs:enumeration value="short" />
+			<!-- 包装数据类型 -->
+			<xs:enumeration value="Boolean" />
+			<xs:enumeration value="Byte" />
+			<xs:enumeration value="Character" />
+			<xs:enumeration value="Double" />
+			<xs:enumeration value="Float" />
+			<xs:enumeration value="Integer" />
+			<xs:enumeration value="Long" />
+			<xs:enumeration value="Short" />
+			<xs:enumeration value="BigDecimal" />
+			<xs:enumeration value="BigInteger" />
+			<!-- 常用数据类型 -->
+			<xs:enumeration value="String" />
+			<xs:enumeration value="Date" />
+			<xs:enumeration value="Class" />
+			<xs:enumeration value="sqlDate" />
+			<xs:enumeration value="sqlTime" />
+			<xs:enumeration value="sqlTimestamp" />
+			<!-- 数据导入特有转换器-->
+			<xs:enumeration value="cell" />
+			<xs:enumeration value="row" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- ***********************验证器名称枚举***************************** -->
+	<xs:simpleType name="validator-name">
+		<xs:annotation>
+			<xs:documentation>
+				验证器名称可以指定以下值：{
+				必填验证器：{ required, requiredstring},
+				数值范围验证器：{byte,short, int, float,long,double,biginteger,bigdecimal},
+				日期范围验证器：{date,sqldate,sqltime,sqltimestamp},
+				字符长度验证器:{stringlength,stringbytelength} ,
+				正则验证器:{regex,email,phone,zip}
+				};
+            </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<!--必填字段验证器  -->
+			<xs:enumeration value="required" />
+			<xs:enumeration value="requiredstring" />
+			<!-- 数值范围验证器 -->
+			<xs:enumeration value="byte" />
+			<xs:enumeration value="short" />
+			<xs:enumeration value="int" />
+			<xs:enumeration value="float" />
+			<xs:enumeration value="long" />
+			<xs:enumeration value="double" />
+			<xs:enumeration value="biginteger" />
+			<xs:enumeration value="bigdecimal" />
+			<!-- 日期范围验证器 -->
+			<xs:enumeration value="date" />
+			<xs:enumeration value="sqldate" />
+			<xs:enumeration value="sqltime" />
+			<xs:enumeration value="sqltimestamp" />
+			<!-- 字符长度验证器 -->
+			<xs:enumeration value="stringlength" />
+			<xs:enumeration value="stringbytelength" />
+			<!-- 正则验证器 -->
+			<xs:enumeration value="regex" />
+			<xs:enumeration value="email" />
+			<xs:enumeration value="phone" />
+			<xs:enumeration value="zip" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

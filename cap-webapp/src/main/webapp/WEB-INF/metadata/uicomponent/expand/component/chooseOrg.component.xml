@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.expand.component.chooseOrg</modelId>
+    <modelName>ChooseOrg</modelName>
+    <modelPackage>uicomponent.expand</modelPackage>
+    <modelType>component</modelType>
+    <cname>组织选择标签</cname>
+	<ename>ChooseOrg</ename>
+	<group>expand</group>
+	<description>ChooseOrg组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<hasInputType>true</hasInputType>
+	<sort>302</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+		<list>/top/sys/usermanagement/orgusertag/js/choose.js</list>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+		<list>/top/sys/dwr/interface/ChooseAction.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+		<list>/top/sys/usermanagement/orgusertag/css/choose.css</list>
+	</css>
+	<layoutType>
+		<list>form</list>
+		<list>edittype</list>
+	</layoutType>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>ChooseOrg</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>数据绑定</cname>
+			<ename>databind</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>创建json对像，并在要绑定的组件上用databind关联绑定属性。</description>
+			<commonAttr>true</commonAttr>
+			<hide>true</hide>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'databind',
+						'name': 'databind',
+						'editable' :true,
+						'ng-model':'data.databind',
+						'on_iconclick':'openDataStoreSelect',
+						'validate': "[{type:'required',rule:{m:'不能为空'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+				<regular>
+					<entry>
+					    <key>\.([\w]*)$</key>
+					    <value></value>
+					</entry>
+				</regular>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>保存人员id值的隐藏域名</cname>
+			<ename>idName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>保存人员id值的隐藏域名。选择多个时，多个值是英文”;”号分割。说明：此值可指定为input元素的的id或name，优先以id使用，id查不到时，按照name使用。</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'idName',
+						'name': 'idName',
+						'ng-model':'data.idName',
+						'on_iconclick':'openDataStoreSelect',
+						'validate': "[{type:'required',rule:{m:'不能为空'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>保存人员name值的隐藏域名</cname>
+			<ename>valueName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>保存人员name值的隐藏域名。选择多个时，多个值是英文”;”号分割。说明：此值可指定为input元素的的id或name，优先以id使用，id查不到时，按照name使用。</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'valueName',
+						'name': 'valueName',
+						'ng-model':'data.valueName',
+						'on_iconclick':'openDataStoreSelect',
+						'validate': "[{type:'required',rule:{m:'不能为空'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>保存部门code值的隐藏域名</cname>
+			<ename>opts</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>此属性用来指定选择值后其它值的保存隐藏域信息。目前只支持保存orgcode值。其书写形式为：opts=”{‘codeName’:’要保存code值的隐藏域元素名称/id’}” 。其中红色字体部分为对应的隐藏域元素名称/id，其它部分固定，书写时要注意此格式。</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'opts',
+						'name': 'opts',
+						'ng-model':'data.opts',
+						'on_iconclick':'openDataStoreSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+				<regular>
+					<entry>
+					    <key>\{'codeName':[\s]*'([\w-\.]*)'\}</key>
+					    <value>$1</value>
+					</entry>
+				</regular>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>验证规则</cname>
+			<ename>validate</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>校验函数，如：<![CDATA[<br/>[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'required', 'rule':{m: '缺陷名称不能为空'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'length', 'rule':{max:3,maxm: '缺陷名称小余3个字符'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'numeric', 'rule':{'oi':true,'notim':'学号必是数字'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'numeric', 'rule':{'min':5.4,'max':10.2,minm:'学号应该大于等于5.4',maxm:'学号应该小余等于10'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'format', 'rule':{pattern: '(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)',m: 'IP输入不合法'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'custom', 'rule':{against:'input_custom_validate',m:'输入的学号必须大于10000'}}<br/>]]]></description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'validate',
+						'name': 'validate',
+						'ng-model':'data.validate',
+						'on_iconclick':'openValidateAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>选择模式</cname>
+			<ename>chooseMode</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>标签的选择模式：1 单选；0 多选；N>1 最多选择N个。</description>
+			<commonAttr>true</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'chooseMode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'chooseMode',
+						'ng-model':'data.chooseMode',
+						'must_exist': false,
+						'datasource' :"[{id:'1',text:'单选'},{id:'0',text:'多选'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否允许输入外部数据</cname>
+			<ename>isAllowOther</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否允许输入外部数据。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'isAllowOther',
+						'name': 'isAllowOther',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.isAllowOther'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否选中所有下级节点</cname>
+			<ename>childSelect</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否选中所有下级节点。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'childSelect',
+						'name': 'childSelect',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.childSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否允许快速匹配查询</cname>
+			<ename>isSearch</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>外围框是否支持快速匹配查询。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'isSearch',
+						'name': 'isSearch',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.isSearch'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>组织结构id</cname>
+			<ename>orgStructureId</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组织结构ID，只能为数字、字母和下划线。常用于区分是否外协单位。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'orgStructureId',
+						'name': 'orgStructureId',
+						'ng-model':'data.orgStructureId'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>根节点id</cname>
+			<ename>rootId</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>人员选择树的根节点id。只能为数字、字母、下划线。通常用来限制显示某个组织下的人员，则此属性值为指定的组织id。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'rootId',
+						'name': 'rootId',
+						'ng-model':'data.rootId'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>默认根节点id</cname>
+			<ename>defaultOrgId</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>默认根节点id。返回上级部门用到。与rootId配合使用，defaultOrgId需要是rootId的下级部门，只能为数字、字母和下划线。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'defaultOrgId',
+						'name': 'defaultOrgId',
+						'ng-model':'data.defaultOrgId'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>表单名称</cname>
+			<ename>formName</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>表单名称。与idName\valueName\opts属性结合使用，用于指定隐藏域所在的form。不指定formName时，idName\valueName\opts中需要使用的是元素的id属性。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'formName',
+						'name': 'formName',
+						'ng-model':'data.formName'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>保存人员name值的隐藏域名</cname>
+			<ename>maxLength</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>input框允许输入的最大长度，与isAllowOther配合使用，用来限制input框输入的长度。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'maxLength',
+						'name': 'maxLength',
+						'ng-model':'data.maxLength'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否允许快速匹配查询</cname>
+			<ename>canSelect</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否允许弹出选择框进行选择。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'canSelect',
+						'name': 'canSelect',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.canSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>计算方法</cname>
+			<ename>byByte</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>input框最大输入长度计算方法。true 按字节计算 false 按字符计算。与maxLength配合使用。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'byByte',
+						'name': 'byByte',
+						'radio_list': [{
+							'text': '字节',
+							'value': true
+						},{
+							'text': '字符',
+							'value': false
+						}],
+						'ng-model':'data.byByte'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>文本模式</cname>
+			<ename>textmode</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件是否为文本模式，默认false非文本模式。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'textmode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'textmode',
+						'ng-model':'data.textmode',
+						'datasource' :"[{id:'true',text:'文本模式'},{id:'false',text:'非文本模式'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>展示层级</cname>
+			<ename>showLevel</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组织标签中输入框的展示层级,top_organization表的org_type字段, -1:当前选中的节点名, 1:全路径展示, 其他数字为展示的初始层级 如：组织a99的全路径：深圳供电局有限公司/www/qqqqq/A88/a99 showLevel=-1，显示： a99 showLevel=1，显示：深圳供电局有限公司/www/qqqqq/A88/a99 showLevel=3，显示：www/qqqqq/A88/a99。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'showLevel',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'showLevel',
+						'ng-model':'data.showLevel',
+						'datasource' :"[{id:'-1',text:'当前选中的节点名'},{id:'1',text:'全路径展示'},{id:'2',text:'展示的初始层级'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示顺序</cname>
+			<ename>showOrder</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>路径显示顺序，reverse:倒序，order:正序 假设选中的节点为:a99,showLevel值为1,a99的全路径：深圳供电局有限公司/www/qqqqq/A88/a99 值为order，显示：深圳供电局有限公司/www/qqqqq/A88/a99 值为reverse，显示：a99/A88/ qqqqq/www/深圳供电局有限公司。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'showOrder',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'showOrder',
+						'ng-model':'data.showOrder',
+						'datasource' :"[{id:'order',text:'order'},{id:'reverse',text:'reverse'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>级别过滤</cname>
+			<ename>levelFilter</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组织top_organization表的字段,org_type。默认值999，表示不过滤。 数值越小，表示级别越高， 最高的级别是集团级，数据为1。如果指定级别为3，则只显示<![CDATA[<]]>=3的组织。 非必须。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'levelFilter',
+						'name': 'levelFilter',
+						'ng-model':'data.levelFilter'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>不允许选择的组织</cname>
+			<ename>unselectableCode</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>指定哪些组织不允许选择。值为对应组织的code，多个组织code以”;”号分割。 指定后，则对应的组织不可以选择。非必须。默认所有组织都可以选择。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'unselectableCode',
+						'name': 'unselectableCode',
+						'ng-model':'data.unselectableCode'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否全名</cname>
+			<ename>isFullName</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>与valueName\showLevel属性配合使用。指定当使用了showLevel属性、valueName属性时，valueName隐藏域中的值是否也保存全路径，默认为false。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'isFullName',
+						'name': 'isFullName',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.isFullName'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>窗口类型</cname>
+			<ename>winType</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>指定打开的选择窗口类型。可取值为dialog\window(大小写敏感)。dialog：是对话框方式弹出窗口。window：是Window窗口方式弹出。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'winType',
+						'name': 'winType',
+						'ng-model':'data.winType'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>只读</cname>
+			<ename>readonly</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件是否只读（默认false非只读）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'readonly',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'readonly',
+						'ng-model':'data.readonly',
+						'datasource' :"[{id:'true',text:'只读'},{id:'false',text:'可读写'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>标签宽度值。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>高度</cname>
+			<ename>height</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>标签高度值。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'height',
+						'name': 'height',
+						'ng-model':'data.height'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>组织选择标签</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '组织选择标签'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>标签的标识，支持数字、字母和下划线。</description>
+			<filterRule><![CDATA[{'id':'$delete$'}]]></filterRule>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model': 'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件名称，默认为空。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否是第三方控件</cname>
+			<ename>thrdui</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default>true</default>
+			<hide>true</hide>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'thrdui',
+						'name': 'thrdui',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.thrdui'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>选择人员确定时回调方法</cname>
+	        <ename>callback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.formAction.action.customAction</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>选择人员确定时回调方法，回调方法有两个参数：Array selected,String tagId。selected为选择的节点信息集合，tagId为当前标签的id。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>打开人员选择页面前执行的回调方法</cname>
+	        <ename>openCallback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.formAction.action.customAction</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>打开人员选择页面前执行的回调方法，回调方法有一个参数：String tagId。tagId为当前标签的id。此回调必须有boolean型返回值。当返回true时选择页面继续打开，返回false则不打开选择页面。。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>删除时回调方法</cname>
+	        <ename>delCallback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.formAction.action.customAction</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>删除时回调方法，回调方法有两个参数：Object deleted,String tagId。deleted为删除的节点信息，tagId为当前标签的id。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+	</events>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<objectClassName>ComponentVO</objectClassName>
+		<checkScope>currentObject</checkScope>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.component.DefaultComponentConsisCheck</checkClass>
+		<expression></expression>
+	</consistencyConfig>
+</component>

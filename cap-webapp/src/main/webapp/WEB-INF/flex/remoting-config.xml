@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="remoting-service" class="flex.messaging.services.RemotingService">
+
+	<adapters>
+		<adapter-definition id="java-object"
+			class="flex.messaging.services.remoting.adapters.JavaAdapter"
+			default="true" />
+	</adapters>
+
+	<default-channels>
+		<channel ref="my-amf" />
+	</default-channels>
+	<!-- 桌面属性管理类 -->
+	<destination id="desktopProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>desktopProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+
+	<!-- 登录管理类 -->
+	<destination id="loginProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>loginProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+
+	<!-- 流程部署远程服务类 -->
+	<!--
+		<destination id="processDeployProxy"> <properties>
+		<factory>spring</factory> <source>processDeployProxy</source>
+		<scope>session</scope> </properties> </destination>
+	-->
+
+	<!-- 资源管理器远程服务类 -->
+	<destination id="explorerProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>explorerProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+
+	<!-- 流程远程服务类 -->
+	<!--
+		<destination id="processManageProxy"> <properties>
+		<factory>spring</factory> <source>processManageProxy</source>
+		<scope>session</scope> </properties> </destination>
+	-->
+
+	<!-- 缺省树形代理 -->
+	<destination id="defaultTreeProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>defaultTreeProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+
+
+	<!-- =======================(start) BPMS的相关配置 ====================  -->
+    
+    <!-- 全局扩展属性代理类 -->
+    <destination id="globalAttProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>globalAttProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+
+	<!-- 部署代理类 -->
+	<destination id="deployProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>deployProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- 流程实例管理代理类 -->
+	<destination id="processInstanceProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>processInstanceProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- =======================(start)用户的相关配置 ====================  -->
+	<!-- 用户任务代理类 -->
+	<destination id="userTaskProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>userTaskProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- =======================(end) 用户的相关配置 ====================  -->
+	<!-- 用户选择代理类 -->
+	<destination id="userChoseProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>userChoseProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- 表达式代理类 -->
+	<destination id="expressionProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>expressionProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- 流程定义文件代理类 -->
+	<destination id="cdFileProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>cdFileProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- 网络文件操作代理类 -->
+	<destination id="netFileOperateProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>netFileOperateProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- 网络文件操作代理类 -->
+    <destination id="ejbServiceProxy">
+        <properties>
+            <factory>spring</factory>
+            <source>ejbServiceProxy</source>
+            <scope>session</scope>
+        </properties>
+    </destination>
+	<!-- XML验证操作代理类 -->
+	<destination id="xmlValidateProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>xmlValidateProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	
+	<!-- 协作文件部署代理类 -->
+	<destination id="collaborationDeployProxy">
+        <properties>
+            <factory>spring</factory>
+            <source>collaborationDeployProxy</source>
+            <scope>session</scope>
+        </properties>
+    </destination>
+	
+
+	<!-- =======================(end) BPMS的相关配置 ====================  -->
+
+	<!-- =======================(start) BPMSDemo的相关配置 ====================  -->
+	<!-- BPMSTestCase代理类 -->
+	<destination id="testCaseProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>testCaseProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- =======================(end) BPMSDemo的相关配置 ====================  -->
+	
+	<!-- =======================(start) BPMS版本切换的相关配置 ====================  -->
+	<!-- 版本切换代理类 -->
+	<destination id="versionSwitchProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>versionSwitchProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- =======================(end) BPMS版本切换的相关配置 ====================  -->
+
+	<!-- =======================(start) BPMS协作的相关配置 ====================  -->
+	<!-- BPMS服务配置代理类 -->
+	<destination id="serviceConfigProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>serviceConfigProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<!-- =======================(end) BPMS协作的相关配置 ====================  -->
+	
+	<!-- BPMS流程分表代理类 -->
+	<destination id="redefTableProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>redefTableProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	
+	<!-- BPMS集成配置代理类 -->
+	<destination id="bpmsMonitorCfgProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>bpmsMonitorCfgProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	
+	<!-- BPMS集成配置代理类 -->
+	<destination id="authProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>authProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	
+	<!-- BPMS集成配置代理类 -->
+	<destination id="processValidateProxy">
+		<properties>
+			<factory>spring</factory>
+			<source>processValidateProxy</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	
+</service>

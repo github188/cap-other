@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.image</extend>
+    <modelId>req.uicomponent.common.component.image</modelId>
+    <modelName>Image</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>图片</cname>
+	<group>common</group>
+	<description>图片组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>16</sort>
+	
+</component>

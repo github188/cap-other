@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.input</modelId>
+    <modelName>Input</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>文本框</cname>
+	<group>common</group>
+	<description>Input组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<hasInputType>true</hasInputType>
+	<sort>3</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<layoutType>
+		<list>form</list>
+		<list>edittype</list>
+	</layoutType>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Input</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>数据绑定</cname>
+			<ename>databind</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>创建json对像，并在要绑定的组件上用databind关联绑定属性。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'databind',
+						'name': 'databind',
+						'ng-model':'data.databind',
+						'on_iconclick':'openDataStoreSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>值</cname>
+			<ename>value</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>默认值。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'value',
+						'name': 'value',
+						'ng-model':'data.value'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>验证规则</cname>
+			<ename>validate</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>校验函数，如：<![CDATA[<br/>[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'required', 'rule':{m: '缺陷名称不能为空'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'length', 'rule':{max:3,maxm: '缺陷名称小余3个字符'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'numeric', 'rule':{'oi':true,'notim':'学号必是数字'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'numeric', 'rule':{'min':5.4,'max':10.2,minm:'学号应该大于等于5.4',maxm:'学号应该小余等于10'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'format', 'rule':{pattern: '(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)',m: 'IP输入不合法'}},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'custom', 'rule':{against:'input_custom_validate',m:'输入的学号必须大于10000'}}<br/>]]]></description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'validate',
+						'name': 'validate',
+						'ng-model':'data.validate',
+						'on_iconclick':'openValidateAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>最大长度</cname>
+			<ename>maxlength</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>input框允许输入的最大长度（单位：字符）。-1（表示不限制）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'maxlength',
+						'name': 'maxlength',
+						'ng-model':'data.maxlength'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>提示内容</cname>
+			<ename>emptytext</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>当前没有输入时显示的值。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'emptytext',
+						'name': 'emptytext',
+						'ng-model':'data.emptytext'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>只读</cname>
+			<ename>readonly</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件是否只读（默认false非只读）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'readonly',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'readonly',
+						'ng-model':'data.readonly',
+						'datasource' :"[{id:'true',text:'只读'},{id:'false',text:'可读写'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>模板</cname>
+			<ename>mask</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>输入框输入格式模板，如：<![CDATA[<br/>1、Datetimes：日期时间模板包含秒，如'2012-02-03 14:20:56'；<br/>2、Times：时间模板，如'14:20:56'；<br/>3、Time：时间模板，不包含秒，如'14:20'；<br/>4、Datetime：日期时间模板，不包含秒，如'2012-02-03 14:20'；<br/>5、Date：日期模板，如'2012-02-03'；<br/>6、Int：整数，如'11845179'；<br/>7、Dec：小数，如'12584.0214'；<br/>8、Num：数字，如'024512'；<br/>9、Money：货币格式，默认保留两位小数，如'111,111,111.11'；<br/>10、当默认的模板不满足要求时，可以自定义模板（需设置mask="custom"，再结合maskoptions使用）；]]></description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'mask',
+						'name': 'mask',
+						'ng-model':'data.mask',
+						'on_iconclick':'openSelectInputMaskWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>模板</cname>
+			<ename>maskoptions</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<description>自定义模板（需设置mask="custom"），或配置Mask="Int|Dec|Num|Money"时的默认模板。<![CDATA[<br/>1、mask="custom"：<br/>Json格式：{model: 格式表达式, placeholder: 占位符}，如：{model: '(9999)-99999999', placeholder: '_'}2、mask="Int"：默认模板为{'prefix':'', 'separator':','}<br/>3、mask="Dec"：默认模板为{'precision':null, 'prefix':'', 'separator':','}<br/>4、mask="Num"：默认模板为{'prefix':'', 'separator':''}<br/>5、mask="Money"：默认模板为{'precision':2, 'prefix':'', 'separator':','}]]></description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<properties>
+					<property>
+						<cname>格式表达式</cname>
+						<ename>model</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<default></default>
+						<description>Json对象中的model属性。</description>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'model',
+									'name': 'model',
+									'ng-model':'data.model'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>占位符</cname>
+						<ename>placeholder</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<default></default>
+						<description>Json对象中的placeholder属性。</description>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'placeholder',
+									'name': 'placeholder',
+									'ng-model':'data.placeholder'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+				</properties>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'maskoptions',
+						'name': 'maskoptions',
+						'ng-model':'data.maskoptions',
+						'on_iconclick':'openSelectInputMaskWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>文本模式</cname>
+			<ename>textmode</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件是否为文本模式，默认false非文本模式。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'textmode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'textmode',
+						'ng-model':'data.textmode',
+						'datasource' :"[{id:'true',text:'文本模式'},{id:'false',text:'非文本模式'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>对齐方式</cname>
+			<ename>align</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>input框文字对齐方式，可选值有：'left'、'center'、'right'。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'align',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'align',
+						'ng-model':'data.align',
+						'datasource' :"[{id:'left',text:'左'},{id:'center',text:'居中'},{id:'right',text:'右'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>input组件宽度。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>字符计算方式</cname>
+			<ename>byte</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>最大长度计算方式，true按字节计算，false按字符计算。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'byte',
+						'name': 'byte',
+						'radio_list': [{
+							'text': '字节',
+							'value': true
+						},{
+							'text': '字符',
+							'value': false
+						}],
+						'ng-model':'data.byte'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>最大高度</cname>
+			<ename>maxheight</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>当文本域自动增高时限制最大增大高度。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'maxheight',
+						'name': 'maxheight',
+						'ng-model':'data.maxheight'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>类型</cname>
+			<ename>type</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>当前没有输入时显示的值。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'type',
+						'name': 'type',
+						'radio_list': [{
+							'text': '文本',
+							'value': 'text'
+						},{
+							'text': '密码',
+							'value': 'password'
+						}],
+						'ng-model':'data.type'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>输入框</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '输入框'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model': 'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>input组件名称。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>值改变事件</cname>
+	        <ename>on_change</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.action.commonEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>clickInput组件值改变时回调，包含两个参数：event事件, self组件本身对象。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>获得焦点事件</cname>
+	        <ename>on_focus</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.action.commonEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>clickInput组件获得焦点回调，包含两个参数：event事件, self组件本身对象。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>失去焦点事件</cname>
+	        <ename>on_blur</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.action.commonEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>clickInput组件失去焦点回调，包含两个参数：event事件, self组件本身对象。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>松开按键事件</cname>
+	        <ename>on_keyup</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.action.commonEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>clickInput组件松开按键回调，包含两个参数：event事件, self组件本身对象。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>按下按键事件</cname>
+	        <ename>on_keydown</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.action.commonEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>clickInput组件按下按键回调，包含两个参数：event事件, self组件本身对象。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>按下键回调事件</cname>
+	        <ename>on_keypress</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.action.commonEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>clickInput组件点击图片回调，包含两个参数：event事件, self组件本身对象。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+	</events>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<objectClassName>ComponentVO</objectClassName>
+		<checkScope>currentObject</checkScope>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.component.DefaultComponentConsisCheck</checkClass>
+		<expression></expression>
+	</consistencyConfig>
+</component>

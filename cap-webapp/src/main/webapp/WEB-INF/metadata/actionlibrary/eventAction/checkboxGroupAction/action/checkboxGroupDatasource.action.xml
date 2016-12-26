@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.checkboxGroupAction.action.checkboxGroupDatasource</modelId>
+    <modelName>checkboxGroupDatasource</modelName>
+    <modelPackage>actionlibrary.eventAction.checkboxGroupAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>初始化数据源</cname>
+	<description>设置复选框数据源方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>CheckboxGroup_checkbox_list</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(obj) {
+	var datasource = [];
+ 	//TODO 自定义初始化数据
+	<script name="before"/>
+	obj.setDatasource(datasource);
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

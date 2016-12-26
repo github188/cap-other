@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.pageJump.action.pageRefresh</modelId>
+    <modelName>pageRefresh</modelName>
+    <modelPackage>actionlibrary.pageRefresh</modelPackage>
+    <modelType>action</modelType>
+    <cname>页面刷新方法</cname>
+	<description>页面刷新方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/rt/common/base/js/comtop.cap.rt.js</list>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(){
+	var refreshTarget='{{methodOption.target}}';
+	var customPage = window;
+	//TODO  自定义处理逻辑
+	<script name="before"/>
+	//refreshTarget == custom 时，使用 customPage 来 刷新
+	cap.pageRefresh(refreshTarget,customPage);
+	//TODO  自定义处理逻辑
+	<script name="after"/>
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>刷新目标</cname>
+			<ename>target</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>current</default>
+			<description>刷新目标</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'target',
+						'ng-model':'target',
+						'datasource':"[{id:'current',text:'当前页面'},{id:'parent',text:'父页面(parent)'},{id:'opener',text:'父窗口(opener)'},{id:'custom',text:'自定义(custom)'}]",
+						'value_field':'id',
+						'label_field':'text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

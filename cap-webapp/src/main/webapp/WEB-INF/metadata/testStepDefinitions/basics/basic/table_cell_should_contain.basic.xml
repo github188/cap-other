@@ -1,0 +1,55 @@
+<basic src="page.txt" name="验证单元格内容" type="testStepDefinitions.basics.basic.table_cell_should_contain" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="验证单元格内容" definition="table_cell_should_contain">
+    <createTime>1469606781476</createTime>
+    <modelId>testStepDefinitions.basics.basic.table_cell_should_contain</modelId>
+    <modelName>table_cell_should_contain</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="table_locator" desc="表定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'table_locator',
+                'name': 'table_locator'
+            }
+]]></options>
+        </ctrl>
+        <help>表定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="row" desc="行定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'row',
+                'name': 'row'
+            }
+]]></options>
+        </ctrl>
+        <help>行定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="column" desc="列定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'column',
+                'name': 'column'
+            }
+]]></options>
+        </ctrl>
+        <help>列定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="expected" desc="期望值">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'expected',
+                'name': 'expected'
+            }
+]]></options>
+        </ctrl>
+        <help>期望值</help>
+    </arg>
+    <help><![CDATA[验证单元格内容]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[验证单元格内容    ${table_locator}    ${row}    ${column}    ${expected}    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

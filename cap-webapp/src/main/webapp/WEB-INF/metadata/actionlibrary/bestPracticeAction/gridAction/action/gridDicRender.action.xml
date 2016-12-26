@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.gridAction.action.gridDicRender</modelId>
+    <modelName>gridDicRender</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>字典渲染</cname>
+	<type>gridRender</type>
+	<description>grid字典数据列渲染</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(rd, index, col) {
+	var colDicSet= cap.getDicByAttr(col.bindName);
+	var content=cap.getTextOfDicValue(colDicSet,rd[col.bindName]);
+	//自定义处理方式
+	<script name="after"/>
+	return content;
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

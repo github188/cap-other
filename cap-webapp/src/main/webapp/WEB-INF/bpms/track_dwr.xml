@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN" "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.comtop.bpms.depend.track.model.BpmsTrackInfo"/>
+		<convert converter="bean" match="com.comtop.bpms.common.model.TransTrackInfo"/>  
+	 	<create creator="new" javascript="TrackDWR" scope="request">
+	    	<param name="class" value="com.comtop.bpms.track.TrackDWR"/>
+	    </create>
+	</allow>
+</dwr>

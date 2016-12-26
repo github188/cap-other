@@ -1,0 +1,17 @@
+<versions>
+    <createTime>1468985775222</createTime>
+    <modelId>com.comtop.workflowtest.version.versions</modelId>
+    <modelName>versions</modelName>
+    <modelPackage>com.comtop.workflowtest</modelPackage>
+    <modelType>version</modelType>
+    <version caseVersion="10" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="测试更新到货通知" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Test_update_TestMmReceiptNotice"/>
+    <version caseVersion="10" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="测试保存到货通知" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Test_save_TestMmReceiptNotice"/>
+    <version caseVersion="10" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="测试删除到货通知" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Test_delete_TestMmReceiptNotice"/>
+    <version caseVersion="10" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="测试查询到货通知" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Test_load_TestMmReceiptNotice"/>
+    <version caseVersion="10" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="测试更新到货通知明细" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Test_update_TestMmReceiptNoticeItem"/>
+    <version caseVersion="10" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="测试保存到货通知明细" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Test_save_TestMmReceiptNoticeItem"/>
+    <version caseVersion="10" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="测试删除到货通知明细" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Test_delete_TestMmReceiptNoticeItem"/>
+    <version caseVersion="10" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="测试查询到货通知明细" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Test_load_TestMmReceiptNoticeItem"/>
+    <version caseVersion="1" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="工作流工作流测试编辑页面" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Form_editReport_WorkflowTestEditPageForWorkFlow"/>
+    <version caseVersion="8" genTime="0" scriptFolder="/资产管理系统/测试建模/工作流应用" scriptName="工作流工作流测试编辑页面" scriptVersion="0" testcaseId="com.comtop.workflowtest.testcase.Workflow_editReport_WorkflowTestEditPageForWorkFlow"/>
+</versions>

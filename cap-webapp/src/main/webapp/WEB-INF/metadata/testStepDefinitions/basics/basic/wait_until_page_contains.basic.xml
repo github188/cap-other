@@ -1,0 +1,33 @@
+<basic src="page.txt" name="等待内容出现在当前页面" type="testStepDefinitions.basics.basic.wait_until_page_contains" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="等待内容出现在当前页面" definition="wait_until_page_contains">
+    <createTime>1469606781448</createTime>
+    <modelId>testStepDefinitions.basics.basic.wait_until_page_contains</modelId>
+    <modelName>wait_until_page_contains</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="text" desc="内容值">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'text',
+                'name': 'text'
+            }
+]]></options>
+        </ctrl>
+        <help>内容值</help>
+    </arg>
+    <arg valueType="String" required="false" name="timeout" desc="超时时间" default="60">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'timeout',
+                'name': 'timeout'
+            }
+]]></options>
+        </ctrl>
+        <help>超时时间</help>
+    </arg>
+    <help><![CDATA[等待内容出现在当前页面]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[等待内容出现在当前页面    ${text}    ${timeout}    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

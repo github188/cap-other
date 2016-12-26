@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.layout.component.formLayout</extend>
+    <modelId>req.uicomponent.layout.component.formLayout</modelId>
+    <modelName>FormLayout</modelName>
+    <modelPackage>req.uicomponent.layout</modelPackage>
+    <modelType>component</modelType>
+    <cname>快速表单布局</cname>
+	<ename>FormLayout</ename>
+	<group>layout</group>
+	<description>FormLayout组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>2</sort>
+	<properties>
+		<property>
+			<ename>area</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>areaId</ename>
+			<hide>true</hide>
+		</property>
+	</properties>
+</component>

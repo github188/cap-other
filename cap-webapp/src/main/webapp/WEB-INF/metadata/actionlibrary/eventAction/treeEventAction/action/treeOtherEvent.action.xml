@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.treeEventAction.action.treeOtherEvent</modelId>
+    <modelName>treeOtherEvent</modelName>
+    <modelPackage>actionlibrary.eventAction.treeEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>activate|focus|blur|lazy_read事件</cname>
+	<description>tree节点的其他事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 包括树节点的on_activate、on_focus、on_blur、on_lazy_read四种事件
+ *
+ * @param node Node类型，当前的节点对象
+ */
+function {{ename}}(node) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

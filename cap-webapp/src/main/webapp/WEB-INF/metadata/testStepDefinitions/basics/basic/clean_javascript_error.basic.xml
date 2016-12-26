@@ -1,0 +1,11 @@
+<basic definition="clean_javascript_error" desc="清理JavaScript报错信息" group="pageOpt" icon="icon-cog-wheel-silhouette" type="testStepDefinitions.basics.basic.clean_javascript_error" name="清理JavaScript报错信息" src="ui-system.txt">
+    <createTime>1471401815318</createTime>
+    <modelName>clean_javascript_error</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[清理JavaScript报错信息]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[清理JavaScript报错信息    #清理JavaScript报错信息]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

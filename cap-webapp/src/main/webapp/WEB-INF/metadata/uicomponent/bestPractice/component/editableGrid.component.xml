@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <extend>uicomponent.common.component.editableGrid</extend>
+    <modelId>uicomponent.bestPractice.component.editableGrid</modelId>
+    <modelName>EditableGrid</modelName>
+    <modelPackage>uicomponent.bestPractice</modelPackage>
+    <modelType>component</modelType>
+    <cname>编辑网格</cname>
+	<group>bestPractice</group>
+	<description>EditableGrid组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>2</sort>
+	<properties>
+	</properties>
+	<events>
+		<event>
+			<cname>数据源</cname>
+	        <ename>datasource</ename>
+	        <type>editGridDatasource</type>
+			<default>cap.editGridDatasource</default>
+			<hasAutoCreate>false</hasAutoCreate>
+			<methodTemplate>actionlibrary.bestPracticeAction.gridAction.action.gridDatasource</methodTemplate>
+	        <methodOption>{'actionMethodName':'actionMethodName','returnValueBind':'returnValueBind'}</methodOption>
+	        <description>设置数据源。回调函数带两个参数：gridObj：表格组件对象query：Json 包含分页信息和题头排序信息，如：{pageSize:Number每页数据量, pageNo:Number页码, sortName:Array 排序字段名, sortType:Array升序或倒序}。</description>
+	        <commonAttr>true</commonAttr>
+	        <filterRule><![CDATA[{'datasource':'cap.editGridDatasource'}]]></filterRule>
+		</event>
+	</events>
+</component>

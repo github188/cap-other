@@ -1,0 +1,11 @@
+<basic src="page.txt" name="浏览器窗口最大化" type="testStepDefinitions.basics.basic.maximize_browser_window" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="浏览器窗口最大化" definition="maximize_browser_window">
+    <createTime>1469606781401</createTime>
+    <modelId>testStepDefinitions.basics.basic.maximize_browser_window</modelId>
+    <modelName>maximize_browser_window</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[浏览器窗口最大化]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[浏览器窗口最大化    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

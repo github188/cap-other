@@ -1,0 +1,44 @@
+<basic src="ui-system.txt" name="eGrid自定义控件关键字" type="testStepDefinitions.basics.basic.editgrid_custom_set_value" icon="icon-cog-wheel-silhouette" group="systemCombinations" desc="eGrid自定义控件关键字" definition="editgrid_custom_set_value">
+    <createTime>1470128931794</createTime>
+    <modelId>testStepDefinitions.basics.basic.editgrid_custom_set_value</modelId>
+    <modelName>editgrid_custom_set_value</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="tableId" desc="表格定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'tableId',
+                'name': 'tableId'
+            }            
+]]></options>
+        </ctrl>
+        <help>表格定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="rowIndex" desc="行索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'rowIndex',
+                'name': 'rowIndex'
+            }            
+]]></options>
+        </ctrl>
+        <help>行索引</help>
+    </arg>
+    <arg valueType="String" required="true" name="colIndex" desc="列索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'colIndex',
+                'name': 'colIndex'
+            }            
+]]></options>
+        </ctrl>
+        <help>列索引</help>
+    </arg>
+    <help><![CDATA[eGrid自定义控件关键字]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

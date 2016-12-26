@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.globalVariable.action.variableDefinition</modelId>
+    <modelName>variableDefinition</modelName>
+    <modelPackage>actionlibrary.globalVariable</modelPackage>
+    <modelType>action</modelType>
+    <cname>页面变量定义</cname>
+	<description>页面变量定义</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<specialMethod>true</specialMethod>
+	<methodName>variableDefinition</methodName>
+	<methodCname>页面变量定义</methodCname>
+	<methodDescription>页面变量定义</methodDescription>
+	<type>variableDefinition</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * 定义页面需要的变量
+ */
+<script name="before"/>
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

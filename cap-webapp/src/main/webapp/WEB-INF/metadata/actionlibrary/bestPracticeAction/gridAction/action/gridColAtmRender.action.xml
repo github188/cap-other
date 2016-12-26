@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.gridAction.action.gridColAtmRender</modelId>
+    <modelName>gridColAtmRender</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>附件列渲染</cname>
+	<type>gridRender</type>
+	<description>grid附件行渲染</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(rd, index, col) { 
+	var primaryValue = rd['primaryValue'];
+	//自定义内容
+	<script name="after"/>
+	var content="<div id='div_"+primaryValue+"' valign=\"middle\" align=\"left\" class=\"div-atm\"></div>";
+	return content;
+}
+]]>
+	</script>
+</action>

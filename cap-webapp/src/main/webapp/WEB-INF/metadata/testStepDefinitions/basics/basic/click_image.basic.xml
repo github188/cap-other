@@ -1,0 +1,21 @@
+<basic src="element.txt" name="点击图片" type="testStepDefinitions.basics.basic.click_image" icon="icon-cog-wheel-silhouette" group="common" desc="点击图片" definition="click_image">
+    <createTime>1469606769652</createTime>
+    <modelId>testStepDefinitions.basics.basic.click_image</modelId>
+    <modelName>click_image</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="图片定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>图片定位</help>
+    </arg>
+    <help><![CDATA[点击图片]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[点击图片    ${locator}    #${desc}]]></macro>
+</basic>

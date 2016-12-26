@@ -1,0 +1,22 @@
+<basic definition="create_request_data" desc="创建数据" group="apielement" icon="icon-four-black-squares" type="testStepDefinitions.basics.basic.create_request_data" name="创建数据" src="api-element.txt">
+    <createTime>1470205793322</createTime>
+    <modelName>create_request_data</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg desc="" name="requestData" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'requestData',
+                'name': 'requestData'
+            }
+]]></options>
+        </ctrl>
+    </arg>
+    <help><![CDATA[创建数据]]></help>
+    <lib>Collections</lib>
+    <lib>ComtopLibrary.py</lib>
+    <lib>XML</lib>
+    <lib>RequestsLibrary</lib>
+    <macro><![CDATA[创建数据    ${requestData}    #${desc}]]></macro>
+</basic>

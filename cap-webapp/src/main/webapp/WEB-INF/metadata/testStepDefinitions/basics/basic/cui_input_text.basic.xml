@@ -1,0 +1,34 @@
+<basic src="ui-system.txt" name="CUI文本输入" type="testStepDefinitions.basics.basic.cui_input_text" icon="icon-cog-wheel-silhouette" group="systemCombinations" desc="CUI文本输入" definition="cui_input_text">
+    <createTime>1470362862605</createTime>
+    <modelId>testStepDefinitions.basics.basic.cui_input_text</modelId>
+    <modelName>cui_input_text</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="id" desc="文本框id">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'id',
+                'name': 'id'
+            }
+]]></options>
+        </ctrl>
+        <help>文本框id</help>
+    </arg>
+    <arg valueType="String" required="true" name="text" desc="输入内容">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'text',
+                'name': 'text'
+            }
+]]></options>
+        </ctrl>
+        <help>输入内容</help>
+    </arg>
+    <help><![CDATA[CUI文本输入]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[CUI文本输入    ${id}    ${text}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

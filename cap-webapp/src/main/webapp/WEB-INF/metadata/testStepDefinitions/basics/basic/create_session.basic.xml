@@ -1,0 +1,23 @@
+<basic definition="create_session" desc="创建Session" group="apielement" icon="icon-checkered-raised-flag" type="testStepDefinitions.basics.basic.create_session" name="创建Session" src="api-element.txt">
+    <createTime>1470205793307</createTime>
+    <modelName>create_session</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg desc=" 输入请求的地址" name="url" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'url',
+                'name': 'url'
+            }
+]]></options>
+        </ctrl>
+        <help> 输入请求的地址</help>
+    </arg>
+    <help><![CDATA[创建Session]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <lib>Collections</lib>
+    <lib>XML</lib>
+    <lib>RequestsLibrary</lib>
+    <macro><![CDATA[创建Session    ${url}    #${desc}]]></macro>
+</basic>

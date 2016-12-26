@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.action.eicCallback</modelId>
+    <modelName>eicCallback</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>导入导出回调</cname>
+	<group>bestPracticeAction</group>
+	<description>导入导出组件（EIC）的回调函数</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *
+ */
+function {{ename}}(resultType) { 
+	<script name="before"/>
+	switch(resultType){
+			case "onAsyn": //将异步任务压入队列后回调
+				<script name="onAsyn"/>
+				break;
+			case "onAsynSuccess": //异步成功回调
+				<script name="onAsynSuccess"/>
+				break;
+			case "onAsynError": //异步失败回调
+				<script name="onAsynError"/>
+				break;
+			case "onSuccess": //同步成功回调
+				<script name="onSuccess"/>
+				break;
+			case "onFail": //同步失败回调
+				<script name="onFail"/>
+				break;
+			case "onError": //unknownError回调
+				<script name="onError"/>
+				break;
+			case "onClose": //同步提示框关闭回调
+				<script name="onClose"/>
+				break;
+	<script name="after"/>
+}
+]]>
+	</script>
+	<properties>
+	</properties>
+</action>

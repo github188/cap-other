@@ -1,0 +1,51 @@
+<practice definition="undo_method" desc="实体回退方法测试最佳实践"
+	group="apielement" icon="icon-cog-wheel-silhouette" practiceType="API"
+	type="testStepDefinitions.practices.practice.undo_method"
+	name="实体回退方法测试最佳实践" mapping="undo">
+	<lib>RequestsLibrary</lib>
+	<lib>Collections</lib>
+	<lib>XML</lib>
+	<res>api-element.txt</res>
+	<impl>com.comtop.cap.test.design.practice.api.EntityFacadeMethodTestPracticeImpl</impl>
+	<arg valueType="String" required="true" name="metadata" desc="方法元数据">
+		<ctrl type="Input">
+			<options>
+           <![CDATA[
+            {
+                'id': 'metadata',
+                'name': 'metadata',
+                'required': 'true'
+            }            
+            ]]>
+			</options>
+		</ctrl>
+		<help>请选择方法元数据</help>
+	</arg>
+	<step-ref type="testStepDefinitions.basics.basic.create_session" name="创建Session" desc="创建Session">
+		<arg name="url" value="${url}" />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.login_top" name="登录TOP" desc="登录TOP">
+		<arg name="account" value="${userName}" />
+		<arg name="password" value="${password}" />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.create_request_data" name="创建数据" desc="查询全部已办数据">
+		<arg name="requestData" value="${query-list-data}" />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.send_request" name="发送请求" desc="发送请求" />
+	<step-ref type="testStepDefinitions.basics.basic.validate_response" name="验证响应数据" desc="验证响应数据" />
+	<step-ref type="testStepDefinitions.basics.basic.get_from_list" name="获取List中的一个数据" desc="获取一条已存在的数据">
+		<arg name="list" value="${data}"  />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.create_request_data" name="创建数据" desc="撤回数据">
+		<arg name="requestData" value="${undo-data}" />
+	</step-ref>
+	<step-ref type="testStepDefinitions.basics.basic.send_request" name="发送请求" desc="发送请求" />
+	<step-ref type="testStepDefinitions.basics.basic.validate_response" name="验证响应数据" desc="验证响应数据" />
+	<help><![CDATA[实体回退方法测试最佳实践]]></help>
+	<modelName>undo_method</modelName>
+	<modelType>practice</modelType>
+	<modelPackage>testStepDefinitions.practices</modelPackage>
+	<modelId>testStepDefinitions.practices.practice.undo_method
+	</modelId>
+	<createTime>1267616482749</createTime>
+</practice>

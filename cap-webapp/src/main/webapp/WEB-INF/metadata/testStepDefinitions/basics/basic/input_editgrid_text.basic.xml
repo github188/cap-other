@@ -1,0 +1,56 @@
+<basic src="ui-system.txt" name="eGrid输入文本" type="testStepDefinitions.basics.basic.input_editgrid_text" icon="icon-pencil" group="systemCombinations" desc="eGrid输入文本" definition="input_editgrid_text">
+    <createTime>1469606789848</createTime>
+    <modelId>testStepDefinitions.basics.basic.input_editgrid_text</modelId>
+    <modelName>input_editgrid_text</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="tableId" desc="表格定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'tableId',
+                'name': 'tableId'
+            }
+]]></options>
+        </ctrl>
+        <help>表格定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="rowIndex" desc="行索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'rowIndex',
+                'name': 'rowIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>行索引</help>
+    </arg>
+    <arg valueType="String" required="true" name="colIndex" desc="列索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'colIndex',
+                'name': 'colIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>列索引</help>
+    </arg>
+    <arg valueType="String" required="true" name="text" desc="需要输入的文本">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'text',
+                'name': 'text'
+            }
+]]></options>
+        </ctrl>
+        <help>需要输入的文本</help>
+    </arg>
+    <help><![CDATA[eGrid输入文本]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[eGrid输入文本    ${tableId}    ${rowIndex}    ${colIndex}    ${text}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

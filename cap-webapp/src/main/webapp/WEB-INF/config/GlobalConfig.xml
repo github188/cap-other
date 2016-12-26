@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config>
+	<!-- 基础全局配置 -->
+	<base>
+	    <!-- 是否启动定时器，默认为不启动   -->
+		<isMasterQuartz>true</isMasterQuartz>
+		<redirectURL>*.*,/web/top/sys/login/LoginImage.jsp,/web/top/sys/login/Login.jsp</redirectURL>
+		<!-- 配置登录成功后的主框架页面 -->
+	    <mainFrameURL>/top/workbench/PlatFormAction/initPlatform.ac</mainFrameURL> 
+		<!-- 配置登录页面 -->
+	    <loginURL>/top/workbench/login/index.jsp</loginURL>
+	    <!-- 配置登录页面显示的系统名称 -->
+	    <chineseSystemName>企业资产管理系统</chineseSystemName>
+		
+		<!-- 配置是否需要验证码 -->
+		<verifyCode>false</verifyCode>
+		<!-- 配置https的端口 -->
+		<httpsPort></httpsPort>
+		<!-- 配置http的端口 -->
+		<httpPort></httpPort>
+    	<!-- 单位编码（暂未使用） -->
+    	<SSO4AUnitcode>test</SSO4AUnitcode>
+    	<!-- 应用系统在4A中注册的ID号 -->
+    	<SSO4AAppid>test</SSO4AAppid>
+    	<!-- 4A接口认证协议 -->
+    	<SSO4AProtocol>https</SSO4AProtocol>
+    	<!-- 4A接口认证端口号 -->
+    	<SSO4APort>8443</SSO4APort>
+    	<!-- 4A接口认证开关管理员帐号 -->
+    	<SSO4ASwitchAccount>SuperAdmin</SSO4ASwitchAccount>
+    	<!-- 4A接口认证开关管理员密码 -->
+    	<SSO4ASwitchPwd>hello</SSO4ASwitchPwd>
+    	<!-- 4A接口认证开关地址 -->
+    	<SSO4ASwitchAdress>http://10.10.50.186:8090/web/authroute</SSO4ASwitchAdress>
+    	<!-- 4A接口认证登录地址 -->
+    	<SSO4ALoginAddress>https://10.10.5.229:7001/isc_sso/rest/userLogin</SSO4ALoginAddress>
+    	<!-- 4A接口认证票据认证地址 -->
+    	<SSO4ATicketValiAddr>https://10.10.5.229:7001/isc_sso/rest/userTicketValidate</SSO4ATicketValiAddr>
+    	<!-- 4A接口认证退出地址 -->
+    	<SSO4ALogoutAddress>https://10.10.5.229:7001/isc_sso/rest/userLogout</SSO4ALogoutAddress>
+	</base>
+	<!-- 私有化配置示例 -->
+	<top>
+        <!--   csrf过滤器安全站点地址列表，多个站点间以;间隔  -->
+		<includes>localhost;</includes>
+	</top>
+	<cdp>
+		<!-- 日志文件本地临时路径 -->
+    	<cdpLogPath>D:\cdplog</cdpLogPath>
+	</cdp>
+	<SystemAdmin>SuperAdmin</SystemAdmin>
+</config>

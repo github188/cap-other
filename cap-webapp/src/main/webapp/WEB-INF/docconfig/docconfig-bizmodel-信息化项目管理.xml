@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<WtDocConfig name="业务模型说明书模板" version="1.0" diffKey="业务模型"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../classes/DocConfig.xsd">
+	<MarkText>^\s*数据项信息.*[：:]|^\s*数据项说明.*[：:]|.*关联信息.*[：:]</MarkText>
+	<WtSection name="封面" />
+	<WtSection name="文档基本信息">
+		<table type="FIXED" name="文档信息" mappingTo="docInfo=#Document(id=$documentId)"
+			maxOccurs="1">
+			<tr>
+				<td>文档名称</td>
+				<td mappingTo="docInfo.name" nullAble="true" colspan="3"></td>
+			</tr>
+			<tr>
+				<td>文档编号</td>
+				<td mappingTo="docInfo.code" nullAble="true" />
+				<td>文档版本</td>
+				<td mappingTo="docInfo.version" nullAble="true" />
+			</tr>
+			<tr>
+				<td>文档密级</td>
+				<td mappingTo="docInfo.scretLevel" nullAble="true" />
+				<td>内部版本</td>
+				<td mappingTo="docInfo.innerVersion" nullAble="true" />
+			</tr>
+			<tr>
+				<td>文档类型</td>
+				<td mappingTo="docInfo.type" colspan="3" />
+			</tr>
+			<tr>
+				<td>文档编制</td>
+				<td mappingTo="docInfo.maker" nullAble="true" />
+				<td>编制时间</td>
+				<td mappingTo="docInfo.maketime" nullAble="true" />
+			</tr>
+			<!-- 
+			<tr>
+				<td>文档审核</td>
+				<td mappingTo="docInfo.auditor1" nullAble="true" />
+				<td>审核时间</td>
+				<td mappingTo="docInfo.auditTime1" nullAble="true" />
+			</tr>
+			 -->
+			<tr>
+				<td>文档审核</td>
+				<td mappingTo="docInfo.auditor" nullAble="true" />
+				<td>审核时间</td>
+				<td mappingTo="docInfo.auditTime" nullAble="true" />
+			</tr>
+			<tr>
+				<td>所属项目</td>
+				<td mappingTo="docInfo.projectname" nullAble="true" />
+				<td>项目编号</td>
+				<td mappingTo="docInfo.projectCode" nullAble="true" />
+			</tr>
+			<tr>
+				<td>文档备注</td>
+				<td mappingTo="docInfo.remark" colspan="3" />
+			</tr>
+		</table>
+		<table type="UNKNOWN" name="修订记录" needStore="false">
+			<tr>
+				<td mappingTo="modifyInfo.modifier" nullAble="true">修订人</td>
+				<td mappingTo="modifyInfo.contentSummary" nullAble="true">修订内容摘要</td>
+				<td mappingTo="modifyInfo.version" nullAble="true">产生版本</td>
+				<td mappingTo="modifyInfo.date" nullAble="true">修订日期</td>
+				<td mappingTo="modifyInfo.reviewer" nullAble="true">审核人</td>
+				<td mappingTo="modifyInfo.auditor" nullAble="true">批准人</td>
+				<td mappingTo="modifyInfo.auditTime" nullAble="true">批准时间</td>
+			</tr>
+		</table>
+	</WtSection>
+	<WtSection name="目录"></WtSection>
+	<WtSection name="正文">
+		<WtChapter type="FIXED" title="综述">
+			<WtChapter type="FIXED" title="编制目的" />
+			<WtChapter type="FIXED" title="规范性引用资料" optional="true" />
+			<WtChapter type="FIXED" title="术语" optional="true" />
+			<WtChapter type="FIXED" title="适用范围" />
+			<WtChapter type="FIXED" title="约束定义">
+				<WtChapter type="FIXED" title="文字符号约束" />
+				<WtChapter type="FIXED" title="图元约束" />
+				<WtChapter type="FIXED" title="编码约束" />
+			</WtChapter>
+			<WtChapter type="FIXED" title="内容结构.*" />
+			<WtChapter type="FIXED" title="业务流程清单" optional="true">
+				<table type="EXT_ROWS" name="业务流程清单"
+					mappingTo="bizProcessInfo[]=#BizProcess(domainId=$domainId)"
+					selector="bizProcessInfo.bizItemName,bizProcessInfo.processName">
+					<tr>
+						<td mappingTo="bizProcessInfo.firstLevelBiz">一级业务</td>
+						<td mappingTo="bizProcessInfo.secondLevelBiz" nullAble="true">二级业务</td>
+						<td mappingTo="bizProcessInfo.bizItemName" nullAble="true">业务事项</td>
+						<td mappingTo="bizProcessInfo.managePolicy" nullAble="true">管控策略</td>
+						<td mappingTo="bizProcessInfo.normPolicy" nullAble="true">统一规范策略</td>
+						<td mappingTo="bizProcessInfo.code" nullAble="true">流程编码</td>
+						<td mappingTo="bizProcessInfo.processName" nullAble="false">业务流程</td>
+						<td mappingTo="bizProcessInfo.processDef" nullAble="true">流程定义</td>
+						<td mappingTo="bizProcessInfo.itImpl" nullAble="true">IT实现</td>
+					</tr>
+				</table>
+			</WtChapter>
+			<WtChapter type="FIXED" title="业务流程和流程节点清单" optional="true">
+				<table type="EXT_ROWS" name="业务流程和流程节点清单"
+					mappingTo="bizProcessNode[]=#BizProcessNode(domainId=$domainId)"
+					selector="bizProcessNode.processName,bizProcessNode.name,bizProcessNode.serialNo">
+					<tr>
+						<td mappingTo="bizProcessNode.processName" nullAble="false">业务流程编码和名称
+						</td>
+						<td mappingTo="bizProcessNode.name" nullAble="false">流程节点</td>
+						<td width="1.5" mappingTo="bizProcessNode.serialNo" nullAble="false" >序号</td>
+					</tr>
+				</table>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter type="FIXED" title="业务总体设计">
+			<WtChapter type="FIXED" title="业务规划总体目标" />
+			<WtChapter type="FIXED" title="业务体系结构">
+				<WtChapter type="FIXED" title="业务管理体系与业务域" />
+				<WtChapter type="FIXED" title="业务分类及业务流程">
+					<WtChapter type="FIXED" title="业务分类及业务流程清单">
+						<!-- 本表中的数据组装成一个VO，在VO对应的处理器中分解成两个对象，并建立关系 -->
+						<table type="EXT_ROWS" name="业务分类及业务流程清单"
+							mappingTo="bizProcessInfo[]=#BizProcess(domainId=$domainId)"
+							selector="bizProcessInfo.bizItemName,bizProcessInfo.processName">
+							<tr>
+								<td mappingTo="bizProcessInfo.firstLevelBiz" nullAble="true" needStore="false">一级业务</td>
+								<td mappingTo="bizProcessInfo.secondLevelBiz" nullAble="true">二级业务</td>
+								<td mappingTo="bizProcessInfo.bizItemName" nullAble="false">业务事项</td>
+								<td mappingTo="bizProcessInfo.managePolicy" nullAble="true">管控策略</td>
+								<td mappingTo="bizProcessInfo.normPolicy" nullAble="true">统一规范策略</td>
+								<td mappingTo="bizProcessInfo.code" nullAble="false">流程编码</td>
+								<td mappingTo="bizProcessInfo.processName" nullAble="false">业务流程</td>
+								<td mappingTo="bizProcessInfo.processDef" nullAble="false">流程定义</td>
+								<td mappingTo="bizProcessInfo.itImpl" nullAble="false">IT实现</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter type="FIXED" title="业务流程层级分布">
+						<table type="EXT_ROWS" name="业务流程层级分布"
+							mappingTo="bizProcessInfo[]=#BizProcess(domainId=$domainId)"
+							selector="bizProcessInfo.processName">
+							<tr>
+								<td mappingTo="bizProcessInfo.processName" nullAble="false">流程列表</td>
+								<td mappingTo="bizProcessInfo.distributionMap.HQ" nullAble="true">公司总部</td>
+								<td mappingTo="bizProcessInfo.distributionMap.CC" nullAble="true">分子公司</td>
+								<td mappingTo="bizProcessInfo.distributionMap.BU" nullAble="true">地市单位</td>
+								<td mappingTo="bizProcessInfo.distributionMap.LU" nullAble="true">基层单位</td>
+							</tr>
+						</table>
+					</WtChapter>
+				</WtChapter>
+				<WtChapter type="FIXED" title="业务协同">
+					<WtChapter type="FIXED" title="业务事项关联表">
+						<table type="EXT_ROWS" mappingTo="bizRelation[]=#BizRelation(domainId=$domainId)"
+							name="业务事项关联表" needStore="false">
+							<tr>
+								<td colspan="10" >.*业务事项关联关系</td>
+							</tr>
+							<tr>
+								<td colspan="3" mappingTo="$domainName"/>
+								<td colspan="4">关联领域</td>
+								<td colspan="2">关联关系</td>
+								<td rowspan="2" mappingTo="bizRelation.remark">备注</td>
+							</tr>
+							<tr>
+								<td mappingTo="bizRelation.roleaFirstLevelBiz">一级业务</td>
+								<td mappingTo="bizRelation.roleaSecondLevelBiz">二级业务</td>
+								<td mappingTo="bizRelation.roleaItemName">业务事项</td>
+								<td mappingTo="bizRelation.rolebDomainName">领域名称</td>
+								<td mappingTo="bizRelation.rolebFirstLevelBiz">一级业务</td>
+								<td mappingTo="bizRelation.rolebSecondLevelBiz">二级业务</td>
+								<td mappingTo="bizRelation.rolebItemName">业务事项</td>
+								<td mappingTo="bizRelation.relType">关联类型</td>
+								<td mappingTo="bizRelation.description">关联关系描述</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter type="FIXED" title="业务流程关联图" />
+				</WtChapter>
+			</WtChapter>
+			<WtChapter type="FIXED" title="业务角色">
+				<table type="EXT_ROWS" name="业务角色"
+					mappingTo="bizRole[]=#BizRole(domainId=$domainId)" optional="1"
+					selector="bizRole.name">
+					<tr>
+						<td width="1.5" mappingTo="bizRole.sortNo" nullAble="true"  needStore="false">序号</td>
+						<td mappingTo="bizRole.name" nullAble="false">业务角色名称</td>
+						<td mappingTo="bizRole.remark" nullAble="true">说明</td>
+					</tr>
+				</table>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter type="FIXED" title="业务事项设计">
+			<WtChapter type="DYNAMIC" mappingTo="bizItem[]=#BizItem(domainId=$domainId)"
+				title="bizItem.name">
+				<WtChapter type="FIXED" title="业务说明">
+					<span mappingTo="bizItem.bizDesc" />
+				</WtChapter>
+				<WtChapter type="FIXED" title="适用范围">
+					<table type="FIXED" name="适用范围" optional="1">
+						<tr>
+							<td>适用层级</td>
+							<td>网公司</td>
+							<td>分子公司</td>
+							 <td>地市单位</td>
+							<td>基层单位</td>
+						</tr>
+						<tr>
+							<td>角色</td>
+							<td mappingTo="bizItem.rolesMap.CSG" />
+							<td mappingTo="bizItem.rolesMap.CC" />
+							<td mappingTo="bizItem.rolesMap.BU" /> 
+							<td mappingTo="bizItem.rolesMap.LU" />
+						</tr>
+					</table>
+				</WtChapter>
+				<WtChapter type="FIXED" title="引用文件" >
+					<span mappingTo="bizItem.referenceFile" />
+				</WtChapter>
+				<!--<WtChapter type="FIXED" title="术语和定义" /> -->
+				<WtChapter type="FIXED" title="管理要点">
+					<span mappingTo="bizItem.managePoints" />
+				</WtChapter>
+				<WtChapter type="FIXED" title="业务流程清单">
+					<table type="EXT_ROWS" name="业务流程清单1"
+						mappingTo="bizProcessInfo[]=#BizProcess(bizItemId=bizItem.id,bizItemName=bizItem.name)"
+						selector="bizProcessInfo.processName">
+						<tr>
+							<td mergeCellType="VERTICAL" nullAble="true" mappingTo="bizProcessInfo.bizItemName" needStore="false">业务事项</td>
+							<td mappingTo="bizProcessInfo.code" nullAble="true">流程编码</td>
+							<td mappingTo="bizProcessInfo.processName" nullAble="false">业务流程名称</td>
+							<td mappingTo="bizProcessInfo.processDef" nullAble="true">流程定义</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<WtChapter type="DYNAMIC"
+					mappingTo="bizProcessInfo[]=#BizProcess(bizItemId=bizItem.id,bizItemName=bizItem.name)"
+					title="bizProcessInfo.processName">
+					<WtChapter type="FIXED" title="流程定义">
+						<span mappingTo="bizProcessInfo.processDef" />
+					</WtChapter>
+					<WtChapter type="FIXED" title="工作要求">
+						<span mappingTo="bizProcessInfo.workDemand" />
+					</WtChapter>
+					<WtChapter type="FIXED" title="工作内容">
+						<span mappingTo="bizProcessInfo.workContext" />
+					</WtChapter>
+					<WtChapter type="FIXED" title="业务流程图">
+						<span mappingTo="bizProcessInfo.flowChartId" />
+					</WtChapter>
+					<WtChapter type="FIXED" title="流程节点清单">
+						<table type="EXT_ROWS" name="流程节点清单"
+							mappingTo="flowNode[]=#BizProcessNode(processId=bizProcessInfo.id,processName=bizProcessInfo.processName)"
+							selector="flowNode.name,flowNode.serialNo">
+							<tr>
+								<td mappingTo="flowNode.serialNo" nullAble="true">编码</td>
+								<td mappingTo="flowNode.name" nullAble="false">流程节点|业务活动</td>
+								<td mappingTo="flowNode.roles" nullAble="true">涉及角色</td>
+								<td mappingTo="flowNode.cnManageLevel" nullAble="true">层级关系</td>
+								<td mappingTo="flowNode.nodeFlagMap.critical" nullAble="true">关键业务节点|关键业务活动|关键流程节点</td>
+								<td mappingTo="flowNode.nodeFlagMap.core" nullAble="true">核心管控节点|核心管控活动</td>
+								<td mappingTo="flowNode.nodeFlagMap.generic" nullAble="true">一般管控节点|一般管控活动</td>
+								<td mappingTo="flowNode.sysName" nullAble="true">IT实现</td>
+								<td mappingTo="flowNode.riskArea" nullAble="true">风险点</td>
+								<td mappingTo="flowNode.clause" nullAble="true">制度条款</td>
+								<td mappingTo="flowNode.remark" nullAble="true">备注</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter type="DYNAMIC"
+						mappingTo="flowNode[]=#BizProcessNode(processId=bizProcessInfo.id,processName=bizProcessInfo.processName)"
+						title="flowNode.name">
+						<WtChapter type="FIXED" title="定义">
+							<span mappingTo="flowNode.nodeDef" />
+						</WtChapter>
+						<WtChapter type="FIXED" title="工作要求">
+							<span mappingTo="flowNode.workDemand" />
+						</WtChapter>
+						<WtChapter type="FIXED" title="工作内容">
+							<span mappingTo="flowNode.workContext" />
+						</WtChapter>
+						<WtChapter type="FIXED" title="风险点及相关控制措施">
+							<!-- <table type="UNKNOWN" name="风险点及相关控制措施" optional="1" /> -->
+						</WtChapter>
+						<WtChapter type="FIXED" title="业务关联">
+							<WtChapter type="DYNAMIC" title="bizRelation.name"
+								titleAsSelector="false" optional="1"
+								mappingTo="bizRelation[]=#BizRelation(roleaNodeId=flowNode.id,roleaProcessId=bizProcessInfo.id,roleaItemId=bizItem.id,roleaItemName=bizItem.name)">
+								<!-- 此处表格的mappingTo和selector属性如何配置需要仔细考虑 -->
+								<table type="FIXED" name="业务关联表" optional="1"
+									descriptionBefore=".*关联信息.*">
+									<tr>
+										<td width="3"/>
+										<td nullAble="true">本方业务</td>
+										<td nullAble="true">对方业务</td>
+									</tr>
+									<tr>
+										<td width="3">关联关系编码</td>
+										<td colspan="2" mappingTo="bizRelation.code" nullAble="true" />
+									</tr>
+									<tr>
+										<td width="3">关联类型</td>
+										<td colspan="2" mappingTo="bizRelation.relType" nullAble="true" />
+									</tr>
+									<tr>
+										<td width="3">关联方向</td>
+										<td colspan="2" mappingTo="bizRelation.relOrient" nullAble="true" />
+									</tr>
+									<tr>
+										<td width="3">触发条件</td>
+										<td colspan="2" mappingTo="bizRelation.triggerCondition" nullAble="true" />
+									</tr>
+									<tr>
+										<td width="3">业务域</td>
+										<td mappingTo="bizRelation.roleaDomainName" nullAble="true" />
+										<td mappingTo="bizRelation.rolebDomainName" nullAble="true" />
+									</tr>
+									<tr>
+										<td width="3">业务流程</td>
+										<td mappingTo="bizRelation.roleaProcessName" nullAble="true" />
+										<td mappingTo="bizRelation.rolebProcessName" nullAble="true" />
+									</tr>
+									<tr>
+										<td width="3">流程节点</td>
+										<td mappingTo="bizRelation.roleaNodeName" nullAble="true" />
+										<td mappingTo="bizRelation.rolebNodeName" nullAble="true" />
+									</tr>
+									<tr>
+										<td width="3">协同工作内容</td>
+										<td mappingTo="bizRelation.roleaWorkContext" nullAble="true" />
+										<td mappingTo="bizRelation.rolebWorkContext" nullAble="true" />
+									</tr>
+									<tr>
+										<td width="3">协同工作要求</td>
+										<td mappingTo="bizRelation.roleaWorkDemand" nullAble="true" />
+										<td mappingTo="bizRelation.rolebWorkDemand" nullAble="true" />
+									</tr>
+								</table>
+								<!-- 此处表格的mappingTO如何写？是否支持指定某个方法去获得必要的参数？ -->
+								<table type="EXT_ROWS" name="关联数据项说明表"
+									mappingTo="dataItem[]=#BizRelationDataItem(relationId=bizRelation.id)"
+									optional="1" descriptionBefore="数据项信息.*|数据项说明.*">
+									<tr>
+										<td mappingTo="dataItem.objectName" nullAble="true"
+											mergeCellType="VERTICAL">业务对象</td>
+										<td mappingTo="dataItem.dataItemName" nullAble="false">数据项</td>
+										<td mappingTo="dataItem.codeNote" nullAble="true">编码引用说明</td>
+										<td mappingTo="dataItem.remark" nullAble="true">备注</td>
+									</tr>
+								</table>
+							</WtChapter>
+						</WtChapter>
+						<WtChapter type="FIXED" title="业务对象">
+							<table type="EXT_ROWS" name="业务对象"
+								mappingTo="constraint[]=#BizNodeConstraint(nodeId=flowNode.id,domainId=$domainId)"
+								optional="1" selector="constraint.objectName,constraint.dataItemName">
+								<tr>
+									<td mappingTo="constraint.nodeName" nullAble="true">流程节点</td>
+									<td mappingTo="constraint.objectCode" nullAble="true">编码</td>
+									<td mappingTo="constraint.objectName" nullAble="false">业务对象名称</td>
+									<td mappingTo="constraint.dataItemName" nullAble="false">数据项</td>
+									<td mappingTo="constraint.checkRule" nullAble="true">业务约束</td>
+								</tr>
+							</table>
+						</WtChapter>
+						<WtChapter type="FIXED" title="业务表单">
+							<table type="EXT_ROWS" name="业务表单"
+								mappingTo="bizForm[]=#BizFormNode(nodeId=flowNode.id,domainId=$domainId)"
+								optional="1" selector="bizForm.formName">
+								<tr>
+									<td mappingTo="bizForm.nodeName" nullAble="true" needStore="false">流程节点</td>
+									<td mappingTo="bizForm.formCode" nullAble="true">编码</td>
+									<td mappingTo="bizForm.formName" nullAble="false">业务表单名称</td>
+									<td mappingTo="bizForm.remark" nullAble="true">说明</td>
+								</tr>
+							</table>
+						</WtChapter>
+						<WtChapter type="FIXED" title="业务差异.*">
+						</WtChapter>
+					</WtChapter>
+				</WtChapter>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter type="FIXED" title="业务表单设计">
+			<WtChapter type="FIXED" title="业务表单清单">
+				<table type="EXT_ROWS" name="业务表单清单表"
+					mappingTo="bizForm[]=#BizForm(domainId=$domainId)" selector="bizForm.name">
+					<tr>
+						<td width="1.5" mappingTo="bizForm.sortNo" nullAble="true"  needStore="false" >序号</td>
+						<td mappingTo="bizForm.code" nullAble="true">业务表单编码</td>
+						<td mappingTo="bizForm.name" nullAble="false">业务表单名称</td>
+						<td mappingTo="bizForm.remark" nullAble="true">说明</td>
+					</tr>
+				</table>
+			</WtChapter>
+			<WtChapter type="DYNAMIC" title="bizForm.name"
+				mappingTo="bizForm[]=#BizForm(domainId=$domainId)">
+				<WtChapter type="DYNAMIC" title="bizForm1.name"
+					mappingTo="bizForm1[]=#BizForm(packageId=bizForm.id)">
+					<WtChapter type="DYNAMIC" title="bizForm2.name"
+						mappingTo="bizForm2[]=#BizForm(packageId=bizForm1.id)">
+						<table type="EXT_ROWS" name="数据项说明"
+							mappingTo="dataItem2[]=#BizFormDataItem(objectId=bizForm2.id)"
+							descriptionBefore="数据项信息.*|数据项说明.*" selector="dataItem2.name">
+							<tr>
+								<td mappingTo="dataItem2.sortNo" nullAble="true"  needStore="false">编号</td>
+								<td mappingTo="dataItem2.name" nullAble="false">名称</td>
+								<td mappingTo="dataItem2.type" nullAble="true">类型</td>
+								<td mappingTo="dataItem2.unit" nullAble="true">单位</td>
+								<td mappingTo="dataItem2.requried" nullAble="true">必填</td>
+								<td mappingTo="dataItem2.description" nullAble="true">数据项说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<table type="EXT_ROWS" name="数据项说明"
+						mappingTo="dataItem1[]=#BizFormDataItem(objectId=bizForm1.id)"
+						descriptionBefore="数据项信息.*|数据项说明.*" selector="dataItem1.name">
+						<tr>
+							<td mappingTo="dataItem1.sortNo" nullAble="true"  needStore="false">编号</td>
+							<td mappingTo="dataItem1.name" nullAble="false">名称</td>
+							<td mappingTo="dataItem1.type" nullAble="true">类型</td>
+							<td mappingTo="dataItem1.unit" nullAble="true">单位</td>
+							<td mappingTo="dataItem1.requried" nullAble="true">必填</td>
+							<td mappingTo="dataItem1.description" nullAble="true">数据项说明</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<table type="EXT_ROWS" name="数据项说明"
+					mappingTo="dataItem[]=#BizFormDataItem(objectId=bizForm.id)"
+					descriptionBefore="数据项信息.*|数据项说明.*" selector="dataItem.name">
+					<tr>
+						<td mappingTo="dataItem.sortNo" nullAble="true"  needStore="false">编号</td>
+						<td mappingTo="dataItem.name" nullAble="false">名称</td>
+						<td mappingTo="dataItem.type" nullAble="true">类型</td>
+						<td mappingTo="dataItem.unit" nullAble="true">单位</td>
+						<td mappingTo="dataItem.requried" nullAble="true">必填</td>
+						<td mappingTo="dataItem.description" nullAble="true">数据项说明</td>
+					</tr>
+				</table>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter type="FIXED" title="业务对象设计">
+			<WtChapter type="FIXED" title="业务对象清单">
+				<table type="EXT_ROWS" name="业务对象清单"
+					mappingTo="bizObjInfo[]=#BizObject(domainId=$domainId)" selector="bizObjInfo.name">
+					<tr>
+						<td width="1.5" optional="true" mappingTo="bizObjInfo.sortNo"  needStore="false">序号</td>
+						<td mappingTo="bizObjInfo.code" nullAble="true">业务对象编码</td>
+						<td mappingTo="bizObjInfo.name" nullAble="true">业务对象名称</td>
+						<td mappingTo="bizObjInfo.description" nullAble="true">说明|说明（可选）</td>
+					</tr>
+				</table>
+			</WtChapter>
+			<WtChapter type="DYNAMIC"
+				mappingTo="bizObjInfo[]=#BizObject(domainId=$domainId)" title="bizObjInfo.name">
+				<WtChapter type="DYNAMIC"
+					mappingTo="bizObjInfo1[]=#BizObject(packageId=bizObjInfo.id)"
+					title="bizObjInfo1.name">
+					<WtChapter type="DYNAMIC"
+						mappingTo="bizObjInfo2[]=#BizObject(packageId=bizObjInfo1.id)"
+						title="bizObjInfo2.name">
+						<table type="EXT_ROWS" name="业务对象设计表"
+							mappingTo="dataItem2[]=#BizObjectDataItem(objectId=bizObjInfo2.id)"
+							selector="dataItem2.name">
+							<tr>
+								<td width="1.5" mappingTo="dataItem2.sortNo" nullAble="true"  needStore="false">序号</td>
+								<td mappingTo="dataItem2.name" nullAble="false">数据项</td>
+								<td mappingTo="dataItem2.description" nullAble="true">数据项说明</td>
+								<td mappingTo="dataItem2.codeNote" nullAble="true">编码引用说明</td>
+								<td mappingTo="dataItem2.remark" nullAble="true">备注</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<table type="EXT_ROWS" name="业务对象设计表"
+						mappingTo="dataItem1[]=#BizObjectDataItem(objectId=bizObjInfo1.id)"
+						selector="dataItem1.name">
+						<tr>
+							<td width="1.5" mappingTo="dataItem1.sortNo" nullAble="true"  needStore="false">序号</td>
+							<td mappingTo="dataItem1.name" nullAble="false">数据项</td>
+							<td mappingTo="dataItem1.description" nullAble="true">数据项说明</td>
+							<td mappingTo="dataItem1.codeNote" nullAble="true">编码引用说明</td>
+							<td mappingTo="dataItem1.remark" nullAble="true">备注</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<table type="EXT_ROWS" name="业务对象设计表"
+					mappingTo="dataItem[]=#BizObjectDataItem(objectId=bizObjInfo.id)"
+					selector="dataItem.name">
+					<tr>
+						<td width="1.5" mappingTo="dataItem.sortNo" nullAble="true"  needStore="false">序号</td>
+						<td mappingTo="dataItem.name" nullAble="false">数据项</td>
+						<td mappingTo="dataItem.description" nullAble="true">数据项说明</td>
+						<td mappingTo="dataItem.codeNote" nullAble="true">编码引用说明</td>
+						<td mappingTo="dataItem.remark" nullAble="true">备注</td>
+					</tr>
+				</table>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter type="FIXED" title="流程节点与业务对象对应清单">
+			<!-- 此表格的过滤函数需要注意：名称需要处理后才能匹配 -->
+			<table type="EXT_ROWS" name="流程节点与业务对象对应清单"
+				mappingTo="constraint[]=#BizNodeConstraint(domainId=$domainId)">
+				<tr>
+					<td width="1.5" mappingTo="constraint.sortNo" needStore="false">序号</td>
+					<td mappingTo="constraint.objectCode">业务对象编号</td>
+					<td mappingTo="constraint.objectName">业务对象名称</td>
+					<td mappingTo="constraint.dataItemName">业务数据项名称</td>
+					<td mappingTo="constraint.checkRule">业务约束</td>
+					<td mappingTo="constraint.nodeName">业务活动</td>
+					<td mappingTo="constraint.nodeSerialNo">流程节点编码</td>
+					<td mappingTo="constraint.processName">流程节点名称</td>
+				</tr>
+			</table>
+		</WtChapter>
+		<WtChapter type="FIXED" title="其他说明">
+			<!-- 此处表格的mappingTo和selector属性如何配置需要仔细考虑 此处的selection可能需要支持两组条件 -->
+			<WtChapter type="DYNAMIC" title="bizRelation.name"
+				titleAsSelector="false" optional="1"
+				mappingTo="bizRelation[]=#BizRelation(domainId=$domainId)">
+				<!-- 此处表格的mappingTo和selector属性如何配置需要仔细考虑 -->
+				<table type="FIXED" name="业务关联表" optional="1"
+					descriptionBefore=".*关联信息.*">
+					<tr>
+						<td width="3"/>
+						<td nullAble="true">本方业务</td>
+						<td nullAble="true">对方业务</td>
+					</tr>
+					<tr>
+						<td width="3">关联关系编码</td>
+						<td colspan="2" mappingTo="bizRelation.code" nullAble="true" />
+					</tr>
+					<tr>
+						<td width="3">关联类型</td>
+						<td colspan="2" mappingTo="bizRelation.relType" nullAble="true" />
+					</tr>
+					<tr>
+						<td width="3">关联方向</td>
+						<td colspan="2" mappingTo="bizRelation.relOrient" nullAble="true" />
+					</tr>
+					<tr>
+						<td width="3">触发条件</td>
+						<td colspan="2" mappingTo="bizRelation.triggerCondition"
+							nullAble="true" />
+					</tr>
+					<tr>
+						<td width="3">业务域</td>
+						<td mappingTo="bizRelation.roleaDomainName" nullAble="true" />
+						<td mappingTo="bizRelation.rolebDomainName" nullAble="true" />
+					</tr>
+					<tr>
+						<td width="3">业务流程</td>
+						<td mappingTo="bizRelation.roleaProcessName" nullAble="true" />
+						<td mappingTo="bizRelation.rolebProcessName" nullAble="true" />
+					</tr>
+					<tr>
+						<td width="3">流程节点</td>
+						<td mappingTo="bizRelation.roleaNodeName" nullAble="true" />
+						<td mappingTo="bizRelation.rolebNodeName" nullAble="true" />
+					</tr>
+					<tr>
+						<td width="3">协同工作内容</td>
+						<td mappingTo="bizRelation.roleaWorkContext" nullAble="true" />
+						<td mappingTo="bizRelation.rolebWorkContext" nullAble="true" />
+					</tr>
+					<tr>
+						<td width="3">协同工作要求</td>
+						<td mappingTo="bizRelation.roleaWorkDemand" nullAble="true" />
+						<td mappingTo="bizRelation.rolebWorkDemand" nullAble="true" />
+					</tr>
+				</table>
+				<!-- 此处表格的mappingTO如何写？是否支持指定某个方法去获得必要的参数？ -->
+				<table type="EXT_ROWS" name="数据项说明表"
+					mappingTo="dataItem[]=#BizRelationDataItem(relationId=bizRelation.id)"
+					optional="1" descriptionBefore="数据项信息.*|数据项说明.*">
+					<tr>
+						<td mappingTo="dataItem.objectName" nullAble="true"
+							mergeCellType="VERTICAL">业务对象</td>
+						<td mappingTo="dataItem.dataItemName" nullAble="true">数据项</td>
+						<td mappingTo="dataItem.codeNote" nullAble="true">编码引用说明</td>
+						<td mappingTo="dataItem.remark" nullAble="true">备注</td>
+					</tr>
+				</table>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter type="FIXED" title=".*与总体架构和可研差异表|与总体架构差异表|.*业务差异汇总表"/>
+		<WtChapter type="FIXED" title=".*业务关联关系清单">
+			<table type="EXT_ROWS" name="业务关联关系清单" needStore="false">
+				<tr>
+					<td>关联关系编码</td>
+					<td>关联类型</td>
+					<td>关联方向</td>
+					<td>本方业务域</td>
+					<td>本方业务流程</td>
+					<td>本方流程节点</td>
+					<td>对方业务域</td>
+					<td>对方业务流程</td>
+					<td>对方流程节点</td>
+				</tr>
+			</table>
+		</WtChapter>
+	</WtSection>
+	<WtSection name="附录"/>
+</WtDocConfig>

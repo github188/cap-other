@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.formAction.action.customParamsAction</modelId>
+    <modelName>customParamsAction</modelName>
+    <modelPackage>actionlibrary.formAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>用户自定义形参行为</cname>
+	<description>自定义形参,多个参数使用英文逗号隔开</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}({{methodOption.definedParams}}){
+	<script name="before"/>
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>自定义形参</cname>
+			<ename>definedParams</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>自定义形参,多个参数使用英文逗号隔开</description>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'definedParams',
+						'ng-model':'definedParams'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

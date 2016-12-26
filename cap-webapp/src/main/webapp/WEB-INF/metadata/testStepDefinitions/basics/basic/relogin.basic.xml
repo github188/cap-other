@@ -1,0 +1,62 @@
+<basic src="ui-system.txt" name="重新登录" type="testStepDefinitions.basics.basic.relogin" icon="icon-sign-in" group="systemCombinations" desc="重新登录" definition="relogin">
+    <createTime>1469606789655</createTime>
+    <modelId>testStepDefinitions.basics.basic.relogin</modelId>
+    <modelName>relogin</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="url" desc="登录地址">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'url',
+                'name': 'url'
+            }
+]]></options>
+        </ctrl>
+        <help>登录地址</help>
+    </arg>
+    <arg valueType="String" required="true" name="browser" desc="浏览器类型">
+        <ctrl type="Pulldown">
+            <options><![CDATA[
+            {
+                'id': 'browser',
+                'name': 'browser',
+                'datasource': "[
+						{id:'firefox',text:'FireFox'},
+						{id:'ie',text:'Internet Explorer'},
+						{id:'chrome',text:'Google Chrome'},
+						{id:'${browser}',text:'${browser}'}
+					]"
+            }
+]]></options>
+        </ctrl>
+        <help>浏览器类型</help>
+    </arg>
+    <arg valueType="String" required="true" name="userName" desc="用户名">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'userName',
+                'name': 'userName'
+            }
+]]></options>
+        </ctrl>
+        <help>用户名</help>
+    </arg>
+    <arg valueType="String" required="true" name="password" desc="登录密码">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'password',
+                'name': 'password'
+            }
+]]></options>
+        </ctrl>
+        <help>登录密码</help>
+    </arg>
+    <help><![CDATA[重新登录]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[重新登录    ${url}    ${browser}    ${userName}    ${password}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

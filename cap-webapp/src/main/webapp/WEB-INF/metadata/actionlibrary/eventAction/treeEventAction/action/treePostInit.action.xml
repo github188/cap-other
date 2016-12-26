@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.treeEventAction.action.treePostInit</modelId>
+    <modelName>treePostInit</modelName>
+    <modelPackage>actionlibrary.eventAction.treeEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>完成加载回调函数</cname>
+	<description>tree完成加载回调函数</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * tree完成加载后触发的回调函数。
+ *
+ */
+function {{ename}}() { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

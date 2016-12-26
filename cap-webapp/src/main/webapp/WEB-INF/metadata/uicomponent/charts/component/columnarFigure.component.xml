@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.charts.component.columnarFigure</modelId>
+    <modelName>ECharts</modelName>
+    <modelPackage>uicomponent.charts</modelPackage>
+    <modelType>component</modelType>
+    <cname>柱状图</cname>
+	<ename>columnarFigure</ename>
+	<group>charts</group>
+	<description>柱状图组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>303</sort>
+	<js>
+		<list>/cap/rt/common/charts/echarts3/echarts.min.js</list>
+	</js>
+	<layoutType>
+	</layoutType>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>ECharts</default>
+			<description>图表组件</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<!--  <property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>面板的宽度。如:750。如果不指定该值，则自适应。</description>
+			<commonAttr>true</commonAttr> -->
+			<!--数据模型-->
+			<!--  <propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model':'data.id',
+						'validate': "[{type:'required',rule:{m:'不能为空'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>  -->
+		<property>
+			<cname>图表类型</cname>
+			<ename>charts_type</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>bar</default>
+			<description>图表类型。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'charts_type',
+						'name': 'charts_type',
+						'ng-model':'data.charts_type',
+						'readonly':true
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>100%</default>
+			<description>面板的宽度。如:750。如果不指定该值，则自适应。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width',
+						'validate': "[{type:'required',rule:{m:'不能为空'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>高度</cname>
+			<ename>height</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>200px</default>
+			<description>面板的高度。如:750。如果不指定该值，则使用默认值为200px。（如果高度设置为"100%"将根据父元素100%显示）</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'height',
+						'name': 'height',
+						'ng-model':'data.height',
+						'validate': "[{type:'required',rule:{m:'不能为空'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>数据主题</cname>
+			<ename>data_subject</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>响应时编程，在服务器上设置的数据描述名称，根据此名称获取图表相关的数据。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'data_subject',
+						'name': 'data_subject',
+						'ng-model':'data.data_subject'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示方向</cname>
+			<ename>showOrient</ename>
+			<type>Boolean</type>
+			<requried></requried>
+			<default>true</default>
+			<description>柱状图是水平显示，还是垂直显示</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'showOrient',
+						'name': 'showOrient',
+						'radio_list': [{
+							'text': '水平',
+							'value': true
+						},{
+							'text': '垂直',
+							'value': false
+						}],
+						'ng-model':'data.showOrient'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>关联名称</cname>
+			<ename>assoName</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>关联名称,后台数据关联的名称</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'assoName',
+						'name': 'assoName',
+						'ng-model':'data.assoName',
+						'validate': ""
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>图表标题</cname>
+			<ename>title_text</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置图表标题。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'title_text',
+						'name': 'title_text',
+						'ng-model':'data.title_text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>静态数据</cname>
+			<ename>staticData</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default><![CDATA[[{日期 :'1月',蒸发量:'23',降水量:'130'},{日期 :'2月',蒸发量:'12',降水量:'90'},{日期 :'3月',蒸发量:'33',降水量:'9'}]]]></default>
+			<description>柱状图的数据源。Json格式。如：<![CDATA[[{日期 :'1月',蒸发量:'23',降水量:'130'},{日期 :'2月',蒸发量:'12',降水量:'90'},{日期 :'3月',蒸发量:'33',降水量:'9'}]]]></description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<properties>
+					<property>
+						<cname>ID</cname>
+						<ename>id</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<default></default>
+						<description>Json对象中的id属性。</description>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'id',
+									'name': 'id',
+									'ng-model':'data.id'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>显示文本</cname>
+						<ename>text</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<default></default>
+						<description>Json对象中的text属性。</description>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'text',
+									'name': 'text',
+									'ng-model':'data.text'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+				</properties>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'staticData',
+						'name': 'staticData',
+						'ng-model':'data.staticData',
+						'on_iconclick':'openCodeEditAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<!--  <property>
+			<cname>坐标轴类型</cname>
+			<ename>axis_type</ename>
+			<type>String</type>
+			<requried></requried>
+			<default>value</default>
+			<description>'value' 数值轴，适用于连续数据。'category' 类目轴，适用于离散的类目数据，为该类型时必须通过 data 设置类目数据。'time' 时间轴，适用于连续的时序数据，与数值轴相比时间轴带有时间的格式化，在刻度计算上也有所不同，例如会根据跨度的范围来决定使用月，星期，日还是小时范围的刻度。'log' 对数轴。适用于对数数据。</description>
+			<commonAttr>false</commonAttr>-->
+			<!--数据模型
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'axis_type',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name': 'axis_type',
+						'ng-model':'data.axis_type',
+						'datasource' :"[{id:'value',text:'value'},{id:'category',text:'category'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>-->
+		<property>
+			<cname>坐标轴两边留白策略</cname>
+			<ename>axis_boundaryGap</ename>
+			<type>String</type>
+			<requried></requried>
+			<default></default>
+			<description>坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样。类目轴中 boundaryGap 可以配置为 true 和 false。默认为 true，这时候刻度只是作为分隔线，标签和数据点都会在两个刻度之间的带(band)中间。
+非类目轴，包括时间，数值，对数轴，boundaryGap是一个两个值的数组，分别表示数据最小值和最大值的延伸范围，可以直接设置数值或者相对的百分比，在设置 min 和 max 后无效。示例：
+boundaryGap: ['20%', '20%']</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'axis_boundaryGap',
+						'name': 'axis_boundaryGap',
+						'ng-model':'data.axis_boundaryGap'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否显示分隔线</cname>
+			<ename>axis_splitLine_show</ename>
+			<type>Boolean</type>
+			<requried></requried>
+			<default>true</default>
+			<description>是否显示分隔线</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'axis_splitLine_show',
+						'name': 'axis_splitLine_show',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.axis_splitLine_show'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否显示坐标轴轴线</cname>
+			<ename>axis_axisLine_show</ename>
+			<type>Boolean</type>
+			<requried></requried>
+			<default>true</default>
+			<description>是否显示坐标轴轴线。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'axis_axisLine_show',
+						'name': 'axis_axisLine_show',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.axis_axisLine_show'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否显示坐标轴刻度</cname>
+			<ename>axis_axisTick_show</ename>
+			<type>Boolean</type>
+			<requried></requried>
+			<default>true</default>
+			<description>是否显示坐标轴刻度。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'axis_axisTick_show',
+						'name': 'axis_axisTick_show',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.axis_axisTick_show'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否显示最大值</cname>
+			<ename>axis_max</ename>
+			<type>String</type>
+			<requried></requried>
+			<default></default>
+			<description>是否显示最大值。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'axis_max',
+						'name': 'axis_max',
+						'ng-model':'data.axis_max'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否显示最小值</cname>
+			<ename>axis_min</ename>
+			<type>String</type>
+			<requried></requried>
+			<default></default>
+			<description>是否显示最小值。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'axis_min',
+						'name': 'axis_min',
+						'ng-model':'data.axis_min'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>坐标轴分割间隔</cname>
+			<ename>axis_interval</ename>
+			<type>String</type>
+			<requried></requried>
+			<default></default>
+			<description>坐标轴分割间隔。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'axis_interval',
+						'name': 'axis_interval',
+						'ng-model':'data.axis_interval'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否显示刻度标签</cname>
+			<ename>axis_axisLabel_show</ename>
+			<type>Boolean</type>
+			<requried></requried>
+			<default>true</default>
+			<description>是否显示刻度标签。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'axis_axisLabel_show',
+						'name': 'axis_axisLabel_show',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.axis_axisLabel_show'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>图表子标题</cname>
+			<ename>title_subtext</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置图表子标题。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'title_subtext',
+						'name': 'title_subtext',
+						'ng-model':'data.title_subtext'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>副标题文本超链接</cname>
+			<ename>title_sublink</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>副标题文本超链接。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'title_sublink',
+						'name': 'title_sublink',
+						'ng-model':'data.title_sublink'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>触发类型</cname>
+			<ename>tooltip_trigger</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>axis</default>
+			<description>触发类型。可选：'item'数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。'axis' 坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'tooltip_trigger',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name': 'tooltip_trigger',
+						'ng-model':'data.tooltip_trigger',
+						'datasource' :"[{id:'axis',text:'axis'},{id:'item',text:'item'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>grid 组件离容器左侧的距离</cname>
+			<ename>grid_left</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>grid 组件离容器左侧的距离。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'grid_left',
+						'name': 'grid_left',
+						'ng-model':'data.grid_left'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>grid 组件离容器右侧的距离</cname>
+			<ename>grid_right</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>grid 组件离容器右侧的距离。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'grid_right',
+						'name': 'grid_right',
+						'ng-model':'data.grid_right'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>grid 组件离容器上侧的距离</cname>
+			<ename>grid_top</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>grid 组件离容器上侧的距离。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'grid_top',
+						'name': 'grid_top',
+						'ng-model':'data.grid_top'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>grid 组件离容器下侧的距离</cname>
+			<ename>grid_bottom</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>grid 组件离容器下侧的距离。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'grid_bottom',
+						'name': 'grid_bottom',
+						'ng-model':'data.grid_bottom'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>grid 区域是否包含坐标轴的刻度标签</cname>
+			<ename>grid_containLabel</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default>false</default>
+			<description>grid 区域是否包含坐标轴的刻度标签，在无法确定坐标轴标签的宽度，容器有比较小无法预留较多空间的时候，可以设为 true 防止标签溢出容器。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'grid_containLabel',
+						'name': 'grid_containLabel',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.grid_containLabel'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>数据初始化</cname>
+	        <ename>initData</ename>
+	        <type></type>
+			<default>echartsInitData</default>
+	        <methodTemplate>actionlibrary.eventAction.echartsEventAction.action.echartsInitData</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>数据初始化</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+	</events>
+</component>

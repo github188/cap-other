@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.radioGroupAction.action.radioGroupChange</modelId>
+    <modelName>radioGroupChange</modelName>
+    <modelPackage>actionlibrary.eventAction.radioGroupAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>值改变时事件</cname>
+	<description>radioGroup值改变时事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *
+ * @param newValue 当前选中的radio的值（非改变前的值，而是改变后的值）
+ */
+function {{ename}}(newValue) {
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

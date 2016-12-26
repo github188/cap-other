@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.ipbIncludePageAction.action.auditPageCallback</modelId>
+    <modelName>bizCallbackFunc</modelName>
+    <modelPackage>actionlibrary.ipbIncludePageAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>流程审批页面回调行为</cname>
+	<description>通用模板</description>
+	<propertyEditor>auto</propertyEditor>
+	<specialMethod>true</specialMethod>
+	<propertyEditorPage></propertyEditorPage>
+	<methodName>bizCallbackFunc</methodName>
+	<methodCname>流程审批页面回调行为</methodCname>
+	<methodDescription>流程审批页面回调行为</methodDescription>
+	<script>
+		<![CDATA[
+/**
+ * 
+ * 流程操作完成的回调函数
+ * @param type 操作类型
+ * 	 "back" : 回退 , "report" : 上报 , 
+ *	 "backReport" : 回退 申请人, "send" ： 发送， "undo" :撤回,"saveOpinion":保存意见
+ */
+ //{{cname}} {{description}}
+function bizCallbackFunc(type){
+var saveContinue={{methodOption.saveContinue}};
+//根据不同的操作类型，处理不同的提示信息，或者是相关业务处理
+<script name="before"/>
+if(saveContinue==1){
+	refreshApprovePage();
+}else if(saveContinue==2){
+	window.close();
+}
+	
+}]]>
+	</script>
+	<properties>
+	<property>
+			<cname>页面刷新方式</cname>
+			<ename>saveContinue</ename>
+			<type>Number</type>
+			<requried>true</requried>
+			<default>1</default>
+			<description>页面刷新方式</description>
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'saveContinue',
+						'ng-model':'saveContinue',
+						'datasource':"[{id:1,text:'刷新页面'},{id:2,text:'关闭窗口'}]",
+						'value_field':'id',
+						'label_field':'text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

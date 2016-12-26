@@ -1,0 +1,32 @@
+<basic src="element.txt" name="输入文本" type="testStepDefinitions.basics.basic.input_text" icon="icon-pencil" group="common" desc="输入文本" definition="input_text">
+    <createTime>1469606769610</createTime>
+    <modelId>testStepDefinitions.basics.basic.input_text</modelId>
+    <modelName>input_text</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="输入框定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>输入框定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="text" desc="输入内容">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'text',
+                'name': 'text'
+            }
+]]></options>
+        </ctrl>
+        <help>输入内容</help>
+    </arg>
+    <help><![CDATA[输入文本]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[输入文本    ${locator}    ${text}    #${desc}]]></macro>
+</basic>

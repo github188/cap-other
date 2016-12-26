@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.listBox</modelId>
+    <modelName>ListBox</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>列表</cname>
+	<group>common</group>
+	<description>ListBox组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<hasInputType>true</hasInputType>
+	<sort>11</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>ListBox</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>数据绑定</cname>
+			<ename>databind</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>创建json对像，并在要绑定的组件上用databind关联绑定属性。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'databind',
+						'name': 'databind',
+						'ng-model':'data.databind',
+						'on_iconclick':'openDataStoreSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>验证规则</cname>
+			<ename>validate</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>校验函数，如：<![CDATA[<br/>[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'type':'required', 'rule':{m: '不能为空'}}<br/>]]]></description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'validate',
+						'name': 'validate',
+						'ng-model':'data.validate',
+						'on_iconclick':'openValidateAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>数据源</cname>
+			<ename>datasource</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>数据源：json数组，如： <![CDATA[<br/>[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'item1',text:'选项1'},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'item2',text:'选项2'}<br/>]]]></description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<properties>
+					<property>
+						<cname>ID</cname>
+						<ename>id</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<default></default>
+						<description>Json对象中的id属性。</description>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'id',
+									'name': 'id',
+									'ng-model':'data.id'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>显示文本</cname>
+						<ename>text</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<default></default>
+						<description>Json对象中的text属性。</description>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'text',
+									'name': 'text',
+									'ng-model':'data.text'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+				</properties>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'datasource',
+						'name': 'datasource',
+						'ng-model':'data.datasource',
+						'on_iconclick':'openCodeEditAreaWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>选择模式</cname>
+			<ename>multi</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>判断Listbox组件是否多选（true多选，false单选）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'multi',
+						'name': 'multi',
+						'radio_list': [{
+							'text': '单选',
+							'value': false
+						},{
+							'text': '多选',
+							'value': true
+						}],
+						'ng-model':'data.multi'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>文本模式</cname>
+			<ename>textmode</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>listBox组件是否为文本模式，默认false非文本模式。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'textmode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'textmode',
+						'ng-model':'data.textmode',
+						'datasource' :"[{id:'true',text:'文本模式'},{id:'false',text:'非文本模式'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>图标路径</cname>
+			<ename>icon_path</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>图标路径。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'icon_path',
+						'name': 'icon_path',
+						'ng-model':'data.icon_path'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>width</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Listbox组件宽度。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>高度</cname>
+			<ename>height</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Listbox组件高度。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'height',
+						'name': 'height',
+						'ng-model':'data.height'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>默认值</cname>
+			<ename>value</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>listBox组件默认值。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'value',
+						'name': 'value',
+						'ng-model':'data.value'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>隐藏列名</cname>
+			<ename>value_field</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Listbox组件的数据源中各个列表项的键名，如id。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'value_field',
+						'name': 'value_field',
+						'ng-model':'data.value_field'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示列名</cname>
+			<ename>label_field</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Listbox组件的数据源中各个列表项的值名，如text。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label_field',
+						'name': 'label_field',
+						'ng-model':'data.label_field'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>列表</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '列表'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model': 'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Listbox组件名称。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>选中列表项触发事件</cname>
+	        <ename>on_select_change</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.listBoxEvent.action.listBoxEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>组件选中列表项回调，选中列表项触发，返回选中的列表项数据集，数据格式[{},....]。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>鼠标双击事件</cname>
+	        <ename>on_dbclick</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.listBoxEvent.action.listBoxEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>组件双击回调，双击列表项触发，返回双击的选项数据，数据格式{}。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>添增列表项触发事件</cname>
+	        <ename>on_add</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.listBoxEvent.action.listBoxEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>添加列表项回调，添增列表项触发，返回添加的列表项数据集，格式[{},....]。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>删除列表项触发事件</cname>
+	        <ename>on_remove</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.listBoxEvent.action.listBoxEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>删除列表项回调，删除列表项触发，返回删除的列表项数据集，格式[{},....]。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+	</events>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<objectClassName>ComponentVO</objectClassName>
+		<checkScope>currentObject</checkScope>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.component.DefaultComponentConsisCheck</checkClass>
+		<expression></expression>
+	</consistencyConfig>
+</component>

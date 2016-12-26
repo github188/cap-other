@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.pullDown</extend>
+    <modelId>req.uicomponent.common.component.pullDown</modelId>
+    <modelName>PullDown</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>下拉框</cname>
+	<group>common</group>
+	<description>PullDown组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>4</sort>
+	<properties>
+		<property>
+			<ename>databind</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>dictionary</ename>
+			<hide>true</hide>
+		</property>
+		<property>
+			<ename>enumdata</ename>
+			<hide>true</hide>
+		</property>
+	</properties>
+</component>

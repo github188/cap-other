@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.actioncall.action.actionCallSoa</modelId>
+    <modelName>actionCallSoa</modelName>
+    <modelPackage>actionlibrary.actioncall</modelPackage>
+    <modelType>action</modelType>
+    <type></type>
+    <cname>新版action方法</cname>
+	<description>调用新版action方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>service_invoke</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+function {{ename}}(){
+	var paramArray = [];
+	var paramsStr = '${methodParameter}';
+	if(paramsStr != ''){
+		paramArray = paramsStr.split(',');
+	}
+	//对参数paramArray进行处理
+	<script name="processParamter"/>
+	var aliasEntityId = '{{methodOption.aliasEntityId}}';
+	aliasEntityId = aliasEntityId != '' ? aliasEntityId :  '{{methodOption.entityId}}';
+	dwr.TOPEngine.setAsync({{methodOption.requestMode}});
+	var dwrInvokeParam = cap.getDwrInvokeParam(aliasEntityId,'{{methodOption.actionMethodName}}',paramArray);
+	//TODO  调用后台前处理逻辑
+	<script name="before"/>
+	${modelName}Action.dwrInvoke(dwrInvokeParam,{callback:function(data){
+		if("" != "{{methodOption.returnValueBind}}"){
+			window["{{methodOption.returnValueBind}}"] = data;
+		}
+		
+		//TODO  后台调用返回后的处理逻辑  
+		<script name="after"/>
+	},
+	errorHandler:function(message, exception){
+		   //TODO 后台异常信息回调
+		   var message ="调用后台服务失败,存在异常信息:"+message;
+		   <script name="saveErrorHandler"/>
+		   cui.message(message);
+	}
+	});
+	dwr.TOPEngine.setAsync(true);
+	//TODO 可自定义设置返回值
+	<script name="setReturnVal"/>
+}
+		]]>
+	</script>
+	<properties>
+		<property>
+			<cname>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow()'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.CallServiceMethodPageActionProConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>请求方式</cname>
+			<ename>requestMode</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>false</default>
+			<description>请求方式</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'requestMode',
+						'ng-model':'requestMode',
+						'datasource':"[{id:'false',text:'同步'},{id:'true',text:'异步'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'editable': false
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

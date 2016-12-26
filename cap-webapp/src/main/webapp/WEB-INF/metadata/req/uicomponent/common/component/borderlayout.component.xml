@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.borderlayout</extend>
+    <modelId>req.uicomponent.common.component.borderlayout</modelId>
+    <modelName>Borderlayout</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>边框布局</cname>
+	<group>common</group>
+	<description>边框布局</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>10</sort>
+		
+</component>

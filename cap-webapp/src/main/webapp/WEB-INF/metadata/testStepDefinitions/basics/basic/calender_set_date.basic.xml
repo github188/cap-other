@@ -1,0 +1,23 @@
+<basic src="ui-system.txt" name="日期组件设值" type="testStepDefinitions.basics.basic.calender_set_date" icon="icon-calendar-with-spring-binder-and-date-blocks" group="systemCombinations" desc="日期组件设值" definition="calender_set_date">
+    <createTime>1469606789749</createTime>
+    <modelId>testStepDefinitions.basics.basic.calender_set_date</modelId>
+    <modelName>calender_set_date</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="id" desc="日期组件的id">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'id',
+                'name': 'id'
+            }
+]]></options>
+        </ctrl>
+        <help>日期组件的id</help>
+    </arg>
+    <help><![CDATA[日期组件设值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[日期组件设值    ${id}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

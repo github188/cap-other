@@ -1,0 +1,67 @@
+<basic src="ui-system.txt" name="eGrid人员多选设值" type="testStepDefinitions.basics.basic.choose_editgrid_user_multi" icon="icon-user-shape" group="systemCombinations" desc="eGrid人员多选设值" definition="choose_editgrid_user_multi">
+    <createTime>1469606789790</createTime>
+    <modelId>testStepDefinitions.basics.basic.choose_editgrid_user_multi</modelId>
+    <modelName>choose_editgrid_user_multi</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="tableId" desc="表格定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'tableId',
+                'name': 'tableId'
+            }
+]]></options>
+        </ctrl>
+        <help>表格定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="rowIndex" desc="行索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'rowIndex',
+                'name': 'rowIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>行索引</help>
+    </arg>
+    <arg valueType="String" required="true" name="colIndex" desc="列索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'colIndex',
+                'name': 'colIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>列索引</help>
+    </arg>
+    <arg valueType="String" required="true" name="num" desc="多选时选择的数量">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'num',
+                'name': 'num'
+            }
+]]></options>
+        </ctrl>
+        <help>多选时选择的数量</help>
+    </arg>
+    <arg valueType="String" required="false" name="clear" desc="是否清除以前的选项" default="False">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'clear',
+                'name': 'clear'
+            }
+]]></options>
+        </ctrl>
+        <help>是否清除以前的选项</help>
+    </arg>
+    <help><![CDATA[eGrid人员多选设值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[eGrid人员多选设值    ${tableId}    ${rowIndex}    ${colIndex}    ${num}    ${clear}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

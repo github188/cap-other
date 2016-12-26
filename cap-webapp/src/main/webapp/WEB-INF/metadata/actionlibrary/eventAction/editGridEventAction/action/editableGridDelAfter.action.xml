@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.editGridEventAction.action.editableGridDelAfter</modelId>
+    <modelName>editableGridDelAfter</modelName>
+    <modelPackage>actionlibrary.eventAction.editGridEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>删除后回调函数</cname>
+	<description>editableGrid删除后回调函数</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>EditableGrid_deleteafter</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 提供了删除前回调deletebefore以及删除后回调deleteafter，类似于编辑前后的回调函数
+ * deletebefore回调：当返回false事，当前操作的数据不会被删除。通过deleteRow()、deleteRowByIndex()和deleteSelectRow()删除，均会触发此函数。
+ * 
+ * @param rowData 操作的数据
+ */
+function {{ename}}(rowData) {
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

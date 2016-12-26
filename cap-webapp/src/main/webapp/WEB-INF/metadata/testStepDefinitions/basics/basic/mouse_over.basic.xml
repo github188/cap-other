@@ -1,0 +1,21 @@
+<basic src="element.txt" name="鼠标悬浮" type="testStepDefinitions.basics.basic.mouse_over" icon="icon-cog-wheel-silhouette" group="common" desc="鼠标悬浮" definition="mouse_over">
+    <createTime>1469606769688</createTime>
+    <modelId>testStepDefinitions.basics.basic.mouse_over</modelId>
+    <modelName>mouse_over</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="悬浮点定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>悬浮点定位</help>
+    </arg>
+    <help><![CDATA[鼠标悬浮]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[鼠标悬浮    ${locator}    #${desc}]]></macro>
+</basic>

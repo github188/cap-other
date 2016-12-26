@@ -1,0 +1,12 @@
+<basic src="ui-system.txt" name="关浏览器并杀进程" type="testStepDefinitions.basics.basic.close_all_browser_and_kill_driver" icon="icon-shopping-cart-black-shape" group="systemCombinations" desc="关浏览器并杀进程" definition="close_all_browser_and_kill_driver">
+    <createTime>1469606789647</createTime>
+    <modelId>testStepDefinitions.basics.basic.close_all_browser_and_kill_driver</modelId>
+    <modelName>close_all_browser_and_kill_driver</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[关浏览器并杀进程]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[[Teardown]    关浏览器并杀进程    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

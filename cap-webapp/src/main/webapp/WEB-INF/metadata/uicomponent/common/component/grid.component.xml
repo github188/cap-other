@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.grid</modelId>
+    <modelName>Grid</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>网格</cname>
+	<group>common</group>
+	<description>grid组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>2</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Grid</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>列头属性</cname>
+			<ename>columns</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<description>Grid组件每行单元格tb属性集合配置。</description>
+			<filterRule><![CDATA[{'options':'$delete$'}]]></filterRule>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<properties>
+					<property>
+						<cname>名称</cname>
+						<ename>name</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<description>单元格中的题头名称。</description>
+						<commonAttr>true</commonAttr>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'name',
+									'name': 'name',
+									'ng-model':'data.name',
+									'validate':"nameValRule"
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>渲染对应列的样式</cname>
+						<ename>renderStyle</ename>
+						<type>String</type>
+						<description>用于渲染对应列的样式，如：renderStyle="text-align: center;"。（注意：设置margin，padding，width，height，position会导致表格错位。）</description>
+						<commonAttr>true</commonAttr>
+						<!--可选可填下拉框-->
+						<propertyEditorUI>
+							<componentName>cui_pulldown</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'renderStyle',
+									'mode': 'Single',
+									'value_field':'id',
+									'label_field':'text',
+									'name':'renderStyle',
+									'ng-model':'data.renderStyle',
+									'datasource' :"[{id:'text-align:left',text:'左'},{id:'text-align:center',text:'居中'},{id:'text-align:right',text:'右'}]"
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>数据绑定</cname>
+						<ename>bindName</ename>
+						<type>String</type>
+						<description><![CDATA[指定对应列绑定的数据（对应VO中的属性），如：<br/>bindName = "userName"//支持子数据渲染形式，如：bindName = "parentName.childName"//支持组件自带编号，如：bindName = "0","1","2"... 表示第一行从0开始排序（注意：排序列位置不能放在单选或多选列前面）。]]></description>
+						<commonAttr>true</commonAttr>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'bindName',
+									'name': 'bindName',
+									'ng-model':'data.bindName',
+									'validate':"bindNameValRule"
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>渲染指定列数据</cname>
+						<ename>render</ename>
+						<type>String</type>
+						<description>渲染指定列数据，类似于colrender属性，但是优先级大于colrender。默认有三种列渲染方式：render="a"或"image"或"button"，要结合options属性使用。回调函数有三个参数：rowData(当前行数据), index(当前被点击行的索引号从0开始计算), col(当前列属性)。</description>
+						<designTimeRemoval>true</designTimeRemoval>
+						<commonAttr>true</commonAttr>
+						<!--可选可填下拉框-->
+						<propertyEditorUI>
+							<componentName>cui_clickinput</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'render',
+									'mode': 'Single',
+									'ng-model':'data.render',
+									'on_iconclick':'openRenderWindow'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>列渲染方式</cname>
+						<ename>options</ename>
+						<type>String</type>
+						<description><![CDATA[默认列渲染方式，使用如下:<br/>当render='a'时，options有如下属性：<br/>示例：options={'url': 'ModuleEdit.jsp?1=1', 'params': 'moduleId;moduleName'}<br/>当render='button'时，options有如下属性：<br/>示例：options={'click':'clickTest', 'className':'testClass', 'value':'点击'}<br/>当render='image'时，options有如下属性：<br/>示例：options={'relation': 'sex', 'compare':{'1': 'man.jpg', '2': 'wman.jpg'}, 'title': {'1': '男', '2': '女'}}]]></description>
+						<commonAttr>true</commonAttr>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_clickinput</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'options',
+									'name': 'options',
+									'ng-model':'data.options',
+									'on_iconclick':'openRenderWindow'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>宽度</cname>
+						<ename>width</ename>
+						<type>String</type>
+						<description>用于确定当前列的宽度。</description>
+						<commonAttr>true</commonAttr>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'width',
+									'name': 'width',
+									'ng-model':'data.width'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>排序</cname>
+						<ename>sort</ename>
+						<type>Boolean</type>
+						<requried>false</requried>
+						<default>false</default>
+						<description>用于指定对应列是否可以进行题头排序。</description>
+						<commonAttr>false</commonAttr>
+						<!--单选框-->
+						<propertyEditorUI>
+							<componentName>cui_radiogroup</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'sort',
+									'name': 'sort',
+									'radio_list': [{
+										'text': '允许',
+										'value': true
+									},{
+										'text': '不允许',
+										'value': false
+									}],
+									'value': false,
+									'ng-model':'data.sort'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>隐藏</cname>
+						<ename>hide</ename>
+						<type>Boolean</type>
+						<requried>false</requried>
+						<default>false</default>
+						<description>初始化时是否隐藏指定列。</description>
+						<commonAttr>false</commonAttr>
+						<!--单选框-->
+						<propertyEditorUI>
+							<componentName>cui_radiogroup</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'hide',
+									'name': 'hide',
+									'radio_list': [{
+										'text': '是',
+										'value': true
+									},{
+										'text': '否',
+										'value': false
+									}],
+									'value': false,
+									'ng-model':'data.hide'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>禁用</cname>
+						<ename>disabled</ename>
+						<type>Boolean</type>
+						<requried>false</requried>
+						<default>false</default>
+						<description>禁止用户对当前列进行隐藏或显示操作，默认为false；（通过接口hideCols仍然可以设置当前列隐藏或显示） 。</description>
+						<commonAttr>false</commonAttr>
+						<!--单选框-->
+						<propertyEditorUI>
+							<componentName>cui_radiogroup</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'disabled',
+									'name': 'disabled',
+									'radio_list': [{
+										'text': '是',
+										'value': true
+									},{
+										'text': '否',
+										'value': false
+									}],
+									'value': false,
+									'ng-model':'data.disabled'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>格式化</cname>
+						<ename>format</ename>
+						<type>String</type>
+						<requried>false</requried>
+						<description><![CDATA[指定对应列格式化方式，支持日期和金额类型格式化，如：<br/>格式化日期：format='yyyy-MM-dd hh:mm:ss'（待格式化的数据只能是js的Date对象或者是毫秒数(时间戳)<br/>格式化金额：format='money'（默认保留2位小数，format='money-0'无小数，format='money-4'保留4为小数）。]]></description>
+						<commonAttr>false</commonAttr>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'format',
+									'name': 'format',
+									'ng-model':'data.format'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>合并行</cname>
+						<ename>rowspan</ename>
+						<type>Number</type>
+						<requried>false</requried>
+						<description>通常使用在td与th标签中，可以实现表格中一列跨越多行。row:行， span:跨度，跨距，范围表单合并Rowspan合并行。</description>
+						<commonAttr>false</commonAttr>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'rowspan',
+									'name': 'rowspan',
+									'ng-model':'data.rowspan'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+					<property>
+						<cname>合并列</cname>
+						<ename>colspan</ename>
+						<type>Number</type>
+						<requried>false</requried>
+						<description>colspan 属性规定单元格可横跨的列数。 colspan通常使用在td与th标签中。</description>
+						<commonAttr>false</commonAttr>
+						<!--文本框-->
+						<propertyEditorUI>
+							<componentName>cui_input</componentName>
+							<script>
+							<![CDATA[ 
+								{
+									'id': 'colspan',
+									'name': 'colspan',
+									'ng-model':'data.colspan'
+								}
+							]]>
+							</script>
+						</propertyEditorUI>
+					</property>
+				</properties>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'columns',
+						'name': 'columns',
+						'ng-model':'data.columns',
+						'on_iconclick':'openCustomGridTheadWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>主键字段名</cname>
+			<ename>primarykey</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件的列表中主键字段名（一般对应数据库主键，值唯一）。</description>
+			<commonAttr>true</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'primarykey',
+						'name': 'primarykey',
+						'ng-model':'data.primarykey',
+						'on_iconclick':'openDataStoreSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.component.attribute.DataStoreComponentAttrConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>行选择模式</cname>
+			<ename>selectrows</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件的行选择模式，可选值有：multi多选、single单选、no不可选。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'selectrows',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'selectrows',
+						'ng-model':'data.selectrows',
+						'datasource' :"[{id:'multi',text:'多选'},{id:'single',text:'单选'},{id:'no',text:'不可选'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>gridwidth</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件的宽度（不能使用百分比）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'gridwidth',
+						'name': 'gridwidth',
+						'ng-model':'data.gridwidth'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>高度</cname>
+			<ename>gridheight</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>auto</default>
+			<description>Grid组件的高度（不能使用百分比）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'gridheight',
+						'name': 'gridheight',
+						'ng-model':'data.gridheight'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>内部表格宽度</cname>
+			<ename>tablewidth</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件内部表格宽度（不能使用百分比，当adaptive为false时生效）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'tablewidth',
+						'name': 'tablewidth',
+						'ng-model':'data.tablewidth'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>自适应</cname>
+			<ename>adaptive</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>设置Grid组件内部table的宽度是否与组件宽度（gridwidth）相等（即根据gridwidth自适应）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'adaptive',
+						'name': 'adaptive',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.adaptive'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>自动截取功能</cname>
+			<ename>titleellipsis</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件的表头是否启用文本过长自动截取功能。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'titleellipsis',
+						'name': 'titleellipsis',
+						'radio_list': [{
+							'text': '开启',
+							'value': true
+						},{
+							'text': '不开启',
+							'value': false
+						}],
+						'ng-model':'data.titleellipsis'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>数据懒加载</cname>
+			<ename>lazy</ename>
+			<type>Boolean</type>
+			<requried>true</requried>
+			<default>true</default>
+			<description>数据懒加载（只有gridheight不为auto才生效）。Grid默认是开启懒加载，这意味着，Grid不是一次性渲染出来所有的数据。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'lazy',
+						'name': 'lazy',
+						'radio_list': [{
+							'text': '开启',
+							'value': true
+						},{
+							'text': '不开启',
+							'value': false
+						}],
+						'value': true,
+						'ng-model':'data.lazy'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>选中行的样式</cname>
+			<ename>selectedrowclass</ename>
+			<label>selected<![CDATA[<br>]]>rowclass</label>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件的选中行的自定义样式（selectrows为'multi'或者'single'时有效）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'selectedrowclass',
+						'name': 'selectedrowclass',
+						'ng-model':'data.selectedrowclass'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>排序列数</cname>
+			<ename>sortstyle</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件设置题头排序列数（如：支持一列题头排序设置为1，支持两列题头排序设置为2）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'sortstyle',
+						'name': 'sortstyle',
+						'ng-model':'data.sortstyle'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>默认排序字段</cname>
+			<ename>sortname</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件初始化时的默认排序字段。</description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'sortname',
+						'name': 'sortname',
+						'ng-model':'data.sortname',
+						'on_iconclick':'openCustomGridSortNameWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>默认排序方式</cname>
+			<ename>sorttype</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件初始化时的默认排序方式，可选值有：DESC、ASC</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'sorttype',
+						'name': 'sorttype',
+						'ng-model':'data.sorttype',
+						'on_iconclick':'openCustomGridSortNameWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>分页信息</cname>
+			<ename>pagination</ename>
+			<type>Boolean</type>
+			<requried>true</requried>
+			<default>true</default>
+			<description>Grid组件是否显示分页信息。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pagination',
+						'name': 'pagination',
+						'radio_list': [{
+							'text': '显示',
+							'value': true
+						},{
+							'text': '不显示',
+							'value': false
+						}],
+						'value': true,
+						'ng-model':'data.pagination'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>分页信息模板</cname>
+			<ename>pagination_model</ename>
+			<label>pagination_<![CDATA[<br>]]>model</label>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件分页信息模板（pagination为true时有效）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pagination_model',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'pagination_model',
+						'ng-model':'data.pagination_model',
+						'datasource' :"[{id:'pagination',text:'pagination'},{id:'pagination_min_1',text:'pagination_min_1'},{id:'pagination_min_2',text:'pagination_min_2'},{id:'pagination_min_3',text:'pagination_min_3'},{id:'pagination_min_4',text:'pagination_min_4'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>默认显示第几页</cname>
+			<ename>pageno</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件初始化时默认显示在第几页（pagination为true时有效）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pageno',
+						'name': 'pageno',
+						'ng-model':'data.pageno'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>每页显示记录数</cname>
+			<ename>pagesize</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件初始化时默认每页显示记录数（pagination为true时有效）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pagesize',
+						'name': 'pagesize',
+						'ng-model':'data.pagesize'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>自定义每页显示记录数</cname>
+			<ename>custom_pagesize</ename>'
+			<label>custom_<![CDATA[<br>]]>pagesize</label>
+			<type>Boolean</type>
+			<requried>true</requried>
+			<default>false</default>
+			<description>Grid组件初始化时默认有自定义PageSize，如果不需要则设置为false 。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'custom_pagesize',
+						'name': 'custom_pagesize',
+						'radio_list': [{
+							'text': '开启',
+							'value': true
+						},{
+							'text': '不开启',
+							'value': false
+						}],
+						'value': false,
+						'ng-model':'data.custom_pagesize'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>每页显示数据量</cname>
+			<ename>pagesize_list</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件初始化时每页显示数据量（pagination为true时有效）。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pagesize_list',
+						'name': 'pagesize_list',
+						'ng-model':'data.pagesize_list'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>题头</cname>
+			<ename>titlelock</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件是否固定题头。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'titlelock',
+						'name': 'titlelock',
+						'radio_list': [{
+							'text': '固定',
+							'value': true
+						},{
+							'text': '不固定',
+							'value': false
+						}],
+						'ng-model':'data.titlelock'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>左侧固定列数</cname>
+			<ename>fixcolumnnumber</ename>
+			<label>fixcolumn<![CDATA[<br>]]>number</label>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件左侧固定列数。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'fixcolumnnumber',
+						'name': 'fixcolumnnumber',
+						'ng-model':'data.fixcolumnnumber'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>奇偶行色</cname>
+			<ename>oddevenrow</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件是否显示奇偶行色。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'oddevenrow',
+						'name': 'oddevenrow',
+						'radio_list': [{
+							'text': '显示',
+							'value': true
+						},{
+							'text': '不显示',
+							'value': false
+						}],
+						'ng-model':'data.oddevenrow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>奇数行样式</cname>
+			<ename>oddevenclass</ename>
+			<label>oddeven<![CDATA[<br>]]>class</label>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件奇数行自定义样式。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'oddevenclass',
+						'name': 'oddevenclass',
+						'ng-model':'data.oddevenclass'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>列隐藏功能</cname>
+			<ename>colhidden</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件是否使用列隐藏功能。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'colhidden',
+						'name': 'colhidden',
+						'radio_list': [{
+							'text': '使用',
+							'value': true
+						},{
+							'text': '不使用',
+							'value': false
+						}],
+						'ng-model':'data.colhidden'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>列隐藏功能下拉框最大高度</cname>
+			<ename>colmaxheight</ename>
+			<label>colmax<![CDATA[<br>]]>height</label>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid列隐藏功能下拉框最大高度，默认为'auto'，则由Grid内部规则决定如果设置了最大高度，则以最大高度为准，超出高度则出现滚动条。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'colmaxheight',
+						'name': 'colmaxheight',
+						'ng-model':'data.colmaxheight'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>列拖曳功能</cname>
+			<ename>colmove</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件是否使用列拖曳功能（多行表头不支持列拖曳功能）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'colmove',
+						'name': 'colmove',
+						'radio_list': [{
+							'text': '使用',
+							'value': true
+						},{
+							'text': '不使用',
+							'value': false
+						}],
+						'ng-model':'data.colmove'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>加载提示</cname>
+			<ename>loadtip</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Grid组件加载数据的时候是否显示加载提示。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'loadtip',
+						'name': 'loadtip',
+						'radio_list': [{
+							'text': '显示',
+							'value': true
+						},{
+							'text': '不显示',
+							'value': false
+						}],
+						'ng-model':'data.loadtip'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>操作</cname>
+			<ename>operation</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description></description>
+			<commonAttr>false</commonAttr>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'operation',
+						'name': 'operation',
+						'ng-model':'data.operation',
+						'on_iconclick':'openComponentSelect'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>网格</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '网格'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model':'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件名称，默认为空。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>区域控件类型</cname>
+			<ename>area</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>区域控件类型是元数据生成器对应的界面模版录入界面控件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'area',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'area',
+						'ng-model':'data.area',
+						'datasource' :"[{id:'listCodeArea',text:'列表区域'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>区域控件Id</cname>
+			<ename>areaId</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>区域控件Id是元数据生成器对应的界面模版录入界面控件区域Id。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'areaId',
+						'name': 'areaId',
+						'ng-model':'data.areaId'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>数据源</cname>
+	        <ename>datasource</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridDatasource</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>设置数据源。回调函数带两个参数：gridObj：表格组件对象query：Json 包含分页信息和题头排序信息，如：{pageSize:Number每页数据量, pageNo:Number页码, sortName:Array 排序字段名, sortType:Array升序或倒序}。</description>
+	        <commonAttr>true</commonAttr>
+	        <filterRule><![CDATA[{'datasource':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>渲染单元格</cname>
+	        <ename>colrender</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridColrender</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件渲染单元格的回调函数，有两个参数：rowData(Json当前行所对应的数据), bindName(String列绑定属性名)。</description>
+	        <commonAttr>true</commonAttr>
+	        <filterRule><![CDATA[{'colrender':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>渲染单元格样式</cname>
+	        <ename>colstylerender</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridColstylerender</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件渲染单元格样式的回调函数（一般返回设置背景色的css样式），有两个参数：rowData(Json当前行所对应的数据), bindName(String列绑定属性名)。</description>
+	        <commonAttr>true</commonAttr>
+	        <filterRule><![CDATA[{'colstylerender':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>渲染行样式</cname>
+	        <ename>rowstylerender</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridRowstylerender</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件渲染行样式的回调函数（一般返回设置背景色的css样式），有一个参数：rowData(Json当前行所对应的数据)。</description>
+	        <commonAttr>true</commonAttr>
+	        <filterRule><![CDATA[{'rowstylerender':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>自适应高度</cname>
+	        <ename>resizeheight</ename>
+	        <type>resizeheight</type>
+	        <default>getBodyHeight</default>
+			<hasAutoCreate>false</hasAutoCreate>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridResizeheight</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件自适应高度回调函数，返回高度计算结果（Number）。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'resizeheight':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>自适应宽度</cname>
+	        <ename>resizewidth</ename>
+	        <type></type>
+			<default>getBodyWidth</default>
+			<hasAutoCreate>false</hasAutoCreate>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridResizewidth</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件自适应宽度回调函数，返回宽度计算结果（Number）。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'resizewidth':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>自定义列回调函数</cname>
+	        <ename>titlerender</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridTitleRender</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件自定义列回调函数(鼠标移入单元格的提示内容)，有两个参数：rowData(Json当前行所对应的数据), bindName(String列绑定属性名)。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'titlerender':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>添加数据时的回调函数</cname>
+	        <ename>adddata_callback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridDataChange</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件添加数据时的回调函数，有一个参数：rowData(添加的数据)。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'adddata_callback':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>删除数据时的回调函数</cname>
+	        <ename>removedata_callback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridRemoveCallback</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件删除数据时的回调函数，有一个参数：delRowData(删除的数据)。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'removedata_callback':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>点击行时的回调函数</cname>
+	        <ename>rowclick_callback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridRowClick</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件点击行时的回调函数，有三个参数：rowData(当前行数据), isChecked(是否已选择), index(当前被点击行的索引号)//selectrows='no'时无效 。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'rowclick_callback':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>双击行时回调函数</cname>
+	        <ename>rowdblclick_callback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridRowDblClick</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件双击行时回调函数，有两个参数：rowData(当前行数据), index(当前被点击行的索引号)//selectrows='no'时无效 。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'rowdblclick_callback':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>完成加载后的回调函数</cname>
+	        <ename>loadcomplate_callback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridLoadComplate</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件完成加载后的回调函数。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'loadcomplate_callback':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>点击全选checkbox时的回调函数</cname>
+	        <ename>selectall_callback</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridSelectAll</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Grid组件点击全选checkbox时的回调函数，有两个参数：data(全选的数据), isChecked（是否是全选）。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'selectall_callback':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>点击全选checkbox时的回调函数</cname>
+	        <ename>onstatuschange</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridOnstatuschange</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>状态持久化保存配置数据接口。需要与config属性同时设置才可以开启持久化当用户有改变列宽、列顺序、列隐藏、排序操作时，该函数会立即执行，并把Grid当前状态转换成一个字符串，传入到config。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'onstatuschange':'$delete$'}]]></filterRule>
+		</event>
+		<event>
+			<cname>点击全选checkbox时的回调函数</cname>
+	        <ename>config</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.gridAction.action.gridConfig</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>状态持久化读取配置数据接口，需要与onstatuschange属性同时设置才可以开启持久化。</description>
+	        <commonAttr>false</commonAttr>
+	        <filterRule><![CDATA[{'config':'$delete$'}]]></filterRule>
+		</event>
+	</events>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<objectClassName>ComponentVO</objectClassName>
+		<checkScope>currentObject</checkScope>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.component.GridAndEditGridComponentConsisCheck</checkClass>
+		<expression></expression>
+	</consistencyConfig>
+</component>

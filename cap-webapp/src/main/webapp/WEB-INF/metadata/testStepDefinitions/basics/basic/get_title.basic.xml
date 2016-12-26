@@ -1,0 +1,11 @@
+<basic src="page.txt" name="获取页面标题" type="testStepDefinitions.basics.basic.get_title" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="获取页面标题" definition="get_title">
+    <createTime>1469606781348</createTime>
+    <modelId>testStepDefinitions.basics.basic.get_title</modelId>
+    <modelName>get_title</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[获取页面标题]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[获取页面标题    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

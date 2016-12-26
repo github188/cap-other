@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.codeArea</extend>
+    <modelId>req.uicomponent.common.component.codeArea</modelId>
+    <modelName>CodeArea</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>代码块</cname>
+	<group>common</group>
+	<description>代码块组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>18</sort>
+</component>

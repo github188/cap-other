@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+
+	<display-name>SLF4J Taglib</display-name>
+	<tlib-version>0.1RC</tlib-version>
+	<short-name>log</short-name>
+	<uri>http://www.slf4j.org/taglib/tld</uri>
+	<description>JSP页面日志输出标签库</description>
+	<tag>
+		<name>debug</name>
+		<tag-class>com.comtop.top.component.app.slf4j.DebugTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>以调试级别输出指定信息</description>
+		<attribute>
+			<name>category</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				指定输出消息的日志目录名称,不指定该属性时的默认值为jsp.request
+			</description>
+		</attribute>
+		<attribute>
+			<name>message</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				需要输出的消息内容,不指定该属性时,将以标签体的内容进行替代
+        	</description>
+		</attribute>
+		<attribute>
+			<name>exception</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				输出的异常信息,不指定该属性时将仅有message属性指定的内容输出
+        	</description>
+		</attribute>
+		<example>
+			<![CDATA[
+					<log:debug message="this is a message"/>
+					
+					<log:debug category="foo.bar" message="this is a message"/>
+					
+					<log:debug category="foo.bar">
+					  this is a message
+					</log:debug>
+					]]>
+		</example>
+	</tag>
+
+	<tag>
+		<name>info</name>
+		<tag-class>com.comtop.top.component.app.slf4j.InfoTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>以信息级别输出指定信息</description>
+		<attribute>
+			<name>category</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				指定输出消息的日志目录名称,不指定该属性时的默认值为jsp.request
+			</description>
+		</attribute>
+		<attribute>
+			<name>message</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				需要输出的消息内容,不指定该属性时,将以标签体的内容进行替代
+        	</description>
+		</attribute>
+		<attribute>
+			<name>exception</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				输出的异常信息,不指定该属性时将仅有message属性指定的内容输出
+        	</description>
+		</attribute>
+		<example>
+			<![CDATA[
+					<log:info message="this is a message"/>
+					
+					<log:info category="foo.bar" message="this is a message"/>
+					
+					<log:info category="foo.bar">
+					  this is a message
+					</log:description>
+					]]>
+		</example>
+	</tag>
+
+	<tag>
+		<name>warn</name>
+		<tag-class>com.comtop.top.component.app.slf4j.WarnTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>以警告级别输出指定信息</description>
+		<attribute>
+			<name>category</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				指定输出消息的日志目录名称,不指定该属性时的默认值为jsp.request
+			</description>
+		</attribute>
+		<attribute>
+			<name>message</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				需要输出的消息内容,不指定该属性时,将以标签体的内容进行替代
+        	</description>
+		</attribute>
+		<attribute>
+			<name>exception</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				输出的异常信息,不指定该属性时将仅有message属性指定的内容输出
+        	</description>
+		</attribute>
+		<example>
+			<![CDATA[
+				<log:warn message="this is a message"/>
+				
+				<log:warn category="foo.bar" message="this is a message"/>
+				
+				<log:warn category="foo.bar">
+				  this is a message
+				</log:warn>
+				]]>
+		</example>
+	</tag>
+
+	<tag>
+		<name>error</name>
+		<tag-class>com.comtop.top.component.app.slf4j.ErrorTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>以错误级别输出指定信息</description>
+		<attribute>
+			<name>category</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				指定输出消息的日志目录名称,不指定该属性时的默认值为jsp.request
+			</description>
+		</attribute>
+		<attribute>
+			<name>message</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				需要输出的消息内容,不指定该属性时,将以标签体的内容进行替代
+        	</description>
+		</attribute>
+		<attribute>
+			<name>exception</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				输出的异常信息,不指定该属性时将仅有message属性指定的内容输出
+        	</description>
+		</attribute>
+		<example>
+			<![CDATA[
+					<log:error message="this is a message"/>
+					
+					<log:error category="foo.bar" message="this is a message"/>
+					
+					<log:error category="foo.bar">
+					  this is a message
+					</log:error>
+					]]>
+		</example>
+	</tag>
+
+	<tag>
+		<name>trace</name>
+		<tag-class>com.comtop.top.component.app.slf4j.TraceTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>以Trace级别输出指定信息</description>
+		<attribute>
+			<name>category</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				指定输出消息的日志目录名称,不指定该属性时的默认值为jsp.request
+			</description>
+		</attribute>
+		<attribute>
+			<name>message</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				需要输出的消息内容,不指定该属性时,将以标签体的内容进行替代
+        	</description>
+		</attribute>
+		<attribute>
+			<name>exception</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+			<description>
+				输出的异常信息,不指定该属性时将仅有message属性指定的内容输出
+        	</description>
+		</attribute>
+		<example>
+			<![CDATA[
+					<log:trace message="this is a message"/>
+					
+					<log:trace category="foo.bar" message="this is a message"/>
+					
+					<log:trace category="foo.bar">
+					  this is a message
+					</log:trace>
+					]]>
+		</example>
+	</tag>
+
+	<tag>
+		<name>dump</name>
+		<tag-class>com.comtop.top.component.app.slf4j.DumpTag</tag-class>
+		<body-content>empty</body-content>
+		<description>输出指定对象作用域中的保存的键值对象</description>
+		<attribute>
+			<description>对象作用域,取值为:page、request、session、application</description>
+			<name>scope</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>true</required>
+		</attribute>
+		<example>
+			<![CDATA[
+					<log:dump scope="page"/>
+					<log:dump scope="request"/>
+					<log:dump scope="session"/>
+					<log:dump scope="application"/>
+					]]>
+		</example>
+	</tag>
+</taglib>

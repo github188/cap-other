@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>req.actionlibrary.workflow.action.audit</modelId>
+    <modelName>audit</modelName>
+    <modelPackage>req.actionlibrary.workflow</modelPackage>
+    <modelType>action</modelType>
+    <cname>流程审批行为</cname>
+	<description>流程审批方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/**
+* {{cname}} {{description}}
+*/
+function {{ename}}(){
+    var message ="{{methodOption.workflowMethod}}成功!";
+	<script name="before"/>
+	cui.message(message, "success");
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>流程审批方法</cname>
+			<ename>workflowMethod</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>audit</default>
+			<description>审批行为</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'workflowMethod',
+						'ng-model':'workflowMethod',
+						'datasource':"[{id:'report',text:'上报'},{id:'send',text:'发送'},{id:'back',text:'回退'},{id:'reassign',text:'转发'},{id:'undo',text:'撤回'},{id:'backReport',text:'回退给申请人'},{id:'undoReport',text:'撤回结束到申请人'},{id:'saveNote',text:'保存意见'},{id:'abort',text:'终止流程'},{id:'jump',text:'跳转'},{id:'hungup',text:'挂起'},{id:'overFlow',text:'结束流程'},{id:'recover',text:'恢复'}]",
+						'value_field':'text',
+						'label_field':'text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

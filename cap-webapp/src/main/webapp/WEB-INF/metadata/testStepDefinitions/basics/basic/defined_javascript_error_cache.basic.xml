@@ -1,0 +1,11 @@
+<basic definition="defined_javascript_error_cache" desc="定义JavaScript报错缓存" group="pageOpt" icon="icon-cog-wheel-silhouette" type="testStepDefinitions.basics.basic.defined_javascript_error_cache" name="定义JavaScript报错缓存" src="ui-system.txt">
+    <createTime>1471401815297</createTime>
+    <modelName>defined_javascript_error_cache</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[定义JavaScript报错缓存]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[定义JavaScript报错缓存    #定义JavaScript报错缓存]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

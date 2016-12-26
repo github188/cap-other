@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.treeEventAction.action.treeChildren</modelId>
+    <modelName>treeChildren</modelName>
+    <modelPackage>actionlibrary.eventAction.treeEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>tree始化数据事件</cname>
+	<description>tree始化数据事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 初始化Tree的节点数据。
+ *
+ * @param obj 树对象
+ */
+function {{ename}}(obj) { 
+		//TODO  调用后台前处理逻辑
+	<script name="before"/>
+	
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

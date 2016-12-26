@@ -1,0 +1,34 @@
+<basic src="ui-system.txt" name="获取列表中的记录数" type="testStepDefinitions.basics.basic.get_grid_totalnum" icon="icon-cog-wheel-silhouette" group="systemCombinations" desc="获取列表中的记录数" definition="get_grid_totalnum">
+    <createTime>1469606789881</createTime>
+    <modelId>testStepDefinitions.basics.basic.get_grid_totalnum</modelId>
+    <modelName>get_grid_totalnum</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="tableId" desc="表ID">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'tableId',
+                'name': 'tableId'
+            }
+]]></options>
+        </ctrl>
+        <help>表ID</help>
+    </arg>
+    <arg valueType="String" required="true" name="returnValue" desc="返回的列表记录数">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'returnValue',
+                'name': 'returnValue'
+            }
+]]></options>
+        </ctrl>
+        <help>返回的列表记录数</help>
+    </arg>
+    <help><![CDATA[获取列表中的记录数]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[${returnValue}    获取列表中的记录数    ${tableId}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

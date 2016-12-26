@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.action.printPreviewDetail</modelId>
+    <modelName>printPreviewDetail</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>打印预览事件（编辑页面）</cname>
+	<description>>打印预览事件（编辑页面）</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/component/lodop/js/LodopFuncs.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ */
+function printPreviewHTM(){
+	var cssArr = new Array();
+       //传入样式文件路径名，首字母必须是字符/
+    cssArr.push(cuiMinCssPath);
+    var printContent1 = $('#editDiv').html();
+    var arr = new Array();
+    arr.push(printContent1);
+    doPrintPreview('A4',2,'项目模块','HTM',arr,cssArr);
+}]]>
+	</script>
+	<properties>
+	</properties>
+</action>

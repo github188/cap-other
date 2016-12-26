@@ -1,0 +1,21 @@
+<basic definition="current_frame_contains" desc="当前框架包含内容" group="pageOpt" icon="icon-cog-wheel-silhouette" type="testStepDefinitions.basics.basic.current_frame_contains" name="当前框架包含内容" src="page.txt">
+    <createTime>1471854487108</createTime>
+    <modelName>current_frame_contains</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg desc="校验内容" name="text" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'text',
+                'name': 'text'
+            }            
+]]></options>
+        </ctrl>
+        <help>校验内容</help>
+    </arg>
+    <help><![CDATA[当前框架包含内容]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[当前框架包含内容    ${text}    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

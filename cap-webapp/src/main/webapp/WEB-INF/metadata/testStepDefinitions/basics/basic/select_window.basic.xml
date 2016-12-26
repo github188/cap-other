@@ -1,0 +1,22 @@
+<basic src="page.txt" name="选择窗口" type="testStepDefinitions.basics.basic.select_window" icon="icon-hand-pointing-upward" group="pageOpt" desc="选择窗口" definition="select_window">
+    <createTime>1469606781339</createTime>
+    <modelId>testStepDefinitions.basics.basic.select_window</modelId>
+    <modelName>select_window</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="窗口定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>窗口定位</help>
+    </arg>
+    <help><![CDATA[选择窗口]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[选择窗口    ${locator}    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

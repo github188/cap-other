@@ -1,0 +1,246 @@
+{
+	"createTime":1470281631517,
+	"modelId":"preference.config.customAction.SelectJSFunction",
+	"modelName":"SelectJSFunction",
+	"modelPackage":"preference.config",
+	"modelType":"customAction",
+    "jsFunctions": [
+        {
+            "functionName": "openCodeEditAreaWindow",
+            "functionFullName" :"openCodeEditAreaWindow(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"component",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "跳转到编写代码文本域界面(js/css/dom)"
+        },
+        {
+            "functionName": "openValidateAreaWindow",
+            "functionFullName" :"openValidateAreaWindow(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"component",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "跳转到校验组件界面(js/css/dom)"
+        },
+        {
+            "functionName": "openTabEditWindow",
+            "functionFullName" :"openTabEditWindow(event,self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"component",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "跳转tab设置界面(js/css/dom)"
+        },
+        {
+            "functionName": "openSelectInputMaskWindow",
+            "functionFullName" :"openSelectInputMaskWindow(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"component",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "打开input组件的mask属性编辑窗口(js/css/dom)"
+        },
+        {
+            "functionName": "openCustomGridTheadWindow",
+            "functionFullName" :"openCustomGridTheadWindow(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"component",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "跳转到grid配置表头界面"
+        },
+        {
+            "functionName": "openCustomEditableGridTheadWindow",
+            "functionFullName" :"openCustomEditableGridTheadWindow(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"component",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "跳转到editableGrid配置表头界面"
+        },
+        {
+            "functionName": "openCustomGridSortNameWindow",
+            "functionFullName" :"openCustomGridSortNameWindow(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"component",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "跳转到editableGrid配置表头界面"
+        },
+        {
+            "functionName": "openComponentSelect",
+            "functionFullName" :"openComponentSelect(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"all",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "跳转到grid配置表头界面"
+        },
+        {
+            "functionName": "openDataStoreSelect",
+            "functionFullName" :"openDataStoreSelect(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"all",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "打开数据模型选择界面"
+        },
+        {
+            "functionName": "openPageUrlSelect",
+            "functionFullName" :"openPageUrlSelect(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"component",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "打开页面选择界面"
+        },
+        {
+            "functionName": "openDictionarySelect",
+            "functionFullName" :"openDictionarySelect(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"all",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "打开数据字典选择界面"
+        },
+        {
+            "functionName": "openCustomEditGridEntityType",
+            "functionFullName" :"openCustomEditGridEntityType(event, self)",
+            "inParams": [
+                {
+                    "ename": "event",
+                    "remark": "事件"
+                },
+                {
+                    "ename": "self",
+                    "remark": "组件本身对象"
+                }
+            ],
+            "group":"component",
+            "outParams": [],
+            "inParamsDeclare":"event 事件<br/>self 组件本身对象",
+            "outParamsDeclare":"",
+            "remark": "跳转到entityType配置"
+        },
+        {
+            "functionName": "openBorderlayoutEditor",
+            "functionFullName" :"openBorderlayoutEditor()",
+            "group":"component",
+            "inParams": [],
+            "outParams": [],
+            "remark": "打开Borderlayout属性编辑器"
+        }
+        
+    ]
+}

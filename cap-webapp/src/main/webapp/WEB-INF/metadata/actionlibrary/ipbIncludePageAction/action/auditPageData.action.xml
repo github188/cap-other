@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.ipbIncludePageAction.action.auditPageData</modelId>
+    <modelName>auditPageData</modelName>
+    <modelPackage>actionlibrary.ipbIncludePageAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>流程审批页面数据初始化行为</cname>
+	<description>流程审批页面数据初始化行为</description>
+	<propertyEditor>auto</propertyEditor>
+	<specialMethod>true</specialMethod>
+	<propertyEditorPage></propertyEditorPage>
+	<methodName>getBizData</methodName>
+	<methodCname>流程审批页面数据初始化行为</methodCname>
+	<methodDescription>流程审批页面数据初始化行为</methodDescription>
+	<script>
+		<![CDATA[
+/**
+ * 
+ * 获取流程单据的数据 需包含流程所需相关数据
+ * 
+ */
+function getBizData(){
+var selectDataTmp = '{{methodOption.dataStore}}';
+    if(selectDataTmp != ''){
+		var selectData = window[selectDataTmp];
+		return selectData;
+	}
+	//控制返回数据
+	<script name="before"/>
+	return selectDataTmp;
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>审批数据</cname>
+			<ename>dataStore</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>要查看跟踪业务数据</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'dataStore',
+						'ng-model':'dataStore',
+						'onclick':'openDataStoreSelect(\'dataStore\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

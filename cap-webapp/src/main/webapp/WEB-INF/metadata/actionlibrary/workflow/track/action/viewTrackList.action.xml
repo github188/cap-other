@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.workflow.track.action.viewTrackList</modelId>
+    <modelName>viewTrackList</modelName>
+    <modelPackage>actionlibrary.workflow.track</modelPackage>
+    <modelType>action</modelType>
+    <cname>列表页面查看流程跟踪</cname>
+	<description>查看流程跟踪</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+		<list>/cap/dwr/interface/CapWorkflowAction.js</list>
+		<list>/cap/rt/common/workflow/comtop.cap.rt.workflow.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/**
+* {{cname}} {{description}}
+*/
+function {{ename}}(){
+ 	//getData 是获取要提交的业务数据的js方法
+	var gridId= '{{methodOption.relationGridId}}';
+  	var selectDatas = cui("#"+gridId).getSelectedRowData();
+  	if(selectDatas == null || selectDatas.length != 1){
+  		var isSelectMsg ="请选择一条数据。";
+		<script name="isSelectMsg"/>
+		cui.alert(isSelectMsg);
+		return;
+  	}
+ 	cap.rt10.workflow.operate.flowTrack(selectDatas[0].processId,selectDatas[0].processInsId);
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>关联GridId</cname>
+			<ename>relationGridId</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>流程审批获取数据的列表对象。</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'relationGridId',
+						'ng-model':'relationGridId',
+						'onclick':'openComponentSelect(1)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

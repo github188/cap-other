@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.borderlayout</modelId>
+    <modelName>Borderlayout</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>边框布局</cname>
+	<group>common</group>
+	<description>边框布局</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>10</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Borderlayout</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>面板元素数据</cname>
+			<ename>items</ename>
+			<type>Json</type>
+			<requried>true</requried>
+			<default></default>
+			<description>面板元素数据</description>
+			<commonAttr>true</commonAttr>
+			<filterRule><![CDATA[{'url':{'operate':'$replace$', 'regexp':'/[\\w\\-\/\.]*/g', 'replacement': ''}}]]></filterRule>
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'items',
+						'name': 'items',
+						'ng-model': 'data.items',
+						'onclick':'openBorderlayoutEditor()'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>间距</cname>
+			<ename>gap</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>间距</description>
+			<commonAttr>false</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'gap',
+						'name': 'gap',
+						'ng-model': 'data.gap'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>是否根节点</cname>
+			<ename>is_root</ename>
+			<type>Boolean</type>
+			<requried>true</requried>
+			<default>true</default>
+			<description>是否根节点</description>
+			<commonAttr>false</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'is_root',
+						'name': 'is_root',
+						'ng-model': 'data.is_root',
+						'radio_list':[{
+							text: '是',
+							value: true
+							},{
+							text: '否',
+							value: false
+						}]
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>面板是否固定</cname>
+			<ename>fixed</ename>
+			<type>Json</type>
+			<requried>false</requried>
+			<default></default>
+			<description>面板是否固定</description>
+			<commonAttr>false</commonAttr>
+			<hide>true</hide>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'fixed',
+						'name': 'fixed',
+						'ng-model': 'data.fixed'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model': 'data.id'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>布局宽高改变时回调</cname>
+	        <ename>on_sizechange</ename>
+	        <type></type>
+	        <default></default>
+	        <methodTemplate>actionlibrary.eventAction.action.borderlayoutSizechange</methodTemplate>
+	        <methodOption>{}</methodOption>
+	        <description>布局宽高改变时回调。（当面板调用setHeight()、setWidth()、setCollapse()方法，点击折叠按钮、拖动边框导致面板大小改变时会触发此回调，window的resize事件导致的布局变化不会触发此事件）</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+	</events>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<objectClassName>ComponentVO</objectClassName>
+		<checkScope>currentObject</checkScope>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.component.DefaultComponentConsisCheck</checkClass>
+		<expression></expression>
+	</consistencyConfig>
+</component>

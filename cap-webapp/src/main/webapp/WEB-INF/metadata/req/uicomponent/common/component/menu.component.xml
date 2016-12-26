@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.menu</extend>
+    <modelId>req.uicomponent.common.component.menu</modelId>
+    <modelName>Menu</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>菜单</cname>
+	<group>common</group>
+	<description>Menu组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>12</sort>
+</component>

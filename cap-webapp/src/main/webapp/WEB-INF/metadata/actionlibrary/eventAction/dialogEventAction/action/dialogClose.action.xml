@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.dialogEventAction.action.dialogClose</modelId>
+    <modelName>dialogClose</modelName>
+    <modelPackage>actionlibrary.eventAction.dialogEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>关闭事件</cname>
+	<description>dialog关闭事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>Dialog_onClose</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * dialog组件提供关闭前（beforeClose）和关闭后（onClose）的事件。
+ * 其中，beforeClose事件函数，如果return false，则对话框不会关闭
+ *
+ */
+function {{ename}}() { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

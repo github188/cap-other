@@ -1,0 +1,42 @@
+<basic src="ui-system.txt" name="点击列表链接" type="testStepDefinitions.basics.basic.click_grid_link" icon="icon-finger-of-a-hand-pointing-to-right-direction" group="systemCombinations" desc="点击列表链接" definition="click_grid_link">
+    <createTime>1469611375544</createTime>
+    <modelId>testStepDefinitions.basics.basic.click_grid_link</modelId>
+    <modelName>click_grid_link</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="tableId" desc="">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'tableId',
+                'name': 'tableId'
+            }
+]]></options>
+        </ctrl>
+    </arg>
+    <arg valueType="String" required="false" name="row" desc="" default="1">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'row',
+                'name': 'row'
+            }
+]]></options>
+        </ctrl>
+    </arg>
+    <arg valueType="String" required="false" name="col" desc="" default="2">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'col',
+                'name': 'col'
+            }
+]]></options>
+        </ctrl>
+    </arg>
+    <help><![CDATA[点击列表链接]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[点击列表链接    ${tableId}    ${row}    ${col}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

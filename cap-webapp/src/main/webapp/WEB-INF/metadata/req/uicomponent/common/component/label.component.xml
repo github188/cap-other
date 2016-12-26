@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.label</extend>
+    <modelId>req.uicomponent.common.component.label</modelId>
+    <modelName>Label</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>文字</cname>
+	<group>common</group>
+	<description>Label组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>1</sort>
+	
+</component>

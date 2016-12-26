@@ -1,0 +1,10 @@
+<basic src="element.txt" name="取消" type="testStepDefinitions.basics.basic.choose_cancel_on_next_confirmation" icon="icon-cog-wheel-silhouette" group="common" desc="取消" definition="choose_cancel_on_next_confirmation">
+    <createTime>1469606769706</createTime>
+    <modelId>testStepDefinitions.basics.basic.choose_cancel_on_next_confirmation</modelId>
+    <modelName>choose_cancel_on_next_confirmation</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[取消]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[取消    #${desc}]]></macro>
+</basic>

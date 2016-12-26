@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+<!---->
+	<ear-subdeployments-isolated>true</ear-subdeployments-isolated>
+    <deployment>
+        <!-- Exclusions allow you to prevent the server from automatically adding some dependencies     -->
+        <exclusions>
+            <module name="org.slf4j" />
+        </exclusions>
+       
+       <dependencies>
+   				<system>
+   					 <paths>
+ 				 		 <path name="com/sun/org/apache/xml/internal/serialize"/>
+  						 <path name="sun/beans/editors"/>
+   					 </paths>
+  			 </system>
+	  		<!-- <module name="org.bouncycastle" slot="main" export="true"/> -->
+		</dependencies>
+ 	
+ 		<resources>  
+         	<resource-root path="WEB-INF/lib/bcprov-jdk14-143.jar" use-physical-code-source="true"/>  
+      	</resources>
+    </deployment>
+</jboss-deployment-structure>

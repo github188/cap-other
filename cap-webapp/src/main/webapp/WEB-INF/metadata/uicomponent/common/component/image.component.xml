@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.image</modelId>
+    <modelName>Image</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>图片</cname>
+	<group>common</group>
+	<description>图片组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>16</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Image</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			
+		</property>
+		<property>
+			<cname>图片地址</cname>
+			<ename>url</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>../../../../../cap/bm/common/base/image/eg_image.jpg</default>
+			<description>图片组件地址</description>
+			<filterRule><![CDATA[{'url': {'operate': '$replace$', 'regexp': '${pageScope.cuiWebRoot}', 'replacement': eval('webPath')}}]]></filterRule>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'url',
+						'name': 'url',
+						'ng-model':'data.url'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>宽度</cname>
+			<ename>width</ename>
+			<type>Number</type>
+			<requried>true</requried>
+			<default>100</default>
+			<description>宽度</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width',
+						'validate': "[{type:'numeric',rule:{oi:true,notim:'必须为整数'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>高度</cname>
+			<ename>height</ename>
+			<type>Number</type>
+			<requried>true</requried>
+			<default>100</default>
+			<description>高度</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'height',
+						'name': 'height',
+						'ng-model':'data.height',
+						'validate': "[{type:'numeric',rule:{oi:true,notim:'必须为整数'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>样式</cname>
+			<ename>cls</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>标签样式</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'cls',
+						'name': 'cls',
+						'ng-model':'data.cls'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>图片</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '图片'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model':'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Image组件名称。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>图片点击</cname>
+	        <ename>on_click</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.formAction.action.customAction</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>click的回调函数，传入一个方法的索引，有两个参数：(event, self)。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>图片mouserover</cname>
+	        <ename>on_mouseover</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.formAction.action.customAction</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>on_mouseover的回调函数，传入一个方法的索引，有两个参数：(event, self)。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>图片mouseout</cname>
+	        <ename>on_mouseout</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.formAction.action.customAction</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>on_mouseout的回调函数，传入一个方法的索引，有两个参数：(event, self)。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+	</events>
+</component>

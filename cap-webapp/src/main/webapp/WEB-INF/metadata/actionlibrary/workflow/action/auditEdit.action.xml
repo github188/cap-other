@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.workflow.action.auditEdit</modelId>
+    <modelName>auditEdit</modelName>
+    <modelPackage>actionlibrary.workflow</modelPackage>
+    <modelType>action</modelType>
+    <cname>编辑页面流程审批行为</cname>
+	<description>上报单条记录，一般在编辑页面使用</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+		<list>/cap/dwr/interface/CapWorkflowAction.js</list>
+		<list>/cap/rt/common/workflow/comtop.cap.rt.workflow.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/**
+* {{cname}} {{description}}
+*/
+function {{ename}}(){
+	//定义获取业务数据的方法（该方法完成业务数据的校验，并返回合法的数据。
+	//一般该方法实现逻辑：
+	//若校验成功，返回合法数据数组；若校验不成功，则返回null或长度为0的数组）
+	//getData 是获取要提交的业务数据的js方法
+	var getData = function(){
+		var entryData = [];
+        	if(cap.validateForm()){
+         		cap.beforeSave();
+         		var selectDataTmp = '{{methodOption.dataStore}}';
+         		 if(selectDataTmp != ''){
+        		  entryData[0] = window[selectDataTmp];//选择数据集
+        		 }
+        		//TODO 此处编写校验脚步
+        		<script name="check"/>
+        	}
+       		return entryData;
+	}; 
+	//定义上报完成后的回调方法（该方法在完成上报操作后被调用。
+	//该方法有一个入参，是后台上报方法的返回值。
+	//通常在此回调方法中进行提示、刷新或跳转页面）
+	//flowOperateCallback 是流程处理提交的业务数据后的回调处理方法。
+    var flowOperateCallback = function(){
+    var rsMsg = '操作成功！';
+    <script name="rsMsg"/>
+	    cui.message(rsMsg, 'success', {'callback':function(){
+					//TODO 此处可编写上报成功的回调处理逻辑
+					<script name="callBack"/>
+					
+					var pWindow = cap.searchParentWindow("reloadGridData");
+					if(pWindow && typeof pWindow["reloadGridData"] === "function"){
+						pWindow["reloadGridData"]();
+					}
+					window.close();
+				}});
+    };
+    if(cap.validateForm()){
+	cap.rt10.workflow.operate.{{methodOption.workflowMethod}}(false,getData,flowOperateCallback);
+	}
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>审批数据</cname>
+			<ename>dataStore</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>要上报的业务数据。</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'dataStore',
+						'ng-model':'dataStore',
+						'onclick':'openDataStoreSelect(\'dataStore\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>流程审批方法</cname>
+			<ename>workflowMethod</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>流程审批方法</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'workflowMethod',
+						'ng-model':'workflowMethod',
+						'datasource':"[{id:'report',text:'上报'},{id:'send',text:'发送'},{id:'back',text:'回退'},{id:'reassign',text:'转发'},{id:'undo',text:'撤回'},{id:'backReport',text:'回退给申请人'},{id:'undoReport',text:'撤回结束到申请人'},{id:'saveNote',text:'保存意见'},{id:'abort',text:'终止流程'},{id:'jump',text:'跳转'},{id:'hungup',text:'挂起'},{id:'overFlow',text:'结束流程'},{id:'recover',text:'恢复'}]",
+						'value_field':'id',
+						'label_field':'text'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+</action>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.action.addBizObject</modelId>
+    <modelName>addBizObject</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>点击按钮跳转页面</cname>
+	<description>点击按钮跳转页面</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/rt/common/base/js/comtop.cap.rt.js</list>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *
+ * @param event 当前事件对象
+ * @param self 当前button对象
+ * @param mark 传入的参数
+ */
+function {{ename}}(event, self, mark) { 
+	var pageJumpURL=cap.getforwardURL({{methodOption.pageURL}});
+	var container={{methodOption.container}};
+	//TODO  调用后台前处理逻辑
+	<script name="before"/>
+	//带查询条件返回设置
+  	var saveQueryData='{{methodOption.saveQueryData}}';
+  	 if(saveQueryData=='yes'){
+  		pageJumpURL=cap.buildURL(pageJumpURL,{clearSession:false});
+  	}
+  	//当打开的页面为新窗口，并且当前window实现了{{ename}}_pageJump方法，则调用{{ename}}_pageJump方法来打开新页面
+  	var _openWindow = window["{{ename}}_pageJump"]; 
+  	if("{{methodOption.target}}" == "win" && _openWindow && typeof(_openWindow) == "function"){
+  		_openWindow(pageJumpURL);
+  	}else{
+		cap.pageJump(pageJumpURL,"{{methodOption.target}}",container);
+  	}
+}
+		]]>
+	</script>
+	<properties>
+		<property>
+			<cname>页面URL</cname>
+			<ename>pageURL</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>页面选择</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'pageURL',
+						'ng-model':'pageURL',
+						'onclick':'openDataStoreSelect(\'pageURL\',null)'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.RelationPageUrlPageActionConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>容器</cname>
+			<ename>container</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>window</default>
+			<description>容器选择</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'container',
+						'ng-model':'container',
+						'datasource':"[{id:'window',text:'当前页面'},{id:'window.parent',text:'父页面'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'select':0
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>打开方式</cname>
+			<ename>target</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>location</default>
+			<description>打开方式</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'target',
+						'ng-model':'target',
+						'datasource':"[{id:'location',text:'指定页面'},{id:'win',text:'新窗口'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'select':0
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>带查询条件返回</cname>
+			<ename>saveQueryData</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>no</default>
+			<description>带查询条件返回</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'saveQueryData',
+						'ng-model':'saveQueryData',
+						'datasource':"[{id:'no',text:'否'},{id:'yes',text:'是'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'select':0
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>行为类型</cname>
+			<ename>actionType</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>行为类型</description>
+			<propertyEditorUI>
+			<componentName>cui_pulldown</componentName>
+			<script>
+				<![CDATA[ 
+					{
+					'id': 'actionType',
+					'ng-model':'actionType',
+					'datasource':"[{id:'editLink', text:'编辑链接'},{id:'save', text:'保存'},{id:'insertGrid', text:'grid新增'},{id:'deleteGrid', text:'grid删除'},{id:'insert', text:'新增'},{id:'delete', text:'删除'},{id:'update', text:'修改'},{id:'query', text:'查询'},{id:'view', text:'查看'},{id:'report', text:'上报'},{id:'send', text:'下发'},{id:'back', text:'回退'},{id:'undo', text:'撤回'},{id:'editReport', text:'编辑上报'},{id:'editSend', text:'编辑下发'},{id:'editSaveAndReport', text:'编辑保存并上报'},{id:'editSaveAndSend', text:'编辑保存并发送'}]",
+					'value_field':'id',
+					'label_field':'text'
+					}
+					]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.DefaultPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

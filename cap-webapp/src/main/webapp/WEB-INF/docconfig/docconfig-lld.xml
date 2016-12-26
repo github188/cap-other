@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WtDocConfig diffKey="详细设计" version="1.0" name="详细设计说明书模板"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../classes/DocConfig.xsd">
+	<MarkText>^\s*数据项信息.*[：:]|^\s*数据项说明.*[：:]|.*关联信息.*[：:]</MarkText>
+	<WtSection name="封面" />
+	<WtSection name="目录" />
+	<WtSection name="正文">
+		<WtChapter title="综述" type="FIXED">
+			<WtChapter title="编制目的" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='lld.bzmd')">
+				<span mappingTo="dsg.value"/>
+			</WtChapter>
+			<WtChapter title="适用范围" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='lld.syfw')">
+				<span mappingTo="dsg.value"/>
+			</WtChapter>
+			<WtChapter title="规范性引用资料" type="FIXED">
+				<WtChapter title="管理制度" type="FIXED" mappingTo="dsg=#DefaultContentSeg(key='lld.glzd')">
+					<span mappingTo="dsg.value"/>
+				</WtChapter>
+				<WtChapter title="技术标准" type="FIXED" />
+				<WtChapter title="作业标准" type="FIXED" />
+			</WtChapter>
+			<WtChapter title="约束定义" type="FIXED">
+				<WtChapter title="图元约束" type="FIXED" />
+				<WtChapter title="层次定义" type="FIXED" />
+				<WtChapter title="编码约束" type="FIXED" />
+				<WtChapter title="格式约束" type="FIXED" />
+			</WtChapter>
+			<WtChapter title="内容安排（可选）" type="FIXED" />
+			<WtChapter title="导读说明" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="系统设计规划（可选）" type="FIXED">
+			<WtChapter title="项目工作背景" type="FIXED" />
+			<WtChapter title="应用参考模型" type="FIXED" />
+			<WtChapter title="技术参考模型" type="FIXED" />
+			<WtChapter title="假定和约束" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="系统集成设计" type="FIXED">
+			<WtChapter title="集成总体设计" type="FIXED">
+				<WtChapter title="集成功能点概述" type="FIXED" />
+				<WtChapter title="集成功能点清单" type="FIXED">
+					<table name="集成功能点清单" type="EXT_ROWS"
+						mappingTo="ifp[]=#IntegrationFP(packageId=$packageId)">
+						<tr>
+							<td>功能点编码</td>
+							<td>功能点名称</td>
+							<td>业务类编码</td>
+							<td>业务类名称</td>
+							<td>说明</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<WtChapter title="集成功能需求" type="FIXED" />
+				<WtChapter title="集成模式" type="FIXED" />
+			</WtChapter>
+			<WtChapter title="接口功能设计" type="FIXED">
+				<WtChapter title="功能描述" type="FIXED" />
+				<WtChapter title="流程逻辑" type="FIXED" />
+				<WtChapter title="服务列表" type="FIXED">
+					<table name="服务列表" type="EXT_ROWS"
+						mappingTo="APIService[]=#APIService(packageId=$packageId)">
+						<tr>
+							<td>服务代码</td>
+							<td>服务名称</td>
+							<td>服务来源</td>
+						</tr>
+					</table>
+				</WtChapter>
+			</WtChapter>
+			<WtChapter title="集成服务设计" type="FIXED">
+				<WtChapter type="DYNAMIC"
+					mappingTo="is[]=#IntegrationService(packageId=$packageId)" title="is.name">
+					<WtChapter title="设计说明" type="FIXED">
+						<table name="设计说明" type="FIXED">
+							<tr>
+								<td>服务代码</td>
+								<td mappingTo="is.code"></td>
+								<td>服务名称</td>
+								<td mappingTo="is.name"></td>
+							</tr>
+							<tr>
+								<td>服务描述</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>服务特点</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>性能预期</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>约束设计</td>
+								<td colspan="3" />
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="流程逻辑" type="FIXED">
+						<!-- <table name="流程辅助说明" type="EXT_ROWS" mappingTo="ExecuteFlow[]=#ExecuteFlow()"> 
+							<tr> <td mappingTo="nodeNo">序号</td> <td>辅助说明</td> </tr> </table> -->
+					</WtChapter>
+					<WtChapter title="算法逻辑" type="FIXED" />
+					<WtChapter title="组件调用关系" type="FIXED">
+						<table name="组件调用关系" type="EXT_ROWS"
+							mappingTo="ccr[]=#ComponentCallRelation(packageId=is.id)">
+							<tr>
+								<td>组件编码</td>
+								<td>组件代码</td>
+								<td>组件名称</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="接口实现方式调用关系" type="FIXED">
+						<table name="接口实现方式调用关系" type="EXT_ROWS"
+							mappingTo="aicr[]=#APIImplCallRelation(packageId=is.id)">
+							<tr>
+								<td>流程序号</td>
+								<td>集成功能点编码</td>
+								<td>集成功能点名称</td>
+							</tr>
+						</table>
+					</WtChapter>
+				</WtChapter>
+			</WtChapter>
+			<WtChapter title="接口实现" type="FIXED">
+				<WtChapter type="DYNAMIC" mappingTo="APIImpl[]=#APIImpl(packageId=$packageId)" title="APIImpl.name">
+					<WtChapter title="接口实现设计卡片" type="FIXED">
+						<table name="接口实现设计卡片" type="FIXED">
+							<tr>
+								<td>集成功能点</td>
+								<td mappingTo="APIImpl.name" />
+							</tr>
+							<tr>
+								<td>功能点名称：</td>
+								<td mappingTo="APIImpl.name" />
+							</tr>
+							<tr>
+								<td>功能点说明：</td>
+								<td mappingTo="nodeNo" />
+							</tr>
+							<tr>
+								<td>服务提供者：</td>
+								<td mappingTo="nodeNo" />
+							</tr>
+							<tr>
+								<td>服务消费者：</td>
+								<td mappingTo="nodeNo" />
+							</tr>
+							<tr>
+								<td>关联接口：</td>
+								<td mappingTo="nodeNo" />
+							</tr>
+							<tr>
+								<td>技术类型：</td>
+								<td mappingTo="nodeNo" />
+							</tr>
+							<tr>
+								<td>交互模式：</td>
+								<td mappingTo="nodeNo" />
+							</tr>
+							<tr>
+								<td>报文格式：</td>
+								<td mappingTo="nodeNo" />
+							</tr>
+							<tr>
+								<td>操作规则：</td>
+								<td mappingTo="nodeNo" />
+							</tr>
+							<tr>
+								<td>备注：</td>
+								<td mappingTo="nodeNo" />
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="输入接口模型" type="FIXED">
+						<table name="输入接口模型" type="EXT_ROWS"
+							mappingTo="APIInput[]=#APIInput(packageId=$packageId)">
+							<tr>
+								<td>接口序号</td>
+								<td>接口名称</td>
+								<td>输入输出</td>
+								<td>类型</td>
+								<td>名称</td>
+								<td>说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="输出接口模型" type="FIXED">
+						<table name="输出接口模型" type="EXT_ROWS"
+							mappingTo="APIOutput[]=#APIOutput(packageId=$packageId)">
+							<tr>
+								<td>接口序号</td>
+								<td>接口名称</td>
+								<td>输入输出</td>
+								<td>类型</td>
+								<td>名称</td>
+								<td>说明</td>
+							</tr>
+						</table>
+						<table name="接收结果" type="EXT_ROWS"
+							mappingTo="APIResult[]=#APIResult(packageId=$packageId)">
+							<tr>
+								<td>序号</td>
+								<td>数据项</td>
+								<td>类型</td>
+								<td>说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+				</WtChapter>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter title="功能设计" type="FIXED">
+			<WtChapter type="DYNAMIC"
+				mappingTo="p1[]=#Package(parentId=$packageId)" title="$StringUtils_join('【',p1.code,'】',p1.name)">
+				 <!-- <WtChapter type="DYNAMIC"
+					mappingTo="p5[]=#Package(id=p1.id,type=2)" title="$StringUtils_join('【',p5.code,'】',p5.name)">  -->
+					<WtChapter title="功能概述" type="FIXED" enable="$equals(p1.type,2)">
+						<span mappingTo="p1.description" />
+					</WtChapter>
+					<WtChapter title="界面列表" type="FIXED" enable="$equals(p1.type,2)">
+						<table name="界面列表" type="EXT_ROWS" mappingTo="page[]=#Page(packageId=p1.id)">
+							<tr>
+								<td  mappingTo="page.code">界面编码</td>
+								<td  mappingTo="page.cnName">界面名称</td>
+								<td  mappingTo="page.type">界面分类</td>
+								<td  mappingTo="page.pageFrom">界面来源</td>
+								<td  mappingTo="page.crudeUINames">界面原型文件名称</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter type="DYNAMIC" mappingTo="page[]=#Page(packageId=p1.id)"
+						title="$StringUtils_join('【',page.code,'】',page.name)" enable="$equals(p1.type,2)">
+						<WtChapter title="参考界面" type="FIXED">
+							<WtGraphic mappingTo="page.crudeUIs" />
+						</WtChapter>
+						<WtChapter title="界面元素" type="FIXED">
+							<table name="界面元素" type="EXT_ROWS"
+								mappingTo="pageElement[]=page.elements">
+								<tr>
+									<td mappingTo="pageElement.sortIndex">元素序号</td>
+									<td mappingTo="pageElement.cnUiType">元素类型</td>
+									<td mappingTo="pageElement.cnName">元素名称</td>
+								</tr>
+							</table>
+						</WtChapter>
+						<WtChapter title="界面元素事件" type="FIXED">
+							<table name="界面元素事件" type="EXT_ROWS"
+								mappingTo="pageElementEvent[]=page.events">
+								<tr>
+									<td mappingTo="pageElementEvent.sortIndex">元素序号</td>
+									<td mappingTo="pageElementEvent.cnElementName">元素名称</td>
+									<td mappingTo="pageElementEvent.cnName">事件</td>
+									<td mappingTo="pageElementEvent.description">事件描述</td>
+								</tr>
+							</table>
+						</WtChapter>
+						<WtChapter title="服务调用关系" type="FIXED">
+							<table name="服务调用关系" type="EXT_ROWS"
+								mappingTo="pageElementService[]=page.services">
+								<tr>
+									<td  mappingTo="pageElementService.sortIndex">元素序号</td>
+									<td  mappingTo="pageElementService.cnElementName">元素名称</td>
+									<td  mappingTo="pageElementService.code">服务编码</td>
+									<td  mappingTo="pageElementService.name">服务代码</td>
+									<td  mappingTo="pageElementService.cnName">服务名称</td>
+								</tr>
+							</table>
+						</WtChapter>
+					</WtChapter>
+				<!--  </WtChapter> --> 
+				
+				<!-- 一级模块下的页面 -->
+				<WtChapter type="DYNAMIC"
+					mappingTo="p2[]=#Package(parentId=p1.id)" title="$StringUtils_join('【',p2.code,'】',p2.name)">
+					
+					<WtChapter title="功能概述" type="FIXED" enable="$equals(p2.type,2)">
+						<span mappingTo="p2.description" />
+					</WtChapter>
+					<WtChapter title="界面列表" type="FIXED"  enable="$equals(p2.type,2)">
+						<table name="界面列表" type="EXT_ROWS" mappingTo="page[]=#Page(packageId=p2.id)">
+							<tr>
+								<td  mappingTo="page.code">界面编码</td>
+								<td  mappingTo="page.cnName">界面名称</td>
+								<td  mappingTo="page.type">界面分类</td>
+								<td  mappingTo="page.pageFrom">界面来源</td>
+								<td  mappingTo="page.crudeUINames">界面原型文件名称</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter type="DYNAMIC" mappingTo="page[]=#Page(packageId=p2.id)"
+						title="$StringUtils_join('【',page.code,'】',page.name)"  enable="$equals(p2.type,2)">
+						<WtChapter title="参考界面" type="FIXED">
+							<WtGraphic mappingTo="page.crudeUIs" />
+						</WtChapter>
+						<WtChapter title="界面元素" type="FIXED">
+							<table name="界面元素" type="EXT_ROWS"
+								mappingTo="pageElement[]=page.elements">
+								<tr>
+									<td mappingTo="pageElement.sortIndex">元素序号</td>
+									<td mappingTo="pageElement.cnUiType">元素类型</td>
+									<td mappingTo="pageElement.cnName">元素名称</td>
+								</tr>
+							</table>
+						</WtChapter>
+						<WtChapter title="界面元素事件" type="FIXED">
+							<table name="界面元素事件" type="EXT_ROWS"
+								mappingTo="pageElementEvent[]=page.events">
+								<tr>
+									<td mappingTo="pageElementEvent.sortIndex">元素序号</td>
+									<td mappingTo="pageElementEvent.cnElementName">元素名称</td>
+									<td mappingTo="pageElementEvent.cnName">事件</td>
+									<td mappingTo="pageElementEvent.description">事件描述</td>
+								</tr>
+							</table>
+						</WtChapter>
+						<WtChapter title="服务调用关系" type="FIXED">
+							<table name="服务调用关系" type="EXT_ROWS"
+								mappingTo="pageElementService[]=page.services">
+								<tr>
+									<td  mappingTo="pageElementService.sortIndex">元素序号</td>
+									<td  mappingTo="pageElementService.cnElementName">元素名称</td>
+									<td  mappingTo="pageElementService.code">服务编码</td>
+									<td  mappingTo="pageElementService.name">服务代码</td>
+									<td  mappingTo="pageElementService.cnName">服务名称</td>
+								</tr>
+							</table>
+						</WtChapter>
+					</WtChapter>
+					<WtChapter type="DYNAMIC"
+						mappingTo="p4[]=#Package(parentId=p2.id,cascadeQuery=1,type=2,typeLevel=1)" title="$StringUtils_join('【',p4.code,'】',p4.name)">
+						<!--  -->
+						<WtChapter title="功能概述" type="FIXED">
+							<span mappingTo="p4.description" />
+						</WtChapter>
+						<WtChapter title="界面列表" type="FIXED">
+							<table name="界面列表" type="EXT_ROWS" mappingTo="page[]=#Page(packageId=p4.id)">
+								<tr>
+									<td  mappingTo="page.code">界面编码</td>
+									<td  mappingTo="page.cnName">界面名称</td>
+									<td  mappingTo="page.type">界面分类</td>
+									<td  mappingTo="page.pageFrom">界面来源</td>
+									<td  mappingTo="page.crudeUINames">界面原型文件名称</td>
+								</tr>
+							</table>
+						</WtChapter>
+						
+						<WtChapter type="DYNAMIC" mappingTo="page[]=#Page(packageId=p4.id)"
+							title="$StringUtils_join('【',page.code,'】',page.name)">
+							<WtChapter title="参考界面" type="FIXED">
+								<WtGraphic mappingTo="page.crudeUIs" />
+							</WtChapter>
+							<WtChapter title="界面元素" type="FIXED">
+								<table name="界面元素" type="EXT_ROWS"
+									mappingTo="pageElement[]=page.elements">
+									<tr>
+										<td mappingTo="pageElement.sortIndex">元素序号</td>
+										<td mappingTo="pageElement.cnUiType">元素类型</td>
+										<td mappingTo="pageElement.cnName">元素名称</td>
+									</tr>
+								</table>
+							</WtChapter>
+							<WtChapter title="界面元素事件" type="FIXED">
+								<table name="界面元素事件" type="EXT_ROWS"
+									mappingTo="pageElementEvent[]=page.events">
+									<tr>
+										<td mappingTo="pageElementEvent.sortIndex">元素序号</td>
+										<td mappingTo="pageElementEvent.cnElementName">元素名称</td>
+										<td mappingTo="pageElementEvent.cnName">事件</td>
+										<td mappingTo="pageElementEvent.description">事件描述</td>
+									</tr>
+								</table>
+							</WtChapter>
+							<WtChapter title="服务调用关系" type="FIXED">
+								<table name="服务调用关系" type="EXT_ROWS"
+									mappingTo="pageElementService[]=page.services">
+									<tr>
+										<td  mappingTo="pageElementService.sortIndex">元素序号</td>
+										<td  mappingTo="pageElementService.cnElementName">元素名称</td>
+										<td  mappingTo="pageElementService.code">服务编码</td>
+										<td  mappingTo="pageElementService.name">服务代码</td>
+										<td  mappingTo="pageElementService.cnName">服务名称</td>
+									</tr>
+								</table>
+							</WtChapter>
+						</WtChapter>
+					</WtChapter>
+				</WtChapter>
+				
+				
+				<!-- 一级模块下的二级模块 --><!-- 二级模块下的页面 -->	
+				<!--<WtChapter type="DYNAMIC"
+				mappingTo="p3[]=#Package(parentId=p1.id,type=3,typeLevel=1)" title="$StringUtils_join('【',p3.code,'】',p3.name)">
+					
+					
+				</WtChapter> -->	
+			</WtChapter>
+			<WtChapter title="功能设计约束" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="服务设计" type="FIXED">
+			<WtChapter title="服务设计" type="FIXED">
+				<WtChapter title="服务清单" type="FIXED">
+					<table name="服务清单" type="EXT_ROWS"
+						mappingTo="service1[]=#Service(packageId=$packageId)">
+						<tr>
+							<td mappingTo="service1.code">服务编码</td>
+							<td mappingTo="service1.name">服务代码</td>
+							<td mappingTo="service1.cnName">服务名称</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<WtChapter type="DYNAMIC" mappingTo="service[]=#Service(packageId=$packageId)"
+					title="$StringUtils_join('【',service.code,'】',service.cnName)">
+					<WtChapter title="设计说明" type="FIXED">
+						<table name="设计说明" type="FIXED">
+							<tr>
+								<td>服务代码</td>
+								<td  mappingTo="service.name"/>
+								<td>服务名称</td>
+								<td mappingTo="service.cnName"/>
+							</tr>
+							<tr>
+								<td>服务描述</td>
+								<td colspan="3" mappingTo="service.description"/>
+							</tr>
+							<tr>
+								<td>服务特点</td>
+								<td colspan="3" mappingTo="service.features"/>
+							</tr>
+							<tr>
+								<td>性能预期</td>
+								<td colspan="3" mappingTo="service.expPerformance"/>
+							</tr>
+							<tr>
+								<td>约束设计</td>
+								<td colspan="3" mappingTo="service.constraint"/>
+							</tr>
+							<tr>
+								<td>涉及实体</td>
+								<td colspan="3" mappingTo="service.relationEntityNames"/>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="输入参数说明" type="FIXED">
+						<table name="输入实体描述" type="EXT_ROWS"
+							mappingTo="EntityInput[]=service.entityInputParams">
+							<tr>
+								<td mappingTo="EntityInput.name">实体代码</td>
+								<td mappingTo="EntityInput.cnName">实体名称</td>
+								<td mappingTo="EntityInput.constraint">实体约束</td>
+							</tr>
+						</table>
+						<table name="实体属性描述" type="EXT_ROWS"
+							mappingTo="EntityInputItem[]=service.entityInputParamItems">
+							<tr>
+								<td mappingTo="EntityInputItem.entityName">实体代码</td>
+								<td mappingTo="EntityInputItem.name">实体属性</td>
+								<td mappingTo="EntityInputItem.cnName">属性名称</td>
+								<td mappingTo="EntityInputItem.constraint">属性约束</td>
+								<td mappingTo="EntityInputItem.description">说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					
+					<WtChapter title="输出参数说明" type="FIXED">
+						<table name="输出实体描述" type="EXT_ROWS"
+							mappingTo="EntityOutput[]=service.entityOutputParams">
+							<tr>
+								<td mappingTo="EntityOutput.name">实体代码</td>
+								<td mappingTo="EntityOutput.cnName">实体名称</td>
+								<td mappingTo="EntityOutput.constraint">实体约束</td>
+							</tr>
+						</table>
+						<table name="实体属性描述" type="EXT_ROWS"
+							mappingTo="EntityOutputItem[]=service.entityOutputParamItems">
+							<tr>
+								<td mappingTo="EntityOutputItem.entityName">实体代码</td>
+								<td mappingTo="EntityOutputItem.name">实体属性</td>
+								<td mappingTo="EntityOutputItem.cnName">属性名称</td>
+								<td mappingTo="EntityOutputItem.constraint">属性约束</td>
+								<td mappingTo="EntityOutputItem.description">说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					
+					<WtChapter title="流程逻辑" type="FIXED">
+						<table name="流程辅助说明" type="EXT_ROWS"
+							mappingTo="ExecuteFlow[]=#ExecuteFlow()">
+							<tr>
+								<td mappingTo="nodeNo">序号</td>
+								<td>辅助说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="算法逻辑" type="FIXED" />
+					
+					<WtChapter title="组件调用关系" type="FIXED">
+						<table name="组件调用关系" type="EXT_ROWS"
+							mappingTo="ccr[]=#ComponentCallRelation()">
+							<tr>
+								<td>组件编码</td>
+								<td>组件代码</td>
+								<td>组件名称</td>
+							</tr>
+						</table>
+					</WtChapter>
+				</WtChapter>
+				
+			</WtChapter>
+			<WtChapter title="业务组件设计" type="FIXED">
+				<WtChapter title="组件清单" type="FIXED">
+					<table name="业务组件清单" type="EXT_ROWS"
+						mappingTo="BizComponent[]=#BizComponent(packageId=$packageId)">
+						<tr>
+							<td>组件编码</td>
+							<td>组件代码</td>
+							<td>组件名称</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<WtChapter type="DYNAMIC"
+					mappingTo="BizComponent[]=#BizComponent(packageId=$packageId)" title="$StringUtils_join('【',BizComponent.code,'】',BizComponent.name)">
+					<WtChapter title="设计说明" type="FIXED">
+						<table name="设计说明" type="FIXED">
+							<tr>
+								<td>组件代码</td>
+								<td></td>
+								<td>组件名称</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>组件描述</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>组件特点</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>性能预期</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>约束设计</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>涉及实体</td>
+								<td colspan="3" />
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="输入参数说明" type="FIXED">
+						<table name="输入实体描述" type="EXT_ROWS"
+							mappingTo="EntityInput[]=#EntityInput()">
+							<tr>
+								<td>实体代码</td>
+								<td>实体名称</td>
+								<td>实体约束</td>
+							</tr>
+						</table>
+						<table name="实体属性描述" type="EXT_ROWS"
+							mappingTo="EntityInputItem[]=#EntityInputItem()">
+							<tr>
+								<td>实体代码</td>
+								<td>实体属性</td>
+								<td>属性名称</td>
+								<td>属性约束</td>
+								<td>说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="输出参数说明" type="FIXED">
+						<table name="输出实体描述" type="EXT_ROWS"
+							mappingTo="EntityOutput[]=#EntityOutput()">
+							<tr>
+								<td>实体代码</td>
+								<td>实体名称</td>
+								<td>实体约束</td>
+							</tr>
+						</table>
+						<table name="实体属性描述" type="EXT_ROWS"
+							mappingTo="EntityOutputItem[]=#EntityOutputItem()">
+							<tr>
+								<td>实体代码</td>
+								<td>实体属性</td>
+								<td>属性名称</td>
+								<td>属性约束</td>
+								<td>说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="流程逻辑" type="FIXED">
+						<table name="流程辅助说明" type="EXT_ROWS"
+							mappingTo="ExecuteFlow[]=#ExecuteFlow()">
+							<tr>
+								<td mappingTo="nodeNo">序号</td>
+								<td>辅助说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="算法逻辑" type="FIXED" />
+					<WtChapter title="组件调用关系" type="FIXED">
+						<table name="组件调用关系" type="EXT_ROWS"
+							mappingTo="ccr[]=#ComponentCallRelation()">
+							<tr>
+								<td>组件编码</td>
+								<td>组件代码</td>
+								<td>组件名称</td>
+							</tr>
+						</table>
+					</WtChapter>
+				</WtChapter>
+			</WtChapter>
+			<WtChapter title="非原子组件设计" type="FIXED">
+				<WtChapter title="组件清单" type="FIXED">
+					<table name="组件清单" type="EXT_ROWS"
+						mappingTo="ComplexComponent[]=#ComplexComponent(packageId=$packageId)">
+						<tr>
+							<td>组件编码</td>
+							<td>组件代码</td>
+							<td>组件名称</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<WtChapter type="DYNAMIC"
+					mappingTo="ComplexComponent[]=#ComplexComponent(packageId=$packageId)"
+					title="$StringUtils_join('【',ComplexComponent.code,'】',ComplexComponent.name)">
+					<WtChapter title="设计说明" type="FIXED">
+						<table name="设计说明" type="FIXED">
+							<tr>
+								<td>组件代码</td>
+								<td></td>
+								<td>组件名称</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>组件描述</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>组件特点</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>性能预期</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>约束设计</td>
+								<td colspan="3" />
+							</tr>
+							<tr>
+								<td>涉及实体</td>
+								<td colspan="3" />
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="输入参数说明" type="FIXED">
+						<table name="输入实体描述" type="EXT_ROWS"
+							mappingTo="EntityInput[]=#EntityInput()">
+							<tr>
+								<td>实体代码</td>
+								<td>实体名称</td>
+								<td>实体约束</td>
+							</tr>
+						</table>
+						<table name="实体属性描述" type="EXT_ROWS"
+							mappingTo="EntityInputItem[]=#EntityInputItem()">
+							<tr>
+								<td>实体代码</td>
+								<td>实体属性</td>
+								<td>属性名称</td>
+								<td>属性约束</td>
+								<td>说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="输出参数说明" type="FIXED">
+						<table name="输出实体描述" type="EXT_ROWS"
+							mappingTo="EntityOutput[]=#EntityOutput()">
+							<tr>
+								<td>实体代码</td>
+								<td>实体名称</td>
+								<td>实体约束</td>
+							</tr>
+						</table>
+						<table name="实体属性描述" type="EXT_ROWS"
+							mappingTo="EntityOutputItem[]=#EntityOutputItem()">
+							<tr>
+								<td>实体代码</td>
+								<td>实体属性</td>
+								<td>属性名称</td>
+								<td>属性约束</td>
+								<td>说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="流程逻辑" type="FIXED">
+						<table name="流程辅助说明" type="EXT_ROWS"
+							mappingTo="ExecuteFlow[]=#ExecuteFlow()">
+							<tr>
+								<td mappingTo="nodeNo">序号</td>
+								<td>辅助说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+					<WtChapter title="算法逻辑" type="FIXED" />
+					<WtChapter title="组件调用关系" type="FIXED">
+						<table name="组件调用关系" type="EXT_ROWS"
+							mappingTo="ccr[]=#ComponentCallRelation()">
+							<tr>
+								<td>组件编码</td>
+								<td>组件代码</td>
+								<td>组件名称</td>
+							</tr>
+						</table>
+					</WtChapter>
+				</WtChapter>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter title="引用组件设计" type="FIXED">
+			<WtChapter title="引用服务清单" type="FIXED">
+				<table name="引用服务清单" type="EXT_ROWS"
+					mappingTo="ReferService[]=#ReferService(packageId=$packageId)">
+					<tr>
+						<td>服务编码</td>
+						<td>服务代码</td>
+						<td>服务名称</td>
+						<td>文档来源</td>
+					</tr>
+				</table>
+			</WtChapter>
+			<WtChapter title="引用组件清单" type="FIXED">
+				<table name="引用组件清单" type="EXT_ROWS"
+					mappingTo="ReferComponent[]=#ReferComponent(packageId=$packageId)">
+					<tr>
+						<td>组件编码</td>
+						<td>组件名称</td>
+						<td>组件描述</td>
+						<td>文档来源</td>
+					</tr>
+				</table>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter title="数据库设计" type="FIXED">
+			<WtChapter title="逻辑模型设计" type="FIXED">
+				<WtChapter title="逻辑模型" type="FIXED" />
+				<WtChapter title="数据流转" type="FIXED" />
+			</WtChapter>
+			<WtChapter title="物理模型设计" type="FIXED">
+				<WtChapter title="命名规则" type="FIXED">
+					<WtChapter title="物理模型视图" type="FIXED">
+						<WtGraphic  mappingTo="$CAPDocDBHelper_getDataBaseErGraphHtml($packageId,$cookiesJsonStr,$httpUrl)"/>
+					</WtChapter>
+					<WtChapter title="数据表清单" type="FIXED">
+						<table name="数据表清单" type="EXT_ROWS"
+							mappingTo="Entity[]=#DBTable(packageId=$packageId)">
+							<tr>
+								<td mappingTo="Entity.cnTableName">名称</td>
+								<td mappingTo="Entity.tableName">代码</td>
+								<td mappingTo="Entity.tableComments">注释</td>
+								<td mappingTo="Entity.cnName">对应的逻辑实体</td>
+							</tr>
+						</table>
+						<WtChapter type="DYNAMIC" mappingTo="Entity[]=#DBTable(packageId=$packageId)"
+							title="Entity.tableName">
+							<table name="数据表结构" type="EXT_ROWS"
+								mappingTo="EntityItem[]=Entity.items">
+								<tr>
+									<td mappingTo="EntityItem.fieldName">名称</td>
+									<td mappingTo="EntityItem.fieldCode">代码</td>
+									<td mappingTo="EntityItem.fieldDescription">注释</td>
+									<td mappingTo="EntityItem.dataType">数据类型</td>
+									<td mappingTo="EntityItem.primaryKey">主键</td>
+									<td mappingTo="EntityItem.foreignKey">外键</td>
+									<td mappingTo="EntityItem.allowNull">非空</td>
+									<td mappingTo="EntityItem.name">对应的逻辑实体属性</td>
+									<td mappingTo="EntityItem.mainDataItem">是否主数据</td>
+									<td mappingTo="EntityItem.codeStandard">引用编码标准</td>
+								</tr>
+							</table>
+						</WtChapter>
+					</WtChapter>
+				</WtChapter>
+			</WtChapter>
+			<WtChapter title="主数据管理设计" type="FIXED">
+				<WtChapter title="主数据服务" type="FIXED">
+					<table name="主数据服务" type="EXT_ROWS"
+						mappingTo="MainDataService[]=#MainDataService(packageId=$packageId)">
+						<tr>
+							<td>序</td>
+							<td>数据库表</td>
+							<td>主数据服务</td>
+							<td>编码服务</td>
+							<td>描述服务调用的相关章节</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<WtChapter title="物理数据模型与服务数据模型映射" type="FIXED">
+					<table name="物理数据模型与服务数据模型映射" type="EXT_ROWS"
+						mappingTo="MainDataMapping[]=#MainDataMapping(packageId=$packageId)">
+						<tr>
+							<td rowspan="2">序号	</td>
+							<td colspan="2">表映射</td>
+							<td colspan="2">列映射</td>
+						</tr>
+						<tr>
+							<td>数据库表</td>
+							<td>XSD类型</td>
+							<td>数据库列</td>
+							<td>XSD性质元素</td>
+						</tr>
+					</table>
+				</WtChapter>
+			</WtChapter>
+			<WtChapter title="数据库设计约束" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="软硬件平台设计" type="FIXED">
+			<WtChapter title="物理架构" type="FIXED" />
+			<WtChapter title="硬件资源配置" type="FIXED">
+				<WtChapter title="计算资源估算" type="FIXED" />
+				<WtChapter title="存储资源估算" type="FIXED" />
+			</WtChapter>
+			<WtChapter title="硬件资源汇总表" type="FIXED" />
+			<WtChapter title="软件资源汇总表" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="集中监控设计" type="FIXED">
+			<WtChapter title="业务监控" type="FIXED" />
+			<WtChapter title="自我诊断设计" type="FIXED" />
+			<WtChapter title="日志格式设计" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="备份需求" type="FIXED">
+			<WtChapter title="备份数据描述" type="FIXED" />
+			<WtChapter title="备份技术建议" type="FIXED" />
+			<WtChapter title="备份需求、策略建议（可根据需要修改）" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="尚需解决的问题" type="FIXED">
+			<WtChapter title="问题总表" type="FIXED" />
+			<WtChapter title="问题处理" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="附录I业务需求跟踪表" type="FIXED" />
+		<WtChapter title="附录II数据实体清单" type="FIXED">
+			<WtChapter title="数据实体清单" type="FIXED">
+				<table name="数据表清单" type="EXT_ROWS"
+					mappingTo="DBObject[]=#DBObject(packageId=$packageId)">
+					<tr>
+						<td mappingTo="DBObject.sortIndex">序号</td>
+						<td mappingTo="DBObject.typeDescription">对象类型</td>
+						<td mappingTo="DBObject.code">对象名称</td>
+						<td mappingTo="DBObject.comment">说明</td>
+					</tr>
+				</table>
+			</WtChapter>
+			<WtChapter title="数据实体设计" type="FIXED">
+				<WtChapter type="DYNAMIC" mappingTo="DBObject[]=#DBObject(packageId=$packageId,type=1)"
+					title="$StringUtils_join(DBObject.cnName,'【',DBObject.code,'】')">
+					<table name="数据表结构" type="EXT_ROWS"
+						mappingTo="DBTableItem[]=DBObject.columnList">
+						<tr>
+							<td mappingTo="DBTableItem.name">字段名</td>
+							<td mappingTo="DBTableItem.comment">字段描述</td>
+							<td mappingTo="DBTableItem.dataType">数据类型</td>
+							<td mappingTo="DBTableItem.length">长度</td>
+							<td mappingTo="DBTableItem.isPrimaryKey">主键</td>
+							<td mappingTo="DBTableItem.enableNull">可空</td>
+							<td mappingTo="DBTableItem.defaultValue">缺省值</td>
+							<td mappingTo="DBTableItem.remark">备注</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<WtChapter type="DYNAMIC"
+					mappingTo="DBProcdure[]=#DBObject(packageId=$packageId,type=3)" title="$StringUtils_join(DBProcdure.name,'【',DBProcdure.code,'】')">
+					<table name="存储过程结构" type="FIXED">
+						<tr>
+							<td colspan="4">存储过程名称</td>
+						</tr>
+						<tr extRow="true" mappingTo="param[]=DBProcdure.columnList">
+							<td mappingTo="param.name" >参数名称</td>
+							<td mappingTo="param.columnType" >输入/输出类型</td>
+							<td mappingTo="param.description" >参数描述</td>
+							<td mappingTo="param.dataType" >参数数据类型</td>
+						</tr>
+						<tr>
+							<td colspan="4">业务逻辑</td>
+						</tr>
+						<tr>
+							<td colspan="4" mappingTo="DBProcdure.description"/>
+						</tr>
+					</table>
+				</WtChapter>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter title="附录III 模块详细设计说明表" type="FIXED">
+			<table name="模块详细设计说明表" type="FIXED">
+				<tr>
+					<td >模块名称</td>
+					<td colspan="2"/>
+					<td>模块编码</td>
+					<td colspan="2"/>
+				</tr>
+				<tr>
+					<td>适用范围</td>
+					<td colspan="2"/>
+					<td>类型</td>
+					<td colspan="2"/>
+				</tr>
+				<tr>
+					<td>模块功能</td>
+					<td colspan="5"/>
+				</tr>
+				<tr>
+					<td>作者</td>
+					<td />
+					<td>编写时间</td>
+					<td />
+					<td>修改人</td>
+					<td />
+				</tr>
+				<tr>
+					<td>修改时间</td>
+					<td />
+					<td>修改批准人</td>
+					<td />
+					<td>修改次数</td>
+					<td />
+				</tr>
+				<tr>
+					<td>相关表名</td>
+					<td colspan="5"/>
+				</tr>
+				<tr>
+					<td>性能要求</td>
+					<td colspan="5"/>
+				</tr>
+				<tr>
+					<td>限制条件</td>
+					<td colspan="5"/>
+				</tr>
+				<tr>
+					<td>输 入</td>
+					<td colspan="5"/>
+				</tr>
+				<tr>
+					<td>输 出</td>
+					<td colspan="5"/>
+				</tr>
+				<tr>
+					<td>算法逻辑</td>
+					<td colspan="5"/>
+				</tr>
+				<tr>
+					<td>相关对象及 接口</td>
+					<td colspan="5"/>
+				</tr>
+				<tr>
+					<td>备注</td>
+					<td colspan="5"/>
+				</tr>
+			</table>
+		</WtChapter>
+	</WtSection>
+</WtDocConfig>

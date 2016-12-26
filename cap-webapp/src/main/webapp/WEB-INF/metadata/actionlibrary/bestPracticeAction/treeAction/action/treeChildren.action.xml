@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.treeAction.action.treeChildren</modelId>
+    <modelName>treeChildren</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.treeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>tree始化数据事件</cname>
+	<description>tree始化数据事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 初始化Tree的节点数据。
+ *
+ * @param obj 树对象
+ */
+function {{ename}}(obj) { 
+    //TODO 加载数据前操作
+	<script name="before"/>
+	var paramArray =[];
+	var param = "${methodParameter}";
+    if (param) {
+       paramArray = param.split(",");
+    }
+	var aliasEntityId = '{{methodOption.aliasEntityId}}';
+	aliasEntityId = aliasEntityId != '' ? aliasEntityId :  '{{methodOption.entityId}}';	
+	var dwrInvokeParam = cap.getDwrInvokeParam(aliasEntityId,'{{methodOption.actionMethodName}}',paramArray);
+	dwr.TOPEngine.setAsync(false);
+	${modelName}Action.dwrInvoke(dwrInvokeParam,function(result){
+	  if(result&&result!=""){
+	      var treeData = typeof result === 'object' ? result : jQuery.parseJSON(result);
+	      if(!$.isArray(treeData)){
+	      	treeData = [treeData];
+	      }
+		  treeData[0].isRoot = true;
+		  obj.setDatasource(treeData);
+		  //激活根节点
+		  obj.getNode(treeData[0].key).activate(true);
+		  obj.getNode(treeData[0].key).expand(true);
+		  //treeClick(obj.getActiveNode());
+		  //TODO  后台调用返回后的处理逻辑  
+	      <script name="after"/>
+       }else{
+   	       obj.setDatasource([{title:"没有数据"}]);
+       }
+             
+	});
+	dwr.TOPEngine.setAsync(true);
+	//TODO  后台调用返回后的处理逻辑  
+	 <script name="after2"/>
+}
+		]]>
+	</script>
+	<properties>
+	   <property>
+			<cname>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow()'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.CallServiceMethodPageActionProConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

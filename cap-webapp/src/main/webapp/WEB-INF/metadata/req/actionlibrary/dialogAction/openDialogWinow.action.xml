@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>req.actionlibrary.pageJump.action.openDialogWinow</modelId>
+    <modelName>openDialogWinow</modelName>
+    <modelPackage>req.actionlibrary.pageJump</modelPackage>
+    <modelType>action</modelType>
+    <cname>打开Dialog新窗口</cname>
+	<type>custom</type>
+	<description>打开Dialog新窗口</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+var {{ename}}_dialog; //dialog变量
+/**
+ * {{cname}}
+ */
+function {{ename}}(){
+	//TODO 弹出窗口前的业务操作
+	<script name="beforeOpenWindow"/>
+	if(!{{ename}}_dialog){
+		var _cuiObj = cui;
+		var width={{methodOption.width}}; //窗口宽度
+		var height={{methodOption.height}};//窗口高度
+		var title = '新窗口';//窗口title
+		var url = {{methodOption.dialogURL}};
+		//TODO 设置dialog属性值
+		<script name="setAttributeValue"/>
+		{{ename}}_dialog = _cuiObj.dialog({
+			//TODO 根据需要添加dialog属性
+			<script name="setAttribute"/>
+			title : title,
+  		    width : width,
+  		    height : height,
+  		    src : url
+  	    });
+  	}else{
+  		{{ename}}_dialog.reload(url);
+  	}
+	{{ename}}_dialog.show(url);	
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>窗口URL</cname>
+			<ename>dialogURL</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>''</default>
+			<description>dialog请求的页面URL</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'dialogURL',
+						'ng-model':'dialogURL',
+						'onclick':'openDataStoreSelect(\'pageURL\')'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.RelationPageUrlPageActionConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>宽</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>600</default>
+			<description>弹出框的宽度</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'width',
+						'ng-model':'width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.RelationPageUrlPageActionConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>高</cname>
+			<ename>height</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>400</default>
+			<description>弹出框的高度</description>
+			<!--页面选择控件-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'height',
+						'ng-model':'height'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.RelationPageUrlPageActionConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+	</properties>
+</action>

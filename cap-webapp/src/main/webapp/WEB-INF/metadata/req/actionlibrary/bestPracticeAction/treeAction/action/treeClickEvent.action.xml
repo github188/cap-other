@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>req.actionlibrary.bestPracticeAction.treeAction.action.treeClickEvent</modelId>
+    <modelName>treeClickEvent</modelName>
+    <modelPackage>req.actionlibrary.bestPracticeAction.treeAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>树点击事件</cname>
+	<description>tree节点点击事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ * 树组件提供有节点单击和双击事件。
+ *
+ * @param node Node类型，当前的节点对象
+ * @param event 当前的点击事件
+ */
+function {{ename}}(node,event) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

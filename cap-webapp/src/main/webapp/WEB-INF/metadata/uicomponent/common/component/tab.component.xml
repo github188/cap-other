@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.tab</modelId>
+    <modelName>Tab</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>tab标签页</cname>
+	<group>common</group>
+	<description>tab组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>2</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Tab</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>tabs</cname>
+			<ename>tabs</ename>
+			<type>Json</type>
+			<requried>true</requried>
+			<default><![CDATA[[{"title": "tab1","html": "这是tab1内部内容，支持HTML"},{"title": "tab2","html": "这是tab2内部内容，支持HTML"}]]]></default>
+			<description>标签页</description>
+			<commonAttr>true</commonAttr>
+			<filterRule><![CDATA[{'url':{'operate':'$replace$', 'regexp':'/[\\w\\-\/\.]*\.html$/', 'replacement': ''}}]]></filterRule>
+			<!--数据模型-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'tabs',
+						'name': 'tabs',
+						'ng-model':'data.tabs',
+						'on_iconclick':'openTabEditWindow'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>reload_on_active</cname>
+			<ename>reload_on_active</ename>
+			<label>reload_on_<![CDATA[<br/>]]>active</label>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>激活标签页是否重新加载</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'reload_on_active',
+						'name': 'reload_on_active',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.reload_on_active'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>fill_height</cname>
+			<ename>fill_height</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>强制高度为父容器的高度</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'fill_height',
+						'name': 'fill_height',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.fill_height'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>closeable</cname>
+			<ename>closeable</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>标签页是否能关闭</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'closeable',
+						'name': 'closeable',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.closeable'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>active_index</cname>
+			<ename>active_index</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>初始选择标签页</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'active_index',
+						'name': 'active_index',
+						'ng-model':'data.active_index'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>隐藏</cname>
+			<ename>hide</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否隐藏按钮（默认false不隐藏）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'hide',
+						'name': 'hide',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.hide'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>禁用</cname>
+			<ename>disable</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否禁用按钮（默认false）。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'disable',
+						'name': 'disable',
+						'radio_list': [{
+							'text': '是',
+							'value': true
+						},{
+							'text': '否',
+							'value': false
+						}],
+						'ng-model':'data.disable'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>head_width</cname>
+			<ename>head_width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>有些场景需要限制tab头部的宽度预留空间用于放button bar之类，值为80%，或者400px之类，而并非不带单位的80或者400</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'head_width',
+						'name': 'head_width',
+						'ng-model':'data.head_width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>tab_width</cname>
+			<ename>tab_width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Tab标签页的宽度，单位px</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'tab_width',
+						'name': 'tab_width',
+						'ng-model':'data.tab_width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>width</cname>
+			<ename>width</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Tab面板的宽度。如果不指定该值，则自适应。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'width',
+						'name': 'width',
+						'ng-model':'data.width'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>height</cname>
+			<ename>height</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>Tab面板的高度。如果不指定该值，面板的高度取决于内容的高度</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'height',
+						'name': 'height',
+						'ng-model':'data.height'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>trigger_type</cname>
+			<ename>trigger_type</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>tab响应鼠标事件的方式</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'trigger_type',
+						'name': 'trigger_type',
+						'radio_list': [{
+							'text': '点击',
+							'value': 'click'
+						},{
+							'text': '悬浮',
+							'value': 'mouseover'
+						}],
+						'ng-model':'data.trigger_type'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>tab标签页</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': 'tab标签页'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model': 'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>tab组件名称。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>标签页切换</cname>
+	        <ename>switch</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.tabEventAction.action.tabSwitch</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>switch的回调函数，传入一个方法的索引，有两个参数：(event, data(Json))。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>标签页关闭</cname>
+	        <ename>onClose</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.tabEventAction.action.tabOnClose</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>switch的回调函数，传入一个方法的索引，有两个参数：(event, tab(Object))。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+	</events>
+</component>

@@ -1,0 +1,56 @@
+<basic src="ui-system.txt" name="eGridCUI下拉框设值" type="testStepDefinitions.basics.basic.egrid_cui_pulldown_select" icon="icon-cog-wheel-silhouette" group="systemCombinations" desc="eGridCUI下拉框设值" definition="egrid_cui_pulldown_select">
+    <createTime>1470813036747</createTime>
+    <modelId>testStepDefinitions.basics.basic.egrid_cui_pulldown_select</modelId>
+    <modelName>egrid_cui_pulldown_select</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="tableId" desc="表格定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'tableId',
+                'name': 'tableId'
+            }
+]]></options>
+        </ctrl>
+        <help>表格定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="rowIndex" desc="行索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'rowIndex',
+                'name': 'rowIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>行索引</help>
+    </arg>
+    <arg valueType="String" required="true" name="colIndex" desc="列索引">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'colIndex',
+                'name': 'colIndex'
+            }
+]]></options>
+        </ctrl>
+        <help>列索引</help>
+    </arg>
+    <arg valueType="String" required="false" name="num" desc="多选时选择的数量" default="1">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'num',
+                'name': 'num'
+            }
+]]></options>
+        </ctrl>
+        <help>多选时选择的数量</help>
+    </arg>
+    <help><![CDATA[eGridCUI下拉框设值]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[eGridCUI下拉框设值    ${tableId}    ${rowIndex}    ${colIndex}    ${num}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

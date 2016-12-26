@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <modelId>uicomponent.common.component.tree</modelId>
+    <modelName>Tree</modelName>
+    <modelPackage>uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>树</cname>
+	<group>common</group>
+	<description>Tree组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<hasInputType>true</hasInputType>
+	<sort>13</sort>
+	<js>
+		<list>/cap/rt/common/cui/js/comtop.ui.min.js</list>
+	</js>
+	<css>
+		<list>/cap/rt/common/cui/themes/default/css/comtop.ui.min.css</list>
+	</css>
+	<properties>
+		<property>
+			<cname>类型</cname>
+			<ename>uitype</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>Tree</default>
+			<description>组件类型。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'uitype',
+						'name': 'uitype',
+						'ng-model':'data.uitype'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>全局图标</cname>
+			<ename>icon</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>树节点的全局图标的url（局部覆盖全局），为false时不显示图标，若要显示图标指定图标地址。</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'icon',
+						'name': 'icon',
+						'ng-model':'data.icon'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>id</cname>
+			<ename>id</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件id</description>
+			<commonAttr>true</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'id',
+						'name': 'id',
+						'ng-model':'data.id',
+						'validate': "[{type:'custom',rule:{against:'isExistComponentId', m:'该id值已存在，请修改'}}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>选择模式</cname>
+			<ename>select_mode</ename>
+			<type>Number</type>
+			<requried>false</requried>
+			<default>1</default>
+			<description>选择模式，可选值有：1（单选）、2（多选）、3（多选双向级联：选中父节点所有子节点自动选中，选中所有子节点父节点自动选中）、4（多选单向级联：选中父节点所有子节点自动选中，选中所有子节点父节点不自动选中）。</description>
+			<commonAttr>true</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'select_mode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'select_mode',
+						'ng-model':'data.select_mode',
+						'datasource' :"[{id:'1',text:'单选'},{id:'2',text:'多选'},{id:'3',text:'多选双向级联'},{id:'4',text:'多选单向级联'}]",
+						'value': '1'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>选择框</cname>
+			<ename>checkbox</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default>false</default>
+			<description>是否显示选择框，默认false不显示。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'checkbox',
+						'name': 'checkbox',
+						'radio_list': [{
+							'text': '显示',
+							'value': true
+						},{
+							'text': '不显示',
+							'value': false
+						}],
+						'value': false,
+						'ng-model':'data.checkbox'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>折叠模式</cname>
+			<ename>click_folder_mode</ename>
+			<label>click_<![CDATA[<br/>]]>folder_mode</label>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>点击树节点目录的节点折叠模式：1（只激活当前节点）、2（只展开节点不激活）、3（激活并展开节点）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'click_folder_mode',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'click_folder_mode',
+						'ng-model':'data.click_folder_mode',
+						'datasource' :"[{id:'1',text:'只激活当前节点'},{id:'2',text:'只展开节点不激活'},{id:'3',text:'激活并展开节点'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>选择框样式</cname>
+			<ename>checkbox_style</ename>
+			<label>checkbox_<![CDATA[<br/>]]>style</label>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>选择框样式，可选值有：''（checkbox选择框）、'radio'（radio选择框）。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'checkbox_style',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'checkbox_style',
+						'ng-model':'data.checkbox_style',
+						'datasource' :"[{id:'null',text:'checkbox'},{id:'radio',text:'radio'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>自动设置焦点</cname>
+			<ename>auto_focus</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>将焦点设置到第一个树节点，展开或延迟加载。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'auto_focus',
+						'name': 'auto_focus',
+						'radio_list': [{
+							'text': '开启',
+							'value': true
+						},{
+							'text': '不开启',
+							'value': false
+						}],
+						'ng-model':'data.auto_focus'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>键盘</cname>
+			<ename>keyboard</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description></description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'keyboard',
+						'name': 'keyboard',
+						'radio_list': [{
+							'text': '开启',
+							'value': true
+						},{
+							'text': '不开启',
+							'value': false
+						}],
+						'ng-model':'data.keyboard'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>存储状态</cname>
+			<ename>persist</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>是否使用cookie存储状态。</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'persist',
+						'name': 'persist',
+						'radio_list': [{
+							'text': '使用cookie',
+							'value': true
+						},{
+							'text': '不使用cookie',
+							'value': false
+						}],
+						'ng-model':'data.persist'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>最小展开的等级</cname>
+			<ename>min_expand_level</ename>
+			<label>min_expand_<![CDATA[<br/>]]>level</label>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>最小展开的等级。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'min_expand_level',
+						'name': 'min_expand_level',
+						'ng-model':'data.min_expand_level'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>默认展开的等级</cname>
+			<ename>default_expand_level</ename>
+			<label>default_<![CDATA[<br/>]]>expand_level</label>
+			<type>Number</type>
+			<requried>false</requried>
+			<default></default>
+			<description>默认展开的等级。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'default_expand_level',
+						'name': 'default_expand_level',
+						'ng-model':'data.default_expand_level'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>样式</cname>
+			<ename>theme</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>树的样式风格,可选classic,cui;默认是cui 样式。</description>
+			<commonAttr>false</commonAttr>
+			<!--可选可填下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'theme',
+						'mode': 'Single',
+						'value_field':'id',
+						'label_field':'text',
+						'name':'theme',
+						'ng-model':'data.theme',
+						'datasource' :"[{id:'classic',text:'classic'},{id:'cui',text:'cui'}]"
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>已激活的节点</cname>
+			<ename>reactive</ename>
+			<type>Boolean</type>
+			<requried>false</requried>
+			<default></default>
+			<description>已激活的节点是否需要触发onActivate事件，默认true</description>
+			<commonAttr>false</commonAttr>
+			<!--单选框-->
+			<propertyEditorUI>
+				<componentName>cui_radiogroup</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'reactive',
+						'name': 'reactive',
+						'radio_list': [{
+							'text': '触发激活事件',
+							'value': true
+						},{
+							'text': '不触发激活事件',
+							'value': false
+						}],
+						'ng-model':'data.reactive'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>显示文本</cname>
+			<ename>label</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>树</default>
+			<description>组件label名称。</description>
+			<commonAttr>false</commonAttr>
+			<generateCodeIgnore>true</generateCodeIgnore>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'label',
+						'name': 'label',
+						'ng-model':'data.label',
+						'value': '树'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>名称</cname>
+			<ename>name</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default></default>
+			<description>组件名称。</description>
+			<commonAttr>false</commonAttr>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_input</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'name',
+						'name': 'name',
+						'ng-model':'data.name'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<events>
+	 <event>
+			<cname>初始化树数据</cname>
+	        <ename>children</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.bestPracticeAction.treeAction.action.treeChildren</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Tree的节点数据。</description>
+	        <commonAttr>true</commonAttr>
+	        <filterRule><![CDATA[{'children':[{ title: "我不能被选择",  key: "k1",  unselectable: true },{ title: "Folder 2", key: "k2", isFolder: true, expand:true,children: [{ title: "无形资产",  key: "k2-1" },{ title: "有形资产",  key: "k2-2" , expand:true,isFolder:true, children:[{ title:"hello" }]}]},{ title: "其他", key: "k3", hideCheckbox: true }]}]]></filterRule>
+	  </event>
+	  <event>
+			<cname>动态加载事件</cname>
+	        <ename>on_lazy_read</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.treeEventAction.action.treeOtherEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>树节点lazy load（动态加载）节点时的回调。</description>
+	        <commonAttr>true</commonAttr>
+	   </event>
+	   <event>
+			<cname>鼠标单击事件</cname>
+	        <ename>on_click</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.treeEventAction.action.treeClick</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>点击节点时触发回调。</description>
+	        <commonAttr>true</commonAttr>
+		</event>
+		<event>
+			<cname>选中/取消选中时触发事件</cname>
+	        <ename>on_select</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.treeEventAction.action.treeSelect</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>节点选中/取消选中时触发回调。</description>
+	        <commonAttr>fasle</commonAttr>
+		</event>
+		<event>
+			<cname>激活时触发事件</cname>
+	        <ename>on_activate</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.treeEventAction.action.treeOtherEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>节点激活时触发回调。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>鼠标双击事件</cname>
+	        <ename>on_dbl_click</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.treeEventAction.action.treeClick</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>双击节点时触发回调。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>展开/收起时触发事件</cname>
+	        <ename>on_expand</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.treeEventAction.action.treeExpand</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>节点目录展开/收起时触发回调。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>获得焦点事件</cname>
+	        <ename>on_focus</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.treeEventAction.action.treeOtherEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>节点获取焦点时触发回调。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>失去焦点事件</cname>
+	        <ename>on_blur</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.treeEventAction.action.treeOtherEvent</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>节点失去焦点时触发回调。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+		<event>
+			<cname>完成加载时触发事件</cname>
+	        <ename>on_post_init</ename>
+	        <type></type>
+			<default></default>
+	        <methodTemplate>actionlibrary.eventAction.treeEventAction.action.treePostInit</methodTemplate>
+	        <methodOption></methodOption>
+	        <description>Tree组件完成加载时触发回调。</description>
+	        <commonAttr>false</commonAttr>
+		</event>
+	</events>
+</component>

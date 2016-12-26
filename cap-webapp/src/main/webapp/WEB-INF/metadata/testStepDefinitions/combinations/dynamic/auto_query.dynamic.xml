@@ -1,0 +1,58 @@
+<dynamic definition="auto_query" desc="多条件查询" group="dynamic" icon="icon-pencil" 
+    type="testStepDefinitions.combinations.dynamic.auto_query" name="多条件查询">
+    <createTime>1467617986980</createTime>
+    <modelId>testStepDefinitions.combinations.dynamic.auto_query
+    </modelId>
+    <modelName>auto_query</modelName>
+    <modelPackage>testStepDefinitions.combinations</modelPackage>
+    <modelType>dynamic</modelType>
+    <arg desc="列表页面" name="listPage" required="true" valueType="String">
+        <ctrl type="ClickInput">
+            <options>
+                <![CDATA[{
+                        'id': 'listPage',
+                        'name': 'listPage',
+                        'required':'true',
+                        'on_iconclick':'openSelectListPageWindow'
+                    }]]>
+            </options>
+            <script>
+            <![CDATA[
+                function openSelectListPageWindow(event, self) {
+                	var url = webPath + '/cap/bm/test/common/SelectEditPage.jsp?packageId=' + packageId + '&listPage=' + self.$input[0].value + '&argName=' + self.options.name;
+                    var height = 550;
+                    var width = 700;
+                    var top=(window.screen.availHeight-height)/2;
+		    	    var left=(window.screen.availWidth-width)/2;
+		    	    window.open(url, "listPage", "Scrollbars=no,Toolbar=no,Location=no,titlebar=no,Direction=no,Resizeable=no,alwaysLowered=yes,Width="+width+" ,Height="+height+",top="+top+",left="+left);
+                }
+            ]]>
+            </script>
+        </ctrl>
+        <help>请选择编辑页面</help>
+    </arg>
+    <arg desc="查询字段值" name="strategy" required="true" valueType="String">
+        <ctrl type="Pulldown">
+            <options>
+                <![CDATA[{
+                        'id': 'strategy',
+                        'name': 'strategy',
+                        'required':'true',
+                        'datasource':"[{id:'auto',text:'自动生成'},{id:'dynamic',text:'动态随机'},{id:'dictionary',text:'字典获取'},{id:'manual',text:'手动录入'}]"}
+                ]]>
+            </options>
+        </ctrl>
+        <help>查询字段值录入策略</help>
+    </arg>
+    <help>
+        <![CDATA[录入字段]]>
+    </help>
+    <lib>ComtopLibrary.py</lib>
+	<lib>AutoItLibrary</lib>
+	<lib>DatabaseLibrary</lib>
+	<res>element.txt</res>
+    <res>page.txt</res>
+    <res>ui-system.txt</res>
+    <res>database.txt</res>
+    <scan>com.comtop.cap.test.definition.scan.AutoQueryDynamicStep</scan>
+</dynamic>

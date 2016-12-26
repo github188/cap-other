@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.gridAction.action.gridResizewidth</modelId>
+    <modelName>gridResizewidth</modelName>
+    <modelPackage>actionlibrary.eventAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>自适应宽度</cname>
+	<description>Grid组件自适应宽度</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *  
+ * grid组件的自适应提供了高度自适应回调resizeheight以及宽度自适应回调resizewidth
+ *
+ * @return 返回自适应计算的结果，Number类型
+ */
+function {{ename}}() {
+	var _size; 
+	<script name="before"/>
+	return _size;
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

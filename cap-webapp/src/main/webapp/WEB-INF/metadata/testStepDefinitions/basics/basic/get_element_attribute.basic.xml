@@ -1,0 +1,32 @@
+<basic src="element.txt" name="获取元素属性" type="testStepDefinitions.basics.basic.get_element_attribute" icon="icon-cog-wheel-silhouette" group="common" desc="获取元素属性" definition="get_element_attribute">
+    <createTime>1469606769768</createTime>
+    <modelId>testStepDefinitions.basics.basic.get_element_attribute</modelId>
+    <modelName>get_element_attribute</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="attribute_locator" desc="属性定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'attribute_locator',
+                'name': 'attribute_locator'
+            }
+]]></options>
+        </ctrl>
+        <help>属性定位</help>
+    </arg>
+    <arg valueType="String" required="true" name="returnValue" desc="获取的元素属性值">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'returnValue',
+                'name': 'returnValue'
+            }
+]]></options>
+        </ctrl>
+        <help>获取的元素属性值</help>
+    </arg>
+    <help><![CDATA[获取元素属性]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[${returnValue}    获取元素属性    ${attribute_locator}    #${desc}]]></macro>
+</basic>

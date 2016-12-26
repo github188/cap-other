@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.button</extend>
+    <modelId>req.uicomponent.common.component.button</modelId>
+    <modelName>Button</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>按钮</cname>
+	<group>common</group>
+	<description>Button组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>3</sort>
+	
+</component>

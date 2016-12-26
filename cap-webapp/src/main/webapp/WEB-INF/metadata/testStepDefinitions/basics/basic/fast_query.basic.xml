@@ -1,0 +1,34 @@
+<basic src="ui-system.txt" name="快速查询" type="testStepDefinitions.basics.basic.fast_query" icon="icon-magnifying-glass" group="systemCombinations" desc="快速查询" definition="fast_query">
+    <createTime>1469606789666</createTime>
+    <modelId>testStepDefinitions.basics.basic.fast_query</modelId>
+    <modelName>fast_query</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="查询输入框">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>查询输入框</help>
+    </arg>
+    <arg valueType="String" required="true" name="keyword" desc="查询关键字">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'keyword',
+                'name': 'keyword'
+            }
+]]></options>
+        </ctrl>
+        <help>查询关键字</help>
+    </arg>
+    <help><![CDATA[快速查询]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[快速查询    ${locator}    ${keyword}    #${desc}]]></macro>
+    <res>element.txt</res>
+    <res>page.txt</res>
+</basic>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.pulldownEventAction.action.pulldownChange</modelId>
+    <modelName>pulldownChange</modelName>
+    <modelPackage>actionlibrary.eventAction.pulldownEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>值改变时事件</cname>
+	<description>pulldown值改变时事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ *
+ * 当mode="Single"时,参数数据结构为对象，如：{id:'item1', text:'选项1'}
+ * 当mode="Multi"时，参数数据结构为数组，如：[{id:'item1', text:'选项1'},{id:'item1', text:'选项1'}]
+ * 
+ * @param data 当前选中对象
+ * @param oldData 上一次选中对象
+ */
+function {{ename}}(data, oldData) { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

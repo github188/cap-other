@@ -1,0 +1,10 @@
+<basic src="element.txt" name="确定操作" type="testStepDefinitions.basics.basic.confirm_action" icon="icon-cog-wheel-silhouette" group="common" desc="确定操作" definition="confirm_action">
+    <createTime>1469606769697</createTime>
+    <modelId>testStepDefinitions.basics.basic.confirm_action</modelId>
+    <modelName>confirm_action</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[确定操作]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[确定操作    #${desc}]]></macro>
+</basic>

@@ -1,0 +1,34 @@
+<basic definition="login_top" desc="登录TOP" group="apielement" icon="icon-padlock-unlock" type="testStepDefinitions.basics.basic.login_top" name="登录TOP" src="api-element.txt">
+    <createTime>1470205793331</createTime>
+    <modelName>login_top</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg desc=" 输入登录用户名" name="account" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'account',
+                'name': 'account'
+            }
+]]></options>
+        </ctrl>
+        <help> 输入登录用户名</help>
+    </arg>
+    <arg desc=" 输入登录密码" name="password" required="true" valueType="String">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'password',
+                'name': 'password'
+            }
+]]></options>
+        </ctrl>
+        <help> 输入登录密码</help>
+    </arg>
+    <help><![CDATA[登录CAP]]></help>
+    <lib>Collections</lib>
+    <lib>ComtopLibrary.py</lib>
+    <lib>XML</lib>
+    <lib>RequestsLibrary</lib>
+    <macro><![CDATA[登录TOP    ${account}    ${password}    #${desc}]]></macro>
+</basic>

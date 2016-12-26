@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.button</extend>
+    <modelId>uicomponent.bestPractice.editFunc.component.auditEditButton</modelId>
+    <modelName>auditEditButton</modelName>
+    <modelPackage>uicomponent.bestPractice.editFunc</modelPackage>
+    <modelType>component</modelType>
+    <cname>审批</cname>
+	<group>bestPractice.editFunc</group>
+	<description>Button组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>2</sort>
+	<properties>
+		<property>
+			<ename>label</ename>
+			<requried>true</requried>
+			<default>编辑审批按钮</default>
+			<commonAttr>true</commonAttr>
+		</property>
+		<property>
+			<ename>id</ename>
+			<requried>false</requried>
+			<default>btAuditOnDetail</default>
+			<commonAttr>false</commonAttr>
+		</property>
+		<property>
+			<ename>name</ename>
+			<requried>false</requried>
+			<default>btAuditOnDetail</default>
+			<commonAttr>false</commonAttr>
+		</property>
+	</properties>
+	<events>
+		<event>
+			<cname>按钮点击</cname>
+	        <ename>on_click</ename>
+	        <type></type>
+	        <hasAutoCreate>true</hasAutoCreate>
+	        <commonAttr>true</commonAttr>
+			<!-- 请使用使用下面的actionDefine来配置，不推荐使用本段已注释格式来配置
+			<default>audit</default>
+	        <methodTemplate>actionlibrary.workflow.action.auditEdit</methodTemplate>
+	        <methodOption></methodOption> -->
+	        <actionDefine>
+	        	<![CDATA[
+					{
+						"modelId": "actionlibrary.workflow.action.auditEdit",
+						"cname": "编辑页面流程审批行为",
+						"ename": "audit",
+						"description":"编辑页面流程审批行为"
+					}
+				]]>
+	        </actionDefine>
+		</event>
+	</events>
+</component>

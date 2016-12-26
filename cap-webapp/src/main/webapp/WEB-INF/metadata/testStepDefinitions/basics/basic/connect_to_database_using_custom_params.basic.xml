@@ -1,0 +1,21 @@
+<basic src="database.txt" name="连接Oracle数据库" type="testStepDefinitions.basics.basic.connect_to_database_using_custom_params" icon="icon-cog-wheel-silhouette" group="databaseOpt" desc="连接Oracle数据库" definition="connect_to_database_using_custom_params">
+    <createTime>1469606798024</createTime>
+    <modelId>testStepDefinitions.basics.basic.connect_to_database_using_custom_params</modelId>
+    <modelName>connect_to_database_using_custom_params</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="databaseInf" desc="数据库信息">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'databaseInf',
+                'name': 'databaseInf'
+            }
+]]></options>
+        </ctrl>
+        <help>数据库信息</help>
+    </arg>
+    <help><![CDATA[连接Oracle数据库]]></help>
+    <lib>DatabaseLibrary</lib>
+    <macro><![CDATA[连接Oracle数据库    ${databaseInf}    #${desc}]]></macro>
+</basic>

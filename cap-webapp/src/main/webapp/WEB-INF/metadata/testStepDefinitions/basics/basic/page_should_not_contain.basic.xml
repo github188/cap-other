@@ -1,0 +1,22 @@
+<basic src="page.txt" name="页面不包含内容" type="testStepDefinitions.basics.basic.page_should_not_contain" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="页面不包含内容" definition="page_should_not_contain">
+    <createTime>1469606781410</createTime>
+    <modelId>testStepDefinitions.basics.basic.page_should_not_contain</modelId>
+    <modelName>page_should_not_contain</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="text" desc="校验内容">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'text',
+                'name': 'text'
+            }
+]]></options>
+        </ctrl>
+        <help>校验内容</help>
+    </arg>
+    <help><![CDATA[页面不包含内容]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[页面不包含内容    ${text}    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

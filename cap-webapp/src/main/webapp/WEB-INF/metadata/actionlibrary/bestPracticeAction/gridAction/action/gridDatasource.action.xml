@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.gridAction.action.gridDatasource</modelId>
+    <modelName>gridDatasource</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>初始化查询行为</cname>
+	<description>列表查询行为方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/**
+ * {{cname}} {{description}}
+ * 该方法只支持后台方法有且只有一个参数，且参数类型为对象（vo）
+ * 若是多条件查询，需把条件封装在vo中
+ * @obj grid对象
+ * @pageQuery grid分页信息
+ */
+function {{ename}}(obj, pageQuery) {
+	var queryVarName = '${methodParameter}';
+	var query = {};
+	if(queryVarName !== ''){
+		query=cap.getQueryObject(window[queryVarName],pageQuery);
+	}
+	//初始化查询参数
+	<script name="initParam"/>
+	//获取查询条件
+ 	var paramArray = [];
+ 	paramArray[0] = query;
+ 	var aliasEntityId = '{{methodOption.aliasEntityId}}';
+	aliasEntityId = aliasEntityId != '' ? aliasEntityId :  '{{methodOption.entityId}}';
+ 	var dwrInvokeParam = cap.getDwrInvokeParam(aliasEntityId,'{{methodOption.actionMethodName}}',paramArray);
+ 	//TODO 调用前操作
+	<script name="before"/>
+	
+ 	//调用后台查询
+ 	dwr.TOPEngine.setAsync({{methodOption.requestMode}});
+	${modelName}Action.dwrInvoke(dwrInvokeParam,{callback:function(result){
+		var returnValueVarName= '{{methodOption.returnValueBind}}';
+		if(returnValueVarName === ''){
+			returnValueVarName = 'returnValueVarName';
+		}
+  		//TODO 数据设置前操作
+  		<script name="setDataBefore"/>
+  		window[returnValueVarName]=result.list;
+  		//设置到数据源
+  		if(result.list!=null){
+  			obj.setQuery({pageNo:result.pageNo});
+  			obj.setDatasource(result.list,result.count); 
+      	}else{
+      		obj.setDatasource([],0);
+      	}
+  		//TODO 数据设置后操作
+  		<script name="setDataAfter"/>
+  		//查询条件保存设置
+  		var saveQueryData='{{methodOption.saveQueryData}}';
+  		if(saveQueryData=='yes'){
+  			cap.setSessionAttribute({'${methodParameter}' : cap.cacheGridAttributes(obj.getQuery(), window['${methodParameter}'])});
+  		}
+  	},
+  	errorHandler:function(message, exception){
+	   //TODO 后台异常信息回调
+	   <script name="saveErrorHandler"/>
+	}
+  	});
+  	dwr.TOPEngine.setAsync(true);
+  	//TODO 可自定义设置返回值
+	<script name="setReturnVal"/>
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow()'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.CallServiceMethodPageActionProConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+		<property>
+			<cname>保存查询条件</cname>
+			<ename>saveQueryData</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default>no</default>
+			<description>保存查询条件</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'saveQueryData',
+						'ng-model':'saveQueryData',
+						'datasource':"[{id:'no',text:'否'},{id:'yes',text:'是'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'select':1
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+		<property>
+			<cname>请求方式</cname>
+			<ename>requestMode</ename>
+			<type>String</type>
+			<requried>false</requried>
+			<default>true</default>
+			<description>请求方式</description>
+			<!--下拉框-->
+			<propertyEditorUI>
+				<componentName>cui_pulldown</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'requestMode',
+						'ng-model':'requestMode',
+						'datasource':"[{id:'false',text:'同步'},{id:'true',text:'异步'}]",
+						'value_field':'id',
+						'label_field':'text',
+						'editable': false
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

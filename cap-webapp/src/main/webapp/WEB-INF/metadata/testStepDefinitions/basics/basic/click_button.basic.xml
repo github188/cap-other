@@ -1,0 +1,21 @@
+<basic src="element.txt" name="点击按钮" type="testStepDefinitions.basics.basic.click_button" icon="icon-hand-pointing-upward" group="common" desc="点击按钮" definition="click_button">
+    <createTime>1469606769633</createTime>
+    <modelId>testStepDefinitions.basics.basic.click_button</modelId>
+    <modelName>click_button</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="locator" desc="按钮定位">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'locator',
+                'name': 'locator'
+            }
+]]></options>
+        </ctrl>
+        <help>按钮定位</help>
+    </arg>
+    <help><![CDATA[点击按钮]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[点击按钮    ${locator}    #${desc}]]></macro>
+</basic>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>req.actionlibrary.bestPracticeAction.gridAction.action.gridDatasource</modelId>
+    <modelName>gridDatasource</modelName>
+    <modelPackage>req.actionlibrary.bestPracticeAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>初始化查询行为</cname>
+	<description>列表查询行为方法</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/**
+ * {{cname}} {{description}}
+ * 该方法只支持后台方法有且只有一个参数，且参数类型为对象（vo）
+ * 若是多条件查询，需把条件封装在vo中
+ * @obj grid对象
+ * @pageQuery grid分页信息
+ */
+function {{ename}}(obj, pageQuery) {
+	var gridData = [];
+	<script name="before"/>
+	obj.setDatasource(gridData,gridData.length);
+}]]>
+	</script>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>

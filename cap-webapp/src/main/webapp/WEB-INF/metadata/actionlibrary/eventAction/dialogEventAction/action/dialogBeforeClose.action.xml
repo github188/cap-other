@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.eventAction.dialogEventAction.action.msgBoxClose</modelId>
+    <modelName>msgBoxClose</modelName>
+    <modelPackage>actionlibrary.eventAction.dialogEventAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>关闭之前事件</cname>
+	<description>Dialog关闭之前事件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<type>Dialog_beforeClose</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+/*
+ * {{cname}} {{description}}
+ * 
+ */
+function {{ename}}() { 
+	<script name="before"/>
+}
+		]]>
+	</script>
+	<properties>
+	</properties>
+</action>

@@ -1,0 +1,11 @@
+<basic src="page.txt" name="关闭窗口" type="testStepDefinitions.basics.basic.close_window" icon="icon-cog-wheel-silhouette" group="pageOpt" desc="关闭窗口" definition="close_window">
+    <createTime>1469606781356</createTime>
+    <modelId>testStepDefinitions.basics.basic.close_window</modelId>
+    <modelName>close_window</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[关闭窗口]]></help>
+    <lib>ComtopLibrary.py</lib>
+    <macro><![CDATA[关闭窗口    #${desc}]]></macro>
+    <res>element.txt</res>
+</basic>

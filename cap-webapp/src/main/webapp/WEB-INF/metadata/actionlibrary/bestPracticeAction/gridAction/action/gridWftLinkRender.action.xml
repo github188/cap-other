@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.bestPracticeAction.gridAction.action.gridWftLinkRender</modelId>
+    <modelName>gridWftLinkRender</modelName>
+    <modelPackage>actionlibrary.bestPracticeAction.gridAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>流程链接渲染</cname>
+    <type>gridRender</type>
+	<description>grid流程链接渲染</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<js>
+		<list>/cap/dwr/engine.js</list>
+		<list>/cap/dwr/util.js</list>
+		<list>/cap/dwr/interface/CapWorkflowAction.js</list>
+		<list>/cap/rt/common/workflow/comtop.cap.rt.workflow.js</list>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function {{ename}}(rd, index, col) {
+	var flowstateDic = cap.getDicByAttr('flowState');
+	var flowStateText=cap.getTextOfDicValue(flowstateDic,rd['flowState']);
+	//用户自行调整显示文本
+	<script name="before"/>
+	var onclick="cap.rt10.workflow.operate.flowTrack(\'"+rd.processId+"\',\'"+rd.processInsId+"\')";
+	var content= '<a href="#" class="btn" onclick="'+onclick+'">'+flowStateText+'</a>';
+	//自定义渲染
+	<script name="after"/>
+	return content;
+}]]>
+	</script>
+	<properties>
+		
+	</properties>
+</action>

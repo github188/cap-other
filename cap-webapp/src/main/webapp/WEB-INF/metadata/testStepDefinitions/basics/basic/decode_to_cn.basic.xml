@@ -1,0 +1,21 @@
+<basic src="database.txt" name="转换中文" type="testStepDefinitions.basics.basic.decode_to_cn" icon="icon-cog-wheel-silhouette" group="databaseOpt" desc="转换中文" definition="decode_to_cn">
+    <createTime>1469606798053</createTime>
+    <modelId>testStepDefinitions.basics.basic.decode_to_cn</modelId>
+    <modelName>decode_to_cn</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <arg valueType="String" required="true" name="data" desc="数据库查询出的数据">
+        <ctrl type="Input">
+            <options><![CDATA[
+            {
+                'id': 'data',
+                'name': 'data'
+            }
+]]></options>
+        </ctrl>
+        <help>数据库查询出的数据</help>
+    </arg>
+    <help><![CDATA[转换中文]]></help>
+    <lib>DatabaseLibrary</lib>
+    <macro><![CDATA[转换中文    ${data}    #${desc}]]></macro>
+</basic>

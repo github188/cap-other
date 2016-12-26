@@ -1,0 +1,12 @@
+<basic definition="send_request" desc="发送请求" group="apielement" icon="icon-cursor" type="testStepDefinitions.basics.basic.send_request" name="发送请求" src="api-element.txt">
+    <createTime>1470205793341</createTime>
+    <modelName>send_request</modelName>
+    <modelPackage>testStepDefinitions.basics</modelPackage>
+    <modelType>basic</modelType>
+    <help><![CDATA[发送请求]]></help>
+    <lib>Collections</lib>
+    <lib>ComtopLibrary.py</lib>
+    <lib>XML</lib>
+    <lib>RequestsLibrary</lib>
+    <macro><![CDATA[发送请求    #${desc}]]></macro>
+</basic>

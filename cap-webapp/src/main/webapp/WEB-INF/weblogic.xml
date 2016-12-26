@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<weblogic-web-app xmlns="http://www.bea.com/ns/weblogic/90">
+	<session-descriptor>
+	    <timeout-secs>3600</timeout-secs>
+	    <cookie-name>TopSessionTID</cookie-name>
+	</session-descriptor>
+	<jsp-descriptor>
+	    <keepgenerated>true</keepgenerated>
+	    <precompile>false</precompile >
+	    <working-dir>jsp_temp</working-dir>
+	</jsp-descriptor>
+	<container-descriptor>
+		<servlet-reload-check-secs>-1</servlet-reload-check-secs>
+		<show-archived-real-path-enabled>true</show-archived-real-path-enabled>
+		<!--<resource-reload-check-secs>-1</resource-reload-check-secs>-->
+	</container-descriptor>
+	<charset-params> 
+		<input-charset> 
+			<resource-path>/*</resource-path> 
+			<java-charset-name>UTF-8</java-charset-name> 
+		</input-charset> 
+	</charset-params>
+</weblogic-web-app>

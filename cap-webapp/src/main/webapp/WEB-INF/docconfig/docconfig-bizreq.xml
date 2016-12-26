@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WtDocConfig diffKey="业务需求" version="1.0" name="业务需求说明书模板V1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="../classes/DocConfig.xsd">
+	<WtSection name="封面" />
+	<WtSection name="文档基本信息">
+		<table type="FIXED" maxOccurs="1" name="文档信息"
+			mappingTo="docInfo=#Document(id=$documentId)">
+			<tr>
+				<td>文档名称</td>
+				<td mappingTo="docInfo.name" colspan="3"></td>
+			</tr>
+			<tr>
+				<td>文档编号</td>
+				<td mappingTo="docInfo.code"></td>
+				<td>文档版本</td>
+				<td mappingTo="docInfo.version"></td>
+			</tr>
+			<tr>
+				<td>文档密级</td>
+				<td mappingTo="docInfo.scretLevel"></td>
+				<td>内部版本</td>
+				<td mappingTo="docInfo.innerVersion"></td>
+			</tr>
+			<tr>
+				<td>文档类型</td>
+				<td mappingTo="docInfo.type" colspan="3"></td>
+			</tr>
+			<tr>
+				<td>文档编制</td>
+				<td mappingTo="docInfo.maker"></td>
+				<td>编制时间</td>
+				<td mappingTo="docInfo.maketime"></td>
+			</tr>
+			<tr>
+				<td>文档审核</td>
+				<td mappingTo="docInfo.auditor"></td>
+				<td>审核时间</td>
+				<td mappingTo="docInfo.auditTime"></td>
+			</tr>
+			<tr>
+				<td>文档审核</td>
+				<td mappingTo="docInfo.auditor"></td>
+				<td>审核时间</td>
+				<td mappingTo="docInfo.auditTime"></td>
+			</tr>
+			<tr>
+				<td>所属项目</td>
+				<td mappingTo="docInfo.projectname"></td>
+				<td>项目编号</td>
+				<td mappingTo="docInfo.projectCode"></td>
+			</tr>
+			<tr>
+				<td>文档备注</td>
+				<td mappingTo="docInfo.remark" colspan="3"></td>
+			</tr>
+		</table>
+		<table needStore="false" type="UNKNOWN" name="修订记录" />
+	</WtSection>
+	<WtSection name="目录" />
+	<WtSection name="正文">
+		<WtChapter title="综述" type="FIXED">
+			<WtChapter title="编制目的" type="FIXED" />
+			<WtChapter title="适用范围" type="FIXED" />
+			<WtChapter title="参考依据" type="FIXED" />
+			<WtChapter title="约束定义" type="FIXED">
+				<WtChapter title="文字符号约束" type="FIXED" />
+				<WtChapter title="图元约束" type="FIXED" />
+				<WtChapter title="层次定义" type="FIXED" />
+				<WtChapter title="编码约束" type="FIXED" />
+			</WtChapter>
+			<WtChapter title="导读说明" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="项目概述" type="FIXED">
+			<WtChapter title="项目背景" type="FIXED" />
+			<WtChapter title="项目范围" type="FIXED" />
+			<WtChapter title="项目目标" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="需求总体分析" type="FIXED">
+			<WtChapter title="业务流程范围" type="FIXED" />
+			<WtChapter title="功能体系结构" type="FIXED">
+				<WtChapter title="功能结构" type="FIXED">
+					<WtChapter title="功能结构图" type="FIXED" />
+					<WtChapter title="功能列表" type="FIXED">
+						<table type="EXT_ROWS" name="功能列表" selector="functionItem.name"
+							 mappingTo="functionItem[]=#ReqFunctionItem(domainId=$domainId)">
+							<tr>
+								<td width="1.5" mappingTo="functionItem.sortIndex">序号</td>
+								<td mappingTo="functionItem.code">功能项编码</td>
+								<td mappingTo="functionItem.name">功能项名称</td>
+								<td mappingTo="functionItem.remark">说明</td>
+							</tr>
+						</table>
+					</WtChapter>
+				</WtChapter>
+				<WtChapter title="功能分布" type="FIXED">
+					<table type="EXT_ROWS" name="功能分布" selector="functionItem.name"
+						 mappingTo="functionItem[]=#ReqFunctionItem(domainId=$domainId)">
+						<tr>
+							<td mappingTo="functionItem.code">功能项编码</td>
+							<td mappingTo="functionItem.name">功能项</td>
+							<td mappingTo="functionItem.distributed.GSZB">公司总部</td>
+							<td mappingTo="functionItem.distributed.CGYTFTP">超高压调峰调频</td>
+							<td mappingTo="functionItem.distributed.NYGS">能源公司</td>
+							<td mappingTo="functionItem.distributed.SGS">省公司</td>
+							<td mappingTo="functionItem.distributed.DSDW">地市单位</td>
+							<td mappingTo="functionItem.distributed.JCDW">基层单位</td>
+						</tr>
+					</table>
+				</WtChapter>
+			</WtChapter>
+			<WtChapter title="角色定义" type="FIXED">
+				<table type="EXT_ROWS" name="业务流程清单"
+					mappingTo="role[]=#FunctionRole(domainId=$domainId)">
+					<tr>
+						<td mappingTo="role.code">编码</td>
+						<td mappingTo="role.name">角色</td>
+						<td mappingTo="role.description">职责</td>
+					</tr>
+				</table>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter title="功能规格" type="FIXED">
+			<WtChapter title="需求清单" type="FIXED">
+				<WtChapter title="功能项部分" type="FIXED">
+					<table type="EXT_ROWS" name="功能项清单" selector="reqProcess.name,reqProcess.itemName"
+						mappingTo="reqFuncProcess[]=#ReqFunctionWithProcess(domainId=$domainId)">
+						<tr>
+							<td mappingTo="reqFuncProcess.code">业务流程编码</td>
+							<td mappingTo="reqFuncProcess.name">业务流程</td>
+							<td mappingTo="reqFuncProcess.itemCode">功能项编码</td>
+							<td mappingTo="reqFuncProcess.itemName">功能项</td>
+							<td mappingTo="reqFuncProcess.itImpStr">是否IT实现</td>
+							<td mappingTo="reqFuncProcess.reqAnalysis">需求分析</td>
+							<td mappingTo="reqFuncProcess.description">说明</td>
+						</tr>
+					</table>
+				</WtChapter>
+				<WtChapter title="功能子项部分" type="FIXED">
+					<table type="EXT_ROWS" name="功能子项清单"
+						mappingTo="subitem[]=#ReqFunctionSubitem(domainId=$domainId)">
+						<tr>
+							<td mappingTo="subitem.itemCode">功能项编码</td>
+							<td mappingTo="subitem.itemName">功能项</td>
+							<td mappingTo="subitem.nodeNames">业务环节</td>
+							<td mappingTo="subitem.itImpStr">是否IT实现</td>
+							<td mappingTo="subitem.code">功能子项编码</td>
+							<td mappingTo="subitem.name">功能子项</td>
+							<td mappingTo="subitem.analysis">需求分析</td>
+							<td mappingTo="subitem.remark">说明</td>
+						</tr>
+					</table>
+				</WtChapter>
+			</WtChapter>
+			<WtChapter title="functionItem.name" type="DYNAMIC"
+				mappingTo="functionItem[]=#ReqFunctionItem(domainId=$domainId)">
+				<WtChapter title="功能综述" type="FIXED" >
+					<span mappingTo="functionItem.description" />
+				</WtChapter>
+				<WtChapter title="业务流程" type="FIXED" />
+				<WtChapter title="关系分析" type="FIXED">
+					<WtChapter title="内部关系" type="FIXED" />
+					<WtChapter title="外部关系" type="FIXED" />
+				</WtChapter>
+				<WtChapter title="详细功能设计" type="FIXED">
+					<WtChapter title="subitem.name" type="DYNAMIC" 
+						mappingTo="subitem[]=#ReqFunctionSubitem(itemId=functionItem.id,itemName=functionItem.name)">
+						<WtChapter title="功能综述" type="FIXED" >
+							<span mappingTo="subitem.description"/>
+						</WtChapter>
+						<WtChapter title="业务对象" type="FIXED">
+							<table type="EXT_ROWS" name="业务对象"
+								mappingTo="dataItem[]=#BizObjectDataItemWithSubitem(subitemId=subitem.id,subitemName=subitem.name,itemId=functionItem.id)">
+								<tr>
+									<td mappingTo="dataItem.objectCode">编码</td>
+									<td mappingTo="dataItem.objectName">业务对象</td>
+									<td mappingTo="dataItem.objectDesc">说明</td>
+									<td mappingTo="dataItem.name">数据项</td>
+									<td mappingTo="dataItem.codeNote">引用的编码标准</td>
+									<td mappingTo="dataItem.remark">业务数据质量管理要求</td>
+								</tr>
+							</table>
+						</WtChapter>
+						<WtChapter title="业务活动" type="FIXED" />
+						<!-- 
+						<WtChapter title="流程节点" type="FIXED" >
+							<span mappingTo="subitem.nodeNames" />
+						</WtChapter>
+						 -->
+						<WtChapter title="功能用例" type="FIXED">
+							<table type="FIXED" name="功能用例"
+								mappingTo="usecase=#ReqFunctionUsecase(domainId=$domainId,subitemId=subitem.id)">
+								<tr>
+									<td colspan="2">用例编码</td>
+									<td mappingTo="usecase.code"></td>
+									<td>用例名称</td>
+									<td mappingTo="usecase.name"></td>
+								</tr>
+								<tr>
+									<td colspan="2">业务说明</td>
+									<td mappingTo="usecase.bizComment" colspan="3" contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td colspan="2">业务规则</td>
+									<td mappingTo="usecase.bizRule" colspan="3"  contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td colspan="2">使用级别</td>
+									<td mappingTo="usecase.useLevel" colspan="3"></td>
+								</tr>
+								<tr>
+									<td colspan="2">先决条件</td>
+									<td mappingTo="usecase.premise" colspan="3"></td>
+								</tr>
+								<tr>
+									<td rowspan="4">功能要求</td>
+									<td>基本功能</td>
+									<td mappingTo="usecase.baseFunction" colspan="3"  contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td>辅助功能</td>
+									<td mappingTo="usecase.auxiliaryFunction" colspan="3"  contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td>提示信息</td>
+									<td mappingTo="usecase.tipInfo" colspan="3" contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td>处理约束</td>
+									<td mappingTo="usecase.dealConstraint" colspan="3" contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td rowspan="2">信息处理要求</td>
+									<td>输入信息</td>
+									<td mappingTo="usecase.inputInfo" colspan="3" contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td>输出信息</td>
+									<td mappingTo="usecase.outputInfo" colspan="3" contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td colspan="2">统计考核要素</td>
+									<td mappingTo="usecase.evalFactor" colspan="3" contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td colspan="2">非功能需求</td>
+									<td mappingTo="usecase.nonfunctionReq" colspan="3" contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td colspan="2">差异说明</td>
+									<td mappingTo="usecase.differComment" colspan="3" contentType="COMPLEX"></td>
+								</tr>
+								<tr>
+									<td colspan="2">业务表单</td>
+									<td mappingTo="usecase.bizForms" colspan="3"></td>
+								</tr>
+							</table>
+						</WtChapter>
+						<WtChapter title="规则算法" type="FIXED" />
+						<WtChapter title="界面原型" type="FIXED" />
+						<WtChapter title="应用角色" type="FIXED">
+							<table type="EXT_ROWS" name="业务对象"
+								mappingTo="duty[]=#ReqSubitemDuty(subitemId=subitem.id)">
+								<tr>
+									<td mappingTo="duty.roleCode">编码</td>
+									<td mappingTo="duty.name">角色</td>
+									<td mappingTo="duty.description">职责</td>
+								</tr>
+							</table>
+						</WtChapter>
+					</WtChapter>
+				</WtChapter>
+			</WtChapter>
+		</WtChapter>
+		<WtChapter title="接口需求" type="FIXED">
+			<WtChapter title="4A平台集成需求" type="FIXED" />
+			<WtChapter title="门户集成需求" type="FIXED" />
+			<WtChapter title="内外网数据安全交换平台集成需求" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="非功能规格" type="FIXED">
+			<WtChapter title="软件质量属性需求" type="FIXED" />
+			<WtChapter title="约束性需求|系统安全需求" type="FIXED" />
+		</WtChapter>
+		<WtChapter title="尚需解决的问题" type="FIXED" />
+	</WtSection>
+	<WtSection />
+</WtDocConfig>

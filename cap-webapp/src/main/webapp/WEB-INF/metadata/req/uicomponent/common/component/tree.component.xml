@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+	<extend>uicomponent.common.component.tree</extend>
+    <modelId>req.uicomponent.common.component.tree</modelId>
+    <modelName>Tree</modelName>
+    <modelPackage>req.uicomponent.common</modelPackage>
+    <modelType>component</modelType>
+    <cname>树</cname>
+	<group>common</group>
+	<description>Tree组件</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<sort>13</sort>
+	
+</component>

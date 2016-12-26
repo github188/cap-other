@@ -1,0 +1,26 @@
+{
+	"builtInActionList":[
+		{
+			"description":"自适应高度",
+			"actionMethodName":"getBodyHeight",
+			"type":"resizeheight",
+			"fileName":"/cap/rt/common/base/js/comtop.cap.rt.js"
+		},
+		{
+			"description":"自适应宽度",
+			"actionMethodName":"getBodyWidth",
+			"type":"resizewidth",
+			"fileName":"/cap/rt/common/base/js/comtop.cap.rt.js"
+		},
+		{
+			"description":"编辑网格默认数据源",
+			"actionMethodName":"cap.editGridDatasource",
+			"type":"editGridDatasource",
+			"fileName":"/cap/rt/common/base/js/comtop.cap.rt.js"
+		}
+	],
+	"modelId":"preference.page.builtInAction.builtInActions",
+	"modelName":"builtInActions",
+	"modelPackage":"preference.page",
+	"modelType":"builtInAction"
+}

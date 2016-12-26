@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action>
+    <modelId>actionlibrary.formAction.action.pageInitLoadData</modelId>
+    <modelName>pageInitLoadData</modelName>
+    <modelPackage>actionlibrary.formAction</modelPackage>
+    <modelType>action</modelType>
+    <cname>页面初始化数据加载行为</cname>
+	<description>页面初始化数据加载行为</description>
+	<propertyEditor>auto</propertyEditor>
+	<propertyEditorPage></propertyEditorPage>
+	<specialMethod>true</specialMethod>
+	<methodName>pageInitLoadData</methodName>
+	<methodCname>页面初始化数据加载行为</methodCname>
+	<methodDescription>页面初始化数据加载行为</methodDescription>
+	<type>pageInit</type>
+	<js>
+	</js>
+	<script>
+		<![CDATA[
+//{{cname}} {{description}}
+function pageInitLoadData(){
+	//TODO 加载数据前操作
+	<script name="before"/>
+	var paramArray =[];
+	cap.formId = ${methodParameter};
+	var param = "${methodParameter}";
+    if (param) {
+       paramArray = param.split(",");
+    }
+	if(!cap.isUndefinedOrNullOrBlank(cap.formId) && paramArray.length>0){
+		var aliasEntityId = '{{methodOption.aliasEntityId}}';
+		aliasEntityId = aliasEntityId != '' ? aliasEntityId :  '{{methodOption.entityId}}';
+		var dwrInvokeParam = cap.getDwrInvokeParam(aliasEntityId,'{{methodOption.actionMethodName}}',paramArray);
+		dwr.TOPEngine.setAsync(false);
+		${modelName}Action.dwrInvoke(dwrInvokeParam,{callback:function(result){
+			//TODO 数据设置前操作
+			<script name="setDataBefore"/>
+			{{methodOption.returnValueBind}}=result;
+			//TODO 数据设置后操作
+			<script name="setDataAfter"/>
+		},
+		errorHandler:function(message, exception){
+		   //TODO 后台异常信息回调
+		   <script name="errorHandler"/>
+		}
+		});
+		dwr.TOPEngine.setAsync(true);
+	}else{
+		var defaultValue = {};
+		var expression = "default";
+		//TODO 改变expression
+		<script name="changeExpression"/>	
+		switch (expression){
+			case "default":
+				defaultValue = <%=com.comtop.cip.json.JSON.toJSONStringWithDateFormat(request.getAttribute("{{methodOption.returnValueBind}}"),"yyyy-MM-dd HH:mm:ss")%>;
+				break;
+			//TODO 增加case控制
+			<script name="changeDefaultValue"/>	
+		}
+		{{methodOption.returnValueBind}} = defaultValue ? defaultValue : {};
+	}
+	//TODO 数据加载完成后操作
+	<script name="dataLoadAfter"/>
+}]]>
+	</script>
+	<properties>
+		<property>
+			<cname>后台方法</cname>
+			<ename>actionMethodName</ename>
+			<type>String</type>
+			<requried>true</requried>
+			<default></default>
+			<description>后台方法</description>
+			<!--文本框-->
+			<propertyEditorUI>
+				<componentName>cui_clickinput</componentName>
+				<script>
+				<![CDATA[ 
+					{
+						'id': 'actionMethodName',
+						'ng-model':'actionMethodName',
+						'onclick':'openEntityMethodSelectWindow()'
+					}
+				]]>
+				</script>
+			</propertyEditorUI>
+			<consistencyConfig>
+				<checkConsistency>true</checkConsistency>
+				<checkClass>com.comtop.cap.bm.metadata.consistency.action.property.CallServiceMethodPageActionProConsisCheck</checkClass>
+			</consistencyConfig>
+		</property>
+	</properties>
+	<consistencyConfig>
+		<checkConsistency>true</checkConsistency>
+		<checkClass>com.comtop.cap.bm.metadata.consistency.action.CallServiceMethodPageActionConsisCheck</checkClass>
+	</consistencyConfig>
+</action>
