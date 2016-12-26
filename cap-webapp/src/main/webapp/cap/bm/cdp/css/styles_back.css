@@ -1,0 +1,14 @@
+﻿.button-group {
+	float: right;
+	margin: 10px 0;
+	width: 116px
+}
+
+.info {
+	
+	background-color: #E6F4F9;
+	margin-top: 27px;
+}
+.info p {
+	padding:5px 10px
+}

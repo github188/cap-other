@@ -1,0 +1,221 @@
+﻿#step {
+	clear: both;
+    padding-left: 15px;
+    height: 147px;
+    width: 700px;
+    margin: 5px auto;
+}
+.numColor p {
+	color: #FFFFFF;
+}
+
+.textColor p{
+	color: #009DD9;
+}
+.img {
+    width: 130px;
+    height: 6px;
+}
+
+#step1 {
+    margin-top: 40px;
+    margin-left: -19px;
+    width: 70px;
+    height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+    line-height: normal;
+}
+#step1Num{
+	margin-top: -25px;
+    margin-left: 11px;
+    width: 46px;
+}
+
+#step1Text {
+    margin-top: 30px;
+    margin-left: 0px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    text-align: center;
+}
+#line1{
+    margin-top: -45px;
+    margin-left: 29px;
+}
+#step2 {
+    margin-top: -25px;
+    margin-left: 135px;
+    width: 70px;
+    height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+    line-height: normal;
+}
+#step2Num{
+	margin-top: -25px;
+    margin-left: 12px;
+    width: 46px;
+}
+
+#step2Text {
+    margin-top: 30px;
+    margin-left: 0px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    text-align: center;
+}
+#line2{
+    margin-top: -45px;
+    margin-left: 183px;
+}
+
+#step3 {
+    margin-top: -35px;
+    margin-left: 300px;
+    width: 70px;
+    height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+    line-height: normal;
+}
+#step3Num{
+	margin-top: -35px;
+    margin-left: 12px;
+    width: 46px;
+}
+
+#step3Text {
+    margin-top: 30px;
+    margin-left: 0px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    text-align: center;
+}
+#line3{
+    margin-top: -35px;
+    margin-left: 356px;
+}
+#step4 {
+    margin-top: -24px;
+    margin-left: 462px;
+    width: 70px;
+    height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+    line-height: normal;
+}
+#step4Num{
+	margin-top: -26px;
+    margin-left: 12px;
+    width: 46px;
+}
+
+#step4Text {
+    margin-top: 30px;
+    margin-left: 0px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    text-align: center;
+}
+#line4{
+    margin-top: -46px;
+    margin-left: 510px;
+}
+#step5 {
+    margin-top: -24px;
+    margin-left: 616px;
+    width: 70px;
+    height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+    line-height: normal;
+}
+#step5Num{
+	margin-top: -26px;
+    margin-left: 12px;
+    width: 46px;
+}
+
+#step5Text {
+    margin-top: 30px;
+    margin-left: 0px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    text-align: center;
+}
+#info {
+    clear: both;
+    height: 390px;
+    width: 700px;
+    margin: -55px auto;
+    background-color:#E6F4F9;
+    border: 1px solid #ccc;
+    
+}
+.infoStyle p {
+	padding:5px 10px
+}
+
+#title {
+	clear: both;
+    height: 30px;
+    width: 700px;
+    
+}
+.titleStyle p{
+	float: left;
+    font-size: 14px;
+    text-align: center;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    line-height: normal;
+}
+
+#people{
+	clear: both;
+    height: 180px;
+    width: 700px;
+    margin-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.peopleStyle {
+	
+}
+#bottom {
+ 	clear: both;
+    height: 30px;
+    width: 700px;
+    margin-top: 7px;
+    margin-left: 15px;
+    margin-right: 13px
+}
+.bottomStyle span{
+    float: right;
+}
