@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.carstorage.model">
+
+	
+<generateOperate class="com.comtop.carstorage.model.BizaccountVO"></generateOperate>
+	
+<sql id = "bizaccount_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "payamount != null"> 
+		AND (T1.PAYAMOUNT = #{payamount} )  
+ 	</if>
+	<if test = "remark != null and remark != '' "> 
+		AND (T1.REMARK = #{remark} )  
+ 	</if>
+	<if test = "startdate != null"> 
+		AND (T1.STARTDATE = #{startdate} )  
+ 	</if>
+	<if test = "enddate != null"> 
+		AND (T1.ENDDATE = #{enddate} )  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE = #{flowState} )  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID = #{processInsId} )  
+ 	</if>
+	<if test = "carstorageId != null and carstorageId != '' "> 
+		AND (T1.CARSTORAGE_ID = #{carstorageId} )  
+ 	</if>
+</sql>
+	
+<sql id = "bizaccount_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID =  #{id})  
+ 	</if>
+	<if test = "payamount != null"> 
+		AND (T1.PAYAMOUNT =  #{payamount})  
+ 	</if>
+	<if test = "remark != null and remark != '' "> 
+		AND (T1.REMARK =  #{remark})  
+ 	</if>
+	<if test = "startdate != null"> 
+		AND (T1.STARTDATE =  #{startdate})  
+ 	</if>
+	<if test = "enddate != null"> 
+		AND (T1.ENDDATE =  #{enddate})  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE =  #{flowState})  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID =  #{processInsId})  
+ 	</if>
+	<if test = "carstorageId != null and carstorageId != '' "> 
+		AND (T1.CARSTORAGE_ID = #{carstorageId})  
+ 	</if>
+</sql>
+		
+<select id="queryTodoBizaccountCount" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="int" >
+  SELECT COUNT(1) 
+    FROM T_BC_BIZACCOUNT T1, ${transTableName} T2 
+   WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID 
+     AND T1.FLOW_STATE = 1 
+     AND T2.TRANS_ACTOR_ID = #{transActor} 
+     AND T2.MAIN_PROCESS_ID = #{processId}
+  <include refid="bizaccount_default_query_condition" />
+</select>
+
+<select id="queryTodoBizaccountList" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="com.comtop.carstorage.model.BizaccountVO" >
+   SELECT T1.*,
+		  T2.TODO_TASK_ID AS taskId ,
+          T2.CUR_NODE_ID as nodeId,
+          T2.CUR_NODE_NAME as nodeName,
+          T2.BACK_FLAG as backFlag,
+          T2.MAIN_PROCESS_ID as processId,
+          T2.NOTE as opinion,
+          T2.VERSION as version
+     FROM T_BC_BIZACCOUNT T1, ${transTableName} T2
+    WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+      AND T1.FLOW_STATE = 1
+      AND T2.TRANS_ACTOR_ID = #{transActor}
+      AND T2.MAIN_PROCESS_ID = #{processId}      		
+   <include refid="bizaccount_default_query_condition" />
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+<select id="queryToEntryBizaccountCount" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="int" >
+  SELECT COUNT(1) 
+    FROM (SELECT BT.*,
+                 T2.TODO_TASK_ID taskId,
+                 NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+                 T2.CUR_NODE_ID as nodeId,
+                 T2.CUR_NODE_NAME as nodeName,
+                 T2.BACK_FLAG as backFlag
+            FROM T_BC_BIZACCOUNT BT,
+                 (select * from ${transTableName} T3 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+           WHERE BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID(+)
+             AND (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1 
+   WHERE T1.processId = #{processId}
+  <include refid="bizaccount_default_query_condition" />
+</select>
+
+<select id="queryToEntryBizaccountList" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="com.comtop.carstorage.model.BizaccountVO" >
+  SELECT * 
+    FROM (SELECT BT.*,
+                 T2.TODO_TASK_ID taskId,
+                 NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+                 T2.CUR_NODE_ID as nodeId,
+                 T2.CUR_NODE_NAME as nodeName,
+                 T2.BACK_FLAG as backFlag,
+                 T2.NOTE as opinion,
+                 T2.VERSION as version
+           FROM T_BC_BIZACCOUNT BT,
+                (select * from ${transTableName} T3 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+          WHERE BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID(+)
+            AND (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1
+   WHERE T1.processId = #{processId}
+  <include refid="bizaccount_default_query_condition" />
+  <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+        ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+  </if>
+
+</select>
+
+<select id="queryEntryBizaccountCount" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="int" >
+  WITH DONE_TASK AS
+           (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                  FROM ${transTableName} T
+                                 WHERE (T.STATUS = 1 OR T.STATUS = 5)
+                                   AND T.MAIN_PROCESS_ID = #{processId}
+                                   AND T.CUR_NODE_ID = #{nodeId}
+                                   AND T.TRANS_ACTOR_ID = #{transActor}
+                                 GROUP BY T.MAIN_PROCESS_ID,
+                                          T.VERSION,
+                                          T.MAIN_PROCESS_INS_ID,
+                                          T.TRANS_ACTOR_ID) TEMPTAB
+             WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+               AND T1.VERSION = TEMPTAB.VERSION
+               AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+               AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+               AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME) 
+  SELECT COUNT(1) 
+    FROM T_BC_BIZACCOUNT T1, DONE_TASK T2 
+   WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID 
+  <include refid="bizaccount_default_query_condition" />
+</select>
+
+<select id="queryEntryBizaccountList" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="com.comtop.carstorage.model.BizaccountVO" >
+  WITH DONE_TASK AS
+           (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                  FROM ${transTableName} T
+                                 WHERE (T.STATUS = 1 OR T.STATUS = 5)
+                                   AND T.MAIN_PROCESS_ID = #{processId}
+                                   AND T.CUR_NODE_ID = #{nodeId}
+                                   AND T.TRANS_ACTOR_ID = #{transActor}
+                                   GROUP BY T.MAIN_PROCESS_ID,
+                                            T.VERSION,
+                                            T.MAIN_PROCESS_INS_ID,
+                                            T.TRANS_ACTOR_ID) TEMPTAB
+              WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                AND T1.VERSION = TEMPTAB.VERSION
+                AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME)
+  SELECT T1.*, 
+  		 T2.DONE_TASK_ID AS taskId,
+         T2.REVOKE_BACK_FLAG as revokeBackFlag,
+         T2.CUR_NODE_ID as nodeId,
+         T2.CUR_NODE_NAME as nodeName,
+         T2.BACK_FLAG as backFlag,
+         T2.MAIN_PROCESS_ID as processId,
+         T2.NOTE as opinion,
+         T2.VERSION as version
+    FROM T_BC_BIZACCOUNT T1, DONE_TASK T2 
+   WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID 
+  <include refid="bizaccount_default_query_condition" />
+  <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+  </if>	  
+
+</select>
+
+<select id="queryDoneBizaccountCount" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="int" >
+  WITH DONE_TASK AS
+           (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                FROM ${transTableName} T
+                               WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+                                 AND T.MAIN_PROCESS_ID = #{processId}
+                                 AND T.TRANS_ACTOR_ID = #{transActor}
+                                GROUP BY T.MAIN_PROCESS_ID,
+                                         T.VERSION,
+                                         T.MAIN_PROCESS_INS_ID,
+                                         T.TRANS_ACTOR_ID) TEMPTAB
+                 WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                   AND T1.VERSION = TEMPTAB.VERSION
+                   AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                   AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                   AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+                 <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+                   AND T1.CUR_NODE_ID NOT IN 
+                    <foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+                    	#{item}
+                    </foreach>
+                 </if>
+                    )
+      SELECT COUNT(*)
+        FROM T_BC_BIZACCOUNT T1, DONE_TASK T2
+       WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+      <include refid="bizaccount_default_query_condition" />
+</select>
+
+<select id="queryDoneBizaccountList" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="com.comtop.carstorage.model.BizaccountVO" >
+ WITH DONE_TASK AS
+                (SELECT T1.* FROM ${transTableName} T1,
+                                           (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                            T.MAIN_PROCESS_ID,
+                                            T.VERSION,
+                                            T.MAIN_PROCESS_INS_ID,
+                                            T.TRANS_ACTOR_ID
+                                            FROM ${transTableName} T
+                                            WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+                                            AND T.MAIN_PROCESS_ID = #{processId}
+                                            AND T.TRANS_ACTOR_ID = #{transActor}
+                                           GROUP BY T.MAIN_PROCESS_ID,
+                                                     T.VERSION,
+                                                     T.MAIN_PROCESS_INS_ID,
+                                                     T.TRANS_ACTOR_ID) TEMPTAB
+                  WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                    AND T1.VERSION = TEMPTAB.VERSION
+                    AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                    AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                    AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+                 <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+                    AND T1.CUR_NODE_ID NOT IN 
+                 <foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+                 	#{item}
+                 </foreach>
+                 </if>
+                 )
+	SELECT T1.*,
+    	   T2.DONE_TASK_ID AS taskId,
+           T2.REVOKE_BACK_FLAG as revokeBackFlag,
+           T2.CUR_NODE_ID as nodeId,
+           T2.CUR_NODE_NAME as nodeName,
+           T2.BACK_FLAG as backFlag,
+           T2.MAIN_PROCESS_ID as processId,
+           T2.NOTE as opinion,
+ 	       T2.VERSION as version
+	  FROM T_BC_BIZACCOUNT T1, DONE_TASK T2
+	 WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+	<include refid="bizaccount_default_query_condition" />
+    <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+       ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+    </if>	
+</select>
+
+<select id="queryTodoBizaccountVOByTaskId" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="com.comtop.carstorage.model.BizaccountVO" >
+   SELECT T1.*, T2.*,
+   		  T2.CUR_PROCESS_ID as processId,
+   		  T2.todo_task_id as taskId, 
+   		  T2.CUR_NODE_INS_ID as curNodeInsId,
+   		  T2.ACTIVITY_INS_ID as activityInsId,
+   		  T2.CUR_NODE_ID as nodeId,
+   		  T2.CUR_NODE_NAME as nodeName
+     FROM T_BC_BIZACCOUNT T1,(select * from ${transTableName} T3 where T3.todo_task_id = #{taskId} ) T2
+    WHERE T1.PROCESS_INS_ID(+) = T2.MAIN_PROCESS_INS_ID
+    ORDER BY T2.create_time DESC  
+</select>
+
+<select id="queryDoneBizaccountVOByTaskId" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="com.comtop.carstorage.model.BizaccountVO" >
+   SELECT T1.*, T2.*,
+          T2.CUR_PROCESS_ID as processId,
+          T2.DONE_TASK_ID as taskId,
+          T2.CUR_NODE_INS_ID as curNodeInsId, 
+  	      T2.REVOKE_BACK_FLAG as revokeBackFlag ,
+   		  T2.ACTIVITY_INS_ID as activityInsId,
+   		  T2.CUR_NODE_ID as nodeId,
+   		  T2.CUR_NODE_NAME as nodeName
+     FROM T_BC_BIZACCOUNT T1,(select * from ${transTableName} T3 where T3.done_task_id = #{taskId}) T2
+    WHERE T1.PROCESS_INS_ID(+) = T2.MAIN_PROCESS_INS_ID
+    ORDER BY T2.create_time DESC  
+</select>
+
+<select id="queryBizaccountList" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="com.comtop.carstorage.model.BizaccountVO" >
+   SELECT T1.* FROM T_BC_BIZACCOUNT T1
+   <where> 
+      <include refid="bizaccount_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+<select id="queryBizaccountCount" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="int" >
+   SELECT COUNT(1) FROM T_BC_BIZACCOUNT T1
+   <where> 
+      <include refid="bizaccount_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryBizaccountListByCondition" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="com.comtop.carstorage.model.BizaccountVO" >
+   SELECT T1.* FROM T_BC_BIZACCOUNT T1
+   <where> 
+       <include refid="bizaccount_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryBizaccountListNoPaging" parameterType="com.comtop.carstorage.model.BizaccountVO" resultType="com.comtop.carstorage.model.BizaccountVO" >
+   SELECT T1.* FROM T_BC_BIZACCOUNT T1
+   <where> 
+       <include refid="bizaccount_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+	
+	
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<taskhandle-Mapping>
+	<mappings>
+		<mapping>
+			<command>ehcache</command>
+			<class>com.comtop.eic.core.asyn.service.impl.EhcacheTaskCacheServiceImpl</class>
+		</mapping>
+		<mapping>
+			<command>map</command>
+			<class>com.comtop.eic.core.asyn.service.impl.MapTaskCacheServiceImpl</class>
+		</mapping>
+		<mapping>
+			<command>redis</command>
+			<class>com.comtop.eic.core.asyn.service.impl.RedisTaskCacheServiceImpl</class>
+		</mapping>
+		<mapping>
+			<command>oracle</command>
+			<class>com.comtop.eic.core.asyn.dao.impl.OracleTaskHandleDaoImpl</class>
+		</mapping>
+	</mappings>
+</taskhandle-Mapping>

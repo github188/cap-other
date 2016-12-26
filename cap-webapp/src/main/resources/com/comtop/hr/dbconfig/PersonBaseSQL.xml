@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.hr.model">
+
+	
+<generateOperate class="com.comtop.hr.model.PersonVO"></generateOperate>
+	
+<sql id = "person_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name} )  
+ 	</if>
+	<if test = "number != null and number != '' "> 
+		AND (T1.NUMBER = #{number} )  
+ 	</if>
+	<if test = "birthday != null"> 
+		AND (T1.BIRTHDAY = #{birthday} )  
+ 	</if>
+	<if test = "address != null and address != '' "> 
+		AND (T1.ADDRESS = #{address} )  
+ 	</if>
+	<if test = "departmentId != null and departmentId != '' "> 
+		AND (T1.DEPARTMENT_ID = #{departmentId} )  
+ 	</if>
+	<if test = "positionId != null and positionId != '' "> 
+		AND (T1.POSITION_ID = #{positionId} )  
+ 	</if>
+	<if test = "test != null and test != '' "> 
+		AND (T1.TEST = #{test} )  
+ 	</if>
+</sql>
+	
+<sql id = "person_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id})  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name})  
+ 	</if>
+	<if test = "number != null and number != '' "> 
+		AND (T1.NUMBER = #{number})  
+ 	</if>
+	<if test = "birthday != null"> 
+		AND (T1.BIRTHDAY = #{birthday})  
+ 	</if>
+	<if test = "address != null and address != '' "> 
+		AND (T1.ADDRESS = #{address})  
+ 	</if>
+	<if test = "departmentId != null and departmentId != '' "> 
+		AND (T1.DEPARTMENT_ID = #{departmentId})  
+ 	</if>
+	<if test = "positionId != null and positionId != '' "> 
+		AND (T1.POSITION_ID = #{positionId})  
+ 	</if>
+	<if test = "test != null and test != '' "> 
+		AND (T1.TEST = #{test})  
+ 	</if>
+</sql>
+		
+<select id="queryPersonList" parameterType="com.comtop.hr.model.PersonVO" resultType="com.comtop.hr.model.PersonVO" >
+   SELECT T1.* FROM T_HR_PERSON T1
+   <where> 
+      <include refid="person_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType}
+   </if>
+</select>
+
+<select id="queryPersonCount" parameterType="com.comtop.hr.model.PersonVO" resultType="int" >
+   SELECT COUNT(1) FROM T_HR_PERSON T1
+   <where> 
+      <include refid="person_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryPersonListByCondition" parameterType="com.comtop.hr.model.PersonVO" resultType="com.comtop.hr.model.PersonVO" >
+   SELECT T1.* FROM T_HR_PERSON T1
+   <where> 
+       <include refid="person_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryPersonListNoPaging" parameterType="com.comtop.hr.model.PersonVO" resultType="com.comtop.hr.model.PersonVO" >
+   SELECT T1.* FROM T_HR_PERSON T1
+   <where> 
+       <include refid="person_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+   </if>
+</select>
+
+	
+</mapper>

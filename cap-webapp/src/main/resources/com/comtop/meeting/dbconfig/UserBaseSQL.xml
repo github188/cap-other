@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.meeting.model">
+
+	
+	<generateOperate class="com.comtop.meeting.model.UserVO"></generateOperate>
+	
+	<sql id = "user_cascade_query_condition" >
+	 <if test = "id != null and id!= '' "> 
+		  AND (T1.ID =  #{id} )  
+ 	 </if>
+	 <if test = "name != null and name!= '' "> 
+		  AND (T1.NAME =  #{name} )  
+ 	 </if>
+	 <if test = "userNumber != null and userNumber!= '' "> 
+		  AND (T1.USER_NUMBER =  #{userNumber} )  
+ 	 </if>
+	 <if test = "flowState != null"> 
+		  AND (T1.FLOW_STATE =  #{flowState} )  
+ 	 </if>
+	 <if test = "processInsId != null and processInsId!= '' "> 
+		  AND (T1.PROCESS_INS_ID =  #{processInsId} )  
+ 	 </if>
+	 <if test = "birthday != null"> 
+		  AND (T1.BIRTHDAY =  #{birthday} )  
+ 	 </if>
+	</sql>
+	
+	<sql id = "user_default_query_condition" >
+		 <if test = "id != null and id!= '' "> 
+		  AND (T1.ID =  #{id})  
+ 	 </if>
+		 <if test = "name != null and name!= '' "> 
+		  AND (T1.NAME =  #{name})  
+ 	 </if>
+		 <if test = "userNumber != null and userNumber!= '' "> 
+		  AND (T1.USER_NUMBER =  #{userNumber})  
+ 	 </if>
+		 <if test = "flowState != null"> 
+		  AND (T1.FLOW_STATE =  #{flowState})  
+ 	 </if>
+		 <if test = "processInsId != null and processInsId!= '' "> 
+		  AND (T1.PROCESS_INS_ID =  #{processInsId})  
+ 	 </if>
+		 <if test = "birthday != null"> 
+		  AND (T1.BIRTHDAY =  #{birthday})  
+ 	 </if>
+	</sql>
+	
+	<select id="queryUserListByCondition" parameterType="com.comtop.meeting.model.UserVO" resultType="com.comtop.meeting.model.UserVO">
+		SELECT T1.* FROM T_PM_USER T1
+		<where> 
+			 <include refid="user_cascade_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryUserList" parameterType="com.comtop.meeting.model.UserVO" resultType="com.comtop.meeting.model.UserVO">
+		SELECT T1.* FROM T_PM_USER T1
+		<where> 
+			 <include refid="user_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+		</if>
+	</select>
+	
+	<select id="queryUserCount" parameterType="com.comtop.meeting.model.UserVO" resultType="int">
+			SELECT COUNT(1) FROM T_PM_USER T1
+		<where> 
+			 <include refid="user_default_query_condition" />
+		</where>
+	</select>
+	
+	
+    <select id="queryTodoUserList" parameterType="com.comtop.meeting.model.UserVO" resultType="com.comtop.meeting.model.UserVO">
+		    SELECT T1.*, T2.TODO_TASK_ID AS taskId ,T2.CUR_NODE_ID as nodeId,T2.CUR_NODE_NAME as nodeName,T2.BACK_FLAG as backFlag,T2.MAIN_PROCESS_ID as processId,T2.NOTE as opinion
+			  FROM T_PM_USER T1, ${transTableName} T2
+			 WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+			   AND T1.FLOW_STATE = 1
+			   AND T2.TRANS_ACTOR_ID = #{transActor}
+			   AND T2.MAIN_PROCESS_ID = #{processId}
+			   <if test="nodeId != null and nodeId != '' ">
+			       AND T2.CUR_NODE_ID = #{nodeId}        
+			   </if>      		
+			<include refid="user_default_query_condition" />
+			<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+			</if>
+	</select>
+	
+	<select id="queryTodoUserCount" parameterType="com.comtop.meeting.model.UserVO" resultType="int">
+		   SELECT COUNT(1)
+			  FROM T_PM_USER T1, ${transTableName} T2
+			 WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+			   AND T1.FLOW_STATE = 1
+			   AND T2.TRANS_ACTOR_ID = #{transActor}
+			   AND T2.MAIN_PROCESS_ID = #{processId}
+			   <if test="nodeId != null and nodeId != '' ">
+			       AND T2.CUR_NODE_ID = #{nodeId}        
+			   </if>      
+			  <include refid="user_default_query_condition" />
+	</select>
+    
+	<select id="queryToEntryUserList" parameterType="com.comtop.meeting.model.UserVO" resultType="com.comtop.meeting.model.UserVO">
+			   SELECT *
+				  FROM (SELECT BT.*,
+				               T2.TODO_TASK_ID taskId,
+				               NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+				               T2.CUR_NODE_ID as nodeId,
+				               T2.CUR_NODE_NAME as nodeName,
+				               T2.BACK_FLAG as backFlag,
+				               T2.NOTE as opinion
+				          FROM T_PM_USER BT,
+				               (select *
+				                  from ${transTableName}  T3
+				                 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+				         WHERE BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID(+)
+				           AND (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1
+				 WHERE T1.processId = #{processId}
+			<include refid="user_default_query_condition" />
+			<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+			</if>
+	</select>
+	
+	<select id="queryToEntryUserCount" parameterType="com.comtop.meeting.model.UserVO" resultType="int">
+		     SELECT COUNT(1)
+				  FROM (SELECT BT.*,
+				               T2.TODO_TASK_ID taskId,
+				               NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+				               T2.CUR_NODE_ID as nodeId,
+				               T2.CUR_NODE_NAME as nodeName,
+				               T2.BACK_FLAG as backFlag
+				          FROM T_PM_USER BT,
+				               (select *
+				                  from ${transTableName}  T3
+				                 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+				         WHERE BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID(+)
+				           AND (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1
+				 WHERE T1.processId = #{processId}
+			  <include refid="user_default_query_condition" />
+	</select>
+	
+	<select id="queryEntryUserList" parameterType="com.comtop.meeting.model.UserVO" resultType="com.comtop.meeting.model.UserVO">
+		   WITH DONE_TASK AS
+					 (SELECT T1.*
+					    FROM ${transTableName} T1,
+					         (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+					                 T.MAIN_PROCESS_ID,
+					                 T.VERSION,
+					                 T.MAIN_PROCESS_INS_ID,
+					                 T.TRANS_ACTOR_ID
+					            FROM ${transTableName} T
+					          WHERE (T.STATUS = 1 OR T.STATUS = 5)
+					    		AND T.MAIN_PROCESS_ID = #{processId}
+					     		AND T.CUR_NODE_ID = #{nodeId}
+					     		AND T.TRANS_ACTOR_ID = #{transActor}
+					           GROUP BY T.MAIN_PROCESS_ID,
+					                    T.VERSION,
+					                    T.MAIN_PROCESS_INS_ID,
+					                    T.TRANS_ACTOR_ID) TEMPTAB
+					   WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+					     AND T1.VERSION = TEMPTAB.VERSION
+					     AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+					     AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+					     AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME)
+					SELECT T1.*, T2.DONE_TASK_ID AS taskId, T2.REVOKE_BACK_FLAG as revokeBackFlag,T2.CUR_NODE_ID as nodeId,T2.CUR_NODE_NAME as nodeName,T2.BACK_FLAG as backFlag,T2.MAIN_PROCESS_ID as processId,T2.NOTE as opinion
+					  FROM T_PM_USER T1, DONE_TASK T2
+					 WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+			 		  <include refid="user_default_query_condition" />
+			<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+			</if>	  
+	</select>
+	
+	<select id="queryEntryUserCount" parameterType="com.comtop.meeting.model.UserVO" resultType="int">
+		   WITH DONE_TASK AS
+					 (SELECT T1.*
+					    FROM ${transTableName} T1,
+					         (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+					                 T.MAIN_PROCESS_ID,
+					                 T.VERSION,
+					                 T.MAIN_PROCESS_INS_ID,
+					                 T.TRANS_ACTOR_ID
+					            FROM ${transTableName} T
+					          WHERE (T.STATUS = 1 OR T.STATUS = 5)
+					     		AND T.MAIN_PROCESS_ID = #{processId}
+					    		AND T.CUR_NODE_ID = #{nodeId}
+					     		AND T.TRANS_ACTOR_ID = #{transActor}
+					           GROUP BY T.MAIN_PROCESS_ID,
+					                    T.VERSION,
+					                    T.MAIN_PROCESS_INS_ID,
+					                    T.TRANS_ACTOR_ID) TEMPTAB
+					   WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+					     AND T1.VERSION = TEMPTAB.VERSION
+					     AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+					     AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+					     AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME)
+					SELECT COUNT(1)
+					  FROM T_PM_USER T1, DONE_TASK T2
+					 WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+			  		<include refid="user_default_query_condition" />
+	</select>
+	
+	
+	<select id="queryDoneUserList" parameterType="com.comtop.meeting.model.UserVO" resultType="com.comtop.meeting.model.UserVO">
+		   WITH DONE_TASK AS
+					 (SELECT T1.*
+					    FROM ${transTableName} T1,
+					         (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+					                 T.MAIN_PROCESS_ID,
+					                 T.VERSION,
+					                 T.MAIN_PROCESS_INS_ID,
+					                 T.TRANS_ACTOR_ID
+					            FROM ${transTableName} T
+					            WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+					             AND T.MAIN_PROCESS_ID = #{processId}
+					     		 AND T.TRANS_ACTOR_ID = #{transActor}
+					            <if test="nodeId != null and nodeId != '' ">
+								 AND T.CUR_NODE_ID =  #{nodeId}
+								</if>
+					           GROUP BY T.MAIN_PROCESS_ID,
+					                    T.VERSION,
+					                    T.MAIN_PROCESS_INS_ID,
+					                    T.TRANS_ACTOR_ID) TEMPTAB
+					   WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+					     AND T1.VERSION = TEMPTAB.VERSION
+					     AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+					     AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+					     AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+					     <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+						 	AND T1.CUR_NODE_ID NOT IN 
+						 	<foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+						        #{item}
+						  </foreach>
+						 </if>
+					     )
+					SELECT T1.*, T2.DONE_TASK_ID AS taskId, T2.REVOKE_BACK_FLAG as revokeBackFlag,T2.CUR_NODE_ID as nodeId,T2.CUR_NODE_NAME as nodeName,T2.BACK_FLAG as backFlag,T2.MAIN_PROCESS_ID as processId,T2.NOTE as opinion
+					  FROM T_PM_USER T1, DONE_TASK T2
+					 WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+			  		<include refid="user_default_query_condition" />
+			<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+			</if>
+	</select>
+	
+	<select id="queryDoneUserCount" parameterType="com.comtop.meeting.model.UserVO" resultType="int">
+		WITH DONE_TASK AS
+					 (SELECT T1.*
+					    FROM ${transTableName} T1,
+					         (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+					                 T.MAIN_PROCESS_ID,
+					                 T.VERSION,
+					                 T.MAIN_PROCESS_INS_ID,
+					                 T.TRANS_ACTOR_ID
+					            FROM ${transTableName} T
+					            WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+					             AND T.MAIN_PROCESS_ID = #{processId}
+					     		 AND T.TRANS_ACTOR_ID = #{transActor}
+					            <if test="nodeId != null and nodeId != '' ">
+								 AND T.CUR_NODE_ID =  #{nodeId}
+								</if>
+					           GROUP BY T.MAIN_PROCESS_ID,
+					                    T.VERSION,
+					                    T.MAIN_PROCESS_INS_ID,
+					                    T.TRANS_ACTOR_ID) TEMPTAB
+					   WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+					     AND T1.VERSION = TEMPTAB.VERSION
+					     AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+					     AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+					     AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+					     <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+						 	AND T1.CUR_NODE_ID NOT IN 
+						 	<foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+						        #{item}
+						  </foreach>
+						 </if>
+					     )
+					SELECT COUNT(*)
+					  FROM T_PM_USER T1, DONE_TASK T2
+					 WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+			  		<include refid="user_default_query_condition" />
+	</select>
+	
+	<select id ="queryTodoUserVOByTaskId" parameterType="com.comtop.meeting.model.UserVO" resultType="com.comtop.meeting.model.UserVO">
+	     SELECT t1.*,t2.*, t2.CUR_PROCESS_ID as processId, t2.todo_task_id as taskId, 
+	     	t2.CUR_NODE_INS_ID as curNodeInsId, t2.ACTIVITY_INS_ID as activityInsId,
+	     	t2.CUR_NODE_ID as nodeId, t2.CUR_NODE_NAME as nodeName FROM 
+	     T_PM_USER t1,
+	     (select * from ${transTableName} t3 where t3.todo_task_id = #{taskId} ) t2
+	     where t1.PROCESS_INS_ID(+) = t2.MAIN_PROCESS_INS_ID
+	     ORDER BY t2.create_time DESC
+	</select>
+	
+	<select id ="queryDoneUserVOByTaskId" parameterType="com.comtop.meeting.model.UserVO" resultType="com.comtop.meeting.model.UserVO">
+		 SELECT t1.*,t2.*, t2.CUR_PROCESS_ID as processId, t2.DONE_TASK_ID as taskId, t2.CUR_NODE_INS_ID as curNodeInsId, 
+		 	t2.REVOKE_BACK_FLAG as revokeBackFlag , t2.ACTIVITY_INS_ID as activityInsId,
+		 	t2.CUR_NODE_ID as nodeId, t2.CUR_NODE_NAME as nodeName FROM 
+	     T_PM_USER t1,
+	     (select * from ${transTableName} t3 where t3.done_task_id = #{taskId}) t2
+	     where t1.PROCESS_INS_ID(+) = t2.MAIN_PROCESS_INS_ID
+	     ORDER BY t2.create_time DESC
+	</select>
+	
+
+
+
+</mapper>

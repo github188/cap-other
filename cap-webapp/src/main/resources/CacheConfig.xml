@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CacheConfigs>
+	<!-- 开发环境使用的Cache配置文件 该配置使用jdk的Map模拟消息队列中间件，其目的在于开发可不依赖中间件服务 -->
+	<!-- 当发布生产版本或测试环境时，请勿使用本文件，应将标准文件CacheConfig-pro.xml改名或替换CacheConfig.xml配置内容后发布 -->
+
+	<!--
+	CacheConfig配置样例
+
+	CacheConfig配置项中的属性id，用来区分缓存接口实例的标志符，比如
+	系统中的缓存功能用的是id="default";
+	SNA中用到的缓存功能id="sessionShareCache";
+	你可以在此针对不同的业务模块配置不同的缓存服务器。
+
+	-->
+	<!--默认缓存的配置(人员部门等缓存)-->
+	<CacheConfig id="default">
+		<!--
+		CacheConfig配置样例
+		
+		其中cacheMethod可以是redis\coherence\memcached，采用对应的默认缓存实现类；
+		也可以是自定义的实现了CacheInterface的缓存实现类的全路径。
+
+		**************redis 缓存配置*****************
+		<cacheMethod>redis</cacheMethod>
+		<cacheIP>node1:10.10.5.49:6379 node2:10.10.5.49:6380</cacheIP>
+		<poolConfigMaxActive>1000</poolConfigMaxActive>
+		<poolConfigMaxIdle>1000</poolConfigMaxIdle>
+		<poolConfigMaxWait>100000</poolConfigMaxWait>
+		<jedisPoolTimeOut>10000</jedisPoolTimeOut>
+		************************************************
+
+		**************coherence 缓存配置*****************
+		-->
+		<!--
+		<cacheMethod>coherence</cacheMethod>
+		-->
+		<!-- coherence缓存策略  dist/near/repl/opt/local/tx/flash/ram -->
+		<!--
+		<cacheType>dist</cacheType>
+		-->
+		<!--
+		************************************************
+
+		**************memcached 缓存配置*****************
+		<cacheMethod>memcached</cacheMethod>
+		<cacheIP>10.10.5.223:11211 10.10.5.223:11212</cacheIP>
+		<binaryProtocol>ON</binaryProtocol>
+		<connectionPoolSize>2</connectionPoolSize>
+		************************************************
+		-->
+		<!-- 开发环境下使用虚拟的缓存实现，生产环境应配置为redis 或 memcached 
+		
+		<cacheMethod>com.comtop.top.component.common.cache.ShardedRedisService</cacheMethod>
+		<cacheIP>node1:10.10.5.223:6379;node1:10.10.5.128:26379</cacheIP>
+		<poolConfigMaxActive>1000</poolConfigMaxActive>
+		<poolConfigMaxIdle>100</poolConfigMaxIdle>
+		<jedisPoolTimeOut>1000</jedisPoolTimeOut>-->
+		
+		<!--
+		<poolConfigMaxWait>100000</poolConfigMaxWait>
+		<jedisPoolTimeOut>10000</jedisPoolTimeOut>
+		-->
+		<cacheMethod>com.comtop.top.component.common.cache.MockCacheService</cacheMethod>
+	</CacheConfig>
+
+	<!--SNA缓存的配置 -->
+	<CacheConfig id="sessionShareCache">
+		<!-- 开发环境下使用虚拟的缓存实现，生产环境应配置为redis 或 memcached
+		<cacheMethod>com.comtop.top.component.common.cache.RedisService</cacheMethod>
+		<cacheIP>node1:10.10.5.223:6379</cacheIP>
+		<poolConfigMaxActive>100</poolConfigMaxActive>
+		<poolConfigMaxIdle>10</poolConfigMaxIdle>
+		<jedisPoolTimeOut>1000</jedisPoolTimeOut>
+		 -->
+		 <cacheMethod>com.comtop.top.component.common.cache.MockCacheService</cacheMethod>
+	</CacheConfig>
+	
+	<CacheConfig id="snaAllServerInfo">
+	<cacheIP>node1:10.10.5.223:6379</cacheIP>
+	</CacheConfig>
+	
+
+	<!--其他缓存的配置 -->
+
+	<CacheConfig id="test">
+		<!-- <cacheMethod>coherence</cacheMethod> --> 
+			 <cacheMethod>com.comtop.top.component.common.cache.MockCacheService</cacheMethod>
+	</CacheConfig>
+
+</CacheConfigs>

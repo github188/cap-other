@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!--注意！ 与top系统集成时不要引入bpms-database-config.xml 文件-->
+	<import resource="bpms-database-config.xml" />
+	<!--注意：如果是现场数据库，请将此项配置改为：applicationContext_bpmsengine_oracle4dblink.xml-->
+	<!-- <import resource="applicationContext_bpmsengine_oracle.xml" /> -->
+	
+	<import resource="applicationContext_bpmsengine_bpms.xml" />
+	<import resource="applicationContext_bpmsengine_bpms_meta_top5.xml" />
+	<import resource="applicationContext_bpmsengine_webservice.xml" />
+	<import resource="applicationContext_bpmsengine_job.xml" /> 
+	<import resource="bpms_plugin.xml" />
+	<import resource="applicationContext_bpms_userorg_top5.xml" />
+	<import resource="applicationContext_bpmsengine_mysql.xml" />
+	<!-- 本地BPMS服务配置
+	 bpmsServerCode 服务编号，标示本地服务的唯一性，可为英文字符或数字
+	 bpmsServerName服务名称，可为汉字
+	 bpmsColInvokeType省网协作实现方式：值可为webservice，soa，tbi 
+	 bpmsProxyIP：代理服务器IP，如果是F5，就是F5的ip地址 
+	 bpmsProxyPort：代理服务器端口号，如果是F5，则是F5的端口号	 	 
+     -->
+	<bean id="bpmsServerCfg" class="com.comtop.bpms.engine.env.config.BpmsServerCfg">
+		<property name="bpmsServerCode">
+			<value>lh</value>
+		</property>
+		<property name="bpmsServerName">
+			<value>广电生产子公司BPMS</value>
+		</property>
+		<property name="bpmsColInvokeType">
+			<value>webservice</value>
+		</property>
+	</bean>
+
+	<!--通过属性文件配置 如果和平台集成，该配置可以移到平台配置文件里面解析-->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:client.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="bpmsDefaultBusinessAttRecorder" class="com.comtop.bpms.plugins.usertask.SprocBusinessAttRecorder">
+	</bean>
+	
+	<bean id="memoryCache"
+		class="com.comtop.bpms.component.cache.currmemory.CurrMemoryCache" />
+	<bean id="distributedCache" class="com.comtop.bpms.component.cache.currmemory.CurrMemoryCache" />
+	
+	<!--bpms扩展跟踪配置-->
+   <bean id="trackFactory" class="com.comtop.bpms.track.TrackFactory">
+		<property name="bpmsTrackServiceimplMap">
+			<map>
+				 <!-- 产品线扩展跟踪示例-->
+				 <!--
+				<entry  key="omsTest">
+					<ref local="omsSwitchworkFlowTrackImpl"/>
+				</entry>
+				-->
+			</map>
+		</property>
+  </bean>
+  
+  <bean id="defaultBPMSTrackServiceImpl" class="com.comtop.bpms.track.impl.DefaultBPMSTrackServiceImpl"/>
+  <!-- <bean id="omsSwitchworkFlowTrackImpl" class="com.comtop.sproc.core.track.bpmstrackimpl.OMSSwitchWorkFlowTrackImpl"/> -->
+</beans>

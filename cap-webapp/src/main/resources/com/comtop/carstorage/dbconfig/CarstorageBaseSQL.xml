@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.carstorage.model">
+
+	
+<generateOperate class="com.comtop.carstorage.model.CarstorageVO"></generateOperate>
+	
+<sql id = "carstorage_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name} )  
+ 	</if>
+	<if test = "storagenumber != null and storagenumber != '' "> 
+		AND (T1.STORAGENUMBER = #{storagenumber} )  
+ 	</if>
+	<if test = "storagesize != null"> 
+		AND (T1.STORAGESIZE = #{storagesize} )  
+ 	</if>
+	<if test = "treeId != null and treeId != '' "> 
+		AND (T1.TREE_ID = #{treeId} )  
+ 	</if>
+	<if test = "treeParentId != null and treeParentId != '' "> 
+		AND (T1.TREE_PARENT_ID = #{treeParentId} )  
+ 	</if>
+	<if test = "treeLevel != null"> 
+		AND (T1.TREE_LEVEL = #{treeLevel} )  
+ 	</if>
+</sql>
+	
+<sql id = "carstorage_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID =  #{id})  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME =  #{name})  
+ 	</if>
+	<if test = "storagenumber != null and storagenumber != '' "> 
+		AND (T1.STORAGENUMBER =  #{storagenumber})  
+ 	</if>
+	<if test = "storagesize != null"> 
+		AND (T1.STORAGESIZE =  #{storagesize})  
+ 	</if>
+	<if test = "treeId != null and treeId != '' "> 
+		AND (T1.TREE_ID =  #{treeId})  
+ 	</if>
+	<if test = "treeParentId != null and treeParentId != '' "> 
+		AND (T1.TREE_PARENT_ID =  #{treeParentId})  
+ 	</if>
+	<if test = "treeLevel != null"> 
+		AND (T1.TREE_LEVEL =  #{treeLevel})  
+ 	</if>
+</sql>
+		
+<select id="queryCarstorageList" parameterType="com.comtop.carstorage.model.CarstorageVO" resultType="com.comtop.carstorage.model.CarstorageVO" >
+   SELECT T1.* FROM T_PM_CARSTORAGE T1
+   <where> 
+      <include refid="carstorage_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType}
+   </if>
+</select>
+
+<select id="queryCarstorageCount" parameterType="com.comtop.carstorage.model.CarstorageVO" resultType="int" >
+   SELECT COUNT(1) FROM T_PM_CARSTORAGE T1
+   <where> 
+      <include refid="carstorage_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryCarstorageListByCondition" parameterType="com.comtop.carstorage.model.CarstorageVO" resultType="com.comtop.carstorage.model.CarstorageVO" >
+   SELECT T1.* FROM T_PM_CARSTORAGE T1
+   <where> 
+       <include refid="carstorage_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryCarstorageListNoPaging" parameterType="com.comtop.carstorage.model.CarstorageVO" resultType="com.comtop.carstorage.model.CarstorageVO" >
+   SELECT T1.* FROM T_PM_CARSTORAGE T1
+   <where> 
+       <include refid="carstorage_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+   </if>
+</select>
+
+	
+<select id="carstorage_getTreeAllData" parameterType="com.comtop.carstorage.model.CarstorageVO" resultType="com.comtop.carstorage.model.CarstorageVO">
+ select * from t_pm_carstorage t
+</select> 
+	
+<select id="carstorage_getChildData" parameterType="com.comtop.carstorage.model.CarstorageVO" resultType="com.comtop.carstorage.model.CarstorageVO">
+ select * from t_pm_carstorage t
+where t.tree_parent_id =#{treeId}
+</select> 
+	
+<select id="carstorage_manyParam" parameterType="java.util.Map" resultType="com.comtop.carstorage.model.CarstorageVO">
+ select * from t_pm_car t
+</select> 
+	
+<select id="carstorage_queryA" parameterType="java.util.Map" resultType="com.comtop.carstorage.model.CarstorageVO">
+ select * from t_pm_car t
+</select> 
+	
+<select id="carstorage_listA" parameterType="java.util.List" resultType="com.comtop.carstorage.model.CarstorageVO">
+ select * from t_pm_car t
+</select> 
+	
+</mapper>

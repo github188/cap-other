@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.tech.model">
+
+
+<sql id = "tech_default_query_condition" >
+<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id})  
+ 	</if>
+<if test = "bizdate != null"> 
+		AND (T1.BIZDATE = #{bizdate})  
+ 	</if>
+<if test = "connumber != null and connumber != '' "> 
+		AND (T1.CONNUMBER = #{connumber})  
+ 	</if>
+<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name})  
+ 	</if>
+<if test = "contractType != null and contractType != '' "> 
+		AND (T1.CONTRACT_TYPE = #{contractType})  
+ 	</if>
+<if test = "price != null"> 
+		AND (T1.PRICE = #{price})  
+ 	</if>
+<if test = "partaUnit != null and partaUnit != '' "> 
+		AND (T1.PARTA_UNIT = #{partaUnit})  
+ 	</if>
+<if test = "partaContract != null and partaContract != '' "> 
+		AND (T1.PARTA_CONTRACT = #{partaContract})  
+ 	</if>
+<if test = "partbUnit != null and partbUnit != '' "> 
+		AND (T1.PARTB_UNIT = #{partbUnit})  
+ 	</if>
+<if test = "partbContract != null and partbContract != '' "> 
+		AND (T1.PARTB_CONTRACT = #{partbContract})  
+ 	</if>
+<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID = #{processInsId})  
+ 	</if>
+<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE = #{flowState})  
+ 	</if>
+</sql>
+
+	
+<select id="tech_customSQL"  resultType="String">
+ select * from T_CT_CONTRACT
+</select> 
+	
+</mapper>

@@ -1,0 +1,5 @@
+cip-webapp\src\main\webapp\bpms\bizflow\flowmanage\track\**\*.*
+cip-webapp\src\main\webapp\bpms\track\images\newtrack\**\*.*
+cip-webapp\src\main\webapp\top\sys\log\template\**\*.*
+cip-webapp\src\main\webapp\top\sys\tools\downloadLog\**\*.*
+cip-webapp\src\main\webapp\top\workbench\newversion\**\*.*

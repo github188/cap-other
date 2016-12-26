@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration >
+<configuration scan="true">
+	<contextName>TOP</contextName>
+	<!--<consolePlugin port="4321"/>-->
+	<jmxConfigurator />
+	<property name="logs.dir" value="${logHome}/log" />
+	<timestamp key="byDate" datePattern="yyyyMMdd"/>
+	
+	<appender name="StdoutLogger" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!--
+				<pattern>%d{yyyy-MM-dd HH:mm:ss}[%-5level] [%thread]:%caller{1}%message%n %caller{10}%n ${user.dir}</pattern>
+			-->
+			<pattern>[%-5level] %date{yyyy-MM-dd HH:mm:ss} %logger \(%file:%line\) - %message%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+	</appender>
+	
+	<appender name="SQLStdoutLogger" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!--
+				<pattern>%d{yyyy-MM-dd HH:mm:ss}[%-5level] [%thread]:%caller{1}%message%n %caller{10}%n ${user.dir}</pattern>
+			-->
+			<pattern>[%-5level] %date{yyyy-MM-dd HH:mm:ss} %logger \(%file:%line\) - %message%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+	</appender>
+	
+
+	<appender name="AllLogger" class="ch.qos.logback.core.FileAppender">
+		<!--  <Append>false</Append>-->
+		<file>${logs.dir}/AllLog.log</file>
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logs.dir}/AllLog.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory> 
+		</rollingPolicy>
+		-->
+		<encoder>
+			<pattern>[%-5level] %date{yyyy-MM-dd HH:mm:ss} %logger \(%file:%line\) - %message%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+	</appender>
+
+	<appender name="WarnLogger" class="ch.qos.logback.core.FileAppender">
+		<!--<Append>false</Append>-->
+		<!--<file>${logs.dir}/WARNLog-${byDate}.log</file>-->
+		<file>${logs.dir}/WARNLog.log</file>
+		<encoder>
+			<pattern>[%-5p] %d{yyyy-MM-dd HH:mm:ss} %logger.%method \(%file:%line\) - %message%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+	</appender>
+
+	<appender name="SqlLogLogger" class="ch.qos.logback.core.FileAppender">
+		<!--<Append>false</Append>-->
+		<file>${logs.dir}/SqlLog.log</file>
+		<encoder>
+			<pattern>[%-5p] %d{yyyy-MM-dd HH:mm:ss} %logger \(%file:%line\) - %message%n</pattern>
+		</encoder>
+	</appender>
+	<!-- mongodb 日志追加器，暂时屏蔽 
+	<appender name="NoSQL" class="com.comtop.top.component.common.logback.MongoDBAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<initialized>true</initialized>
+	</appender>
+	 -->
+	 
+	<!--
+	<appender name="SOCKET" class="ch.qos.logback.classic.net.SocketAppender"> 
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+    	<RemoteHost>127.0.0.1</RemoteHost> 
+    	<Port>4445</Port> 
+    	<ReconnectionDelay>10000</ReconnectionDelay> 
+    	<IncludeCallerData>true</IncludeCallerData> 
+	</appender>
+	-->
+	
+	<!-- org.apache.ibatis.logging.jdbc.PreparedStatementLogger -->
+	<logger name="java.sql.PreparedStatement" level="WARN" additivity="false">
+		<appender-ref ref="SqlLogLogger" />
+		<appender-ref ref="SQLStdoutLogger" />		
+	</logger>
+	<!-- org.apache.ibatis.logging.jdbc.StatementLogger -->
+	<logger name="java.sql.Statement" level="WARN" additivity="false">
+		<appender-ref ref="SqlLogLogger" />
+		<appender-ref ref="SQLStdoutLogger" />		
+	</logger>
+	<logger name="com.comtop.corm" level="WARN" additivity="false">
+		<appender-ref ref="SqlLogLogger" />
+		<appender-ref ref="SQLStdoutLogger" />
+		<appender-ref ref="StdoutLogger"></appender-ref>		
+	</logger>
+	
+	<logger name="jsp.request" level="WARN" additivity="false">
+		<appender-ref ref="StdoutLogger" />
+	</logger>
+
+	<root level="info">
+		<appender-ref ref="AllLogger" />
+		<appender-ref ref="StdoutLogger" />
+		<appender-ref ref="WarnLogger" />
+		<!--<appender-ref ref="NoSQL" />-->
+	</root>
+</configuration>

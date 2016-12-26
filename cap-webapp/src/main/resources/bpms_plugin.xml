@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ <import resource="applicationContext_bpms_cctask.xml" />
+  <!--bpms扩展节点配置-->
+  <bean id="ccTask" class="com.comtop.bpms.engine.env.config.BpmsPluginConfigVO" >
+       <!--规范类型。 该值现在仅有 bpmn2.0,直接复制即可 -->
+        <property name="standardType">
+            <value>bpmn2.0</value>
+		</property>
+		
+		<!--解析方式。 该值现在仅有 elementParse,直接复制即可-->
+        <property name="parserType">
+		    <value>elementParse</value>
+		</property>
+		
+		<!--扩展节点标签名，与设计器上生成xml文本保持一致-->
+		<property name="tagName">
+			<value>ctp:CCTask</value>
+		</property>
+		
+		<!--节点间连接线实现类-->
+		<property name="listenerClassName">
+			<value>com.comtop.cctask.CCEventListener</value>
+		</property>
+		
+		<!--节点解析器实现类-->
+		<property name="parserClassName">
+			<value>com.comtop.cctask.CCTaskParse</value>
+		</property>
+  </bean>
+   
+   <bean id="bpmsPluginConfigService" class="com.comtop.bpms.engine.env.config.ParseConfiguartion">
+		<property name="lstBpmsPluginConfigVO">
+			<list>
+				<ref local="ccTask"/>
+			</list>
+		</property>
+  </bean>
+  
+  <!--bpms扩展跟踪配置-->
+   <bean id="trackFactory" class="com.comtop.bpms.track.TrackFactory">
+		<property name="bpmsTrackServiceimplMap">
+			<map>
+				
+			</map>
+		</property>
+  </bean>
+  
+  <bean id="defaultBPMSTrackServiceImpl" class="com.comtop.bpms.track.impl.DefaultBPMSTrackServiceImpl"/>
+  
+ </beans>
+	

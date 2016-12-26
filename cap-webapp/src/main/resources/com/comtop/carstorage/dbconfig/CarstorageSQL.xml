@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.carstorage.model">
+
+	<select id="queryCarstorageListByCondition2" parameterType="com.comtop.carstorage.model.CarstorageVO" resultType="com.comtop.carstorage.model.CarstorageVO">
+		SELECT T1.*,t1.tree_level treelevel,t1.tree_id treeid,t1.tree_parent_id treeparentid FROM T_PM_CARSTORAGE T1
+		<where> 
+			 <include refid="carstorage_cascade_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryCarstorageList2" parameterType="com.comtop.carstorage.model.CarstorageVO" resultType="com.comtop.carstorage.model.CarstorageVO">
+		SELECT T1.*,t1.tree_level treelevel,t1.tree_id treeid,t1.tree_parent_id treeparentid FROM T_PM_CARSTORAGE T1
+		<where> 
+			 <include refid="carstorage_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+		</if>
+	</select>
+	
+</mapper>

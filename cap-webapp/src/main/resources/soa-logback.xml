@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+<configuration>
+   <contextName>SOA</contextName>
+   <property name="logs.dir" value="${logHome}/log" />
+  <appender name="STDOUT" class="comtop.soa.ch.qos.logback.core.ConsoleAppender">
+    <!-- encoder 默认配置为PatternLayoutEncoder -->
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level - %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+ <!-- 服务注册信息日志 -->
+  <appender name="ServiceLoadFILE" class="comtop.soa.ch.qos.logback.core.FileAppender">
+    <file>${logs.dir}/SOALoadLog.log</file>
+    <append>false</append>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level - %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  
+  <!-- TBI服务调用信息日志 -->
+  <appender name="TBICallFILE" class="comtop.soa.ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="comtop.soa.ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${logs.dir}/SOAAllLog.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>3</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="comtop.soa.ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} %logger{36}:%line %-5level %mdc{callTime} - %msg -%mdc{args}%n</pattern>
+    </encoder>
+  </appender>
+
+    <!-- 所有服务日志  -->
+  <appender name="AllFILE" class="comtop.soa.ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="comtop.soa.ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${logs.dir}/SOAAllLog.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>3</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="comtop.soa.ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level - %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="comtop.soa.load" level="INFO" additivity="true">
+    <appender-ref ref="ServiceLoadFILE" />
+ </logger>
+ 
+ <logger name="comtop.soa.call" level="INFO" additivity="true">
+    <appender-ref ref="TBICallFILE" />
+ </logger>
+ 
+<root level="INFO">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="AllFILE"/>
+</root>
+</configuration>
+
+ 

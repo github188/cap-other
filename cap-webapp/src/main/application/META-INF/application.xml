@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+	<display-name>SZCOMTOP PRODUCT</display-name>
+	<!--Web Moudule-->
+	<module>
+		<web>
+			<web-uri>web</web-uri>
+			<context-root>/web</context-root>
+		</web>
+	</module>
+<!--
+	<module>
+		<ejb>ejb/top-remote.jar</ejb>
+	</module>
+-->
+</application>

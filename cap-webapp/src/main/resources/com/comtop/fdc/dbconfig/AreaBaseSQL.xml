@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.fdc.model">
+
+	
+<generateOperate class="com.comtop.fdc.model.AreaVO"></generateOperate>
+	
+<sql id = "area_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name} )  
+ 	</if>
+	<if test = "fnumber != null and fnumber != '' "> 
+		AND (T1.FNUMBER = #{fnumber} )  
+ 	</if>
+	<if test = "developerId != null and developerId != '' "> 
+		AND (T1.DEVELOPER_ID = #{developerId} )  
+ 	</if>
+	<if test = "createTime != null"> 
+		AND (T1.CREATE_TIME = #{createTime} )  
+ 	</if>
+	<if test = "fsize != null"> 
+		AND (T1.FSIZE = #{fsize} )  
+ 	</if>
+	<if test = "bizdate != null"> 
+		AND (T1.BIZDATE = #{bizdate} )  
+ 	</if>
+	<if test = "state != null"> 
+		AND (T1.STATE = #{state} )  
+ 	</if>
+	<if test = "pepoles != null"> 
+		AND (T1.PEPOLES = #{pepoles} )  
+ 	</if>
+	<if test = "colBlob != null"> 
+		AND (T1.COL_BLOB = #{colBlob} )  
+ 	</if>
+	<if test = "colClob != null"> 
+		AND (T1.COL_CLOB = #{colClob} )  
+ 	</if>
+	<if test = "areaLevel != null"> 
+		AND (T1.AREA_LEVEL = #{areaLevel} )  
+ 	</if>
+	<if test = "amount != null"> 
+		AND (T1.AMOUNT = #{amount} )  
+ 	</if>
+	<if test = "bill != null"> 
+		AND (T1.BILL = #{bill} )  
+ 	</if>
+</sql>
+	
+<sql id = "area_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id})  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name})  
+ 	</if>
+	<if test = "fnumber != null and fnumber != '' "> 
+		AND (T1.FNUMBER = #{fnumber})  
+ 	</if>
+	<if test = "developerId != null and developerId != '' "> 
+		AND (T1.DEVELOPER_ID = #{developerId})  
+ 	</if>
+	<if test = "createTime != null"> 
+		AND (T1.CREATE_TIME = #{createTime})  
+ 	</if>
+	<if test = "fsize != null"> 
+		AND (T1.FSIZE = #{fsize})  
+ 	</if>
+	<if test = "bizdate != null"> 
+		AND (T1.BIZDATE = #{bizdate})  
+ 	</if>
+	<if test = "state != null"> 
+		AND (T1.STATE = #{state})  
+ 	</if>
+	<if test = "pepoles != null"> 
+		AND (T1.PEPOLES = #{pepoles})  
+ 	</if>
+	<if test = "colBlob != null"> 
+		AND (T1.COL_BLOB = #{colBlob})  
+ 	</if>
+	<if test = "colClob != null"> 
+		AND (T1.COL_CLOB = #{colClob})  
+ 	</if>
+	<if test = "areaLevel != null"> 
+		AND (T1.AREA_LEVEL = #{areaLevel})  
+ 	</if>
+	<if test = "amount != null"> 
+		AND (T1.AMOUNT = #{amount})  
+ 	</if>
+	<if test = "bill != null"> 
+		AND (T1.BILL = #{bill})  
+ 	</if>
+</sql>
+		
+<select id="queryAreaList" parameterType="com.comtop.fdc.model.AreaVO" resultType="com.comtop.fdc.model.AreaVO" >
+   SELECT T1.* FROM T_FDC_AREA T1
+   <where> 
+      <include refid="area_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+<select id="queryAreaCount" parameterType="com.comtop.fdc.model.AreaVO" resultType="int" >
+   SELECT COUNT(1) FROM T_FDC_AREA T1
+   <where> 
+      <include refid="area_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryAreaListByCondition" parameterType="com.comtop.fdc.model.AreaVO" resultType="com.comtop.fdc.model.AreaVO" >
+   SELECT T1.* FROM T_FDC_AREA T1
+   <where> 
+       <include refid="area_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryAreaListNoPaging" parameterType="com.comtop.fdc.model.AreaVO" resultType="com.comtop.fdc.model.AreaVO" >
+   SELECT T1.* FROM T_FDC_AREA T1
+   <where> 
+       <include refid="area_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+	
+</mapper>

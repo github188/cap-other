@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.demo.treeModule.model">
+
+	
+<generateOperate class="com.comtop.cap.demo.treeModule.model.JerryProjectTaskVO"></generateOperate>
+	
+<sql id = "jerryProjectTask_cascade_query_condition" >
+ <if test = "id != null and id!= '' "> 
+		  AND (T1.ID =  #{id} )  
+ 	 </if>
+ <if test = "name != null and name!= '' "> 
+		  AND (T1.NAME =  #{name} )  
+ 	 </if>
+ <if test = "taskType != null and taskType!= '' "> 
+		  AND (T1.TASK_TYPE =  #{taskType} )  
+ 	 </if>
+ <if test = "taskPrior != null and taskPrior!= '' "> 
+		  AND (T1.TASK_PRIOR =  #{taskPrior} )  
+ 	 </if>
+ <if test = "startTime != null"> 
+		  AND (T1.START_TIME =  #{startTime} )  
+ 	 </if>
+ <if test = "endTime != null"> 
+		  AND (T1.END_TIME =  #{endTime} )  
+ 	 </if>
+ <if test = "remark != null and remark!= '' "> 
+		  AND (T1.REMARK =  #{remark} )  
+ 	 </if>
+ <if test = "projectId != null and projectId!= '' "> 
+		  AND (T1.PROJECT_ID =  #{projectId} )  
+ 	 </if>
+ <if test = "principalId != null and principalId!= '' "> 
+		  AND (T1.PRINCIPAL_ID =  #{principalId} )  
+ 	 </if>
+ <if test = "principalName != null and principalName!= '' "> 
+		  AND (T1.PRINCIPAL_NAME =  #{principalName} )  
+ 	 </if>
+</sql>
+	
+<sql id = "jerryProjectTask_default_query_condition" >
+	 <if test = "id != null and id!= '' "> 
+		  AND (T1.ID =  #{id})  
+ 	 </if>
+	 <if test = "name != null and name!= '' "> 
+		  AND (T1.NAME =  #{name})  
+ 	 </if>
+	 <if test = "taskType != null and taskType!= '' "> 
+		  AND (T1.TASK_TYPE =  #{taskType})  
+ 	 </if>
+	 <if test = "taskPrior != null and taskPrior!= '' "> 
+		  AND (T1.TASK_PRIOR =  #{taskPrior})  
+ 	 </if>
+	 <if test = "startTime != null"> 
+		  AND (T1.START_TIME =  #{startTime})  
+ 	 </if>
+	 <if test = "endTime != null"> 
+		  AND (T1.END_TIME =  #{endTime})  
+ 	 </if>
+	 <if test = "remark != null and remark!= '' "> 
+		  AND (T1.REMARK =  #{remark})  
+ 	 </if>
+	 <if test = "projectId != null and projectId!= '' "> 
+		  AND (T1.PROJECT_ID =  #{projectId})  
+ 	 </if>
+	 <if test = "principalId != null and principalId!= '' "> 
+		  AND (T1.PRINCIPAL_ID =  #{principalId})  
+ 	 </if>
+	 <if test = "principalName != null and principalName!= '' "> 
+		  AND (T1.PRINCIPAL_NAME =  #{principalName})  
+ 	 </if>
+</sql>
+		
+<select id="queryJerryProjectTaskList" parameterType="com.comtop.cap.demo.treeModule.model.JerryProjectTaskVO" resultType="com.comtop.cap.demo.treeModule.model.JerryProjectTaskVO" >
+ SELECT T1.* FROM OMS_DEMO_JERRY_PROJECT_TASK T1
+ <where> 
+    <include refid="jerryProjectTask_default_query_condition" />
+ </where>
+ <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+	ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+ </if>
+</select>
+
+<select id="queryJerryProjectTaskCount" parameterType="com.comtop.cap.demo.treeModule.model.JerryProjectTaskVO" resultType="int" >
+ SELECT COUNT(1) FROM OMS_DEMO_JERRY_PROJECT_TASK T1
+ <where> 
+    <include refid="jerryProjectTask_default_query_condition" />
+ </where>
+</select>
+
+<select id="queryJerryProjectTaskListByCondition" parameterType="com.comtop.cap.demo.treeModule.model.JerryProjectTaskVO" resultType="com.comtop.cap.demo.treeModule.model.JerryProjectTaskVO" >
+ SELECT T1.* FROM OMS_DEMO_JERRY_PROJECT_TASK T1
+ <where> 
+     <include refid="jerryProjectTask_cascade_query_condition" />
+ </where>
+</select>
+
+	
+
+
+
+</mapper>

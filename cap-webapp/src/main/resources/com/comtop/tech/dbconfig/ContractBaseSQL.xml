@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.tech.model">
+
+	
+<generateOperate class="com.comtop.tech.model.ContractVO"></generateOperate>
+	
+<sql id = "contract_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "bizdate != null"> 
+		AND (T1.BIZDATE = #{bizdate} )  
+ 	</if>
+	<if test = "connumber != null and connumber != '' "> 
+		AND (T1.CONNUMBER = #{connumber} )  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name} )  
+ 	</if>
+	<if test = "contractType != null and contractType != '' "> 
+		AND (T1.CONTRACT_TYPE = #{contractType} )  
+ 	</if>
+	<if test = "price != null"> 
+		AND (T1.PRICE = #{price} )  
+ 	</if>
+	<if test = "partaUnit != null and partaUnit != '' "> 
+		AND (T1.PARTA_UNIT = #{partaUnit} )  
+ 	</if>
+	<if test = "partaContract != null and partaContract != '' "> 
+		AND (T1.PARTA_CONTRACT = #{partaContract} )  
+ 	</if>
+	<if test = "partbUnit != null and partbUnit != '' "> 
+		AND (T1.PARTB_UNIT = #{partbUnit} )  
+ 	</if>
+	<if test = "partbContract != null and partbContract != '' "> 
+		AND (T1.PARTB_CONTRACT = #{partbContract} )  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID = #{processInsId} )  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE = #{flowState} )  
+ 	</if>
+</sql>
+	
+<sql id = "contract_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id})  
+ 	</if>
+	<if test = "bizdate != null"> 
+		AND (T1.BIZDATE = #{bizdate})  
+ 	</if>
+	<if test = "connumber != null and connumber != '' "> 
+		AND (T1.CONNUMBER = #{connumber})  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name})  
+ 	</if>
+	<if test = "contractType != null and contractType != '' "> 
+		AND (T1.CONTRACT_TYPE = #{contractType})  
+ 	</if>
+	<if test = "price != null"> 
+		AND (T1.PRICE = #{price})  
+ 	</if>
+	<if test = "partaUnit != null and partaUnit != '' "> 
+		AND (T1.PARTA_UNIT = #{partaUnit})  
+ 	</if>
+	<if test = "partaContract != null and partaContract != '' "> 
+		AND (T1.PARTA_CONTRACT = #{partaContract})  
+ 	</if>
+	<if test = "partbUnit != null and partbUnit != '' "> 
+		AND (T1.PARTB_UNIT = #{partbUnit})  
+ 	</if>
+	<if test = "partbContract != null and partbContract != '' "> 
+		AND (T1.PARTB_CONTRACT = #{partbContract})  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID = #{processInsId})  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE = #{flowState})  
+ 	</if>
+</sql>
+		
+<select id="queryTodoContractCount" parameterType="com.comtop.tech.model.ContractVO" resultType="int" >
+  SELECT COUNT(1) 
+    FROM T_CT_CONTRACT T1, ${transTableName} T2 
+   WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID 
+     AND T1.FLOW_STATE = 1 
+     AND T2.TRANS_ACTOR_ID = #{transActor} 
+     AND T2.MAIN_PROCESS_ID = #{processId}
+  <include refid="contract_default_query_condition" />
+</select>
+
+<select id="queryTodoContractList" parameterType="com.comtop.tech.model.ContractVO" resultType="com.comtop.tech.model.ContractVO" >
+   SELECT T1.*,
+		  T2.TODO_TASK_ID AS taskId ,
+          T2.CUR_NODE_ID as nodeId,
+          T2.CUR_NODE_NAME as nodeName,
+          T2.BACK_FLAG as backFlag,
+          T2.MAIN_PROCESS_ID as processId,
+          T2.NOTE as opinion,
+          T2.VERSION as version
+     FROM T_CT_CONTRACT T1, ${transTableName} T2
+    WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+      AND T1.FLOW_STATE = 1
+      AND T2.TRANS_ACTOR_ID = #{transActor}
+      AND T2.MAIN_PROCESS_ID = #{processId}      		
+   <include refid="contract_default_query_condition" />
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+<select id="queryToEntryContractCount" parameterType="com.comtop.tech.model.ContractVO" resultType="int" >
+  SELECT COUNT(1) 
+    FROM (SELECT BT.*,
+                 T2.TODO_TASK_ID taskId,
+                 NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+                 T2.CUR_NODE_ID as nodeId,
+                 T2.CUR_NODE_NAME as nodeName,
+                 T2.BACK_FLAG as backFlag
+            FROM T_CT_CONTRACT BT,
+                 (select * from ${transTableName} T3 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+           WHERE BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID(+)
+             AND (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1 
+   WHERE T1.processId = #{processId}
+  <include refid="contract_default_query_condition" />
+</select>
+
+<select id="queryToEntryContractList" parameterType="com.comtop.tech.model.ContractVO" resultType="com.comtop.tech.model.ContractVO" >
+  SELECT * 
+    FROM (SELECT BT.*,
+                 T2.TODO_TASK_ID taskId,
+                 NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+                 T2.CUR_NODE_ID as nodeId,
+                 T2.CUR_NODE_NAME as nodeName,
+                 T2.BACK_FLAG as backFlag,
+                 T2.NOTE as opinion,
+                 T2.VERSION as version
+           FROM T_CT_CONTRACT BT,
+                (select * from ${transTableName} T3 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+          WHERE BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID(+)
+            AND (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1
+   WHERE T1.processId = #{processId}
+  <include refid="contract_default_query_condition" />
+  <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+        ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+  </if>
+
+</select>
+
+<select id="queryEntryContractCount" parameterType="com.comtop.tech.model.ContractVO" resultType="int" >
+  WITH DONE_TASK AS
+           (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                  FROM ${transTableName} T
+                                 WHERE (T.STATUS = 1 OR T.STATUS = 5)
+                                   AND T.MAIN_PROCESS_ID = #{processId}
+                                   AND T.CUR_NODE_ID = #{nodeId}
+                                   AND T.TRANS_ACTOR_ID = #{transActor}
+                                 GROUP BY T.MAIN_PROCESS_ID,
+                                          T.VERSION,
+                                          T.MAIN_PROCESS_INS_ID,
+                                          T.TRANS_ACTOR_ID) TEMPTAB
+             WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+               AND T1.VERSION = TEMPTAB.VERSION
+               AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+               AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+               AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME) 
+  SELECT COUNT(1) 
+    FROM T_CT_CONTRACT T1, DONE_TASK T2 
+   WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID 
+  <include refid="contract_default_query_condition" />
+</select>
+
+<select id="queryEntryContractList" parameterType="com.comtop.tech.model.ContractVO" resultType="com.comtop.tech.model.ContractVO" >
+  WITH DONE_TASK AS
+           (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                  FROM ${transTableName} T
+                                 WHERE (T.STATUS = 1 OR T.STATUS = 5)
+                                   AND T.MAIN_PROCESS_ID = #{processId}
+                                   AND T.CUR_NODE_ID = #{nodeId}
+                                   AND T.TRANS_ACTOR_ID = #{transActor}
+                                   GROUP BY T.MAIN_PROCESS_ID,
+                                            T.VERSION,
+                                            T.MAIN_PROCESS_INS_ID,
+                                            T.TRANS_ACTOR_ID) TEMPTAB
+              WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                AND T1.VERSION = TEMPTAB.VERSION
+                AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME)
+  SELECT T1.*, 
+  		 T2.DONE_TASK_ID AS taskId,
+         T2.REVOKE_BACK_FLAG as revokeBackFlag,
+         T2.CUR_NODE_ID as nodeId,
+         T2.CUR_NODE_NAME as nodeName,
+         T2.BACK_FLAG as backFlag,
+         T2.MAIN_PROCESS_ID as processId,
+         T2.NOTE as opinion,
+         T2.VERSION as version
+    FROM T_CT_CONTRACT T1, DONE_TASK T2 
+   WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID 
+  <include refid="contract_default_query_condition" />
+  <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+  </if>	  
+
+</select>
+
+<select id="queryDoneContractCount" parameterType="com.comtop.tech.model.ContractVO" resultType="int" >
+  WITH DONE_TASK AS
+           (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                FROM ${transTableName} T
+                               WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+                                 AND T.MAIN_PROCESS_ID = #{processId}
+                                 AND T.TRANS_ACTOR_ID = #{transActor}
+                                GROUP BY T.MAIN_PROCESS_ID,
+                                         T.VERSION,
+                                         T.MAIN_PROCESS_INS_ID,
+                                         T.TRANS_ACTOR_ID) TEMPTAB
+                 WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                   AND T1.VERSION = TEMPTAB.VERSION
+                   AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                   AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                   AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+                 <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+                   AND T1.CUR_NODE_ID NOT IN 
+                    <foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+                    	#{item}
+                    </foreach>
+                 </if>
+                    )
+      SELECT COUNT(*)
+        FROM T_CT_CONTRACT T1, DONE_TASK T2
+       WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+      <include refid="contract_default_query_condition" />
+</select>
+
+<select id="queryDoneContractList" parameterType="com.comtop.tech.model.ContractVO" resultType="com.comtop.tech.model.ContractVO" >
+ WITH DONE_TASK AS
+                (SELECT T1.* FROM ${transTableName} T1,
+                                           (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                            T.MAIN_PROCESS_ID,
+                                            T.VERSION,
+                                            T.MAIN_PROCESS_INS_ID,
+                                            T.TRANS_ACTOR_ID
+                                            FROM ${transTableName} T
+                                            WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+                                            AND T.MAIN_PROCESS_ID = #{processId}
+                                            AND T.TRANS_ACTOR_ID = #{transActor}
+                                           GROUP BY T.MAIN_PROCESS_ID,
+                                                     T.VERSION,
+                                                     T.MAIN_PROCESS_INS_ID,
+                                                     T.TRANS_ACTOR_ID) TEMPTAB
+                  WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                    AND T1.VERSION = TEMPTAB.VERSION
+                    AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                    AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                    AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+                 <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+                    AND T1.CUR_NODE_ID NOT IN 
+                 <foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+                 	#{item}
+                 </foreach>
+                 </if>
+                 )
+	SELECT T1.*,
+    	   T2.DONE_TASK_ID AS taskId,
+           T2.REVOKE_BACK_FLAG as revokeBackFlag,
+           T2.CUR_NODE_ID as nodeId,
+           T2.CUR_NODE_NAME as nodeName,
+           T2.BACK_FLAG as backFlag,
+           T2.MAIN_PROCESS_ID as processId,
+           T2.NOTE as opinion,
+ 	       T2.VERSION as version
+	  FROM T_CT_CONTRACT T1, DONE_TASK T2
+	 WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+	<include refid="contract_default_query_condition" />
+    <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+       ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+    </if>	
+</select>
+
+<select id="queryTodoContractVOByTaskId" parameterType="com.comtop.tech.model.ContractVO" resultType="com.comtop.tech.model.ContractVO" >
+   SELECT T1.*, T2.*,
+   		  T2.CUR_PROCESS_ID as processId,
+   		  T2.todo_task_id as taskId, 
+   		  T2.CUR_NODE_INS_ID as curNodeInsId,
+   		  T2.ACTIVITY_INS_ID as activityInsId,
+   		  T2.CUR_NODE_ID as nodeId,
+   		  T2.CUR_NODE_NAME as nodeName
+     FROM T_CT_CONTRACT T1,(select * from ${transTableName} T3 where T3.todo_task_id = #{taskId} ) T2
+    WHERE T1.PROCESS_INS_ID(+) = T2.MAIN_PROCESS_INS_ID
+    ORDER BY T2.create_time DESC  
+</select>
+
+<select id="queryDoneContractVOByTaskId" parameterType="com.comtop.tech.model.ContractVO" resultType="com.comtop.tech.model.ContractVO" >
+   SELECT T1.*, T2.*,
+          T2.CUR_PROCESS_ID as processId,
+          T2.DONE_TASK_ID as taskId,
+          T2.CUR_NODE_INS_ID as curNodeInsId, 
+  	      T2.REVOKE_BACK_FLAG as revokeBackFlag ,
+   		  T2.ACTIVITY_INS_ID as activityInsId,
+   		  T2.CUR_NODE_ID as nodeId,
+   		  T2.CUR_NODE_NAME as nodeName
+     FROM T_CT_CONTRACT T1,(select * from ${transTableName} T3 where T3.done_task_id = #{taskId}) T2
+    WHERE T1.PROCESS_INS_ID(+) = T2.MAIN_PROCESS_INS_ID
+    ORDER BY T2.create_time DESC  
+</select>
+
+<select id="queryContractList" parameterType="com.comtop.tech.model.ContractVO" resultType="com.comtop.tech.model.ContractVO" >
+   SELECT T1.* FROM T_CT_CONTRACT T1
+   <where> 
+      <include refid="contract_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+<select id="queryContractCount" parameterType="com.comtop.tech.model.ContractVO" resultType="int" >
+   SELECT COUNT(1) FROM T_CT_CONTRACT T1
+   <where> 
+      <include refid="contract_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryContractListByCondition" parameterType="com.comtop.tech.model.ContractVO" resultType="com.comtop.tech.model.ContractVO" >
+   SELECT T1.* FROM T_CT_CONTRACT T1
+   <where> 
+       <include refid="contract_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryContractListNoPaging" parameterType="com.comtop.tech.model.ContractVO" resultType="com.comtop.tech.model.ContractVO" >
+   SELECT T1.* FROM T_CT_CONTRACT T1
+   <where> 
+       <include refid="contract_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+	
+</mapper>

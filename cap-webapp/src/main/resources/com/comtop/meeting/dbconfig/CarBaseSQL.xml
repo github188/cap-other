@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.meeting.model">
+
+	
+<generateOperate class="com.comtop.meeting.model.CarVO"></generateOperate>
+	
+<sql id = "car_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name} )  
+ 	</if>
+	<if test = "carnumber != null and carnumber != '' "> 
+		AND (T1.CARNUMBER = #{carnumber} )  
+ 	</if>
+	<if test = "price != null"> 
+		AND (T1.PRICE = #{price} )  
+ 	</if>
+	<if test = "model != null and model != '' "> 
+		AND (T1.MODEL = #{model} )  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID = #{processInsId} )  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE = #{flowState} )  
+ 	</if>
+	<if test = "carstorageid != null and carstorageid != '' "> 
+		AND (T1.CARSTORAGEID = #{carstorageid} )  
+ 	</if>
+</sql>
+	
+<sql id = "car_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID =  #{id})  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME =  #{name})  
+ 	</if>
+	<if test = "carnumber != null and carnumber != '' "> 
+		AND (T1.CARNUMBER =  #{carnumber})  
+ 	</if>
+	<if test = "price != null"> 
+		AND (T1.PRICE =  #{price})  
+ 	</if>
+	<if test = "model != null and model != '' "> 
+		AND (T1.MODEL =  #{model})  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID =  #{processInsId})  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE =  #{flowState})  
+ 	</if>
+	<if test = "carstorageid != null and carstorageid != '' "> 
+		AND (T1.CARSTORAGEID =  #{carstorageid})  
+ 	</if>
+</sql>
+		
+<select id="queryTodoCarCount" parameterType="com.comtop.meeting.model.CarVO" resultType="int" >
+  SELECT COUNT(1) 
+    FROM T_PM_CAR T1, ${transTableName} T2 
+   WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID 
+     AND T1.FLOW_STATE = 1 
+     AND T2.TRANS_ACTOR_ID = #{transActor} 
+     AND T2.MAIN_PROCESS_ID = #{processId}
+  <include refid="car_default_query_condition" />
+</select>
+
+<select id="queryTodoCarList" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO" >
+   SELECT T1.*,
+		  T2.TODO_TASK_ID AS taskId ,
+          T2.CUR_NODE_ID as nodeId,
+          T2.CUR_NODE_NAME as nodeName,
+          T2.BACK_FLAG as backFlag,
+          T2.MAIN_PROCESS_ID as processId,
+          T2.NOTE as opinion,
+          T2.VERSION as version
+     FROM T_PM_CAR T1, ${transTableName} T2
+    WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+      AND T1.FLOW_STATE = 1
+      AND T2.TRANS_ACTOR_ID = #{transActor}
+      AND T2.MAIN_PROCESS_ID = #{processId}      		
+   <include refid="car_default_query_condition" />
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+   </if>
+</select>
+
+<select id="queryToEntryCarCount" parameterType="com.comtop.meeting.model.CarVO" resultType="int" >
+  SELECT COUNT(1) 
+    FROM (SELECT BT.*,
+                 T2.TODO_TASK_ID taskId,
+                 NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+                 T2.CUR_NODE_ID as nodeId,
+                 T2.CUR_NODE_NAME as nodeName,
+                 T2.BACK_FLAG as backFlag
+            FROM T_PM_CAR BT LEFT JOIN
+                 (select * from ${transTableName} T3 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+            ON BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+             WHERE (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1 
+   WHERE T1.processId = #{processId}
+  <include refid="car_default_query_condition" />
+</select>
+
+<select id="queryToEntryCarList" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO" >
+  SELECT * 
+    FROM (SELECT BT.*,
+                 T2.TODO_TASK_ID taskId,
+                 NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+                 T2.CUR_NODE_ID as nodeId,
+                 T2.CUR_NODE_NAME as nodeName,
+                 T2.BACK_FLAG as backFlag,
+                 T2.NOTE as opinion,
+                 T2.VERSION as version
+           FROM T_PM_CAR BT LEFT JOIN
+                (select * from ${transTableName} T3 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+           ON BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+           WHERE (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1
+   WHERE T1.processId = #{processId}
+  <include refid="car_default_query_condition" />
+  <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+        ORDER BY T1.${sortFieldName} ${sortType} 
+  </if>
+
+</select>
+
+<select id="queryEntryCarCount" parameterType="com.comtop.meeting.model.CarVO" resultType="int" >
+ SELECT COUNT(1) 
+    FROM T_PM_CAR T1, (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                  FROM ${transTableName} T
+                                 WHERE (T.STATUS = 1 OR T.STATUS = 5)
+                                   AND T.MAIN_PROCESS_ID = #{processId}
+                                   AND T.CUR_NODE_ID = #{nodeId}
+                                   AND T.TRANS_ACTOR_ID = #{transActor}
+                                 GROUP BY T.MAIN_PROCESS_ID,
+                                          T.VERSION,
+                                          T.MAIN_PROCESS_INS_ID,
+                                          T.TRANS_ACTOR_ID) TEMPTAB
+             WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+               AND T1.VERSION = TEMPTAB.VERSION
+               AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+               AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+               AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME)  T2 
+   WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID 
+  <include refid="car_default_query_condition" />
+</select>
+
+<select id="queryEntryCarList" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO" >
+ SELECT T1.*, 
+  		 T2.DONE_TASK_ID AS taskId,
+         T2.REVOKE_BACK_FLAG as revokeBackFlag,
+         T2.CUR_NODE_ID as nodeId,
+         T2.CUR_NODE_NAME as nodeName,
+         T2.BACK_FLAG as backFlag,
+         T2.MAIN_PROCESS_ID as processId,
+         T2.NOTE as opinion,
+         T2.VERSION as version
+    FROM T_PM_CAR T1, (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                  FROM ${transTableName} T
+                                 WHERE (T.STATUS = 1 OR T.STATUS = 5)
+                                   AND T.MAIN_PROCESS_ID = #{processId}
+                                   AND T.CUR_NODE_ID = #{nodeId}
+                                   AND T.TRANS_ACTOR_ID = #{transActor}
+                                   GROUP BY T.MAIN_PROCESS_ID,
+                                            T.VERSION,
+                                            T.MAIN_PROCESS_INS_ID,
+                                            T.TRANS_ACTOR_ID) TEMPTAB
+              WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                AND T1.VERSION = TEMPTAB.VERSION
+                AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME) T2 
+   WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID 
+  <include refid="car_default_query_condition" />
+  <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+  </if>	  
+
+</select>
+
+<select id="queryDoneCarCount" parameterType="com.comtop.meeting.model.CarVO" resultType="int" >
+SELECT COUNT(*)
+FROM T_PM_CAR T1, (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                FROM ${transTableName} T
+                               WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+                                 AND T.MAIN_PROCESS_ID = #{processId}
+                                 AND T.TRANS_ACTOR_ID = #{transActor}
+                                GROUP BY T.MAIN_PROCESS_ID,
+                                         T.VERSION,
+                                         T.MAIN_PROCESS_INS_ID,
+                                         T.TRANS_ACTOR_ID) TEMPTAB
+                 WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                   AND T1.VERSION = TEMPTAB.VERSION
+                   AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                   AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                   AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+                 <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+                   AND T1.CUR_NODE_ID NOT IN 
+                    <foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+                    	#{item}
+                    </foreach>
+                 </if>
+                    ) T2
+WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+<include refid="car_default_query_condition" />
+</select>
+
+<select id="queryDoneCarList" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO" >
+SELECT T1.*,
+    	   T2.DONE_TASK_ID AS taskId,
+           T2.REVOKE_BACK_FLAG as revokeBackFlag,
+           T2.CUR_NODE_ID as nodeId,
+           T2.CUR_NODE_NAME as nodeName,
+           T2.BACK_FLAG as backFlag,
+           T2.MAIN_PROCESS_ID as processId,
+           T2.NOTE as opinion,
+ 	       T2.VERSION as version
+	  FROM T_PM_CAR T1,  (SELECT T1.* FROM ${transTableName} T1,
+                                           (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                            T.MAIN_PROCESS_ID,
+                                            T.VERSION,
+                                            T.MAIN_PROCESS_INS_ID,
+                                            T.TRANS_ACTOR_ID
+                                            FROM ${transTableName} T
+                                            WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+                                            AND T.MAIN_PROCESS_ID = #{processId}
+                                            AND T.TRANS_ACTOR_ID = #{transActor}
+                                           GROUP BY T.MAIN_PROCESS_ID,
+                                                     T.VERSION,
+                                                     T.MAIN_PROCESS_INS_ID,
+                                                     T.TRANS_ACTOR_ID) TEMPTAB
+                  WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                    AND T1.VERSION = TEMPTAB.VERSION
+                    AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                    AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                    AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+                 <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+                    AND T1.CUR_NODE_ID NOT IN 
+                 <foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+                 	#{item}
+                 </foreach>
+                 </if>
+                 ) T2
+	 WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+	<include refid="car_default_query_condition" />
+    <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+       ORDER BY T1.${sortFieldName} ${sortType} 
+    </if>	
+</select>
+
+<select id="queryTodoCarVOByTaskId" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO" >
+   SELECT T1.*, T2.*,
+   		  T2.CUR_PROCESS_ID as processId,
+   		  T2.todo_task_id as taskId, 
+   		  T2.CUR_NODE_INS_ID as curNodeInsId,
+   		  T2.ACTIVITY_INS_ID as activityInsId,
+   		  T2.CUR_NODE_ID as nodeId,
+   		  T2.CUR_NODE_NAME as nodeName
+     FROM T_PM_CAR T1 RIGHT JOIN (select * from ${transTableName} T3 where T3.todo_task_id = #{taskId} ) T2
+    ON T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+    ORDER BY T2.create_time DESC  
+</select>
+
+<select id="queryDoneCarVOByTaskId" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO" >
+   SELECT T1.*, T2.*,
+          T2.CUR_PROCESS_ID as processId,
+          T2.DONE_TASK_ID as taskId,
+          T2.CUR_NODE_INS_ID as curNodeInsId, 
+  	      T2.REVOKE_BACK_FLAG as revokeBackFlag ,
+   		  T2.ACTIVITY_INS_ID as activityInsId,
+   		  T2.CUR_NODE_ID as nodeId,
+   		  T2.CUR_NODE_NAME as nodeName
+     FROM T_PM_CAR T1 RIGHT JOIN (select * from ${transTableName} T3 where T3.done_task_id = #{taskId}) T2
+    ON T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+    ORDER BY T2.create_time DESC  
+</select>
+
+<select id="queryCarList" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO" >
+   SELECT T1.* FROM T_PM_CAR T1
+   <where> 
+      <include refid="car_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType}
+   </if>
+</select>
+
+<select id="queryCarCount" parameterType="com.comtop.meeting.model.CarVO" resultType="int" >
+   SELECT COUNT(1) FROM T_PM_CAR T1
+   <where> 
+      <include refid="car_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryCarListByCondition" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO" >
+   SELECT T1.* FROM T_PM_CAR T1
+   <where> 
+       <include refid="car_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryCarListNoPaging" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO" >
+   SELECT T1.* FROM T_PM_CAR T1
+   <where> 
+       <include refid="car_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+   </if>
+</select>
+
+	
+<select id="car_queryModel" parameterType="java.util.Map" resultType="com.comtop.meeting.model.CarVO">
+	SELECT 
+	t1.NAME name, 
+	t1.CARNUMBER carnumber, 
+	t1.PRICE price, 
+	t1.MODEL model 
+	FROM 
+	T_PM_CAR t1 
+	left join CAP_COMMON_OPINION t2 ON t2.ID = t1.ID 
+	left join TEST_PERSON t3 ON t3.ID = t1.ID 
+	left join T_PM_USER t4 ON t4.NAME = t1.ID 
+  <trim prefix="WHERE" prefixOverrides="AND|OR"> 
+	<if test = "firstNodeIds != null and firstNodeIds.size > 0 "> 
+	   t1.FLOW_STATE NOT IN 
+	 <foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")"> 
+	   #{item} 
+	 </foreach> 
+ 
+	</if> 
+	<if test = "queryVO.name != null and queryVO.name != '' "> 
+	 and  t1.NAME LIKE '%'||#{queryVO.name}||'%'  
+	</if> 
+	 and  ssss  
+	<if test = "queryVO.carnumber != null and queryVO.carnumber != '' "> 
+	 and  t1.CARNUMBER LIKE '%'||#{queryVO.carnumber}  
+	</if> 
+	<if test = "queryVO.price != null "> 
+	 and  t1.PRICE LIKE #{queryVO.price}||'%'  
+	</if> 
+  </trim> 
+	ORDER BY 
+	t1.NAME desc 
+	NULLS LAST 
+
+</select> 	
+	
+<select id="car_queryTest" parameterType="com.comtop.meeting.model.CarVO" resultType="com.comtop.meeting.model.CarVO">
+	SELECT 
+	t1.NAME name, 
+	t1.CARNUMBER carnumber, 
+	t1.PRICE price 
+	FROM 
+	T_PM_CAR t1 
+	left join TEST_PERSON t2 ON t2.ID = t1.ID 
+	left join T_PM_USER t3 ON t3.ID = t1.ID 
+	left join ( 
+	SELECT 
+	t1.CARNUMBER carnumber, 
+	t1.PRICE price 
+	FROM 
+	T_PM_CAR t1 
+	left join TEST_PERSON t2 ON t2.NAME = t1.ID 
+	left join T_PM_USER t3 ON t3.NAME = t1.ID 
+	) 
+	t4 ON t4.carnumber = t1.ID 
+  <trim prefix="WHERE" prefixOverrides="AND|OR"> 
+	<if test = "flowState != null "> 
+	   t1.FLOW_STATE = #{flowState}  
+	</if> 
+	<if test = "name != null and name != '' "> 
+	 and  t2.NAME = #{name}  
+	</if> 
+	<if test = "carnumber != null and carnumber != '' "> 
+	 and  t1.CARNUMBER = #{carnumber}  
+	</if> 
+	<if test = "price != null "> 
+	 and  t1.PRICE = #{price}  
+	</if> 
+	<if test = "id != null and id != '' "> 
+	 and  t1.ID = #{id}  
+	</if> 
+	<if test = "relationLst != null and relationLst.size > 0 "> 
+	 and  t1.CARSTORAGEID IN 
+	 <foreach item="item" index="index" collection="relationLst" open="(" separator="," close=")"> 
+	   #{item} 
+	 </foreach> 
+ 
+	</if> 
+	<if test = "'110' != null and '110' != '' "> 
+	 and  t1.CARSTORAGEID = '110'  
+	</if> 
+  </trim> 
+	GROUP BY t3.NAME 
+	ORDER BY 
+	t4.price desc 
+	 
+
+</select> 	
+	
+	
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Market name="CHMart">
+    <number>100000</number>
+    <describer>EveryThing</describer>
+    <address state="China">
+        <province>ZheJiang</province>
+        <city>HangZhou</city>
+        <street>XiHuRoad</street>
+        <zip>310000</zip>
+    </address>
+    <orders>
+        <order orderNumber="LH59800">
+            <shopName>Mart</shopName>
+            <price>80</price>
+            <amount>1</amount>
+            <purDate>2016-11-23 17:54:31</purDate>
+        </order>
+        <order orderNumber="LH59900">
+            <shopName>Mart</shopName>
+            <price>60</price>
+            <amount>1</amount>
+            <purDate>2016-11-23 17:54:31</purDate>
+        </order>
+    </orders>
+</Market>

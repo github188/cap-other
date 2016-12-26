@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.fdc.model">
+
+	
+<generateOperate class="com.comtop.fdc.model.HouseVO"></generateOperate>
+	
+<sql id = "house_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name} )  
+ 	</if>
+	<if test = "fnumber != null and fnumber != '' "> 
+		AND (T1.FNUMBER = #{fnumber} )  
+ 	</if>
+	<if test = "areaId != null and areaId != '' "> 
+		AND (T1.AREA_ID = #{areaId} )  
+ 	</if>
+	<if test = "bizdate != null"> 
+		AND (T1.BIZDATE = #{bizdate} )  
+ 	</if>
+</sql>
+	
+<sql id = "house_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id})  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name})  
+ 	</if>
+	<if test = "fnumber != null and fnumber != '' "> 
+		AND (T1.FNUMBER = #{fnumber})  
+ 	</if>
+	<if test = "areaId != null and areaId != '' "> 
+		AND (T1.AREA_ID = #{areaId})  
+ 	</if>
+	<if test = "bizdate != null"> 
+		AND (T1.BIZDATE = #{bizdate})  
+ 	</if>
+</sql>
+		
+<select id="queryHouseList" parameterType="com.comtop.fdc.model.HouseVO" resultType="com.comtop.fdc.model.HouseVO" >
+   SELECT T1.* FROM T_FDC_HOUSE T1
+   <where> 
+      <include refid="house_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+<select id="queryHouseCount" parameterType="com.comtop.fdc.model.HouseVO" resultType="int" >
+   SELECT COUNT(1) FROM T_FDC_HOUSE T1
+   <where> 
+      <include refid="house_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryHouseListByCondition" parameterType="com.comtop.fdc.model.HouseVO" resultType="com.comtop.fdc.model.HouseVO" >
+   SELECT T1.* FROM T_FDC_HOUSE T1
+   <where> 
+       <include refid="house_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryHouseListNoPaging" parameterType="com.comtop.fdc.model.HouseVO" resultType="com.comtop.fdc.model.HouseVO" >
+   SELECT T1.* FROM T_FDC_HOUSE T1
+   <where> 
+       <include refid="house_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+   </if>
+</select>
+
+	
+</mapper>

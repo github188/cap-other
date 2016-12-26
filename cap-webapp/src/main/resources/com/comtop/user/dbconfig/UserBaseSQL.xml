@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.user.model">
+
+	
+<generateOperate class="com.comtop.user.model.UserVO"></generateOperate>
+	
+<sql id = "user_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "phone != null and phone != '' "> 
+		AND (T1.PHONE = #{phone} )  
+ 	</if>
+	<if test = "password != null and password != '' "> 
+		AND (T1.PASSWORD = #{password} )  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name} )  
+ 	</if>
+	<if test = "birthday != null"> 
+		AND (T1.BIRTHDAY = #{birthday} )  
+ 	</if>
+	<if test = "address != null and address != '' "> 
+		AND (T1.ADDRESS = #{address} )  
+ 	</if>
+	<if test = "providerid != null and providerid != '' "> 
+		AND (T1.PROVIDERID = #{providerid} )  
+ 	</if>
+	<if test = "requiredid != null and requiredid != '' "> 
+		AND (T1.REQUIREDID = #{requiredid} )  
+ 	</if>
+	<if test = "city != null and city != '' "> 
+		AND (T1.CITY = #{city} )  
+ 	</if>
+	<if test = "sex != null"> 
+		AND (T1.SEX = #{sex} )  
+ 	</if>
+	<if test = "username != null and username != '' "> 
+		AND (T1.USERNAME = #{username} )  
+ 	</if>
+	<if test = "ispay != null"> 
+		AND (T1.ISPAY = #{ispay} )  
+ 	</if>
+	<if test = "url != null and url != '' "> 
+		AND (T1.URL = #{url} )  
+ 	</if>
+	<if test = "permission != null"> 
+		AND (T1.PERMISSION = #{permission} )  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID = #{processInsId} )  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE = #{flowState} )  
+ 	</if>
+</sql>
+	
+<sql id = "user_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id})  
+ 	</if>
+	<if test = "phone != null and phone != '' "> 
+		AND (T1.PHONE = #{phone})  
+ 	</if>
+	<if test = "password != null and password != '' "> 
+		AND (T1.PASSWORD = #{password})  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name})  
+ 	</if>
+	<if test = "birthday != null"> 
+		AND (T1.BIRTHDAY = #{birthday})  
+ 	</if>
+	<if test = "address != null and address != '' "> 
+		AND (T1.ADDRESS = #{address})  
+ 	</if>
+	<if test = "providerid != null and providerid != '' "> 
+		AND (T1.PROVIDERID = #{providerid})  
+ 	</if>
+	<if test = "requiredid != null and requiredid != '' "> 
+		AND (T1.REQUIREDID = #{requiredid})  
+ 	</if>
+	<if test = "city != null and city != '' "> 
+		AND (T1.CITY = #{city})  
+ 	</if>
+	<if test = "sex != null"> 
+		AND (T1.SEX = #{sex})  
+ 	</if>
+	<if test = "username != null and username != '' "> 
+		AND (T1.USERNAME = #{username})  
+ 	</if>
+	<if test = "ispay != null"> 
+		AND (T1.ISPAY = #{ispay})  
+ 	</if>
+	<if test = "url != null and url != '' "> 
+		AND (T1.URL = #{url})  
+ 	</if>
+	<if test = "permission != null"> 
+		AND (T1.PERMISSION = #{permission})  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID = #{processInsId})  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE = #{flowState})  
+ 	</if>
+</sql>
+		
+<select id="queryUserList" parameterType="com.comtop.user.model.UserVO" resultType="com.comtop.user.model.UserVO" >
+   SELECT T1.* FROM T_LOGIN_USER T1
+   <where> 
+      <include refid="user_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType}
+   </if>
+</select>
+
+<select id="queryUserCount" parameterType="com.comtop.user.model.UserVO" resultType="int" >
+   SELECT COUNT(1) FROM T_LOGIN_USER T1
+   <where> 
+      <include refid="user_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryUserListByCondition" parameterType="com.comtop.user.model.UserVO" resultType="com.comtop.user.model.UserVO" >
+   SELECT T1.* FROM T_LOGIN_USER T1
+   <where> 
+       <include refid="user_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryUserListNoPaging" parameterType="com.comtop.user.model.UserVO" resultType="com.comtop.user.model.UserVO" >
+   SELECT T1.* FROM T_LOGIN_USER T1
+   <where> 
+       <include refid="user_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+   </if>
+</select>
+
+	
+</mapper>

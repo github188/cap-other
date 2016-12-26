@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atm-config>
+	<dwr-url>/web/top/atm/dwr</dwr-url>
+	<isSna>false</isSna>
+	<isValidate>false</isValidate><!-- 是否启用下载授权校验，true:启用，其它：不启用 -->
+	 <rsaModulus>009AD5BED30B11E6FB60769DE68558FC69</rsaModulus>
+	<rsaPublicExponent>010001</rsaPublicExponent>
+	<!--  当最小系统ct-config.xml中passwordEncrypt配置为Y时，需要下面两个配置项，同ct-config.xml中的配置。其它情况不需要，请不要添加
+	该配置。
+	<rsaModulus>009AD5BED30B11E6FB60769DE68558FC69</rsaModulus>
+	<rsaPublicExponent>010001</rsaPublicExponent>
+	 -->
+	<multi-datasource>false</multi-datasource>
+	<db-blocksize>5242880</db-blocksize>
+	<threadpool_size>10</threadpool_size><!-- 线程池的大小  -->
+	<smart_retry_number>2</smart_retry_number><!-- 智能重试的次数 -->
+	<smart_retry_interval>5000</smart_retry_interval><!-- 每次智能重试间隔5秒钟  单位毫秒 -->
+	<request_wait_time>6000</request_wait_time><!-- 请求同步等待线程写附件到数据库处理时间,单位毫秒 -->
+	
+	<!-- 本地（内网）SFTP服务配置信息	 -->
+	<local-sftp-host>10.10.5.122</local-sftp-host>
+	<local-sftp-user>root</local-sftp-user>
+	<local-sftp-password>szcomtop#88</local-sftp-password>
+	<local-sftp-port>22</local-sftp-port>
+	<local-sftp-work-dir>/gxbea/sftpwork/</local-sftp-work-dir>
+	<local-sftp-timeout>6000</local-sftp-timeout>
+	<local-sftp-init-size>0</local-sftp-init-size>
+	
+	<!-- 本地 SFTP连接池最大连接数(默认值是100) -->
+	<local-sftp-max-active>200</local-sftp-max-active>
+	
+	<!-- 本地 SFTP连接池最大等待数(默认值是100) -->
+	<local-sftp-max-wait>200</local-sftp-max-wait>
+	
+	<!-- <remote-sftp-max-active></remote-sftp-max-active> -->
+	<!-- <remote-sftp-max-wait></remote-sftp-max-wait> -->
+	
+	<!--  附件系统部署位置：网公司标识 CSG,  省公司内网 PIN,  省公司外网 POUT  -->
+	<system-location>PIN</system-location>
+	
+	<!--  system-location配置为PIN时，且网省同步，必填，
+		分表后缀：gd 广东省  gx广西省   hn海南省   yn云南省   gz贵州省  
+		sz深圳局   gzp广州局    tftp调峰调频     cgy超高压  -->
+	<province-code>gx</province-code>
+	
+	<!-- 网省附件同步DB_LINK名称  -->
+	<dblink-name>ATM_SYNC_TOCSG</dblink-name>
+</atm-config>

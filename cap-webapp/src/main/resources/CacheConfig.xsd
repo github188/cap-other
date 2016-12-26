@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="CacheConfigs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="CacheConfig" />
+			</xs:sequence>
+			<xs:attribute name="profile" use="optional" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CacheConfig">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="cacheMethod" />
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="cacheIP" />
+					<xs:element ref="binaryProtocol" />
+					<xs:element ref="connectionPoolSize" />
+					<xs:element ref="poolConfigMaxActive" />
+					<xs:element ref="poolConfigMaxIdle" />
+					<xs:element ref="jedisPoolTimeOut" />
+					<xs:element ref="poolConfigMaxWait" />
+					<xs:element ref="password" />
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="id" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="cacheMethod" type="xs:string" />
+	<xs:element name="cacheIP" type="xs:string" />
+	<xs:element name="binaryProtocol" type="xs:string" />
+	<xs:element name="connectionPoolSize" type="xs:integer" />
+	<xs:element name="poolConfigMaxActive" type="xs:integer" />
+	<xs:element name="poolConfigMaxIdle" type="xs:integer" />
+	<xs:element name="poolConfigMaxWait" type="xs:integer" />
+	<xs:element name="jedisPoolTimeOut" type="xs:integer" />
+	<xs:element name="password" type="xs:string" />
+</xs:schema>

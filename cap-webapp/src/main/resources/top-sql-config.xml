@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration  
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties>
+		<!--<property name="dialect" value="oracle"/>  -->
+		<property name="dialect" value="MYSQL" />  <!-- -->
+<!-- 		<property name="mode" value="product" /> -->
+	</properties>
+
+	<plugins>
+		<plugin interceptor="com.comtop.corm.extend.plugin.StatementInterceptor"></plugin>
+	</plugins>
+
+<!-- 	<environments default="development"> -->
+		<!-- 测试 
+		<environment id="development">
+			<transactionManager type="jdbc" />
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@10.10.5.245:1521:orcl" />
+				<property name="driver.useUnicode" value="true" />
+				<property name="driver.characterEncoding" value="gbk" />
+				<property name="username" value="top_develop" />
+				<property name="password" value="top_V4.1" />
+			</dataSource>
+		</environment>-->
+		
+		<!-- 开发 -->
+<!-- 		<environment id="development"> -->
+<!-- 			<transactionManager type="MANAGED" /> -->
+<!-- 			<dataSource type="JNDI"> -->
+				<!-- weblogic -->
+<!-- 				 <property name="data_source" value="CTDataSource"/>  -->
+				<!--jboss -->
+<!--  				<property name="data_source" value="java:/CTDataSource"/>  -->
+ 				<!--tomcat -->
+<!-- 				<property name="data_source" value="java:comp/env/CTDataSource"/>   -->
+<!-- 			</dataSource> -->
+<!-- 		</environment> -->
+<!-- 	</environments> -->
+
+	<mappers>
+		<!-- 自动扫描文件路径配置 -->
+		<mapper scan="classpath*:com/comtop/**/*SQL_mysql.xml" /> <!---->
+		<!--<mapper scan="classpath*:com/comtop/**/*SQL_oracle.xml" />-->
+		<mapper scan="classpath*:com/comtop/**/*SQL.xml" />
+	</mappers>
+</configuration>  

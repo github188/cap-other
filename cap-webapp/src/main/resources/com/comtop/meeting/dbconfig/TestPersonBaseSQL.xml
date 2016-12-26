@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.meeting.model">
+
+	
+	<generateOperate class="com.comtop.meeting.model.TestPersonVO"></generateOperate>
+	
+	<sql id = "testPerson_cascade_query_condition" >
+	 <if test = "id != null and id!= '' "> 
+		  AND (T1.ID =  #{id} )  
+ 	 </if>
+	 <if test = "name != null and name!= '' "> 
+		  AND (T1.NAME =  #{name} )  
+ 	 </if>
+	 <if test = "adress != null and adress!= '' "> 
+		  AND (T1.ADRESS =  #{adress} )  
+ 	 </if>
+	 <if test = "sex != null"> 
+		  AND (T1.SEX =  #{sex} )  
+ 	 </if>
+	 <if test = "phone != null and phone!= '' "> 
+		  AND (T1.PHONE =  #{phone} )  
+ 	 </if>
+	 <if test = "birthday != null"> 
+		  AND (T1.BIRTHDAY =  #{birthday} )  
+ 	 </if>
+	 <if test = "salary != null"> 
+		  AND (T1.SALARY =  #{salary} )  
+ 	 </if>
+	 <if test = "flowState != null"> 
+		  AND (T1.FLOW_STATE =  #{flowState} )  
+ 	 </if>
+	 <if test = "processInsId != null and processInsId!= '' "> 
+		  AND (T1.PROCESS_INS_ID =  #{processInsId} )  
+ 	 </if>
+	</sql>
+	
+	<sql id = "testPerson_default_query_condition" >
+		 <if test = "id != null and id!= '' "> 
+		  AND (T1.ID =  #{id})  
+ 	 </if>
+		 <if test = "name != null and name!= '' "> 
+		  AND (T1.NAME =  #{name})  
+ 	 </if>
+		 <if test = "adress != null and adress!= '' "> 
+		  AND (T1.ADRESS =  #{adress})  
+ 	 </if>
+		 <if test = "sex != null"> 
+		  AND (T1.SEX =  #{sex})  
+ 	 </if>
+		 <if test = "phone != null and phone!= '' "> 
+		  AND (T1.PHONE =  #{phone})  
+ 	 </if>
+		 <if test = "birthday != null"> 
+		  AND (T1.BIRTHDAY =  #{birthday})  
+ 	 </if>
+		 <if test = "salary != null"> 
+		  AND (T1.SALARY =  #{salary})  
+ 	 </if>
+		 <if test = "flowState != null"> 
+		  AND (T1.FLOW_STATE =  #{flowState})  
+ 	 </if>
+		 <if test = "processInsId != null and processInsId!= '' "> 
+		  AND (T1.PROCESS_INS_ID =  #{processInsId})  
+ 	 </if>
+	</sql>
+	
+	<select id="queryTestPersonListByCondition" parameterType="com.comtop.meeting.model.TestPersonVO" resultType="com.comtop.meeting.model.TestPersonVO">
+		SELECT T1.* FROM TEST_PERSON T1
+		<where> 
+			 <include refid="testPerson_cascade_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryTestPersonList" parameterType="com.comtop.meeting.model.TestPersonVO" resultType="com.comtop.meeting.model.TestPersonVO">
+		SELECT T1.* FROM TEST_PERSON T1
+		<where> 
+			 <include refid="testPerson_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType} NULLS LAST
+		</if>
+	</select>
+	
+	<select id="queryTestPersonCount" parameterType="com.comtop.meeting.model.TestPersonVO" resultType="int">
+			SELECT COUNT(1) FROM TEST_PERSON T1
+		<where> 
+			 <include refid="testPerson_default_query_condition" />
+		</where>
+	</select>
+	
+	
+
+
+
+</mapper>

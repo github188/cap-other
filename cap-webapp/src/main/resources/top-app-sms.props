@@ -1,0 +1,15 @@
+
+#短信发送接口实现类
+sendMobileMessage=com.comtop.top.sms.client.SendSmsClientImpl
+#短信发送结果查询接口实现类
+queryMobileMessage=com.comtop.top.sms.client.QuerySmsReportClientImpl
+
+#短信平台客户帐号
+mobileMessageClientName=test
+#短信平台发送端口
+mobileMessageSendPort=5001
+
+#短信平台单位代码,用于创建短信流水号,默认为信息中心72
+mobileMessageDeptCode=72
+#短信平台业务代码,用于创建短信流水号,默认为个人信箱应用XX
+mobileMessageBusinessCode=XX

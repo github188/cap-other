@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.user.model">
+
+	
+<generateOperate class="com.comtop.user.model.PersonVO"></generateOperate>
+	
+<sql id = "person_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "userId != null and userId != '' "> 
+		AND (T1.USER_ID = #{userId} )  
+ 	</if>
+	<if test = "level != null"> 
+		AND (T1.LEVEL = #{level} )  
+ 	</if>
+	<if test = "bill != null"> 
+		AND (T1.BILL = #{bill} )  
+ 	</if>
+	<if test = "parentId != null and parentId != '' "> 
+		AND (T1.PARENT_ID = #{parentId} )  
+ 	</if>
+	<if test = "createDate != null"> 
+		AND (T1.CREATE_DATE = #{createDate} )  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name} )  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID = #{processInsId} )  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE = #{flowState} )  
+ 	</if>
+</sql>
+	
+<sql id = "person_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id})  
+ 	</if>
+	<if test = "userId != null and userId != '' "> 
+		AND (T1.USER_ID = #{userId})  
+ 	</if>
+	<if test = "level != null"> 
+		AND (T1.LEVEL = #{level})  
+ 	</if>
+	<if test = "bill != null"> 
+		AND (T1.BILL = #{bill})  
+ 	</if>
+	<if test = "parentId != null and parentId != '' "> 
+		AND (T1.PARENT_ID = #{parentId})  
+ 	</if>
+	<if test = "createDate != null"> 
+		AND (T1.CREATE_DATE = #{createDate})  
+ 	</if>
+	<if test = "name != null and name != '' "> 
+		AND (T1.NAME = #{name})  
+ 	</if>
+	<if test = "processInsId != null and processInsId != '' "> 
+		AND (T1.PROCESS_INS_ID = #{processInsId})  
+ 	</if>
+	<if test = "flowState != null"> 
+		AND (T1.FLOW_STATE = #{flowState})  
+ 	</if>
+</sql>
+		
+<select id="queryTodoPersonCount" parameterType="com.comtop.user.model.PersonVO" resultType="int" >
+  SELECT COUNT(1) 
+    FROM T_BASE_PERSON T1, ${transTableName} T2 
+   WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID 
+     AND T1.FLOW_STATE = 1 
+     AND T2.TRANS_ACTOR_ID = #{transActor} 
+     AND T2.MAIN_PROCESS_ID = #{processId}
+  <include refid="person_default_query_condition" />
+</select>
+
+<select id="queryTodoPersonList" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+   SELECT T1.*,
+		  T2.TODO_TASK_ID AS taskId ,
+          T2.CUR_NODE_ID as nodeId,
+          T2.CUR_NODE_NAME as nodeName,
+          T2.BACK_FLAG as backFlag,
+          T2.MAIN_PROCESS_ID as processId,
+          T2.NOTE as opinion,
+          T2.VERSION as version
+     FROM T_BASE_PERSON T1, ${transTableName} T2
+    WHERE T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+      AND T1.FLOW_STATE = 1
+      AND T2.TRANS_ACTOR_ID = #{transActor}
+      AND T2.MAIN_PROCESS_ID = #{processId}      		
+   <include refid="person_default_query_condition" />
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+   </if>
+</select>
+
+<select id="queryToEntryPersonCount" parameterType="com.comtop.user.model.PersonVO" resultType="int" >
+  SELECT COUNT(1) 
+    FROM (SELECT BT.*,
+                 T2.TODO_TASK_ID taskId,
+                 NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+                 T2.CUR_NODE_ID as nodeId,
+                 T2.CUR_NODE_NAME as nodeName,
+                 T2.BACK_FLAG as backFlag
+            FROM T_BASE_PERSON BT LEFT JOIN
+                 (select * from ${transTableName} T3 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+            ON BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+             WHERE (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1 
+   WHERE T1.processId = #{processId}
+  <include refid="person_default_query_condition" />
+</select>
+
+<select id="queryToEntryPersonList" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+  SELECT * 
+    FROM (SELECT BT.*,
+                 T2.TODO_TASK_ID taskId,
+                 NVL(T2.MAIN_PROCESS_ID, #{processId}) AS processId,
+                 T2.CUR_NODE_ID as nodeId,
+                 T2.CUR_NODE_NAME as nodeName,
+                 T2.BACK_FLAG as backFlag,
+                 T2.NOTE as opinion,
+                 T2.VERSION as version
+           FROM T_BASE_PERSON BT LEFT JOIN
+                (select * from ${transTableName} T3 where T3.TRANS_ACTOR_ID = #{transActor}) T2
+           ON BT.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+           WHERE (BT.FLOW_STATE = 0 OR BT.FLOW_STATE IS NULL)) T1
+   WHERE T1.processId = #{processId}
+  <include refid="person_default_query_condition" />
+  <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+        ORDER BY T1.${sortFieldName} ${sortType} 
+  </if>
+
+</select>
+
+<select id="queryEntryPersonCount" parameterType="com.comtop.user.model.PersonVO" resultType="int" >
+ SELECT COUNT(1) 
+    FROM T_BASE_PERSON T1, (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                  FROM ${transTableName} T
+                                 WHERE (T.STATUS = 1 OR T.STATUS = 5)
+                                   AND T.MAIN_PROCESS_ID = #{processId}
+                                   AND T.CUR_NODE_ID = #{nodeId}
+                                   AND T.TRANS_ACTOR_ID = #{transActor}
+                                 GROUP BY T.MAIN_PROCESS_ID,
+                                          T.VERSION,
+                                          T.MAIN_PROCESS_INS_ID,
+                                          T.TRANS_ACTOR_ID) TEMPTAB
+             WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+               AND T1.VERSION = TEMPTAB.VERSION
+               AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+               AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+               AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME)  T2 
+   WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID 
+  <include refid="person_default_query_condition" />
+</select>
+
+<select id="queryEntryPersonList" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+ SELECT T1.*, 
+  		 T2.DONE_TASK_ID AS taskId,
+         T2.REVOKE_BACK_FLAG as revokeBackFlag,
+         T2.CUR_NODE_ID as nodeId,
+         T2.CUR_NODE_NAME as nodeName,
+         T2.BACK_FLAG as backFlag,
+         T2.MAIN_PROCESS_ID as processId,
+         T2.NOTE as opinion,
+         T2.VERSION as version
+    FROM T_BASE_PERSON T1, (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                  FROM ${transTableName} T
+                                 WHERE (T.STATUS = 1 OR T.STATUS = 5)
+                                   AND T.MAIN_PROCESS_ID = #{processId}
+                                   AND T.CUR_NODE_ID = #{nodeId}
+                                   AND T.TRANS_ACTOR_ID = #{transActor}
+                                   GROUP BY T.MAIN_PROCESS_ID,
+                                            T.VERSION,
+                                            T.MAIN_PROCESS_INS_ID,
+                                            T.TRANS_ACTOR_ID) TEMPTAB
+              WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                AND T1.VERSION = TEMPTAB.VERSION
+                AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME) T2 
+   WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID 
+  <include refid="person_default_query_condition" />
+  <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+  </if>	  
+
+</select>
+
+<select id="queryDonePersonCount" parameterType="com.comtop.user.model.PersonVO" resultType="int" >
+SELECT COUNT(*)
+FROM T_BASE_PERSON T1, (SELECT T1.* FROM ${transTableName} T1,
+                             (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                     T.MAIN_PROCESS_ID,
+                                     T.VERSION,
+                                     T.MAIN_PROCESS_INS_ID,
+                                     T.TRANS_ACTOR_ID
+                                FROM ${transTableName} T
+                               WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+                                 AND T.MAIN_PROCESS_ID = #{processId}
+                                 AND T.TRANS_ACTOR_ID = #{transActor}
+                                GROUP BY T.MAIN_PROCESS_ID,
+                                         T.VERSION,
+                                         T.MAIN_PROCESS_INS_ID,
+                                         T.TRANS_ACTOR_ID) TEMPTAB
+                 WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                   AND T1.VERSION = TEMPTAB.VERSION
+                   AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                   AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                   AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+                 <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+                   AND T1.CUR_NODE_ID NOT IN 
+                    <foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+                    	#{item}
+                    </foreach>
+                 </if>
+                    ) T2
+WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+<include refid="person_default_query_condition" />
+</select>
+
+<select id="queryDonePersonList" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+SELECT T1.*,
+    	   T2.DONE_TASK_ID AS taskId,
+           T2.REVOKE_BACK_FLAG as revokeBackFlag,
+           T2.CUR_NODE_ID as nodeId,
+           T2.CUR_NODE_NAME as nodeName,
+           T2.BACK_FLAG as backFlag,
+           T2.MAIN_PROCESS_ID as processId,
+           T2.NOTE as opinion,
+ 	       T2.VERSION as version
+	  FROM T_BASE_PERSON T1,  (SELECT T1.* FROM ${transTableName} T1,
+                                           (SELECT MAX(T.CREATE_TIME) AS MAXCREATETIME,
+                                            T.MAIN_PROCESS_ID,
+                                            T.VERSION,
+                                            T.MAIN_PROCESS_INS_ID,
+                                            T.TRANS_ACTOR_ID
+                                            FROM ${transTableName} T
+                                            WHERE (T.STATUS = 1 OR T.STATUS = 5 OR T.STATUS = 4 OR T.STATUS = 7)
+                                            AND T.MAIN_PROCESS_ID = #{processId}
+                                            AND T.TRANS_ACTOR_ID = #{transActor}
+                                           GROUP BY T.MAIN_PROCESS_ID,
+                                                     T.VERSION,
+                                                     T.MAIN_PROCESS_INS_ID,
+                                                     T.TRANS_ACTOR_ID) TEMPTAB
+                  WHERE T1.MAIN_PROCESS_ID = TEMPTAB.MAIN_PROCESS_ID
+                    AND T1.VERSION = TEMPTAB.VERSION
+                    AND T1.MAIN_PROCESS_INS_ID = TEMPTAB.MAIN_PROCESS_INS_ID
+                    AND T1.TRANS_ACTOR_ID = TEMPTAB.TRANS_ACTOR_ID
+                    AND T1.CREATE_TIME = TEMPTAB.MAXCREATETIME
+                 <if test="firstNodeIds != null and firstNodeIds.size>0 ">
+                    AND T1.CUR_NODE_ID NOT IN 
+                 <foreach item="item" index="index" collection="firstNodeIds" open="(" separator="," close=")">
+                 	#{item}
+                 </foreach>
+                 </if>
+                 ) T2
+	 WHERE T2.MAIN_PROCESS_INS_ID = T1.PROCESS_INS_ID
+	<include refid="person_default_query_condition" />
+    <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+       ORDER BY T1.${sortFieldName} ${sortType} 
+    </if>	
+</select>
+
+<select id="queryTodoPersonVOByTaskId" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+   SELECT T1.*, T2.*,
+   		  T2.CUR_PROCESS_ID as processId,
+   		  T2.todo_task_id as taskId, 
+   		  T2.CUR_NODE_INS_ID as curNodeInsId,
+   		  T2.ACTIVITY_INS_ID as activityInsId,
+   		  T2.CUR_NODE_ID as nodeId,
+   		  T2.CUR_NODE_NAME as nodeName
+     FROM T_BASE_PERSON T1 RIGHT JOIN (select * from ${transTableName} T3 where T3.todo_task_id = #{taskId} ) T2
+    ON T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+    ORDER BY T2.create_time DESC  
+</select>
+
+<select id="queryDonePersonVOByTaskId" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+   SELECT T1.*, T2.*,
+          T2.CUR_PROCESS_ID as processId,
+          T2.DONE_TASK_ID as taskId,
+          T2.CUR_NODE_INS_ID as curNodeInsId, 
+  	      T2.REVOKE_BACK_FLAG as revokeBackFlag ,
+   		  T2.ACTIVITY_INS_ID as activityInsId,
+   		  T2.CUR_NODE_ID as nodeId,
+   		  T2.CUR_NODE_NAME as nodeName
+     FROM T_BASE_PERSON T1 RIGHT JOIN (select * from ${transTableName} T3 where T3.done_task_id = #{taskId}) T2
+    ON T1.PROCESS_INS_ID = T2.MAIN_PROCESS_INS_ID
+    ORDER BY T2.create_time DESC  
+</select>
+
+<select id="queryComprehensivePersonList" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+select *
+  from T_BASE_PERSON T1,
+       (select distinct t2.cur_process_id as processId,
+                        t2.main_process_ins_id 
+          from ${ruNodeTrackTableName} t2
+         where t2.node_track_id in
+               (select t3.node_track_id
+                  from ${ruTransTrackTableName} t3
+                 where t3.actor_id = #{transActor})
+           and t2.cur_process_id = #{processId}) c
+ where T1.process_ins_id = c.main_process_ins_id
+ <include refid="person_default_query_condition" />
+ <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+    ORDER BY T1.${sortFieldName} ${sortType} 
+ </if>
+</select>
+
+<select id="queryComprehensivePersonCount" parameterType="com.comtop.user.model.PersonVO" resultType="int" >
+select count(1)
+  from T_BASE_PERSON T1,
+       (select distinct t2.cur_process_id as processId,
+                        t2.main_process_ins_id 
+          from ${ruNodeTrackTableName} t2
+         where t2.node_track_id in
+               (select t3.node_track_id
+                  from ${ruTransTrackTableName} t3
+                 where t3.actor_id = #{transActor})
+           and t2.cur_process_id = #{processId}) c
+ where T1.process_ins_id = c.main_process_ins_id
+ <include refid="person_default_query_condition" />
+</select>
+
+<select id="queryPersonList" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+   SELECT T1.* FROM T_BASE_PERSON T1
+   <where> 
+      <include refid="person_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType}
+   </if>
+</select>
+
+<select id="queryPersonCount" parameterType="com.comtop.user.model.PersonVO" resultType="int" >
+   SELECT COUNT(1) FROM T_BASE_PERSON T1
+   <where> 
+      <include refid="person_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryPersonListByCondition" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+   SELECT T1.* FROM T_BASE_PERSON T1
+   <where> 
+       <include refid="person_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryPersonListNoPaging" parameterType="com.comtop.user.model.PersonVO" resultType="com.comtop.user.model.PersonVO" >
+   SELECT T1.* FROM T_BASE_PERSON T1
+   <where> 
+       <include refid="person_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+   </if>
+</select>
+
+	
+	
+	
+</mapper>

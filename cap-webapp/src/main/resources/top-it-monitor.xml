@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monitor>
+	<businessID>00100</businessID>
+	<businessName>营销管理系统</businessName>
+	<loginPage>http://10.10.5.223:7002/web/login.ac</loginPage>
+	<userName>SuperAdmin</userName>
+	<password>hello</password>
+	<functionPages>
+		<functionPage>http://10.10.5.223:7002/web/top/sys/usermanagement/user/UserMain.jsp</functionPage>
+		<functionPage>http://10.10.5.223:7002/web/top/cfg/ClassifyTree.jsp</functionPage>
+		<functionPage>http://10.10.5.223:7002/web/top/sys/accesscontrol/gradeadmin/GradeAdminList.jsp</functionPage>
+	</functionPages>
+</monitor>

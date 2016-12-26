@@ -1,0 +1,68 @@
+<?xml version='1.0'?>
+
+<!--
+Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademarks of Oracle Corporation and/or its affiliates.
+
+This software is the confidential and proprietary information of
+Oracle Corporation. You shall not disclose such confidential and
+proprietary information and shall use it only in accordance with the
+terms of the license agreement you entered into with Oracle.
+
+This notice may not be removed or altered.
+-->
+<!-- use for client -->
+<coherence  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config"
+            xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-operational-config coherence-operational-config.xsd"
+            >
+
+<!--
+Note: This XML is set up for a development mode; search for "Note:"
+to find specific notes on changes suggested for production use.
+-->
+
+  <cluster-config>
+    <member-identity>
+      <!--
+      Note: All members of the cluster must specify the same cluster name in
+      order to be allowed to join the cluster.
+      -->
+      <cluster-name system-property="tangosol.coherence.cluster">top.CoherenceServer</cluster-name>
+    </member-identity>
+
+    <unicast-listener>
+      <address system-property="tangosol.coherence.localhost">10.10.0.0/16</address>
+      <port system-property="tangosol.coherence.localport">6090</port>
+      <port-auto-adjust system-property="tangosol.coherence.localport.adjust">true</port-auto-adjust>
+    </unicast-listener>
+
+    <multicast-listener>
+      <time-to-live system-property="tangosol.coherence.ttl">4</time-to-live>
+      <priority>8</priority>
+    </multicast-listener>
+
+    <tcp-ring-listener>
+      <ip-timeout system-property="tangosol.coherence.ipmonitor.pingtimeout">5s</ip-timeout>
+    </tcp-ring-listener>
+    <packet-publisher>
+      <!--
+      Note: Disabling the Publisher is used only by Java Real-Time Clients to
+      restrict their ability to use the cluster protocol (TCMP). When disabled,
+      a client is only be able to access clustered services via Extend proxies.
+      -->
+      <enabled system-property="tangosol.coherence.tcmp.enabled">false</enabled>
+    </packet-publisher>
+  </cluster-config>
+
+  <configurable-cache-factory-config>
+    <class-name>com.tangosol.net.DefaultConfigurableCacheFactory</class-name>
+    <init-params>
+      <init-param>
+        <param-type>java.lang.String</param-type>
+        <param-value system-property="tangosol.coherence.cacheconfig">top-cache-config.xml</param-value>
+      </init-param>
+    </init-params>
+  </configurable-cache-factory-config>
+</coherence>

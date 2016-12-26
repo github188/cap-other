@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>   
+<weblogic-application>   
+    <prefer-application-packages>   
+        <package-name>antlr.*</package-name>   
+        <package-name>com.ctc.wstx.*</package-name>
+    </prefer-application-packages>   
+</weblogic-application>  

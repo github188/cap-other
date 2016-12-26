@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.tech.model">
+
+	
+<generateOperate class="com.comtop.tech.model.PaymentVO"></generateOperate>
+	
+<sql id = "payment_cascade_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id} )  
+ 	</if>
+	<if test = "od0000004190 != null and od0000004190 != '' "> 
+		AND (T1.OD_0000004190 = #{od0000004190} )  
+ 	</if>
+	<if test = "od0000004191 != null and od0000004191 != '' "> 
+		AND (T1.OD_0000004191 = #{od0000004191} )  
+ 	</if>
+	<if test = "od0000004192 != null and od0000004192 != '' "> 
+		AND (T1.OD_0000004192 = #{od0000004192} )  
+ 	</if>
+	<if test = "od0000004193 != null and od0000004193 != '' "> 
+		AND (T1.OD_0000004193 = #{od0000004193} )  
+ 	</if>
+	<if test = "od0000004194 != null and od0000004194 != '' "> 
+		AND (T1.OD_0000004194 = #{od0000004194} )  
+ 	</if>
+	<if test = "od0000004195 != null and od0000004195 != '' "> 
+		AND (T1.OD_0000004195 = #{od0000004195} )  
+ 	</if>
+	<if test = "od0000004196 != null and od0000004196 != '' "> 
+		AND (T1.OD_0000004196 = #{od0000004196} )  
+ 	</if>
+	<if test = "od0000004197 != null and od0000004197 != '' "> 
+		AND (T1.OD_0000004197 = #{od0000004197} )  
+ 	</if>
+	<if test = "od0000004198 != null and od0000004198 != '' "> 
+		AND (T1.OD_0000004198 = #{od0000004198} )  
+ 	</if>
+	<if test = "od0000004199 != null and od0000004199 != '' "> 
+		AND (T1.OD_0000004199 = #{od0000004199} )  
+ 	</if>
+	<if test = "od0000004200 != null"> 
+		AND (T1.OD_0000004200 = #{od0000004200} )  
+ 	</if>
+</sql>
+	
+<sql id = "payment_default_query_condition" >
+	<if test = "id != null and id != '' "> 
+		AND (T1.ID = #{id})  
+ 	</if>
+	<if test = "od0000004190 != null and od0000004190 != '' "> 
+		AND (T1.OD_0000004190 = #{od0000004190})  
+ 	</if>
+	<if test = "od0000004191 != null and od0000004191 != '' "> 
+		AND (T1.OD_0000004191 = #{od0000004191})  
+ 	</if>
+	<if test = "od0000004192 != null and od0000004192 != '' "> 
+		AND (T1.OD_0000004192 = #{od0000004192})  
+ 	</if>
+	<if test = "od0000004193 != null and od0000004193 != '' "> 
+		AND (T1.OD_0000004193 = #{od0000004193})  
+ 	</if>
+	<if test = "od0000004194 != null and od0000004194 != '' "> 
+		AND (T1.OD_0000004194 = #{od0000004194})  
+ 	</if>
+	<if test = "od0000004195 != null and od0000004195 != '' "> 
+		AND (T1.OD_0000004195 = #{od0000004195})  
+ 	</if>
+	<if test = "od0000004196 != null and od0000004196 != '' "> 
+		AND (T1.OD_0000004196 = #{od0000004196})  
+ 	</if>
+	<if test = "od0000004197 != null and od0000004197 != '' "> 
+		AND (T1.OD_0000004197 = #{od0000004197})  
+ 	</if>
+	<if test = "od0000004198 != null and od0000004198 != '' "> 
+		AND (T1.OD_0000004198 = #{od0000004198})  
+ 	</if>
+	<if test = "od0000004199 != null and od0000004199 != '' "> 
+		AND (T1.OD_0000004199 = #{od0000004199})  
+ 	</if>
+	<if test = "od0000004200 != null"> 
+		AND (T1.OD_0000004200 = #{od0000004200})  
+ 	</if>
+</sql>
+		
+<select id="queryPaymentList" parameterType="com.comtop.tech.model.PaymentVO" resultType="com.comtop.tech.model.PaymentVO" >
+   SELECT T1.* FROM T_CT_PAYMENT T1
+   <where> 
+      <include refid="payment_default_query_condition" />
+   </where>
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType}
+   </if>
+</select>
+
+<select id="queryPaymentCount" parameterType="com.comtop.tech.model.PaymentVO" resultType="int" >
+   SELECT COUNT(1) FROM T_CT_PAYMENT T1
+   <where> 
+      <include refid="payment_default_query_condition" />
+   </where>
+</select>
+
+<select id="queryPaymentListByCondition" parameterType="com.comtop.tech.model.PaymentVO" resultType="com.comtop.tech.model.PaymentVO" >
+   SELECT T1.* FROM T_CT_PAYMENT T1
+   <where> 
+       <include refid="payment_cascade_query_condition" />
+   </where>
+</select>
+
+<select id="queryPaymentListNoPaging" parameterType="com.comtop.tech.model.PaymentVO" resultType="com.comtop.tech.model.PaymentVO" >
+   SELECT T1.* FROM T_CT_PAYMENT T1
+   <where> 
+       <include refid="payment_default_query_condition" />
+   </where>   
+   <if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+      ORDER BY T1.${sortFieldName} ${sortType} 
+   </if>
+</select>
+
+	
+</mapper>

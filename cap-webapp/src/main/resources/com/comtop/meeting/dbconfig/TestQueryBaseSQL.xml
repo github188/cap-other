@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.meeting.model">
+
+
+    
+    <sql id = "testQuery_default_query_condition" >
+	 <if test = "id != null and id!= '' "> 
+		  AND (T1.ID =  #{id} )  
+ 	 </if>
+	 <if test = "name != null and name!= '' "> 
+		  AND (T1.NAME =  #{name} )  
+ 	 </if>
+	 <if test = "carnumber != null and carnumber!= '' "> 
+		  AND (T1.CARNUMBER =  #{carnumber} )  
+ 	 </if>
+	 <if test = "model != null and model!= '' "> 
+		  AND (T1.MODEL =  #{model} )  
+ 	 </if>
+	 <if test = "processInsId != null and processInsId!= '' "> 
+		  AND (T1.PROCESS_INS_ID =  #{processInsId} )  
+ 	 </if>
+	 <if test = "flowState != null"> 
+		  AND (T1.FLOW_STATE =  #{flowState} )  
+ 	 </if>
+	 <if test = "carstorageid != null and carstorageid!= '' "> 
+		  AND (T1.CARSTORAGEID =  #{carstorageid} )  
+ 	 </if>
+	 <if test = "price != null"> 
+		  AND (T1.PRICE =  #{price} )  
+ 	 </if>
+	</sql>
+
+
+</mapper>
