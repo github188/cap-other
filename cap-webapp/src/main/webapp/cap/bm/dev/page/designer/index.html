@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table-layout</title>
+    <link rel="stylesheet" href="/web/cap/bm/common/cui/themes/default/css/comtop.ui.min.css"/>
+    <link rel="stylesheet" href="css/table-layout.css"/>
+    <script type='text/javascript' src="/web/cap/dwr/engine.js"></script>
+    <script type='text/javascript' src="/web/cap/dwr/interface/ComponentTypeFacade.js"></script>
+</head>
+<body class="f_usn">
+<div uitype="Borderlayout" id="border" is_root="true" >
+    <div position="top" height="50" class="top">
+            <div class="btn-container">
+               <span uitype="button" label="撤销" button_type="red-button" icon="backward" on_click="CAPEditor.goBack"></span>
+                <span uitype="button" label="预览" button_type="blue-button" icon="search-plus" on_click="CAPEditor.preview"></span>
+                <span uitype="button" label="保存" button_type="blue-button" icon="check" on_click="CAPEditor.saveData"></span>
+            </div>
+    </div>
+    <div position="left" width="240">
+        <div id="leftTools" class="left-container">            
+             <template v-repeat="treeData" v-component="toolsItme">
+                
+            </template> 
+        </div>
+    </div>
+    
+    <div position="center">
+        <div class="container" id="container">
+            <table class='table' v-repeat="t:table" id='{{t.cid}}' cellspacing='0' cellpadding='0'>
+            <tbody>
+                <template v-component="my-tr" v-repeat="t.children"></template>
+            </tbody>
+            </table>
+        </div>
+    </div>
+    <div position="right" width="250">
+        <div style="height:310px;">
+            <iframe id="ui-attr" v-src="id">
+                
+            </iframe>
+        </div>
+
+        <div class="right-container" id="right-container">
+            <h3 class="attr-title">数据结构</h3>
+               <div uitype="tree" id="pageTree" checkbox="true" on_select="CAPEditor.treeNodeSelect" select_mode="4"></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div id="arrow"> >>> </div>
+<div class="indicator" id="indicator"></div>
+
+ <div class="layout-indicator" id="cIndicator">
+     <div class="dot a"></div>
+     <div class="dot b"></div>
+     <div class="dot c"></div>
+     <div class="dot d"></div>
+     <div class="dot e"></div>
+     <div class="dot f"></div>
+     <div class="dot g"></div>
+     <div class="dot h"></div>
+ </div>
+<div class="selectholder" id="selectholder"></div>
+<table id="test-table" class="hide">
+    <tr>
+        <td class="form-label">对齐方式:</td>
+        <td>
+            <span databind="formdata.align" uitype="PullDown" mode="Single" value_field="id" label_field="text">
+                <a value="right">靠右</a>
+                <a value="left">靠左</a>
+                <a value="center">居中</a>
+            </span>
+        </td>
+    </tr>
+</table>
+
+<div id="eventcover"></div>
+
+<!-- 右键菜单 -->
+<ul class="right-menu" id="right-menu">
+    <li class="item"><a href="#">复制</a></li>
+    <li class="item"><a href="#">编辑</a></li>
+    <li class="item"><a href="#">删除</a></li>
+    <li class="item"><a href="#" class="disable">粘帖</a></li>
+</ul>
+
+<ul class="right-menu" id="cell-menu">
+    <li class="item" v-on="mousedown:newRow"><a href="#">新增一行</a></li>
+    <li class="item" v-on="mousedown:newCol"><a href="#">新增一列</a></li>
+    <li class="item"><a href="#">删除</a></li>
+    <li class="item"><a href="#" class="disable">粘帖</a></li>
+</ul>
+
+<script type="text/x-template" id="t-toolsItem">
+    <p v-on="click:toggleTools" v-show="hasChildren">{{title}}</p>
+    <ul class="{{componentType}}-list">
+        <template v-if="componentType=='layout'">
+            <li v-component="tablelayout" v-repeat="children"></li>
+        </template>
+        <template v-if="componentType=='common'">
+                <li class="component" v-repeat="children" data-type="{{uiType}}">{{text}}</li>
+        </template>
+    </ul>
+</script>
+<!-- 为uiType为tableLayout组件 -->
+<script type="text/x-template" id="tablelayout">
+    <template v-if="uiType=='tableLayout'">
+        <span>行数:</span> <span uitype="input" id="row" mask="Int" value="1" width="40"></span>
+        <span>列数:</span> <span uitype="input" id="col" mask="Int" value="1" width="40"></span>
+        <span class="cui-icon drag_button" v-on="mousedown:drag" id="drag">&#xf047;&nbsp; 拖动</span>
+    </template>
+</script>
+<script type="text/x-template" id="tr">
+    <tr id="{{cid}}">
+        <template v-component="childrenTd" v-repeat="children"></template>
+    </tr>
+</script>
+
+<script type="text/x-template" id="td">
+    <td class="cell" v-el="cid" id="{{cid}}">
+        <template v-component="component" v-repeat="children">
+            
+        </template>
+    </td>
+</script>
+
+<script type="text/x-template" id="component">
+        <span class="cui-component" v-if="tagType=='span'" id={{cid}} uiType="{{uiType}}"></span> 
+        <div class="cui-component" v-if="tagType=='div'" id={{cid}} uiType="{{uiType}}"></div>  
+        <table class="cui-component"  v-if="tagType=='table'" id={{cid}} uiType="{{uiType}}"></table>
+        <div class="cIndicator" id="{{cid}}_indicator" data-uiid="{{cid}}" data-foruitype="{{uiType}}">
+            <div class="dot a"></div>
+            <div class="dot b"></div>
+            <div class="dot c"></div>
+            <div class="dot d"></div>
+            <div class="dot e"></div>
+            <div class="dot f"></div>
+            <div class="dot g"></div>
+            <div class="dot h"></div>
+        </div>  
+</script>
+
+<script type="text/javascript" src="/web/cap/bm/common/top/js/jquery.js"></script>
+<script type="text/javascript" src="/web/cap/bm/common/base/js/comtop.cap.js"></script>
+<script type="text/javascript" src="lib/lodash.js"></script>
+<script type="text/javascript" src="lib/vue.js"></script>
+<script type="text/javascript" src="/web/cap/bm/common/cui/js/comtop.ui.min.js"></script>
+<script type="text/javascript" src="/web/cap/bm/common/cui/js/comtop.ui.editor.min.js"></script>
+<script type="text/javascript" src="lib/jquery.draggable.js"></script>
+<script type="text/javascript" src="lib/jquery.droppable.js"></script>
+<script type="text/javascript" src="lib/utils.js"></script>
+<script type="text/javascript" src="table.js"></script>
+<script type="text/javascript">
+    $(function(){   
+        CAPEditor.init();
+    });
+
+</script>
+</body>
+</html>

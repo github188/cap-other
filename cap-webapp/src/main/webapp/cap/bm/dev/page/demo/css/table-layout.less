@@ -1,0 +1,274 @@
+body{
+  font-size: 14px;
+  font-family: "MICROSOFT YAHEI";
+}
+.f_usn{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  -o-user-select:none;
+  user-select:none;
+}
+.bl_main .bl_top {
+  background-color: #003c78;
+}
+.bl_main .bl_top, .bl_main .bl_left, .bl_main .bl_center, .bl_main .bl_right, .bl_main .bl_bottom{
+  position: static;
+}
+
+
+
+.top {
+  height: 100%;
+  background-color: #003c78;
+  color: #eee;
+  .btn-container{
+    padding-top: 10px;
+    text-align: center;
+  }
+}
+
+.left-container,.right-container{
+  background-color: #ccc;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 2px;
+
+}
+.left-container h3{
+  margin: 8px;
+  font-size: 16px;
+}
+
+.component-list{
+  padding-left:15px;
+  margin: 10px;
+  li{
+    padding: 5px;
+    list-style: none;
+  }
+  .component{
+    width:200px;
+    cursor:move;
+    &:hover{
+      background-color: #FAFAFA;
+    }
+  }
+}
+
+
+.layout-form{
+  padding: 5px;
+
+}
+#test-table{
+  width:100%;
+
+}
+#test-table td{
+  padding: 5px;
+  text-align: left;
+}
+#test-table td.form-label{
+  text-align: right;
+  width:25%;
+}
+.table{
+  width: 100%;
+  cellspacing:0;
+  border-top: dotted 1px #ccc;
+  border-left: dotted 1px #ccc;
+  margin-top:5px ;
+}
+
+.table td.cell{
+  padding: 5px;
+  height:30px;
+  border-right:dotted 1px #ccc;
+  border-bottom:dotted 1px #ccc;
+}
+
+.over{
+
+  background-color: rgba(254,157,96, .4);
+
+}
+
+
+.customform .td_content{
+  text-align: left;
+}
+.t12{
+  width:percentage(1/1);
+}
+.t11{
+  width:percentage((1/12)*11);
+}
+.t10{
+  width:percentage((1/12)*10)
+}
+.t9{
+  width:percentage((1/12)*9);
+}
+.t8{
+  width:percentage((1/12)*8);
+}
+.t7{
+  width:percentage((1/12)*7);
+}
+
+.t6{
+  width:percentage((1/12)*6);
+}
+
+.t5{
+  width:percentage((1/12)*5);
+}
+
+.t4{
+  width:percentage((1/12)*4);
+}
+
+.t3{
+  width:percentage((1/12)*3);
+}
+
+.t2{
+  width:percentage((1/12)*2);
+}
+
+.t1{
+  width:percentage((1/12)*1);
+}
+
+.left{
+  text-align: left;
+}
+.right{
+  text-align: right;
+}
+.center{
+  text-align: center;
+}
+.table td:hover{
+  cursor:pointer;
+  background-color: #F0F0EE;
+}
+.container{
+  padding: 5px;
+  box-sizing: border-box;
+  height: 100%;
+
+/*            width:1000px;
+            margin: 0 auto;*/
+}
+
+.indicator{
+  position: absolute;
+  display: none;
+  width:500px;
+  border: dotted 1px #0078e7;
+  height:30px;
+  top: 95px;
+  left:100px
+}
+.area{
+  border: dotted 2px red;
+  box-sizing: border-box;
+  padding:3px;
+  min-height: 20px;
+}
+.hide{
+  display: none;
+}
+#eventcover {
+  position: absolute;
+  top:0;
+  left:0;
+  height: 100%;
+  width:100%;
+  z-index: 5;
+  display: none;
+}
+#arrow{
+  position: absolute;
+  color:red;
+  font-size: 12px;
+  font-weight: bold;
+  top:50px;
+  left:250px;
+  height: 20px;
+  line-height: 20px;
+  display: none;
+}
+.selectholder{
+  position: absolute;
+  background-color: rgba(254,157,96, .4);
+  display: none;
+}
+/**/
+
+.cIndicator{
+   position: absolute;
+   background-color: transparent;
+  .dot{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ff6600;
+    margin: 0;
+    border-radius: 1px;
+    border: 1px solid #dd5500;
+    display: none;
+  }
+   &.selected{
+     .dot{
+       display: block;
+     }
+      background-color: rgba(254,157,96, .2);
+     .a{top:-3px;left:-3px;}
+     .b{top:-3px;left:50%;margin-left: -3px;}
+     .c{top:-3px;right:-3px;}
+     .d{top:50%;margin-top: -3px;right:-3px;}
+     .e{bottom:-3px;right:-3px;}
+     .f{bottom:-3px;left:50%;margin-left: -3px;}
+     .g{bottom:-3px;left:-3px;}
+     .h{top:50%;margin-top: -3px;left:-3px;}
+   }
+}
+
+.right-menu{
+   position: absolute;
+   width:200px;
+   border: solid 1px #ccc;
+   display: none;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px #aaa;
+   padding: 2px 0;
+   li{
+     list-style: none;
+   }
+   a{
+     text-decoration: none;
+     color:#333;
+     padding: 5px 15px;
+     display: block;
+     &:hover{
+       background-color: #4281F4;
+       color:#fff;
+     }
+     &.disable{
+        color:#ccc;
+        &:hover{
+          background-color: transparent;
+          color:#ccc;
+        }
+     }
+   }
+
+}
+
+.cui-label {
+  line-height: 28px;
+  display: inline-block;
+}

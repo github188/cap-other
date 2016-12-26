@@ -1,0 +1,376 @@
+/**chrome浏览器scroll bar样式定义*/
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar-button {
+  width: 9px;
+  height: 12px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAUCAYAAADRA14pAAADr0lEQVRYR71Yy04iQRQtE10IRiSBOLbOUvZmfkIlLHXjI+jCDzAm8w8TJKxZyENdqEui8BPuDVtsHCNGQcFEWUzdSt/KtbqqqZ44U0kn1V2n69xz63W6x5h9iXFoNADe521dftnibJlt+7PCjdmycpzz9vbmmvCTk5PzvK0NuNvbWyNuYWEBcbbUX8obSvBgMDAKiUQiUrDLi0nNPC9eYqwFfyWvTvAPHsm1JhqHEl9dXbHV1VUJo4Lv7u6k4JOTE7a5uSlxc3Nz/0ww5VXjR15VMIjFoop2+v2+EAJisaDoaDQqR/j+/l7gjo+PJW5ra0vUZ2dnqWDko1zqM+fi4kL0RxOMMaytrUneXC4ncMhFYzg4OBA4KpiK1Yl2Xl9fXSqWip6ampLEDw8PbrVa9U2S7e1tlkwmdYIBC6J1CXfOz8/ljAHRNIbFxcXs0tJShb/rHB4eShxw0RgymczPVCr1CwWrRCOJeQesVqtJUevr61JwPp+XxHt7e6xYLErc/v6+OqVHJvrl5cWt1+u+BEIMNzc3UvDj46NbqYD2zwViaLfbWsGBU+vs7EwIASIow+GQYSA8e5K4UCgIHBBBeX9/Z+VyWdT5CAliJabApdTr9UR/VDTGQPeO5+dngUMuGgPiQu3S3W7XHR8fl2IxaHjWbDalYAhwYmJCNH98fEht8KzVaukEA8a4WQIvdgKiacJjsZicWZgYwJZKJZlwiGF6etq3hpWk+24dzKAOODMzI4lhrZs6I2t9FB+2+3ghcZjIIF4YCJiFUJA31AjbCrY8N/9aMH2RCrbhDSP4OydKBETZ4W09fn3jV8SAG/Dnv/kFFtS22PC2eGdWOJNg3fnos3iXl5ci6HQ6zTxryVRbeXp6KjAbGxvMYCt1XDQZgpdy0UbV0lI+ikNuk9NCLN21fU4LQXA2ersgbP+fXBZiwG05jqNzWUE7NLwueHVmBxrpLg3c4OwoJ9aR+6udFgvhsugA/DeHZ3JaWi+tOi1q9bxdkHU6nU8uCxwPlkQiEeSjTaKFw8M+1JGmDg+4EUddFsSA3KFGWGcAVlZWBId3zrGnpyff4Z/NZgUmHo+bBIc2Hgqv+Cy14Q61hlUDgNkEcs8AMPXwR8zOzo48/Olc5vWRaxh4qctCsdCPajzAcFBOrI8yHtpdWj2HG42G6G95eZl55yHDLyokOjo6EtXd3V1Gvqh061e3jAAnjAfloi/Tcxi4KR/FIXeYc9jmFwpw2PwGUgY58NaG1/rX0h9d1DUzJEP0JgAAAABJRU5ErkJggg==);
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
+::-webkit-scrollbar-button:vertical:start {
+  background-position: 0px 0px;
+}
+::-webkit-scrollbar-button:vertical:start:hover {
+  background-position: -10px 0px;
+}
+::-webkit-scrollbar-button:vertical:start:active {
+  background-position: -20px 0px;
+}
+::-webkit-scrollbar-button:vertical:end {
+  background-position: -30px 0px;
+}
+::-webkit-scrollbar-button:vertical:end:hover {
+  background-position: -40px 0px;
+}
+::-webkit-scrollbar-button:vertical:end:active {
+  background-position: -50px 0px;
+}
+::-webkit-scrollbar-button:horizontal:start {
+  background-position: 0px -11px;
+}
+::-webkit-scrollbar-button:horizontal:start:hover {
+  background-position: -10px -11px;
+}
+::-webkit-scrollbar-button:horizontal:start:active {
+  background-position: -19px -11px;
+}
+::-webkit-scrollbar-button:horizontal:end {
+  background-position: -30px -11px;
+}
+::-webkit-scrollbar-button:horizontal:end:hover {
+  background-position: -40px -11px;
+}
+::-webkit-scrollbar-button:horizontal:end:active {
+  background-position: -50px -11px;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #E7E7E7;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  -webkit-border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #F6F6F6;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+}
+::-webkit-scrollbar-thumb:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#e4e4e4), to(#f4f4f4));
+}
+::-webkit-scrollbar-corner {
+  background-color: #f1f1f1;
+  -webkit-border-radius: 1px;
+}
+body {
+  font-size: 14px;
+  font-family: "MICROSOFT YAHEI";
+}
+.f_usn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.bl_main .bl_top {
+  background-color: #003c78;
+}
+.bl_main .bl_top,
+.bl_main .bl_left,
+.bl_main .bl_center,
+.bl_main .bl_right,
+.bl_main .bl_bottom {
+  position: static;
+}
+.drag_button {
+  background: #999999;
+  padding: 3px;
+  border-radius: 3px;
+  color: #fff;
+  cursor: move;
+  line-height: 22px;
+  height: 24px;
+  display: inline;
+  vertical-align: baseline;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.top {
+  height: 100%;
+  background-color: #003c78;
+  color: #eee;
+}
+.top .btn-container {
+  padding-top: 10px;
+  text-align: center;
+}
+.attr-title {
+  margin: 0;
+  padding: 0 0 0 20px;
+  background: #337ab7;
+  line-height: 34px;
+  color: #fff;
+}
+.left-container {
+  background-color: rgba(204, 204, 204, 0.5);
+  box-sizing: border-box;
+}
+.left-container p {
+  margin: 0;
+  padding-left: 8px;
+  font-weight: bold;
+  background-color: #337ab7;
+  color: #fff;
+  cursor: pointer;
+  line-height: 45px;
+  height: 45px;
+  font-size: 16px;
+}
+.right-container {
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.layout-list {
+  padding: 5px;
+  margin: 0;
+}
+.common-list {
+  padding: 0;
+  margin: 0;
+}
+.common-list li {
+  padding: 5px 0 5px 25px;
+  list-style: none;
+  cursor: move;
+}
+.common-list .component {
+  line-height: 22px;
+  height: 22px;
+}
+.common-list .component:hover {
+  background-color: #FAFAFA;
+}
+.layout-form {
+  padding: 5px;
+}
+#test-table {
+  width: 100%;
+}
+#test-table td {
+  padding: 5px;
+  text-align: left;
+}
+#test-table td.form-label {
+  text-align: right;
+  width: 25%;
+}
+.table {
+  width: 100%;
+  cellspacing: 0;
+  border-top: dotted 1px #ccc;
+  border-left: dotted 1px #ccc;
+  margin-top: 5px ;
+}
+.table td.cell {
+  padding: 5px;
+  height: 30px;
+  border-right: dotted 1px #ccc;
+  border-bottom: dotted 1px #ccc;
+}
+.over {
+  background-color: rgba(254, 157, 96, 0.4);
+}
+.customform .td_content {
+  text-align: left;
+}
+.t100 {
+  width: 100%;
+}
+.t50 {
+  width: 50%;
+}
+.t33 {
+  width: 33.33333%;
+}
+.t25 {
+  width: 25%;
+}
+.t20 {
+  width: 20%;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.table > tbody > tr > td:hover {
+  cursor: pointer;
+  background-color: #F0F0EE;
+}
+.container {
+  padding: 5px;
+  box-sizing: border-box;
+  height: 100%;
+  /*            width:1000px;
+            margin: 0 auto;*/
+}
+#ui-attr {
+  height: 305px;
+  border: none;
+}
+.indicator {
+  position: absolute;
+  display: none;
+  width: 500px;
+  border: dotted 1px #0078e7;
+  height: 30px;
+  top: 95px;
+  left: 100px;
+}
+.area {
+  border: dotted 2px red;
+  box-sizing: border-box;
+  padding: 3px;
+  min-height: 20px;
+}
+.hide {
+  display: none;
+}
+#eventcover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: none;
+}
+#arrow {
+  position: absolute;
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+  top: 50px;
+  left: 250px;
+  height: 20px;
+  line-height: 20px;
+  display: none;
+}
+.selectholder {
+  position: absolute;
+  background-color: rgba(254, 157, 96, 0.4);
+  display: none;
+}
+/**/
+.cIndicator,
+.layout-indicator {
+  position: absolute;
+  background-color: transparent;
+  z-index: 100;
+}
+.cIndicator .dot,
+.layout-indicator .dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ff6600;
+  margin: 0;
+  border-radius: 1px;
+  border: 1px solid #dd5500;
+  display: none;
+}
+.cIndicator.selected,
+.layout-indicator.selected {
+  background-color: rgba(254, 157, 96, 0.2);
+}
+.cIndicator.selected .dot,
+.layout-indicator.selected .dot {
+  display: block;
+}
+.cIndicator.selected .a,
+.layout-indicator.selected .a {
+  top: -3px;
+  left: -3px;
+}
+.cIndicator.selected .b,
+.layout-indicator.selected .b {
+  top: -3px;
+  left: 50%;
+  margin-left: -3px;
+}
+.cIndicator.selected .c,
+.layout-indicator.selected .c {
+  top: -3px;
+  right: -3px;
+}
+.cIndicator.selected .d,
+.layout-indicator.selected .d {
+  top: 50%;
+  margin-top: -3px;
+  right: -3px;
+}
+.cIndicator.selected .e,
+.layout-indicator.selected .e {
+  bottom: -3px;
+  right: -3px;
+}
+.cIndicator.selected .f,
+.layout-indicator.selected .f {
+  bottom: -3px;
+  left: 50%;
+  margin-left: -3px;
+}
+.cIndicator.selected .g,
+.layout-indicator.selected .g {
+  bottom: -3px;
+  left: -3px;
+}
+.cIndicator.selected .h,
+.layout-indicator.selected .h {
+  top: 50%;
+  margin-top: -3px;
+  left: -3px;
+}
+.right-menu {
+  position: absolute;
+  width: 200px;
+  border: solid 1px #ccc;
+  display: none;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px #aaa;
+  z-index: 101;
+  padding: 2px 0;
+}
+.right-menu li {
+  list-style: none;
+}
+.right-menu a {
+  text-decoration: none;
+  color: #333;
+  padding: 5px 15px;
+  display: block;
+}
+.right-menu a:hover {
+  background-color: #4281F4;
+  color: #fff;
+}
+.right-menu a.disable {
+  color: #ccc;
+}
+.right-menu a.disable:hover {
+  background-color: transparent;
+  color: #ccc;
+}
+.cui-label {
+  line-height: 28px;
+  display: inline-block;
+}

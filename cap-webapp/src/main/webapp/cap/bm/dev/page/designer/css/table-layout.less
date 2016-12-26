@@ -1,0 +1,476 @@
+//out: table-layout.css, sourcemap: false, compress: false
+@import url(rest.less);
+@import url(scroll-bar.less);
+//用于字体颜色
+@fontcolor:#666;
+//用于工具栏中的背景颜色
+@toolsBgcolor:rgba(204, 204, 204, 0.5);
+
+@titlecolor:#337ab7;
+
+/*文本超出显示省略号 Ellipsis*/
+.text-autocut{
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-text-overflow:ellipsis;
+  -khtml-text-overflow: ellipsis;
+  -icab-text-overflow: ellipsis;
+  -moz-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+/*清除浮动 */
+.clearfix{
+  *zoom:1;
+  &:before,&:after{
+    content:"";
+    display:table;
+    line-height:0;
+  }
+  &:after{
+    clear:both;
+  }
+}
+/*文字禁止选择*/
+.noselect{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  -o-user-select:none;
+  user-select:none;
+}
+/**表格样式**/
+.tableCss(@color:#ccc){
+  width: 100%;
+  margin-top:5px ;
+  td.cell{
+    padding: 5px;
+    height:30px;
+    transition:background-color 0.5s;
+    border-right:dotted 1px @color;
+    border-bottom:dotted 1px @color;
+  }
+  &>tbody>tr>td:hover{
+    cursor:pointer;
+    background-color: #F0F0EE;
+  }
+}
+
+.drag_button{
+    background: lighten(#000,60%);
+    padding: 5px 7px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 12px;
+    cursor: move;
+    display: inline-block;
+    line-height: 1;
+    vertical-align:baseline;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.switch_button{
+  letter-spacing: 0;
+  font-size: 12px;
+  padding: 5px 7px;
+  border-radius: 12px;
+  line-height: 1;
+  color:#fff;
+  background-color:lighten(@titlecolor,20%);
+  text-align: center;
+  vertical-align: baseline;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+//树形模块
+.attr-title{
+  margin: 0;
+  padding: 0 0 0 20px;
+  background: @titlecolor;
+  line-height: 34px;
+  color: #fff;
+  text-align: right;
+  .u-title{
+    float:left;
+  }
+  .u-exchange{
+    margin-right: 8px;
+    padding:2px;
+    cursor: pointer;
+  }
+}
+//组件模型
+.m-plate{
+   overflow: auto;
+  .u-plate{
+      li{
+        padding: 3px 0 0 10px;
+        font-size: 12px;
+        &:hover{
+          background: rgba(204, 204, 204, 0.5)
+        }
+      }
+  }
+}
+//左侧工具栏
+.left-container{
+  background-color: @toolsBgcolor;
+  box-sizing: border-box;
+  min-height: 100%;
+  .title{
+    margin: 0;
+    padding-left: 8px;
+    font-weight: bold;
+    background-color:@titlecolor;
+    border-bottom: 1px solid #fff;
+    color:#fff;
+    line-height: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+}
+
+.u-left-menu{
+  color:@fontcolor;
+  .level1{
+    cursor: pointer;
+    margin: 0; 
+    padding-left: 8px;
+    font-weight: bold;
+    background-color:@titlecolor;
+    border-bottom: 1px solid #fff;
+    color:#fff;
+    line-height: 34px;
+    height: 34px; 
+    font-size: 16px;
+  }
+  .level2{
+    &:before{
+      content: '\f114';
+      letter-spacing: 0.3em;
+    }
+    &.on:before{
+      content: "\f115";
+      letter-spacing: 0.3em;
+    }
+    line-height: 22px;
+    height: 22px;
+    cursor: pointer;
+  }
+  .component{
+    line-height: 30px;
+    height: 30px;
+    transition:all 0.5s;
+    &:hover{
+      background-color: fadein(@toolsBgcolor, 40%);
+    }
+  }
+}
+
+.u-pullicon{
+  position: relative;
+  .u-pull-btn{cursor: pointer;display: inline-block;padding-right: 5px;}
+  &.open>.u-pull-menu{
+    display: block;
+   }
+  .u-pull-menu{
+      position: absolute;
+      display: none;
+      top:100%;
+      left: -54px;
+      width:70px;
+      background-color: #fff;
+      font-size: 12px;
+      z-index: 100;
+      box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      border:1px solid rgba(0,0,0,.15);
+      li{
+        height: 28px;
+        line-height: 28px;
+        >a{
+          padding:0 5px;
+          color:#333;
+          font-weight: normal;
+          display: block;
+          &:hover{
+            background-color: #f5f5f5;
+          }
+        }
+    }
+  }
+}
+
+.m-toolsbar{
+  height: 100%;
+  float: left;
+  .u-tb-title{
+    display: inline-block;
+    width:200px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  .u-tb-button{
+    display: inline-block;
+    text-align: center;
+    font-size: 18px;
+    cursor:pointer;
+    width: 32px;
+    box-sizing: content-box;
+  }
+}
+
+.layout-list{
+  padding: 5px;
+  margin: 0;
+  li{
+    color:@fontcolor;
+  }
+}
+
+.common-list{
+  padding:0;
+  margin:0;
+  transition: all .3s ease;
+  &.expand-enter,
+  &.expand-leave {
+    height: 0;
+    opacity: 0;
+  }
+  li{
+    padding: 5px 0 5px 25px;
+    list-style: none;
+    color:@fontcolor;
+  }
+  .component{
+    line-height: 22px;
+    height: 22px;
+    transition:all 0.5s;
+    &:hover{
+      background-color: fadein(@toolsBgcolor, 40%);
+    }
+  }
+}
+
+
+.layout-form{
+  padding: 5px;
+}
+
+
+.table{
+  .tableCss;
+  border-top: dotted 1px #ccc;
+  border-left: dotted 1px #ccc;
+}
+.u-table{
+  table-layout: fixed;
+}
+.form-table{
+  .tableCss;
+  border:1px solid fadeout(red, 70%);
+}
+
+.over{
+  background-color: rgba(254,157,96, .4);
+}
+
+.left{
+  text-align: left;
+}
+.right{
+  text-align: right;
+}
+.center{
+  text-align: center;
+}
+.container{
+  padding: 5px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  min-height: 100%;
+}
+// 右边属性编辑区域
+.m-ui-container{
+  height: 50%;
+  transition: all 0.3s ease;
+  iframe{
+    border: none;
+  }
+}
+//右边模型树样式
+.m-ui-treeData{
+  height: 50%;
+  background-color: #fff;
+  box-sizing: border-box;
+  .ui-search{
+    height: 28px;
+    position: relative;
+    padding: 5px 10px 0;
+    &:before{
+        content: '\f002';
+        position: absolute;
+        top: 7px;
+        left: 20px;
+        color: #bebdaa;
+    }
+    input{
+      border: solid 1px #bebdaa;
+      transition:.5s;
+      width: 220px;
+      padding: 3px 4px 3px 28px;
+      border-radius: 13px;
+      outline: none;
+    }
+  }
+}
+
+.u-dragicon{
+  background-color:rgba(255, 255, 255, 0.9);
+  border: 1px dashed #bbb;
+  color:@fontcolor;
+  padding: 5px;
+  z-index: 2;
+}
+ul.u-menu{
+  position:  absolute;
+  box-shadow: 2px 2px 2px #aaa;
+  width:200px;
+  background-color: #fff;
+  border: solid 1px #ccc;
+  z-index: 101;
+  padding: 0; 
+  &>li{
+    position: relative;
+    list-style: none;
+    &>ul.u-menu{
+      display: none;
+      top: 0; 
+      right: -202px;
+    }
+  }
+  &>li.on{
+    &>ul.u-menu{
+      display: block;
+    }
+  }
+}
+.indicator{
+  position: absolute;
+  display: none;
+  width:200px;
+  border: dotted 1px #0078e7;
+  height:30px;
+  top: 95px;
+  left:100px;
+  z-index: 4;
+}
+.u-table-drag{
+  width:160px;
+  border: dotted 1px #0078e7;
+  height:30px;
+  padding-right: 40px;
+  line-height: 30px;
+  text-align: right;
+  background-color: #fff;
+  z-index: 4;
+}
+.area{
+  border: dotted 2px red;
+  box-sizing: border-box;
+  padding:3px;
+  min-height: 20px;
+}
+.hide{
+  display: none;
+}
+#eventcover {
+  position: absolute;
+  top:0;
+  left:0;
+  height: 100%;
+  width:100%;
+  z-index: 5;
+  display: none;
+}
+#arrow{
+  position: absolute;
+  color:red;
+  font-size: 12px;
+  font-weight: bold;
+  top:5px;
+  left:250px;
+  height: 20px;
+  line-height: 20px;
+  display: none;
+}
+.selectholder{
+  position: absolute;
+  background-color: rgba(254,157,96, .4);
+  display: none;
+}
+/**/
+
+.cIndicator,.layout-indicator{
+   position: absolute;
+   background-color: transparent;
+   z-index: 2;
+  .dot{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ff6600;
+    margin: 0;
+    border-radius: 1px;
+    border: 1px solid #dd5500;
+    display: none;
+  }
+   &.selected{
+     .dot{
+       display: block;
+     }
+      background-color: rgba(254,157,96, .2);
+     .a{top:-3px;left:-3px;}
+     .b{top:-3px;left:50%;margin-left: -3px;}
+     .c{top:-3px;right:-3px;}
+     .d{top:50%;margin-top: -3px;right:-3px;}
+     .e{bottom:-3px;right:-3px;}
+     .f{bottom:-3px;left:50%;margin-left: -3px;}
+     .g{bottom:-3px;left:-3px;}
+     .h{top:50%;margin-top: -3px;left:-3px;}
+   }
+}
+
+.right-menu{
+   display: none;
+   li{
+     list-style: none;
+   }
+   i{
+    float:right;  
+   }
+   a{
+     text-decoration: none;
+     color:#333;
+     line-height: 28px;
+     padding: 0 15px;
+     display: block;
+     &:hover{
+       background-color: #4281F4;
+       color:#fff;
+     }
+     &.disable{
+        color:#ccc;
+        &:hover{
+          background-color: transparent;
+          color:#ccc;
+        }
+     }
+   }
+
+}
+
+.cui-label-drag {
+  line-height: 28px;
+  display: inline-block;
+}

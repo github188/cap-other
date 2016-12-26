@@ -1,0 +1,115 @@
+html{
+  padding-top:50px;  /*上部设置为50px*/
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow:hidden;
+}
+html,body{
+  margin:0;
+  height: 100%;
+  width:100%;
+  color:#333;
+}
+.top{
+  width:100%;
+  height:50px;  /*高度和padding设置一样*/
+  margin-top: -50px; /*值和padding设置一样*/
+  background-color: #003c78;
+  overflow: auto;
+  color: #eee;
+  position:relative;
+}
+.main{
+  height: 100%;
+  width:100%;
+  overflow: auto;
+
+}
+
+.left{
+  float: left;
+  width:200px;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #efefef;
+  padding: 5px;
+}
+
+.right{
+  box-sizing: border-box;
+  float: right;
+  width:200px;
+  height: 100%;
+  background-color: #efefef;
+
+}
+.center{
+  margin: 0 200px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+
+.container{
+   width:100%;
+   height: 100%;
+   box-sizing: border-box;
+   border: solid 1px #aaa;
+   position: relative;
+}
+
+.cui-plugin{
+  z-index: 10000;
+  box-sizing: border-box;
+  width:95px;
+  float:left;
+  padding: 15px;
+  &:hover{
+    background-color:rgba(255,255,255,0.8) ;
+  }
+}
+
+.border-box{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+ul.tabnav li{
+  display:inline-block;
+  *display: inline;
+  *zoom:1;
+  list-style:none;
+
+}
+ul.tabnav li:first-child{
+  margin-left: 5px;
+}
+.tabnav li a{
+  background-color:#E2EDF4;
+  border:1px solid #8CACBB;
+  color:#666;
+  display:block;
+  padding:0 8px;
+  line-height:30px;
+  float:left;
+  font-weight:bold;
+  text-decoration:none;
+}
+.tabnav li a.active{
+  background-color:#efefef;
+  border-bottom:1px solid #efefef;
+  _position:relative;
+}
+.tabNavContainer .tabnav{
+  border-bottom:1px solid #8CACBB;
+  height:31px;
+  _overflow:hidden;
+  padding: 0;
+  margin: 0;
+}
+
+
+

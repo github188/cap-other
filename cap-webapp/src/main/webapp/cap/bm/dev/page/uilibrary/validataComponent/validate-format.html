@@ -1,0 +1,27 @@
+
+    	<tr>
+	        <td class="cap-td" style="text-align: right;width:120px">
+				<font color="red">*</font>m：
+	        </td>
+	        <td class="cap-td" style="text-align: left;">
+	        	<span cui_input id="rulem" ng-model="selectValidateVo.rule.m" width="100%" validate="ruleData.format.m" emptytext="验证不通过时的提示信息。"></span>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td class="cap-td" style="text-align: right;width:120px">
+	        	pattern：
+	        </td>
+	        <td class="cap-td" style="text-align: left;">
+	        	<span cui_input id="rulePattern" ng-model="selectValidateVo.rule.pattern" width="100%" emptytext="验证正则表达式，例如：(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)"></span>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td class="cap-td" style="text-align: right;width:120px">
+				negate：
+	        </td>
+	        <td class="cap-td" style="text-align: left;">
+	        	<input type="radio" name="ruleNegate"  ng-model="selectValidateVo.rule.negate" value="true"/>是
+				<input type="radio" name="ruleNegate"  ng-model="selectValidateVo.rule.negate" value="false"/>否
+	        </td>
+	    </tr>
+    

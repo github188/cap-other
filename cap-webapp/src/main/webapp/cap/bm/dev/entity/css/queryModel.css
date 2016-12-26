@@ -1,0 +1,42 @@
+ .queryModelText {
+   color: blue;
+   text-decoration: underline;
+   cursor: pointer;
+ }
+
+ .queryModel_tr {
+   height: 30px;
+ }
+
+ .queryModel_a {
+   height:30px;
+   color: #39c;
+   text-decoration: underline;
+   cursor: pointer;
+}
+
+.queryModel_item{
+  list-style-type:none;
+}
+
+.queryModel_item li{
+  width:100px; height:30px; float:left;
+}
+
+.cap-queryModel-td{
+  padding: 3px 0px 3px 0px;
+  vertical-align: top;
+}
+.queryModel-del{
+  cursor: pointer;
+}
+.queryModel_shadow{
+  padding: 4px;
+  border: solid 1px #E5E5E5;
+  outline: 0;
+  font: normal 13px/100% Verdana, Tahoma, sans-serif;
+  background: #FFFFFF;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;    
+}

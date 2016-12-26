@@ -1,0 +1,24 @@
+<table class="commone_attr_table">
+    <tr>
+            <td style="text-align: right;width: 20%">
+                    validate
+            </td>
+            <td style="text-align: right;width: 30%">
+                    <span width="100%" cui-clickinput ng-model="attriViewVO.pageConfigVO.component.validate" ng-click="openValidateAreaWindow(attriViewVO)">
+    </span>
+            </td>
+            <td style="text-align: right;width: 20%">
+                    model
+            </td>
+            <td style="text-align: right;width: 30%">
+            <span cui_pulldown ng-model="attriViewVO.pageConfigVO.component.model" value_field="id" label_field="text" width="100%">
+                            <a value="all">全能</a>
+                            <a value="date">日期</a>
+                            <a value="year">年度</a>
+                            <a value="quarter">季度</a>
+                            <a value="month">月份</a>
+                            <a value="week">周</a>
+               </span>
+            </td>
+    </tr>
+</table>

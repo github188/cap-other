@@ -1,0 +1,151 @@
+@CHARSET "UTF-8";
+body{
+	background-color:#f5f5f5;
+}
+.main{
+	margin: 10px;
+	overflow: auto;
+}
+.div_method_list{
+	width: 400px;
+	float:left;
+	background-color: inherit;
+	padding-left: 5px;
+	padding-bottom: 5px;
+}
+.div_method_list_right_boder{
+	border-right: 1px solid #ddd;
+	padding-right:5px;
+}
+.method_list_tab{
+	padding-top:5px;
+	text-align: left;
+}
+
+.div_method_Detail_left_boder{
+	border-left: 1px solid #ddd;
+	padding-left:5px;
+}
+.div_method_Detail{
+	background-color: inherit;
+	float:right;
+	width: calc(100% - 430px);
+	opacity:1;
+	text-align: left;
+}
+.div_method_Detail_current{
+	position: relative;
+	left: 0px;
+	top:0px;
+	right:20px;
+	width:100%;
+}
+#comment_new_method_label{
+	opacity: 0.2;
+	font-size:30px;
+	text-align: center;
+	line-height: 5;
+}
+.CodeMirror {
+	height: 100%;
+}
+		
+.right-area{
+	border: 1px solid #ccc;
+	height: 100px;
+	width: 100%;
+	overflow:auto;
+}
+		
+.CodeMirror-fullscreen {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+}
+#addMethodSQL .button-label{
+      	 color:red;
+}
+#overrideParent{
+	color:red;
+      	font-family:微软雅黑;
+      	cursor: pointer;
+}
+#javaMethodName .cui_inputCMP_wrap{
+      	background:#ffffff;
+}
+
+.method-name{
+	margin-bottom: 5px; 
+}
+
+.method-div-group{
+	margin:10px 0px 10px 10px;
+}
+.method-desc-mar{
+	margin-top:5px;
+}
+#relationMethod{
+	padding: 5px 0px;
+}
+.java-key-word{
+	color: red;
+}
+.span-label{
+	font-style: inherit;
+	font-weight:600;
+}
+.span-label-method{
+	width: 85px;
+    display: inline-block;
+}
+.span-label-method-alias{
+	padding-left: 60px;
+}
+.cap-group{
+	color: #39c;
+	padding-right: 20px;
+	cursor:pointer;
+}
+
+.cap-group-icon-off{
+	background-image: url("../images/off.png");
+	background-position: right;
+	background-repeat: no-repeat;
+}
+
+.cap-group-icon-on{
+	background-image: url("../images/on.png");
+	background-position: right;
+	background-repeat: no-repeat;
+}
+.paramter{
+	cursor:pointer;
+	color:#2b71d9;
+}
+.focus-show{
+	display: block;
+	float: left;
+	position: fixed;
+}
+
+.paramter-move-left{
+	background-image: url("../images/export.gif");
+	background-position: right;
+	background-repeat: no-repeat;
+	padding-right: 15px;
+	margin-right:5px;
+}
+
+.paramter-move-right{
+	background-image: url("../images/import.gif");
+	background-position: right;
+	background-repeat: no-repeat;
+	padding-right: 15px;
+	margin-right:5px;
+}
+.floatUp{
+	
+}

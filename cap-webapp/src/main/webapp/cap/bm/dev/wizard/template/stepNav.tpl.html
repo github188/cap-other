@@ -1,0 +1,28 @@
+<!-- <button ng-repeat="resource in resourceSet" ng-click="switch('entityInfoEdit.jsp')">实体信息编辑</button>
+<button ng-click="switch('entityInfoEdit.jsp')">实体信息编辑</button>
+<button style="background-color: red;" ng-click="switch('entityAttrEdit.jsp')">实体属性编辑</button>
+<button disabled="disabled">页面控件定义</button>
+<button disabled="disabled" ng-click="switch('codeGeneration.jsp')">代码生成</button> -->
+<div>
+    <nav style="margin:0 auto;width: 1012px;">
+        <ol class="cd-multi-steps text-center" style="position: absolute;left: 0;right:0; margin:0 auto;">
+    		<!-- <li class="visited"><a href="#0">购物车</a></li>
+    		<li class="visited" ><a href="#0">结算付款</a></li>
+    		<li class="current"><em>送货</em></li>
+    		<li><em>验货收货</em></li> -->
+            <ng-repeat ng-repeat="resource in resourceSet track by $index + $last">
+            	<li ng-class="{'visited':$index < enableStep || $index == currentStep, 'current': $index == currentStep, 'last': $last}">
+            		<a href="###" ng-if="$index < enableStep && $index != currentStep" ng-click="showResource(resource, $index)">{{resource.name}}</a>
+            		<em ng-if="!($index < enableStep && $index != currentStep)">{{resource.name}}</em>
+            	</li>
+            </ng-repeat>
+        </ol>
+        <div style="float: right;padding-top:25px;"><!-- 
+            <button disabled="disabled" ng-click="switch('codeGeneration.jsp')">代码生成</button>
+            <button disabled="disabled" ng-click="switch('codeGeneration.jsp')">代码生成</button> -->
+            <span ng-hide="isFirst()" cui-button label="上一步" ng-click="preStep()" ></span>
+            <span ng-hide="isLast()" cui-button label="下一步" ng-click="nextStep()" ></span>
+        </div>
+        
+    </nav>
+</div>

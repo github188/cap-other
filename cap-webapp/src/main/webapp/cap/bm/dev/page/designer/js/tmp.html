@@ -1,0 +1,29 @@
+<table class="custom-grid" style="width: 100%">
+    <thead>
+        <tr>
+            <th style="width:250px">
+               	参数名称
+            </th>
+            <th>
+               	参数描述
+            </th>
+            <th style="width:300px">
+               	参数值
+            </th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr ng-repeat="pageAttributeVO in ngModel track by $index" >
+                <td style="text-align:left;">
+                    {{pageAttributeVO.attributeName}}
+                </td>
+                <td style="text-align: left;">
+                    {{pageAttributeVO.attributeDescription}}
+                </td>
+                <td style="text-align:center;">
+                	<span cui_input ng-model="pageAttributeVO.attributeValue" width="80%"></span>
+                	<span class="cui-icon" style="font-size:17pt;cursor:pointer;" bind="{{$index}}" onClick="openDataStoreSelect('pageAttributeVOList['+jQuery(this).attr('bind')+'].attributeValue',true)">&#xf022;</span>
+                </td>
+            </tr>
+       </tbody>
+</table> 
