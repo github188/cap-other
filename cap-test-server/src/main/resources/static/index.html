@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试服务器API</title>
+<script type="text/javascript" src="js/jquery-1.12.1.js"></script>
+<script type="text/javascript" src="js/jquery.fileDownload-1.4.4.js"></script>
+</head>
+<body>
+	<h2>FTP服务器API</h2>
+	<h5>
+		查看FTP服务器状态：/server/status 当前FTP服务器状态为：<span id="serverStatus"></span>
+	</h5>
+	<h5>
+		执行测试用例：/testcase/exec 执行测试用例：<input type="button" id="exec"
+			value="执行用例" />：：：：<span id="execNo"></span>
+	</h5>
+	<h5>
+		执行测试用例：/testcase/status/${execNo} 执行测试用例：<input type="button"
+			id="execStatus" value="执行状态" /> ：：：：<span id="serverStatusValue"></span>
+	</h5>
+	<h5>
+		执行测试用例：/testcase/download/${execNo} 执行测试用例：<input type="button"
+			id="download" value="下载日志" />
+	</h5>
+	<h5>
+		测试统计：/test/statistic/{execNo} 测试统计：<input type="button"
+			id="statistic" value="测试统计" />
+	</h5>
+	<h5>
+		测试报告：/test/report/{execNo} 测试报告：<input type="button"
+			id="report" value="测试报告" />
+	</h5>
+	<h5>
+		保存报告：/test/saveReport/{execNo} 保存报告：<input type="button"
+			id="saveReport" value="保存报告" />
+	</h5>
+	<h5>
+		更新测试数据：<input id="updateReport" type="button" value="更新测试数据" /><br><br>
+		需要更新的测试编号: <textarea id="testNumbers" wrap="virtual" rows="4" cols="50"></textarea>
+	</h5>
+	
+	<!-- 
+	<h5>
+		周报告：/testcase/testResultByWeek 周报告：<input type="button" id="week"
+			value="周报告" /><span id="weekData"></span>
+	</h5>
+	<h5>
+		月报告：/testcase/testResultByMonth 月报告：<input type="button" id="month"
+			value="月报告" /><span id="monthData"></span>
+	</h5>
+	<h5>
+		查询最好或者最差的排名：/testcase/topTestResult 查询最好或者最差的排名：<input type="button" id="topTestResult"
+			value="排名" /><span id="topTestResultData"></span>
+	</h5>
+	<h5>
+		按模块获取测试结果统计：/testcase/testResultByModule 按模块获取测试结果统计：<input type="button" id="testResultByModule"
+			value="模块结果统计" /><span id="testResultByModuleData"></span>
+	</h5>
+	<h5>
+		按测试用例名称获取测试结果统计：/testcase/testResultByCaseName 按测试用例名称获取测试结果统计：<input type="button" id="testResultByCaseName"
+			value="名称结果统计" /><span id="testResultByCaseNameData"></span>
+	</h5>
+	<h5>
+		根据测试编号获取测试用例集合数据：/testcase/testResult/{testUuid} ：<input type="button" id="testResult"
+			value="获取测试用例集合" /><span id="testResultData"></span>
+	</h5>
+     -->
+     
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		refreshServerStatus();
+	})
+
+	function refreshServerStatus() {
+		$.post("/server/status", function(data, status) {
+			if (data) {
+				$("#serverStatus").text(data);
+			}
+		});
+	}
+
+	var ret;
+
+	$("#exec").click(function() {
+		$.post("/testcase/exec", {
+			"url" : "http://localhost:8080/web",
+			"username" : "SuperAdmin",
+			"password" : "hello"
+		}, function(data, status) {
+			if (data) {
+				ret = data;
+				$("#execNo").text(data);
+				alert('正在执行测试，请稍等...');
+			}
+		});
+	});
+	
+	$("#testResult").click(function() {
+		var uuid = "1473667725636";
+		$.post("/testcase/testResult/" + uuid, function(data, status) {
+			if (data) {
+				console.log(data);
+				$("#testResultData").text(data);
+			}
+		});
+	});
+
+	$("#month").click(function() {
+		var startTime = new Date("Mon Nov 21 00:00:00 CST 2016");
+		var endTime =  new Date("Wed Dec 14 00:00:00 CST 2016");
+		$.post("/testcase/testResultByMonth", {
+			"startTime":startTime,
+			"endTime" : endTime
+		}, function(data, status) {
+			if (data) {
+				console.log(data)
+				$("#monthData").text(data);
+			}
+		});
+	});
+	
+	$("#topTestResult").click(function() {
+		var startTime = new Date("Mon Nov 21 00:00:00 CST 2016");
+		var endTime =  new Date("Wed Dec 14 00:00:00 CST 2016");
+		$.post("/testcase/topTestResult", {
+			"startTime":startTime,
+			"endTime" : endTime
+		}, function(data, status) {
+			if (data) {
+				console.log(data)
+				$("#topTestResultData").text(data);
+			}
+		});
+	});
+	
+	$("#testResultByModule").click(function() {
+		var startTime = new Date("Mon Oct 14 00:00:00 CST 2016");
+		var endTime = new Date("Wed Dec 14 08:00:00 CST 2016");
+		$.post("/testcase/testResultByModule", {
+			"startTime":startTime,
+			"endTime" :endTime//,
+			//"appFullName" :"/资产管理系统",
+		   // "appId" :"8E845ED6E9674E2690C8E4CC59A37654"
+		}, function(data, status) {
+			if (data) {
+				console.log(data)
+				$("#testResultByModuleData").text(data);
+			}
+		});
+	});
+	
+	$("#week").click(function() {
+		var startTime = new Date("Mon Nov 21 00:00:00 CST 2016");
+		var endTime =  new Date("Wed Dec 14 00:00:00 CST 2016");
+		$.post("/testcase/testResultByWeek", {
+			"startTime":startTime,
+			"endTime" : endTime
+		}, function(data, status) {
+			if (data) {
+				console.log(data)
+				$("#weekData").text(data);
+			}
+		});
+	});
+	
+	$("#testResultByCaseName").click(function() {
+		var arrCaseName = [];
+		arrCaseName.push("测试查询到货通知明细");
+		arrCaseName.push("清空条件_工作流测试列表页面");
+		 $.ajax({  
+             type:'post',  
+             traditional :true,  
+             url:'/testcase/testResultByCaseName',  
+             data:{"lstTestCaseName":arrCaseName,"packageId":"8E845ED6E9674E2690C8E4CC59A37654"},  
+             success:function(data){  
+            	 console.log(data);
+ 				$("#testResultByCaseNameData").text(data);
+             }  
+         });  
+
+	});
+	
+	$("#execStatus").click(function() {
+		$.post("/testcase/status/" + ret, function(data, status) {
+			if (data) {
+				$("#serverStatusValue").text(data);
+			}
+		});
+	});
+	$("#download").click(function() {
+		$.fileDownload("/testcase/download/" + ret).done(function() {
+			alert('File download a success!');
+		}).fail(function() {
+			alert('File download failed!');
+		});
+	});
+	$("#statistic").click(function() {
+		$.post("/test/statistic/" + ret, function(data, status) {
+			if (data) {
+				console.log(data)
+				$("#statistic").text(data);
+			}
+		});
+	});
+	$("#report").click(function() {
+		$.post("/test/report/" + ret, function(data, status) {
+			if (data) {
+				console.log(data)
+				$("#report").text(data);
+			}
+		});
+	});
+	$("#saveReport").click(function() {
+		$.post("/test/saveReport/" + ret, function(data, status) {
+			if (data) {
+				console.log(data)
+			}
+		});
+	});
+	$("#updateReport").click(function() {
+		var numberStr = $("#testNumbers").val();
+		if(!numberStr){
+			alert("需要输入要更新的测试编号！");
+			return;
+		}
+		var numbers = numberStr.split(",");
+		if(!numbers || numbers.length==0){
+			console.log(numbers)
+			alert("输入测试编号格式不正确！");
+			return;
+		}
+		for(i in numbers){
+			$.post("/test/saveReport/" + numbers[i], function(data, status) {
+				if (data) {
+					console.log(data)
+				}
+			});
+		}
+	});
+</script>
+</html>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.test.robot">
+	<select id="queryTestResultStatisticsByWeek" resultType="com.comtop.cap.test.robot.model.Statistics">
+		SELECT WEEK_OF_YEAR AS axisName,
+			   STR_TO_DATE('${startDateStr}','%Y%m%d') AS startTime,
+			   STR_TO_DATE('${endDateStr}','%Y%m%d') AS endTime,
+		       SUM(TEST_RESULT) AS passCount,
+		       (COUNT(TEST_RESULT) - SUM(TEST_RESULT)) AS failCount
+		  FROM CAP_RT_TEST_RESULT
+		 WHERE TEST_TIME BETWEEN  #{startTime} AND #{endTime}
+		 GROUP BY WEEK_OF_YEAR	
+	</select>
+	
+	<select id="queryTestResultStatisticsByMonth" resultType="com.comtop.cap.test.robot.model.Statistics">
+		SELECT CONCAT(TEST_TIME_YEAR , '年' , TEST_TIME_MONTH , '月') AS axisName,
+			   STR_TO_DATE('${startDateStr}','%Y%m%d') AS startTime,
+			   STR_TO_DATE('${endDateStr}','%Y%m%d') AS endTime,
+		       SUM(TEST_RESULT) AS passCount,
+		       (COUNT(TEST_RESULT) - SUM(TEST_RESULT)) AS failCount
+		  FROM CAP_RT_TEST_RESULT
+		 WHERE TEST_TIME BETWEEN #{startTime} AND  #{endTime}
+		 GROUP BY TEST_TIME_YEAR,TEST_TIME_MONTH
+	</select>
+	
+	<select id="queryTopWorstTestResultStatistics" resultType="com.comtop.cap.test.robot.model.Statistics">
+		SELECT T.appName, 
+			   T.appFullName,
+			   STR_TO_DATE('${startDateStr}','%Y%m%d') AS startTime,
+			   STR_TO_DATE('${endDateStr}','%Y%m%d') AS endTime, 
+			   T.passCount, 
+			   T.failCount
+		  FROM (SELECT APP_NAME AS appName,
+		  			   APP_FULL_NAME as appFullName,	
+		               SUM(TEST_RESULT) AS passCount,
+		               COUNT(TEST_RESULT) - SUM(TEST_RESULT) AS failCount,
+		               SUM(TEST_RESULT) / COUNT(TEST_RESULT) AS rate
+		          FROM CAP_RT_TEST_RESULT
+		         WHERE TEST_TIME BETWEEN #{startTime} AND  #{endTime}
+		         GROUP BY APP_NAME,APP_FULL_NAME) T
+		 ORDER BY T.rate ASC
+	</select>
+	
+	<select id="queryTopExcellentTestResultStatistics" resultType="com.comtop.cap.test.robot.model.Statistics">
+		SELECT T.appName,
+			   T.appFullName,
+			   STR_TO_DATE('${startDateStr}','%Y%m%d') AS startTime,
+			   STR_TO_DATE('${endDateStr}','%Y%m%d') AS endTime, 
+			   T.passCount, 
+			   T.failCount
+		  FROM (SELECT APP_NAME AS appName,
+		  			   APP_FULL_NAME as appFullName,	
+		               SUM(TEST_RESULT) AS passCount,
+		               COUNT(TEST_RESULT) - SUM(TEST_RESULT) AS failCount,
+		               SUM(TEST_RESULT) / COUNT(TEST_RESULT) AS rate
+		          FROM CAP_RT_TEST_RESULT
+		         WHERE TEST_TIME BETWEEN #{startTime} AND  #{endTime}
+		         GROUP BY APP_NAME,APP_FULL_NAME) T
+		 ORDER BY T.rate DESC
+	</select>
+	
+	<select id="queryTestResultStatisticsByModule" resultType="com.comtop.cap.test.robot.model.Statistics">
+		SELECT META_NAME AS metaName,
+	       FUNC_NAME AS funcName,
+	       TEST_RESULT AS pass,
+	       MAX(TEST_TIME) as testTime
+	  FROM CAP_RT_TEST_RESULT
+	 WHERE TEST_ID IN
+	        (SELECT T.TEST_ID
+	          FROM (SELECT tmp.TEST_ID,
+	                 IF(@pCaseName = tmp.TEST_CASE_NAME,
+	                    @rownum := @rownum + 1,
+	                    @rownum := 1) AS RN,
+	                 @pCaseName := tmp.TEST_CASE_NAME AS TEST_CASE_NAME
+	            FROM (SELECT TEST_ID, TEST_CASE_NAME
+	                    FROM CAP_RT_TEST_RESULT
+					 WHERE TEST_TIME BETWEEN #{startTime} AND  #{endTime}
+					 <if test="appId != null and appId != '' ">
+					AND APP_ID = #{appId}
+					 </if>
+					 <if test="appFullName != null and appFullName != ''">
+					AND APP_FULL_NAME like #{appFullName}                                        
+					 </if>
+                   ORDER BY TEST_CASE_NAME ASC, TEST_TIME DESC) tmp,
+                 (SELECT @rownum := 0, @pCaseName := NULL) vars) T
+			 WHERE T.RN = 1
+		 )
+ 	 GROUP BY APP_ID,APP_FULL_NAME,META_NAME, FUNC_NAME, TEST_RESULT,TEST_ID
+	</select>
+	
+	<select id="queryTestResultByTestCaseName" resultType="com.comtop.cap.test.robot.model.Statistics" parameterType="java.util.Map">
+	SELECT *
+	  FROM (SELECT tmp.metaName,
+	               tmp.funcName,
+	               tmp.pass,
+	               tmp.testTime,
+	               IF(@pCaseName = tmp.testcaseName,
+	                  @rownum := @rownum + 1,
+	                  @rownum := 1) AS RN,
+	               @pCaseName := tmp.testcaseName AS testcaseName
+	          FROM (SELECT TEST_CASE_NAME AS testcaseName,
+	                       META_NAME      AS metaName,
+	                       FUNC_NAME      AS funcName,
+	                       TEST_RESULT    AS pass,
+	                       TEST_TIME      as testTime
+	                  FROM CAP_RT_TEST_RESULT
+	                 WHERE 1=1
+				 	<if test="testcaseName != null  ">
+				   AND TEST_CASE_NAME IN 
+	                 <foreach item="testcaseName" collection="lstTestCaseName" index="index" open="(" separator="," close=")">
+	                 #{testcaseName}
+	                </foreach>	
+	                </if>	 
+					<if test="appId != null and appId != '' ">
+			           AND APP_ID = #{appId}
+			        </if>
+	                 ORDER BY TEST_CASE_NAME ASC, TEST_TIME DESC) tmp,
+	               (SELECT @rownum := 0, @pCaseName := NULL) vars) T
+	 WHERE T.RN = 1
+	</select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.test.preference.model">
+   <select id="queryDicListByClassifyId" resultType="com.comtop.cap.test.preference.model.TestmodelDicItemVO" parameterType="com.comtop.cap.test.preference.model.TestmodelDicItemVO" >
+     SELECT * FROM CAP_TESTMODEL_DIC_ITEM T1 WHERE 1=1
+    AND T1.CLASSIFY_ID = #{classifyId} 
+       <if test="dictionaryName != null">
+           <if test="dictionaryName != ''">
+             AND (T1.DICTIONARY_NAME LIKE '%${dictionaryName}%' escape '/'
+             OR T1.DICTIONARY_CODE LIKE '%${dictionaryName}%' escape '/' )
+           </if>
+      </if>
+      <if test="dictionaryType != null">
+         <if test="dictionaryType != ''">
+         AND T1.DICTIONARY_TYPE = #{dictionaryType}
+        </if>
+      </if>
+    </select>
+    
+     <select id="isExitDicItemCode" resultType="java.lang.Integer" parameterType="com.comtop.cap.test.preference.model.TestmodelDicItemVO" >
+     SELECT COUNT(*) FROM CAP_TESTMODEL_DIC_ITEM T1 WHERE 1=1
+      AND T1.DICTIONARY_CODE = #{dictionaryCode}
+     <if test="id != null">
+     <if test="id != ''">
+     AND T1.id != #{id}
+     </if>
+	</if>
+    </select>
+    
+    <select id="queryDicList" resultType="com.comtop.cap.test.preference.model.TestmodelDicItemVO" parameterType="com.comtop.cap.test.preference.model.TestmodelDicItemVO" >
+     SELECT * FROM CAP_TESTMODEL_DIC_ITEM T1 ORDER BY T1.UPDATE_TIME DESC
+    </select>
+    
+    <select id="readDicItemVOByCode" resultType="com.comtop.cap.test.preference.model.TestmodelDicItemVO" parameterType="java.lang.String" >
+     SELECT * FROM CAP_TESTMODEL_DIC_ITEM T1 WHERE 1=1 AND T1.DICTIONARY_CODE = #{dictionaryCode}
+    </select>
+    
+	<generateOperate class="com.comtop.cap.test.preference.model.TestmodelDicItemVO" filter="insert,update,read,delete"></generateOperate>
+</mapper>

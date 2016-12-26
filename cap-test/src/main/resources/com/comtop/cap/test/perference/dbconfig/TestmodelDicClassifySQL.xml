@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.test.preference.model">
+
+    <select id="queryClassifyListByParentId" resultType="com.comtop.cap.test.preference.model.TestmodelDicClassifyVO" parameterType="String" >
+     SELECT T2.*, T1.COUNT AS CHILDCOUNT
+		  FROM (SELECT PARENT_ID ID, COUNT(*) COUNT
+		          FROM CAP_TESTMODEL_DIC_CLASSIFY MM
+		         WHERE EXISTS
+		               (SELECT SM.ID
+		                  FROM CAP_TESTMODEL_DIC_CLASSIFY SM
+		                 WHERE SM.PARENT_ID = #{parentId} 
+		                   AND MM.PARENT_ID = SM.ID)
+		         GROUP BY MM.PARENT_ID) T1 RIGHT JOIN
+		       (SELECT MM.*
+		          FROM CAP_TESTMODEL_DIC_CLASSIFY MM
+		         WHERE MM.PARENT_ID = #{parentId} ) T2
+		 ON T1.ID = T2.ID
+    </select>
+    
+     <select id="fastQueryClassify" resultType="com.comtop.cap.test.preference.model.TestmodelDicClassifyVO" parameterType="com.comtop.cap.test.preference.model.TestmodelDicClassifyVO" >
+     SELECT * FROM CAP_TESTMODEL_DIC_CLASSIFY T1 WHERE 1=1
+     <if test="dictionaryName != null" >
+		 <if test="dictionaryName != ''">
+     AND T1.DICTIONARY_NAME LIKE '%${dictionaryName}%' escape '/'
+        </if>
+	</if>
+    </select>
+    
+    <select id="isExitClassifyCode" resultType="java.lang.Integer" parameterType="com.comtop.cap.test.preference.model.TestmodelDicClassifyVO" >
+     SELECT COUNT(*) FROM CAP_TESTMODEL_DIC_CLASSIFY T1 WHERE 1=1
+     AND T1.DICTIONARY_CODE = #{dictionaryCode}
+     <if test="id != null" >
+		 <if test="id != ''">
+     AND T1.id != #{id}
+        </if>
+	</if>
+    </select>
+    
+        <select id="isExitClassifyName" resultType="java.lang.Integer" parameterType="com.comtop.cap.test.preference.model.TestmodelDicClassifyVO" >
+     SELECT COUNT(*) FROM CAP_TESTMODEL_DIC_CLASSIFY T1 WHERE 1=1
+     AND T1.DICTIONARY_NAME = #{dictionaryName}
+     <if test="id != null" >
+		 <if test="id != ''">
+     AND T1.id != #{id}
+        </if>
+	</if>
+    </select>
+    
+	<generateOperate class="com.comtop.cap.test.preference.model.TestmodelDicClassifyVO" filter="insert,update,read,delete"></generateOperate>
+</mapper>
