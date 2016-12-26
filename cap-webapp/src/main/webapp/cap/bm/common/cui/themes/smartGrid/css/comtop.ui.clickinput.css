@@ -1,0 +1,184 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*组件的高度*/
+/**圆角全局有效**/
+/*组件的圆角*/
+/*msgbox,dialog,grid*/
+/*渐变*/
+/*配合上面的函数使用，禁用IE的渐变*/
+/*组件发光效果的动画*/
+/*定义clickinput的默认宽度*/
+/*定义clickinput的按钮宽度*/
+/*定义里面clickinput框的高度*/
+.click_input_wrap {
+  width: 200px;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+  border-radius: 0;
+}
+.BC_click_input_wrap {
+  *width: 200px;
+}
+.click_input_base {
+  background: transparent!important;
+  border: 0 none!important;
+  width: 100%;
+  height: 18px !important;
+  line-height: 18px !important;
+  font-size: 12px;
+  padding: 0!important;
+  /*解决IE8下获取焦点晃动问题*/
+  vertical-align: middle;
+  outline: none;
+  margin: 0!important;
+  display: block;
+  box-shadow: none!important;
+}
+.click_input_box {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1) inset;
+  -moz-transition: border 0.3s linear 0s;
+  -webkit-transition: border 0.3s linear 0s;
+  -o-transition: border 0.3s linear 0s;
+  transition: border 0.3s linear 0s;
+  border: 1px solid #cccccc;
+  border-radius: 0 0 0 0;
+  color: #333333;
+  height: 18px;
+  line-height: 18px;
+  padding: 4px 5px ;
+  overflow: hidden;
+  margin: -28px 34px 0 0;
+  background: #ffffff;
+}
+:root .click_input_box {
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.BC_click_input_box {
+  *height: 28px !important;
+}
+.input_tipcolor {
+  color: #333333;
+}
+.input_focus {
+  border: 1px solid #4585e5;
+  box-shadow: 0 0 5px rgba(69, 133, 229, 0.5);
+}
+.input_garybg .click_input_box {
+  background: #f5f5f5;
+  border-radius: 0;
+}
+.input_garybg .click_input_base {
+  color: #888888;
+}
+.cui_clickinput_empty {
+  height: 28px;
+  line-height: 28px;
+  color: #aaaaaa;
+  padding-left: 6px;
+  font-size: 12px;
+  overflow: hidden;
+}
+.click_input_icon {
+  background: #e6e6e6;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#ffffff), to(#e6e6e6));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ffffff, endColorstr=#e6e6e6);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#e6e6e6)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  border: 1px solid #cccccc;
+  border-left: 0 none;
+  border-radius: 0 0 0 0;
+  text-align: center;
+  height: 26px;
+  line-height: 26px;
+  width: 34px;
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+  float: right;
+  cursor: pointer;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  margin: 0!important;
+  *margin-left: -3px !important;
+  color: #666666;
+}
+.click_input_icon:hover {
+  background: #dadada;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #f2f2f2, #dadada);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#f2f2f2), to(#dadada));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #f2f2f2, #dadada);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #f2f2f2, #dadada);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#f2f2f2, endColorstr=#dadada);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#f2f2f2, endColorstr=#dadada)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #f2f2f2 0%, #dadada 100%);
+}
+.click_input_icon:hover .click_input_icon_bg {
+  color: #4585e5;
+}
+.click_input_icon:active {
+  background: #e6e6e6;
+}
+.click_input_icon:active .click_input_icon_bg {
+  color: #4585e5;
+}
+.click_input_icon .click_input_icon_bg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+.click_input_invalid {
+  border: 1px solid #cc4b3d;
+}

@@ -1,0 +1,221 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*组件的高度*/
+/**圆角全局有效**/
+/*组件的圆角*/
+/*msgbox,dialog,grid*/
+/*渐变*/
+/*配合上面的函数使用，禁用IE的渐变*/
+/*组件发光效果的动画*/
+/**
+* 模块：CUI PullDown所有模块样式
+* 作者：王伟
+* 日期：2013-9-25
+*/
+/*定义pulldown 包裹 input的div高度*/
+.pulldown-main {
+  display: inline-block;
+  vertical-align: middle;
+  height: 28px;
+  width: 200px;
+  font-size: 12px;
+  line-height: 22px;
+  background: #ffffff;
+  border-radius: 0;
+}
+.pulldown-textmode {
+  box-shadow: none;
+}
+:root .pulldown-main {
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.pulldown-main .pulldown-inner {
+  padding: 0 26px 0 5px;
+  border: 1px solid #cccccc;
+  height: 26px;
+  overflow: hidden;
+  border-radius: 0;
+  -moz-transition: border 0.3s linear 0s;
+  -webkit-transition: border 0.3s linear 0s;
+  -o-transition: border 0.3s linear 0s;
+  transition: border 0.3s linear 0s;
+}
+.pulldown-main-qm .pulldown-inner {
+  height: 28px;
+}
+.pulldown-main .pulldown-readonly {
+  background: #f5f5f5;
+}
+.pulldown-main .pulldown-readonly .pulldown-btn {
+  display: none;
+}
+.pulldown-main .pulldown-error {
+  border: 1px solid #cc4b3d;
+}
+.pulldown-main .pulldown-text {
+  border: 0;
+  background: transparent;
+  font-size: 12px;
+  vertical-align: top;
+  color: #888888;
+  height: 14px;
+  line-height: 14px;
+  width: 100%;
+  padding: 6px 0;
+  outline: none;
+  margin: 0;
+  float: left;
+  box-shadow: none!important;
+}
+.pulldown-main .pulldown-text-qm {
+  height: 26px;
+  line-height: 26px;
+  padding: 0;
+}
+.pulldown-main .pulldown-inner-focus {
+  -moz-transition: border 0.3s linear 0s;
+  -webkit-transition: border 0.3s linear 0s;
+  -o-transition: border 0.3s linear 0s;
+  transition: border 0.3s linear 0s;
+  border: 1px solid #4585e5;
+}
+.pulldown-main .pulldown-text-value,
+.pulldown-main .pulldown-inner-focus .pulldown-text {
+  color: #333333;
+}
+.pulldown-main .pulldown-btn {
+  width: 26px;
+  height: 26px;
+  line-height: 27px;
+  /*background: @icon no-repeat 7px -240px;*/
+  float: right;
+  margin: 0 -26px auto auto;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  font-weight: 900;
+  background: #8A8A8A;
+}
+.pulldown-main .pulldown-btn:hover {
+  color: #fff;
+  /*background-position: -43px -240px;*/
+}
+.pulldown-main .pulldown-btn:active {
+  /*background-position: -93px -240px;*/
+}
+.pulldown-loading {
+  background: url(../images/core/loading.gif) center center no-repeat;
+  text-indent: -99900px;
+}
+/*pulldown-box*/
+.pulldown-box {
+  border: 1px solid #dddddd;
+  position: absolute;
+  z-index: 11000;
+  background: #ffffff;
+  width: 198px;
+  overflow: hidden;
+  overflow-y: auto;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  top: -999999px;
+}
+.pulldown-box iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+.pulldown-box .pulldown-box-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  width: 100%;
+}
+/*Single Multi*/
+.pulldown-box .pulldown-list {
+  display: block;
+  height: 28px;
+  font-size: 12px;
+  text-decoration: none;
+  color: #333333;
+  padding-left: 11px;
+  line-height: 28px;
+  outline: none;
+  overflow: hidden;
+  white-space: nowrap;
+  *white-space: pre;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+  *word-break: break-all;
+  _word-break: keep-all;
+}
+.pulldown-box .pulldown-checked {
+  background-color: #4585e5 !important;
+  color: #ffffff !important;
+}
+.pulldown-box .pulldown-list:hover,
+.pulldown-box .pulldown-hover {
+  background-color: #eeeeee;
+  color: #333333;
+}
+/*multi*/
+.multi-pulldown-box .pulldown-box-inner {
+  padding-top: 28px;
+}
+.multi-pulldown-box .pulldown-list {
+  background: url(../images/checkbox-radio/checkbox-default.png) 5px 8px transparent no-repeat;
+  padding-left: 20px;
+}
+.multi-pulldown-box .pulldown-checked {
+  background-color: #4585e5 !important;
+  background-image: url(../images/checkbox-radio/checkbox-checked.png);
+  color: #ffffff !important;
+}
+.multi-pulldown-box .pulldown-hover {
+  background-color: #eeeeee;
+  color: #333333;
+}
+.multi-pulldown-box .pulldown-list-all {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  font-weight: 700;
+  z-index: 1;
+  left: 0;
+}

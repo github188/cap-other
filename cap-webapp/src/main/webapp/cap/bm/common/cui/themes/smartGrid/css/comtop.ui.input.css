@@ -1,0 +1,113 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*组件的高度*/
+/**圆角全局有效**/
+/*组件的圆角*/
+/*msgbox,dialog,grid*/
+/*渐变*/
+/*配合上面的函数使用，禁用IE的渐变*/
+/*组件发光效果的动画*/
+/*定义里面input框的高度*/
+.cui_inputCMP_wrap {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+  background: #ffffff;
+  border-radius: 0;
+}
+.cui_inputCMP {
+  -moz-transition: border 0.3s linear 0s;
+  -webkit-transition: border 0.3s linear 0s;
+  -o-transition: border 0.3s linear 0s;
+  transition: border 0.3s linear 0s;
+  display: block;
+  padding: 4px 5px;
+  height: 18px;
+  line-height: 18px;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  overflow: hidden;
+  margin: 0;
+  margin-top: -28px;
+  outline: none;
+  background: url(about:blank) no-repeat -9999px -9999px \0;
+  position: relative;
+  position: static\0;
+}
+:root .cui_inputCMP_wrap {
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.cui_inputCMP .cui_inputCMP_input {
+  background: transparent;
+  height: 18px;
+  line-height: 18px;
+  border: 0!important;
+  padding: 0 1px 0 0!important;
+  margin: 0 0 0 -1px !important;
+  vertical-align: middle;
+  display: block;
+  color: #333333;
+  width: 100%;
+  cursor: text;
+  font-size: 12px;
+  outline: none!important;
+  box-shadow: none!important;
+}
+.cui_inputCMP_readonly {
+  background: #f5f5f5;
+  cursor: default;
+  border-radius: 0;
+}
+.cui_inputCMP_readonly .cui_inputCMP_input {
+  color: #888888;
+}
+.cui_inputCMP_focus .cui_inputCMP {
+  border: 1px solid #4585e5;
+}
+.cui_inputCMP_error .cui_inputCMP {
+  border: 1px solid #cc4b3d;
+}
+.cui_input_empty {
+  height: 28px;
+  line-height: 28px;
+  color: #aaaaaa;
+  padding: 0 6px;
+  font-size: 12px;
+  overflow: hidden;
+}
+.BC_cui_inputCMP .cui_inputCMP {
+  height: 28px;
+}

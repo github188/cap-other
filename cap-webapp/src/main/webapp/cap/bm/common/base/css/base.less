@@ -1,0 +1,274 @@
+@charset "utf-8";
+@import "rest.less";
+
+
+@box-border:#ccc;
+/*文本超出显示省略号 Ellipsis*/
+.text-autocut{
+	overflow: hidden;
+	white-space: nowrap;
+	-webkit-text-overflow:ellipsis;
+	-khtml-text-overflow: ellipsis; 
+	-icab-text-overflow: ellipsis; 
+	-moz-text-overflow: ellipsis; 
+	-o-text-overflow: ellipsis; 
+	text-overflow: ellipsis; 
+}
+.none_select{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
+/*清除浮动 */
+.clearfix{
+	*zoom:1;
+	&:before,&:after{
+		content:"";
+		display:table;
+		line-height:0;
+	}
+	&:after{
+		clear:both;
+	}
+}
+
+.top_header_wrap{
+	padding:5px 0;
+	.top_nav_search{
+		padding: 5px 0 5px 10px;
+	}
+	.top_nav_operation{
+		margin:10px 5px 0 0;
+		text-align:right;
+	}
+}
+
+.top_nav_right{
+	text-align:right;
+	padding:5px 0;
+}
+
+.list_header_wrap{
+	padding:5px 0;
+	height:25px;
+}
+.top_float_left{
+	float:left;
+}
+.top_float_right{
+	float:right;
+}
+
+.top_content_wrap{
+	padding:5px 0;
+	.top_required{
+		color:red;
+	}
+	.top_griddiv{
+		margin-left:10px;
+	}
+}
+
+.cap{
+	a:hover{
+		text-decoration:none;
+	}
+}
+
+.form_table{
+	width:100%;
+	table-layout:fixed;
+}
+
+.form_table td{
+	line-height:22px;
+	padding:2px 5px 8px 3px;
+	background-color:#FFFFFF;
+}
+
+.td_label{
+	text-align:right;
+	white-space:normal;
+	word-wrap:break-word;
+}
+
+.top_note{ 
+	padding-left: 25px;
+}
+
+
+.customform{
+	width:100%;
+	border:0!important;
+	td{
+		line-height:22px!important;
+		padding:2px 5px 8px 3px!important;
+		background-color:#FFFFFF!important;
+		border:0!important;
+	}
+	.td_label{
+		text-align:right;
+	}
+}
+.rowselected{
+	background-color: #DFEFFD;
+}
+
+.divTitle{
+	color:#0099FF;
+	float:left;
+	padding:0 10px;
+	font-size: 20px;
+}
+
+.cap_content{
+	margin-left:100px;
+	margin-top:5px;
+}
+.cap_button_area{
+	text-align: right;
+	margin: 5px 10px 5px 0;
+}
+.cap_list{
+	list-style-type: none;
+	overflow:hidden;
+	margin: 0;
+	padding:0;
+	li{
+		border-top: 1px solid @box-border;
+		width: 98%;
+		line-height: 32px;
+	  	padding: 0 0 0 5px;
+	  	height: 32px;
+	  	.text-autocut;
+	  	&:hover{
+	  		background-color: #eee;
+			cursor: pointer;
+	  	}
+	  	&.selected{
+	  		background-color:#4585e5;
+	  		span{
+	  			color:#fff;
+	  		}
+	  	}
+	}
+}
+
+.label-badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 5px 7px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 12px;
+  background-color: #d2322d;
+  color:#fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+
+
+/*以下为展现某一个应用样式【applicationDetail.jsp】 */
+.app_nav{
+	height:45px;
+	border-bottom:1px solid @box-border;
+	background-color:#fff;
+	.app_name{
+		line-height:45px;
+		font-size:16px;
+		font-weight:bold;
+	}
+}
+.myapp_icon{
+	width:32px;
+	display:block;
+	height:100%;
+	margin-left:10px;
+	background:url(/web/top/workbench/app/img/my-app.png) no-repeat center;
+}
+
+.app-category{
+	height:20px;
+	border-left:3px solid #6aa725;
+	padding-left:10px;
+	margin:10px 0;
+	cursor:pointer;
+	.none_select;
+	.place-left{
+		float:left;
+		margin-right:10px;
+		font-weight:bold;
+		font-size:14px;
+		em{
+			background-color:#d2322d;
+			color:#fff;
+			border-radius:12px;
+			padding:0px 7px;
+			margin:0 0 0 5px;
+		}
+	} 
+	hr{
+		height:4px;
+		border:0;
+		border-bottom:1px solid darken(@box-border,40%);
+	}
+}
+.myappbody{
+	background-color:#f5f5f5;
+}
+.app_box{
+	border:1px solid @box-border;
+	margin:10px;
+	border-radius:3px;
+	.app_container{
+		padding:5px;
+		background-color:#fff;
+		.app_attr{
+			margin-top:10px;
+		}
+	}
+}
+
+.app_item {
+	li{
+		float:left;
+		margin:10px;
+		background-color:#fff;
+		border:1px solid @box-border;
+		position:relative;
+		transition:all .8s cubic-bezier(.175,.885,.32,1);
+		padding:10px;
+		border-radius:3px;
+		&:hover{
+			border:1px solid darken(@box-border,30%);
+			cursor:pointer;
+			background-color:#e5e5e5;
+			.colsebtn{
+				display:block;
+			}
+		}
+		&.last{
+			border:1px solid #0088cc;
+			color:#6b6b6b;
+			&:hover{
+				border:1px solid lighten(#0088cc,10%);
+			}
+		}
+		span{
+			padding-left:5px;
+		}
+		.colsebtn{
+			background:url(../image/close.png) no-repeat center;
+			width:16px;
+			height:16px;
+			display:none;
+			position:absolute;
+			top:-8px;
+			right:-8px;
+		}
+	}
+}

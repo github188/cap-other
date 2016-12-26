@@ -1,0 +1,14 @@
+﻿@import "common";
+@import "function";
+
+@error-border-color: @common-border-color-error; //错误
+@border: 1px solid  @common-border-color-focus;
+.checkbox-group{border-radius: @radius;padding:1px;}
+.checkbox-group, .checkboxgroup-inner{display: inline-block;font-size: 12px; overflow: hidden; zoom:1; vertical-align: middle; *display:inline}
+.checkboxgroup-inner{padding:4px;line-height: 18px; display: block;}
+.checkbox-group-error{border:1px solid @error-border-color;padding: 0;}
+.checkboxgroup-border{border:1px solid @border;padding: 0;}
+.checkboxgroup-inner label{margin-right:8px;cursor: pointer; line-height: 18px;*line-height: 16px; display: inline-block;}
+.checkboxgroup-inner input{cursor: pointer; vertical-align:top; margin: 2px 3px 0 0; padding: 0;*margin:0 3px 0 0;*vertical-align:middle;_vertical-align:text-bottom;}
+.checkboxgroup-inner .checkbox-group-readonly{cursor:default; opacity: .5; filter:alpha(opacity=50);}
+.checkbox-group-readonly input{cursor:default;}

@@ -1,0 +1,82 @@
+/**
+ * Css reset(for TOP)
+ */
+.divTitle{
+  		font-family:"Microsoft Yahei";
+        font-size:16px;    		
+  		color:#0099FF;
+  		margin-left:20px;
+  		float:left;
+}
+
+.fontTitle{
+	font-family:"Microsoft Yahei";
+	font-weight:bold;
+	font-size:16px;
+	float:left;
+}
+
+.divTitleFont{
+  		font-family:"Microsoft Yahei";
+  		font-weight:bold;
+        font-size:medium;    		
+  		color:#0099FF;
+}
+
+.divFontCenter{
+  		font-family: 'Microsoft Yahei';
+		font-weight: bold;
+        font-style: normal;
+        font-size: 24px;
+        color: #999999;
+        text-align: center;
+        margin-top: 100px;
+        
+}
+
+.divTitleForExtend{
+		font-family:"微软雅黑";
+		font-weight:bold;
+        font-size:medium;    		
+		color:#0099FF;
+		margin-left:20px;
+}
+.divTitleForExtend{
+		font-family:"微软雅黑";
+		font-weight:bold;
+        font-size:medium;    		
+		color:#0099FF;
+		padding-left: 6px;
+}
+    	
+.customform .td_label{
+  		width: 15%;
+}
+    	
+.customform .td_content{
+   		width: 35%;
+}
+
+.cui_ext_textmode .cui_inputCMP_readonly,
+.cui_ext_textmode .C_CR_calInput_rd .C_CR_calInput_wrap,
+.cui_ext_textmode .C_CR_calInput_rd .C_CR_calInput,
+.cui_ext_textmode .cui_inputCMP_readonly .cui_inputCMP, 
+.cui_ext_textmode .cui_inputCMP_readonly .cui_inputCMP_input,
+.cui_ext_textmode .pulldown-readonly .pulldown-text,
+.cui_ext_textmode .pulldown-readonly .pulldown-inner,
+.cui_ext_textmode .pulldown-readonly,
+.cui_ext_textmode .pulldown-main,
+.cui_ext_textmode .textarea_garybg .cui_textarea_box,
+.cui_ext_textmode .textarea_garybg .textarea_textarea{
+    border: 0!important;
+    box-shadow: none!important;
+    background: none!important;
+    color: #333!important;
+}
+.cui_ext_textmode .C_CR_calInput_rd .C_CR_calIcon{
+    display: none;
+}
+ /* 
+ *	<end> common css(for TOP)
+ */
+ 

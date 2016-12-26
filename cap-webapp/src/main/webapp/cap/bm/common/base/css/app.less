@@ -1,0 +1,283 @@
+// Grays
+// -------------------------
+@black:                 #000;
+@grayDarker:            #222;
+@grayDark:              #333;
+@gray:                  #555;
+@grayLight:             #999;
+@grayLighter:           #eee;
+@white:                 #fff;
+
+//base
+@bodyBackground:    #f5f5f5;
+@borderColor : #ccc;
+
+//font 
+// -------------------------
+@textColor:         @grayDark;
+@lighterTextColor:  @grayLighter;
+@baseFontFamily:  "Microsoft YaHei",sans-serif;
+@baseFontSize : 12px;
+@baseLineHeight:    20px;
+
+// Links
+// -------------------------
+@linkColor:             #08c; //#0078FF;
+@linkColorHover:        darken(@linkColor, 15%);//#FF0000;
+@linkColorVisited:      #9700AD;
+
+
+
+
+// Accent colors
+// -------------------------
+@blue:                  #0970D6;
+@blueDark:              #0064cd;
+@green:                 #46a546;
+@red:                   #9d261d;
+@yellow:                #ffc40d;
+@orange:                #f89406;
+@pink:                  #c3325f;
+@purple:                #7a43b6;
+
+
+@appNavHeight:46px;
+@appNavBg:#fff;
+@appNavHoverBg:#eee;
+@appNavLinkColor:@linkColor;
+@appNavLinkActiveColor:#666;
+@appNavLinkActiveBorderColor:@blue;
+@appNavDropdownToggleBg:#999;
+@appNavDropdownHoverBg:#0081c2;
+@appNavDropdownHoverColor:#fff;
+@appNavDropdownColor:#525252;
+.pull-left {float: left !important;}
+.pull-right {float: right !important;}
+#main-nav{
+.menu{
+    height:@appNavHeight;
+    margin:0px;
+    padding:0px;
+    list-style: none;
+    font-size:14px;
+    //overflow-x: hidden;
+    li{
+        float:left;
+        height:100%;
+        a{
+            display:inline-block;
+            height:@appNavHeight - 3;
+            line-height:@appNavHeight - 3;
+            margin: 0;
+            padding: 0px 10px;
+            color: @appNavLinkColor;
+            text-decoration:none;
+            border-radius: 0;
+            vertical-align: middle;
+            border-bottom: solid 1px transparent;
+            _border-bottom-color:@appNavBg;
+            outline: none;
+            &:hover,
+            &:focus{
+                text-decoration: none;
+                background-color: @appNavHoverBg;
+            }
+        }
+    }
+    
+    .dropdown{
+        position: relative;
+        .dropdown-menu{
+            list-style:none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 10000;
+            display: none;
+            list-style: none;
+            background-color: @appNavBg;
+            border: 1px solid @borderColor;
+            outline: none;
+            _width: 120px;
+            li{
+                width:100%;
+            }
+            a{
+                display:block;
+                _display: inline;
+                _zoom: 1;
+                padding: 5px 20px;
+                margin:0px;
+                min-width: 100px;
+                _width:120px;
+                _text-overflow: ellipsis;
+                _white-space: nowrap;
+                font-weight: normal;
+                height: 20px;
+                line-height: 20px;
+                color: @appNavDropdownColor;
+                white-space: nowrap;
+                border-radius:0px;
+                text-decoration: none;
+                border:0px;
+                &:hover{
+                    text-decoration: none;
+                    color: @appNavDropdownHoverColor;
+                    background-color: #0081c2;
+                    border:0px;
+                }
+            }
+        }
+    }
+    
+    .caret{
+        content: "";
+        display: inline-block;
+        *display:inline;
+        *zoom:1;
+        vertical-align:middle;
+        width: 0;
+        height: 0;
+        line-height:20px;
+        font-size:0px;
+        vertical-align: middle;
+        border-top: 4px solid @appNavLinkColor;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+        margin: 0px 0px 0px 2px;
+        _margin-top:(@appNavHeight - 6)/2;
+        _border-left-color:#123245;
+        _border-right-color:#123245;
+        _filter: chroma(color=#123245);
+    }
+    
+    //active
+    .active{
+        a,a:hover{
+            border-bottom:3px solid @appNavLinkActiveBorderColor;
+            color:@appNavLinkActiveColor;
+            background: @appNavBg;
+        }
+        .active{
+            font-weight:bold;
+        }
+        .caret{
+            border-top-color: @appNavLinkActiveColor;
+        }
+    }
+    
+    //open
+    .open{
+        .caret{
+            border-top-color:@appNavDropdownHoverColor;
+        }
+        .dropdown-toggle{
+            color: @appNavBg;
+            background-color: @appNavDropdownToggleBg;
+            border-bottom: solid 1px transparent;
+        }
+        .dropdown-menu {
+            display:block;
+        }
+    }
+}
+}
+.workbench-logo{
+    float:left;
+    margin-right:25px;
+    height:46px;
+    width:145px;
+    background:url(../image/nav-logo.png) no-repeat left center;
+}
+
+#main-nav {
+    margin:0px;
+    padding:0px 10px;
+    height: 46px;
+    border:0px;
+    //overflow: hidden;
+    background-color: #003c78;
+    color: @lighterTextColor;
+    .workbench-index{
+        background: url(../image/home.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .myapp{
+        background: url(../image/apps.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .query-center{
+        background: url(../image/search-white.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .message-box{
+        background: url(../image/message-box.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .todo-box{
+        background: url(../image/todo-box.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .red-box{
+        display:inline-block;
+        background: url(../image/num.png) top left no-repeat;
+        line-height: 14px;
+        font-size: 12px;
+        height: 14px;
+        width: 25px;
+        text-align: center;
+        margin: 5px 0 0 -2px;
+    }
+    
+    .user-head{ 
+        display: inline-block; 
+        width: 20px; 
+        height: 20px; 
+        vertical-align: middle;
+        margin: -8px 0px 0px 0px;
+        _float:left;
+    }
+    
+    .menu{
+        & > li{
+            & > a{
+                line-height: 46px;
+                height:46px;
+                color: @lighterTextColor;
+                border: 0px;
+                font-size:14px;
+                &:hover{
+                    background-color: #003366;
+                    color: #ffffff;
+                    text-decoration: none;
+                }
+            }
+            .separate{
+                margin:17px 0px 0px;
+                padding:0px;
+                width:1px;
+                height:14px;
+                font-size:0;
+                background-color:#A5A5A5;
+            }
+            .caret{
+                border-top: 4px solid #fff;
+            }
+        }
+        .active > a{
+            background-color: transparent;
+        }
+        .open .dropdown-toggle{
+            background-color: #003366;
+        }
+        .dropdown .dropdown-menu a{
+            min-width:60px;
+        }
+        .menu-lable{
+            line-height:24px;
+            background-color:#EEEEEE;
+            color:#666;
+            text-indent:5px;
+        }
+    }
+}

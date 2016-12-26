@@ -1,0 +1,212 @@
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}
+#main-nav .menu {
+  height: 46px;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  font-size: 14px;
+}
+#main-nav .menu li {
+  float: left;
+  height: 100%;
+}
+#main-nav .menu li a {
+  display: inline-block;
+  height: 43px;
+  line-height: 43px;
+  margin: 0;
+  padding: 0px 10px;
+  color: #0088cc;
+  text-decoration: none;
+  border-radius: 0;
+  vertical-align: middle;
+  border-bottom: solid 1px transparent;
+  _border-bottom-color: white;
+  outline: none;
+}
+#main-nav .menu li a:hover,
+#main-nav .menu li a:focus {
+  text-decoration: none;
+  background-color: #eeeeee;
+}
+#main-nav .menu .dropdown {
+  position: relative;
+}
+#main-nav .menu .dropdown .dropdown-menu {
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10000;
+  display: none;
+  background-color: white;
+  border: 1px solid #cccccc;
+  outline: none;
+  _width: 120px;
+}
+#main-nav .menu .dropdown .dropdown-menu li {
+  width: 100%;
+}
+#main-nav .menu .dropdown .dropdown-menu a {
+  display: block;
+  _display: inline;
+  _zoom: 1;
+  padding: 5px 20px;
+  margin: 0px;
+  min-width: 100px;
+  _width: 120px;
+  _text-overflow: ellipsis;
+  _white-space: nowrap;
+  font-weight: normal;
+  height: 20px;
+  line-height: 20px;
+  color: #525252;
+  white-space: nowrap;
+  border-radius: 0px;
+  text-decoration: none;
+  border: 0px;
+}
+#main-nav .menu .dropdown .dropdown-menu a:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #0081c2;
+  border: 0px;
+}
+#main-nav .menu .caret {
+  content: "";
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  line-height: 20px;
+  font-size: 0px;
+  border-top: 4px solid #0088cc;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  margin: 0px 0px 0px 2px;
+  _margin-top: 20px;
+  _border-left-color: #123245;
+  _border-right-color: #123245;
+  _filter: chroma(color=#123245);
+}
+#main-nav .menu .active a,
+#main-nav .menu .active a:hover {
+  border-bottom: 3px solid #0970d6;
+  color: #666666;
+  background: white;
+}
+#main-nav .menu .active .active {
+  font-weight: bold;
+}
+#main-nav .menu .active .caret {
+  border-top-color: #666666;
+}
+#main-nav .menu .open .caret {
+  border-top-color: white;
+}
+#main-nav .menu .open .dropdown-toggle {
+  color: white;
+  background-color: #999999;
+  border-bottom: solid 1px transparent;
+}
+#main-nav .menu .open .dropdown-menu {
+  display: block;
+}
+.workbench-logo {
+  float: left;
+  margin-right: 25px;
+  height: 46px;
+  width: 145px;
+  background: url(../image/nav-logo.png) no-repeat left center;
+}
+#main-nav {
+  margin: 0px;
+  padding: 0px 10px;
+  height: 46px;
+  border: 0px;
+  background-color: #003c78;
+  color: #eeeeee;
+}
+#main-nav .workbench-index {
+  background: url(../image/home.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .myapp {
+  background: url(../image/apps.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .query-center {
+  background: url(../image/search-white.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .message-box {
+  background: url(../image/message-box.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .todo-box {
+  background: url(../image/todo-box.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .red-box {
+  display: inline-block;
+  background: url(../image/num.png) top left no-repeat;
+  line-height: 14px;
+  font-size: 12px;
+  height: 14px;
+  width: 25px;
+  text-align: center;
+  margin: 5px 0 0 -2px;
+}
+#main-nav .user-head {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin: -8px 0px 0px 0px;
+  _float: left;
+}
+#main-nav .menu > li > a {
+  line-height: 46px;
+  height: 46px;
+  color: #eeeeee;
+  border: 0px;
+  font-size: 14px;
+}
+#main-nav .menu > li > a:hover {
+  background-color: #003366;
+  color: white;
+  text-decoration: none;
+}
+#main-nav .menu > li .separate {
+  margin: 17px 0px 0px;
+  padding: 0px;
+  width: 1px;
+  height: 14px;
+  font-size: 0;
+  background-color: #a5a5a5;
+}
+#main-nav .menu > li .caret {
+  border-top: 4px solid white;
+}
+#main-nav .menu .active > a {
+  background-color: transparent;
+}
+#main-nav .menu .open .dropdown-toggle {
+  background-color: #003366;
+}
+#main-nav .menu .dropdown .dropdown-menu a {
+  min-width: 60px;
+}
+#main-nav .menu .menu-lable {
+  line-height: 24px;
+  background-color: #eeeeee;
+  color: #666666;
+  text-indent: 5px;
+}

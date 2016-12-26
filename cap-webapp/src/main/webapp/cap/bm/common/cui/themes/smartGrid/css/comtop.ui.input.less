@@ -1,0 +1,77 @@
+﻿@import "common";
+@import "function";
+
+@inputHeight: @height - 2 * 1 - 2 * 4px;    /*定义里面input框的高度*/
+
+.cui_inputCMP_wrap{
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    vertical-align:middle;
+    background: @common-bg-form;
+    border-radius: @radius;
+}
+.cui_inputCMP{
+    .transition;
+    display: block;
+    padding: 4px 5px;
+    height: @inputHeight;
+    line-height: @inputHeight;
+    border: 1px solid @common-border-color-form;
+    border-radius: @radius;
+    //box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1) inset;
+    overflow: hidden;
+    margin: 0;
+    margin-top: -28px;
+    outline: none;
+    background: ~"url(about:blank) no-repeat -9999px -9999px \0";
+    position: relative;
+    position: ~"static\0";
+}
+:root .cui_inputCMP_wrap {
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); //IE9-10
+}
+.cui_inputCMP .cui_inputCMP_input{
+    background: transparent;
+    height: @inputHeight;
+    line-height: @inputHeight;
+    border: 0!important;
+    padding: 0 1px 0 0!important;
+    margin: 0 0 0 -1px!important;
+    vertical-align: middle;
+    display: block;
+    color: @common-font-color-form;
+    width:100%;
+    cursor: text;
+    font-size:12px;
+    outline: none!important;
+    box-shadow: none!important;
+}
+.cui_inputCMP_readonly{
+    background: @common-bg-form-readonly;
+    cursor: default;
+    border-radius: @radius;
+}
+.cui_inputCMP_readonly .cui_inputCMP_input{
+    color: @common-font-color-form-readonly;
+}
+.cui_inputCMP_focus  .cui_inputCMP{
+  border: 1px solid @common-border-color-focus;
+  //box-shadow:  0 0 5px @common-border-shadow-focus;
+}
+.cui_inputCMP_error .cui_inputCMP{
+  border: 1px solid @common-border-color-error;
+}
+
+.cui_input_empty{
+  height: @height;
+  line-height: @height;
+  color: @common-font-color-form-empty;
+  padding:0 6px;
+  font-size: 12px;
+  overflow: hidden;
+}
+//怪异模式的应用
+.BC_cui_inputCMP .cui_inputCMP {
+    height: @height;
+}

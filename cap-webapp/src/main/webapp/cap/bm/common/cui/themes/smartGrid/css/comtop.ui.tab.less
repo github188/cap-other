@@ -1,0 +1,122 @@
+﻿@import "common";
+
+@headerHeight: 32px; // tab height
+
+/*tab border radius*/
+.borderRadius(@borderRadius:0 0 0 0){
+    -moz-border-radius: @borderRadius;
+    -webkit-border-radius: @borderRadius;
+    border-radius: @borderRadius;
+}
+
+@defaultBgColor:@tab-tag-bg; /*默认颜色*/
+@hoverBgColor:@common-bg-hover; /*鼠标移上颜色*/
+@contentBorder: 1px solid @tab-top-border-color; /*内容border*/
+@activeColor: @tab-select-font-color; /*标题激活时候的字体颜色*/
+
+/*选中的样式*/
+.active(){
+    background-color: #1F7ED0;//@tab-tag-select-bg;
+    color:@activeColor;
+}
+/*字体设置*/
+.font(){
+    font-size: 12px;
+    color: @common-font-color;
+}
+
+
+@imgUrl: "../images/core/icon.png";
+.cui-tab {
+
+    background: @common-bg;
+    /*	position: relative;*/
+    .font();
+    ul.cui-tab-nav {
+        padding: 6px 0 0 0;
+        margin: 0px;
+        height: @headerHeight;
+        overflow: hidden;
+        li {
+            float: left;
+            height: @headerHeight;
+            line-height: @headerHeight;
+            list-style: none;
+            background: @defaultBgColor;
+            .borderRadius();
+            position: relative;
+            overflow: hidden;
+            padding:  0 15px;
+            margin-right: 0px;
+            font-weight: 900;
+            border-right: 1px solid #ccc;
+        }
+    }
+
+    .cui-tab-nav {
+        li{
+            cursor: pointer;
+        }
+        .cui-tab-title {
+            display: block;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            overflow:hidden;
+            word-wrap:normal;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+        }
+        .cui-tab-hover {
+            background-color: @hoverBgColor;
+        }
+        .cui-active {
+            .active();
+            .cui-tab-close {
+                color: @tab-select-icon-color;
+            }
+            .cui-tab-close:hover{
+                color: @tab-select-icon-color-hover;
+            }
+        }
+
+
+
+        .cui-tab-close {
+            display: block;
+            width: 13px;
+            height: 13px;
+            cursor: pointer;
+            position: absolute;
+            right: 3px;
+            top: 3px;
+            text-decoration: none;
+            color: @common-font-color;
+            font-size: 8px;
+            line-height: 13px;
+            text-align: center;
+        }
+
+        .cui-tab-close:hover{
+            color: @common-icon-color-hover;
+        }
+
+
+    }
+
+    .cui-tab-content {
+        border-top: @contentBorder;
+        overflow: auto;
+
+        position: relative;
+        z-index: 1;
+
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    }
+
+}

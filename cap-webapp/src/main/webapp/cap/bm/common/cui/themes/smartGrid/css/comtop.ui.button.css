@@ -1,0 +1,305 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*组件的高度*/
+/**圆角全局有效**/
+/*组件的圆角*/
+/*msgbox,dialog,grid*/
+/*渐变*/
+/*配合上面的函数使用，禁用IE的渐变*/
+/*组件发光效果的动画*/
+/*定义按钮的高度*/
+/*定义按钮的高度*/
+/*定义按钮的圆角,原本应该是3的，但是ie10上有问题*/
+/*定义按钮两头的边距*/
+.cui-button {
+  background: #eee;
+  color: #333333;
+  padding: 0 11px;
+  line-height: 28px;
+  height: 28px;
+  overflow: hidden;
+  zoom: 1;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 0;
+  *display: inline;
+  *line-height: 28px;
+  *margin-left: 6px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.cui-button:link {
+  color: #333333;
+  text-decoration: none;
+}
+.cui-button:visited {
+  color: #333333;
+  text-decoration: none;
+}
+.cui-button:hover {
+  background: #dadada;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #f2f2f2, #dadada);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#f2f2f2), to(#dadada));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #f2f2f2, #dadada);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #f2f2f2, #dadada);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#f2f2f2, endColorstr=#dadada);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#f2f2f2, endColorstr=#dadada)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #f2f2f2 0%, #dadada 100%);
+  text-decoration: none;
+}
+.cui-button:active {
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+  background-image: none;
+  background: #dadada;
+  text-decoration: none;
+}
+.cui-button {
+  /*图片的垂直居中*/
+}
+.cui-button .button-icon,
+.cui-button .button-arrow,
+.cui-button .button-label {
+  display: table-cell;
+  *display: inline;
+  *zoom: 1;
+  height: 28px;
+  line-height: 28px;
+  *line-height: 28px;
+  vertical-align: middle;
+}
+.cui-button .button-arrow {
+  padding: 0 0 0 5px;
+}
+.cui-button .button-label {
+  font-size: 12px;
+  line-height: 28px;
+  *line-height: 29px;
+  _line-height: 28px;
+}
+.cui-button .button-icon {
+  padding: 0 6px 0 0;
+}
+.cui-button .button-icon img {
+  border: none;
+  vertical-align: middle;
+  *vertical-align: top;
+}
+.cui-button .button-icon-center {
+  font-size: 0;
+  *writing-mode: tb-rl;
+  *text-align: center;
+}
+/*蓝色按钮*/
+.blue-button {
+  background: #2196FC;
+  color: #ffffff;
+}
+.blue-button:link {
+  color: #ffffff;
+}
+.blue-button:visited {
+  color: #ffffff;
+}
+.blue-button:hover {
+  background: #3d76cc;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #4585e5, #3d76cc);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#4585e5), to(#3d76cc));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #4585e5, #3d76cc);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #4585e5, #3d76cc);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#4585e5, endColorstr=#3d76cc);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#4585e5, endColorstr=#3d76cc)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #4585e5 0%, #3d76cc 100%);
+}
+.blue-button:active {
+  background: #3d76cc;
+}
+/*绿色按钮*/
+.green-button {
+  background: #36b342;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #3dcc4b, #36b342);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#3dcc4b), to(#36b342));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #3dcc4b, #36b342);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #3dcc4b, #36b342);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#3dcc4b, endColorstr=#36b342);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#3dcc4b, endColorstr=#36b342)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #3dcc4b 0%, #36b342 100%);
+  background: #43B92F;
+  color: #ffffff;
+}
+.green-button:link {
+  color: #ffffff;
+}
+.green-button:visited {
+  color: #ffffff;
+}
+.green-button:hover {
+  background: #2a8c34;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #36b342, #2a8c34);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#36b342), to(#2a8c34));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #36b342, #2a8c34);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #36b342, #2a8c34);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#36b342, endColorstr=#2a8c34);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#36b342, endColorstr=#2a8c34)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #36b342 0%, #2a8c34 100%);
+}
+.green-button:active {
+  background: #2a8c34;
+}
+/*红色按钮*/
+.red-button {
+  background: #cc4b3d;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #e55545, #cc4b3d);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#e55545), to(#cc4b3d));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #e55545, #cc4b3d);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #e55545, #cc4b3d);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#e55545, endColorstr=#cc4b3d);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#e55545, endColorstr=#cc4b3d)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #e55545 0%, #cc4b3d 100%);
+  color: #ffffff;
+}
+.red-button:link {
+  color: #ffffff;
+}
+.red-button:visited {
+  color: #ffffff;
+}
+.red-button:hover {
+  background: #b34236;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #cc4b3d, #b34236);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#cc4b3d), to(#b34236));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #cc4b3d, #b34236);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #cc4b3d, #b34236);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#cc4b3d, endColorstr=#b34236);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#cc4b3d, endColorstr=#b34236)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #cc4b3d 0%, #b34236 100%);
+}
+.red-button:active {
+  background: #b34236;
+}
+/*橙色色按钮*/
+.orange-button {
+  background: #e59317;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #ffa31a, #e59317);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#ffa31a), to(#e59317));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #ffa31a, #e59317);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #ffa31a, #e59317);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ffa31a, endColorstr=#e59317);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffa31a, endColorstr=#e59317)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #ffa31a 0%, #e59317 100%);
+  background: #B9AB2F;
+  color: #ffffff;
+}
+.orange-button:link {
+  color: #ffffff;
+}
+.orange-button:visited {
+  color: #ffffff;
+}
+.orange-button:hover {
+  background: #cc8314;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #e59317, #cc8314);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#e59317), to(#cc8314));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #e59317, #cc8314);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #e59317, #cc8314);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#e59317, endColorstr=#cc8314);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#e59317, endColorstr=#cc8314)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #e59317 0%, #cc8314 100%);
+}
+.orange-button:active {
+  background: #cc8314;
+}
+.disable-button,
+.disable-button:link,
+.disable-button:hover,
+.disable-button:active {
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+  background-image: none;
+  background: #e5e5e5;
+  color: #808080;
+  cursor: default;
+}
+.QM-cui-button {
+  height: 30px;
+}

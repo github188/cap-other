@@ -1,0 +1,147 @@
+﻿@import "common";
+@import "function";
+
+//所有边框颜色
+@bd:1px solid #CCC;//@common-border-color-default;
+
+//td 下边颜色
+@bd1:1px solid @grid-border-td-bottom;
+
+//所有文字颜色
+@fc: @common-font-color;
+//链接文字颜色
+@fc1: @common-font-color-link;
+//空列表文字
+@fc2: @common-font-color-form-empty;
+
+//选择行颜色及背景
+.select(){background-color: @grid-select-bg;color:@grid-select-font-color;}
+//checkbox和radio
+@checkbox: url(../images/checkbox-radio/checkbox-default.png);
+@checkbox-checked: url(../images/checkbox-radio/checkbox-checked.png);
+@checkbox-disabled: url(../images/checkbox-radio/checkbox-checked-readonly.png);
+@checkbox-default-disabled: url(../images/checkbox-radio/checkbox-default-readonly.png);
+@radio: url(../images/checkbox-radio/radio-default.png);
+@radio-checked: url(../images/checkbox-radio/radio-checked.png);
+@radio-default-disabled: url(../images/checkbox-radio/radio-default-readonly.png);
+@loading: url(../images/core/loading.gif);
+
+/*svn*/
+.elle(){white-space: nowrap;-o-text-overflow:ellipsis;text-overflow: ellipsis; word-break:break-all; overflow: hidden;}
+.pr(){position: relative;}
+.pa(){position: absolute;}
+.lt(){.pa;left:0;top:0;}
+.dn(){display: none;}
+.h0(){border:none;font-size:0; }
+/*样式*/
+.grid-container {border:@bd;color:@fc;border-radius:@radius-big;overflow:hidden;clear:both;font-size:12px; line-height: 21px;.pr;background-color:@common-bg; z-index: 1}
+.grid-container table{table-layout:fixed;border-collapse:collapse;border-spacing:0;empty-cells:show;font-size:12px; background: @common-bg;}
+.grid-container td, .grid-container th{padding:0;border-right:@bd;word-break: break-all;}
+.grid-ellipsis td, .grid-ellipsis.th,
+.grid-ellipsis .grid-fixed-s,
+.grid-ellipsis button{.elle}
+
+.grid-ellipsis td.grid-fixed{overflow: visible;}
+.grid-box{.pr;overflow:hidden;width:100%;}
+
+.grid-style{.dn}
+.grid-head{zoom:1;background-color: @grid-header-bg; float: left;}
+.grid-container .grid-head-table{background-color:@grid-header-bg;}
+.grid-head-table th{border-bottom:@bd;height:29px;_height:30px;}
+.grid-fixed-s{display:block;padding-top:3px;width:100%;}
+
+.grid-null-text{font-size:0; line-height: 0;}
+
+.grid-container .grid-thead-text,
+.grid-container .grid-thead-text:hover,
+.grid-container .grid-thead-text:active{ color:@grid-header-font-color;text-decoration: none;}
+
+.grid-sort .grid-thead-text{cursor: pointer;text-decoration: underline;}
+.grid-sort b{display: none;padding-right: 3px; color: @grid-header-icon-color;}
+
+.grid-container .grid-all-checkbox{padding-left:15px;background:@checkbox no-repeat 2px 4px; cursor: pointer;display:inline-block;height: 100%;}
+.grid-all-checkbox b{display: inline-block; width: 1px;height: 16px; vertical-align: middle;}
+.grid-container .grid-all-checkbox-checked{background-image:@checkbox-checked}
+
+
+.grid-container .grid-select{width:14px;right:0;.pa;height:28px;top:50%; margin-top: -14px;cursor:pointer;.dn; color: @grid-header-icon-color; font-size: 11px; line-height: 28px;}
+.grid-select:hover{color: @grid-header-icon-color-hover;}
+.grid-ittab{.pa;height:100%; top:0;right:-1px; width:4px; cursor:col-resize; line-height: 29px;.dn}
+.grid-thead-mouseover{background-color: @grid-header-bg-hover;}
+.grid-thead-mouseover .grid-select, .grid-thead-select .grid-select{display: block;}
+
+.grid-container .grid-empty-th{.h0;height: 29px;width:0;}
+.grid-width-norm{*display: none;}
+.grid-width-norm .grid-empty-th{height: 0;}
+.grid-width-norm th{.h0;height:0;}
+
+.grid-body{overflow:auto;width:100%;overflow-x: hidden;.pr}
+.grid-table-hide, .grid-table-box{.pr;width: 100%;overflow:hidden}
+.grid-table-hide{border-bottom: @bd1;background-color: @grid-header-shadow;width: auto; padding-top: 1px;float: left;}
+.grid-body-table{margin-bottom:-1px;}
+.grid-body-table td{border-bottom:@bd1;height:27px;padding:0 3px;}
+.grid-body-table a{color: @common-font-color-link;text-decoration:none}
+.grid-body-table a:hover{color: @common-font-color-link-hover;text-decoration:underline}
+
+.grid-container .grid-fixed{vertical-align: top;padding:0;}
+.grid-fixed-d{.pr;width:100%;padding-bottom:3px;}
+.grid-fixed .grid-fixed-d {text-indent:3px;}
+.grid-fixed .grid-fixed-s{.pa;height:1200px;top:-1px;left:0;border-top:@bd1;border-right:@bd;background-color:@common-bg;}
+
+
+.grid-head .grid-fixed .grid-fixed-s{background-color: @grid-header-bg;padding:0;border-top:@bd;}
+.cardinal_row, .cardinal_row .grid-fixed-s{background-color: @grid-tr-even-bg}
+.grid-tr-over, .grid-tr-over .grid-fixed-s{background-color: @grid-tr-bg-hover}
+.selected_row, .selected_row .grid-fixed-s{.select}
+.selected_row a, .selected_row a:hover{color: @grid-select-font-color;}
+
+.grid-checkbox{background-image:@checkbox; background-repeat:no-repeat;background-position: center center;}
+.selected_row .grid-checkbox{background-image:@checkbox-checked; }
+.grid-radio{background:@radio no-repeat center center;}
+.selected_row .grid-radio{background-image:@radio-checked; }
+.grid-fixed-d .grid-checkbox, .grid-fixed-d .grid-radio{background-position: center 7px;}
+.grid-disable-row .grid-checkbox{background-image: @checkbox-default-disabled; }
+.grid-disable-row .grid-radio{background-image: @radio-default-disabled;}
+
+.grid-highlight{background-color: @grid-tr-highlight;}
+
+.grid-line{border-left:@bd; height:5000px; .pa; top:0;.dn;width:1px; overflow: hidden; z-index: 39;}
+.grid-overlay{position: absolute;.dn;height:100px; width: 100%;background:url(about:blank) no-repeat -9999cm -9999cm; opacity: 0; filter:alpha(opacity=0); left: 0; top: 0; z-index: 40;}
+
+.grid-scroll{height:17px;overflow: hidden; overflow-x: scroll; width: 100%; position: absolute; bottom:0; z-index:99; left: -999999px;}
+.grid-scroll div{font-size:0;height:1px; overflow: hidden;}
+
+.grid-tfoot{border-top:@bd;padding:6px 11px; height:28px; display: none;background:@grid-pagelist-bg;}
+//另外追加
+.grid-hidecol{font-size:12px; line-height: 21px;}
+
+.grid-hidecol {outline:none;.dn;.lt; width:134px;z-index: 100;border:@bd;box-shadow:2px 2px 2px rgba(0,0,0,.1);background:@grid-hidecol-bg;margin-top: -1px;}
+.grid-hidecol .grid-hidecol-list{border-bottom:@bd;  overflow:auto;width:100%;}
+.grid-hidecol .grid-hidecol-button{padding:6px 0;background-color:@grid-hidecol-toolbar-bg;text-align: right}
+.grid-hidecol-list a{outline:none;line-height:28px;height:28px;color:@fc;padding-left:30px; display:block;text-decoration: none;background:@checkbox-checked no-repeat 11px center;.elle}
+a.grid-hidecol-nochecked{background-image:@checkbox;}
+a.grid-hidecol-disabled{background-image:@checkbox-disabled;}
+a.grid-hidecol-hide{.dn;}
+.grid-hidecol-list a:hover{background-color:@grid-hidecol-list-bg-hover;}
+.grid-hidecol-button a{margin:0 13px 0 0;display: inline-block;}
+.grid-hidecol a.grid-hide-disabled{.dn()}
+.eg-hidecol-button .blue-button{color: @button-blue-color;}
+.eg-hidecol-button .red-button{color: @button-red-color;}
+
+.grid-loading-bg{width:100%; height:100%;background-color: @grid-loadingoverlay-bg; opacity: .5; filter: alpha(opacity=50);.lt;.dn; z-index: 100;}
+.grid-loading-bg-over {opacity:1; filter: alpha(opacity=100);}
+.grid-loading-box{width:102px; height:32px; position: absolute; left:50%; margin-left: -54px; top:50%; margin-top: -19px; border:@bd; padding: 2px; background-color:@grid-loadingbox-bg; .dn; z-index: 101;border-radius: 3px; overflow: hidden;}
+.grid-loading-box span{display: block; line-height: 30px; height:30px; padding-left: 32px; background:@loading no-repeat 8px 8px; font-size:12px; }
+
+.grid-empty{text-align: center; line-height: 50px;color:@fc2; font-size: 14px;}
+
+.grid-col-move .grid-fixed-s {cursor: move;}
+.grid-col-move .grid-no-move{cursor: default;}
+.grid-col-move-insert{height:26px; border:2px solid @fc; width:5px; position: absolute; z-index: 34;display: none; left:-100px; top:0; margin-left: -5px;}
+.grid-col-move-tag{height:30px; border-left:@bd;border-right:@bd; width:200px;text-align: center; line-height: 30px;display: none;position: absolute; z-index: 30; top:0;background: @grid-header-bg-hover;.elle;}
+
+
+.grid-container-qm .grid-fixed{border-right:none;}
+.grid-container-qm td, .grid-container-qm th, .grid-container-qm .grid-empty-th{height: auto;line-height: 22px;}
+.grid-container-qm .grid-width-norm .grid-empty-th{height: 0;}
+.grid-container-qm .grid-hidecol-list a{width: 100%;}

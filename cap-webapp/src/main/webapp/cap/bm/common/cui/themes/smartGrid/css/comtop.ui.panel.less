@@ -1,0 +1,82 @@
+﻿@import "common";
+@import "function";
+
+@titleHeight: 34px;  /*panel title高度 不包含border*/
+@border:1px solid @common-border-color-default; /*panel border*/
+@titleBorderRadius: 3px 3px 0 0;  /*panel title border radius*/
+@contentBorderRadius:0 0 3px 3px;  /*panel content border radius*/
+@contentBgColor: @common-bg; /*panel content background color*/
+/*panel title字体设置*/
+.font() {
+    font-size: 12px;
+    color: @common-font-color;
+}
+
+
+
+@imgUrl: "../images/core/icon.png";  /*panel 背景图片*/
+.borderRadius(@borderRadius:3px){
+    -moz-border-radius: @borderRadius;
+    -webkit-border-radius: @borderRadius;
+    border-radius: @borderRadius;
+}
+.cui-panel {
+    position: relative;
+    .cui-panel-title {
+        height: @titleHeight;
+        line-height: @titleHeight;;
+        .linear-gradient(@panel-header-bg-start, @panel-header-bg-end);
+        border:@border;
+        .borderRadius(@titleBorderRadius);
+        padding: 0px 11px;
+        margin: 0px;
+        font-weight: normal;
+        position: relative;
+        .font();
+        /*    -O-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            white-space:normal;
+            word-break:break-all;*/
+        overflow:hidden;
+    }
+    .cui-panel-trigger-content{
+
+    }
+    .cui-panel-trigger-customer{
+        display: block;
+        width: 15px;
+        height: 15px;
+        margin: 9px 5px 0px 0px;
+        float: right;
+    }
+    .cui-panel-trigger {
+        display: block;
+        width: 15px;
+        height: 15px;
+        margin-top: 1px;
+        float: right;
+        cursor: pointer;
+        color: @common-icon-color;
+    }
+    .cui-panel-trigger:hover{
+        color: @common-icon-color-hover;
+    }
+
+    .cui-panel-content {
+        border: @border;
+        border-top:0;
+        background-color: @contentBgColor;
+        overflow: hidden;
+        .borderRadius(@contentBorderRadius);
+        /*  position: relative;
+        */
+        zoom:1;
+        padding:0px;
+
+    }
+    .cui-panel-content iframe {
+        width:100%;
+        display: block;
+    }
+}
+

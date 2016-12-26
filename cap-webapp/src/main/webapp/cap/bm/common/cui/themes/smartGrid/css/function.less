@@ -1,0 +1,40 @@
+@height: 28px;   /*组件的高度*/
+
+/**圆角全局有效**/
+@radius: 0;    /*组件的圆角*/
+@radius-big: 5px; /*msgbox,dialog,grid*/
+
+
+/*渐变*/
+.linear-gradient(@startColor:#fff, @endColor:#f2f2f2){
+    background: @endColor;
+    /* Firefox 3.6+ */
+    background: -moz-linear-gradient(top, @startColor, @endColor);
+    /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear,top,from(@startColor),to(@endColor));
+    /* Safari 5.1+, Chrome 10+ */
+    background: -webkit-linear-gradient(top, @startColor, @endColor);
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, @startColor, @endColor);
+
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=@startColor, endColorstr=@endColor);/*IE<9>*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=@{startColor}, endColorstr=@{endColor})";/*IE8+*/
+    background-image:-ms-linear-gradient(top, @startColor 0%, @endColor 100%);
+}
+
+/*配合上面的函数使用，禁用IE的渐变*/
+.disable-liner-gradient() {
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+    background-image: none;
+}
+
+/*组件发光效果的动画*/
+.transition(@durationTime: 0.3s,@delayTime: 0s){
+    -moz-transition: border @durationTime linear @delayTime;
+    -webkit-transition: border @durationTime linear @delayTime;
+    -o-transition: border @durationTime linear @delayTime;
+    transition: border @durationTime linear @delayTime;
+}
+
+

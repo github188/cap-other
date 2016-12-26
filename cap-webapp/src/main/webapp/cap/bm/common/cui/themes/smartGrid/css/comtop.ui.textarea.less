@@ -1,0 +1,71 @@
+﻿@import "common";
+@import "function";
+
+.textarea_textarea_wrap{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: top;
+}
+
+.cui_textarea_box{
+    background:@common-bg-form;
+    //box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1) inset;
+    .transition;
+    border: 1px solid @common-border-color-form;
+    border-radius: @radius;
+    padding: 4px 5px;
+    /*display: inline-block;
+    *display: inline;
+    *zoom: 1;*/
+    vertical-align: top;
+    font-size: 0;
+    line-height: normal;
+}
+
+.cui_textarea_box .textarea_textarea{
+    font-size: 12px;
+    width:100%;
+    color: @common-font-color-form;
+    border: none!important;
+    padding: 0!important;
+    margin: 0!important;
+    margin-top: -17px!important;
+    vertical-align: top!important;
+    outline: none;
+    overflow: auto;
+    resize: none;
+    background: transparent!important;
+    background: ~"url(about:blank) no-repeat -9999cm -9999cm \0!important";
+    position: relative;
+    position: ~"static\0";
+    box-shadow: none!important;
+}
+:root .textarea_textarea {
+    .disable-liner-gradient();
+}
+.textarea_garybg{
+    .cui_textarea_box {
+        background: @common-bg-form-readonly !important;
+    }
+    .textarea_textarea{
+        color: @common-font-color-form-readonly!important;
+    }
+}
+.textarea_tipcolor{
+    color: @common-font-color-form-empty;
+}
+.textarea_textareafocus {
+    border: 1px solid @common-border-color-focus;
+    //box-shadow:  0 0 5px @common-border-shadow-focus;
+}
+.textarea_invalid {
+    border: 1px solid @common-border-color-error;
+}
+.cui_textarea_empty{
+    height: 17px;
+    line-height: 17px;
+    color: @common-font-color-form-empty;
+    font-size: 12px;
+    overflow: hidden;
+}

@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+
+/**
+ * Css reset(for TOP editPage)
+ */
+.top_body{
+	
+	background:#f8f8f8;
+	min-width: 800px;
+	margin:2px;
+	padding:2px;
+}
+.top_header_wrap{
+	background:#e7e7e7;
+}
+
+.top_content_wrap{
+	padding:0px;
+}
+
+.thw_title{
+	margin-top:5px;
+}
+.form_table{
+	background-color:white;
+}
+
+.divTitle{
+	width:100%;
+	color:#666;
+}
+.td_label{
+	color:#666;
+}

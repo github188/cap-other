@@ -1,0 +1,194 @@
+/**
+ * Css reset(for TOP)
+ */
+html{width:100%;} 
+
+body{
+    font: 12px/1.5 Arial, "宋体", Helvetica, sans-serif;
+    color: #000;
+    background:#fff;
+    margin:10px;
+}
+
+html,body,div{
+    scrollBar-face-color: #F3F5F7;
+    scrollBar-3dLight-color: #BFCFDA;
+    scrollBar-arrow-color: #0B75DC;
+    scrollBar-track-color: #fff;
+    scrollBar-shadow-color:#BFCFDA;
+}
+
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,
+h5,h6,pre,code,form,fieldset,legend,input,
+textarea,p,blockquote,th,td {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset,img {
+    border: 0;
+}
+
+address,caption,cite,code,dfn,em,strong,th,var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ol,ul {
+    list-style: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+q:before,q:after {
+    content: '';
+}
+
+abbr,acronym {
+    border: 0;
+    font-variant: normal;
+}
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+legend {
+    color: #000;
+}
+
+a {
+    color: #096DD1;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:link {
+    color: #096DD1;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #EE0000;
+    text-decoration: none;
+}
+/**
+ * Css reset ending
+ */
+ 
+ /********************************************************************************************************************************************
+ * common css(for TOP)
+ */
+ 
+ .body_layout{
+	width:100%!important;
+	margin:0;
+	overflow:auto;
+	zoom:1;
+}
+ 
+.top_header_wrap{
+	padding:5px 0;
+	height:25px;
+}
+
+.thw_title{
+	float:left;
+	font:14px "宋体";
+	margin-top:10px;
+	margin-left:20px;
+	font-weight:bold;
+    color: #000;
+}
+
+.thw_operate{
+	float:right;
+}
+
+.top_nav_right{
+	text-align:right;
+	padding:5px 0;
+}
+
+.list_header_wrap{
+	padding:5px 0;
+	height:25px;
+}
+.top_float_left{
+	float:left;
+}
+.top_float_right{
+	float:right;
+}
+
+.top_content_wrap{
+	padding:5px 0;
+}
+
+.tcw_title{
+	font:12px "宋体";
+	padding-left:15px;
+	font-weight:bold;
+    color: #3E8BD9;
+}
+
+.form_table{
+	width:100%;
+	table-layout:fixed;
+}
+
+.form_table td{
+	line-height:22px;
+	padding:2px 5px 8px 3px;
+	background-color:#FFFFFF;
+}
+
+.td_label{
+	text-align:right;
+	white-space:normal;
+	word-wrap:break-word;
+}
+
+.top_required{ 
+	padding-right: 5px;
+	color:red;
+}
+
+.top_note{ 
+	padding-left: 25px;
+}
+
+.customform{
+	width:100%;
+	border:0!important;
+}
+
+.customform td{
+	line-height:22px!important;
+	padding:2px 5px 8px 3px!important;
+	background-color:#FFFFFF!important;
+	border:0!important;
+}
+
+.customform  .td_label{
+	text-align:right;
+}
+.rowselected{
+	background-color: #DFEFFD;
+}
+/* 
+ *	<end> common css(for TOP)
+ */
+ 

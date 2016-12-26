@@ -1,0 +1,185 @@
+﻿@import "common";
+@import "function";
+
+@buttonHeight: 28px;   /*定义按钮的高度*/
+@buttonIeLineHeight: 28px\0;   /*定义按钮的高度*/
+@buttonRadius: @radius;    /*定义按钮的圆角,原本应该是3的，但是ie10上有问题*/
+@textPadding: 11px;    /*定义按钮两头的边距*/
+
+
+
+.cui-button{
+    //.linear-gradient(@button-default-bg-start, @button-default-bg-end);
+    background: #eee;
+    //border: 1px solid @button-default-border-color;
+    color: @button-default-color;
+    padding: 0 @textPadding;
+    line-height: @buttonHeight;
+    height: @buttonHeight;
+    overflow: hidden;
+    zoom:1;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: @buttonRadius;
+    *display: inline;
+    *line-height: 28px;
+    *margin-left:6px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.cui-button:link{
+    color: @button-default-color;
+    text-decoration: none;
+}
+.cui-button:visited{
+    color: @button-default-color;
+    text-decoration: none;
+}
+.cui-button:hover{
+    .linear-gradient(@button-default-hover-bg-start, @button-default-hover-bg-end);
+    //border: 1px solid @button-default-hover-border-color;
+    text-decoration: none;
+}
+
+.cui-button:active{
+    .disable-liner-gradient();
+    background: @button-default-hover-bg-end;
+    text-decoration: none;
+}
+.cui-button{
+    .button-icon,
+    .button-arrow,
+    .button-label{
+        display: table-cell;
+        *display: inline;
+        *zoom: 1;
+        height: @buttonHeight;
+        line-height: @buttonHeight;
+        *line-height: @buttonHeight;
+        vertical-align: middle;
+    }
+    .button-arrow{
+        padding:0 0 0 5px;
+    }
+    .button-label{
+        font-size: 12px;
+        line-height: @buttonHeight;
+        *line-height: @buttonHeight + 1;
+        _line-height: @buttonHeight;
+    }
+    .button-icon{
+        padding:0 6px 0 0;
+    }
+    .button-icon img{
+        border: none;
+        vertical-align: middle;
+        *vertical-align: top;
+    }
+    /*图片的垂直居中*/
+    .button-icon-center{
+        font-size: 0;
+        *writing-mode: tb-rl;
+        *text-align: center;
+    }
+}
+
+
+/*蓝色按钮*/
+.blue-button{
+    //.linear-gradient(@button-blue-bg-start, @button-blue-bg-end);
+    //border: 1px solid @button-blue-border-color;
+    background: #2196FC;
+    color: @button-blue-color;
+    &:link{
+        color: @button-blue-color;
+    }
+    &:visited{
+        color: @button-blue-color;
+    }
+    &:hover{
+        .linear-gradient(@button-blue-hover-bg-start, @button-blue-hover-bg-end);
+        //border: 1px solid @button-blue-hover-border-color;
+    }
+    &:active{
+        background: @button-blue-hover-bg-end;
+    }
+}
+
+
+/*绿色按钮*/
+.green-button{
+    .linear-gradient(@button-green-bg-start, @button-green-bg-end);
+    //border: 1px solid @button-green-border-color;
+    background: #43B92F;
+    color: @button-green-color;
+    &:link{
+        color: @button-green-color;
+    }
+    &:visited{
+        color: @button-green-color;
+    }
+    &:hover{
+        .linear-gradient(@button-green-hover-bg-start, @button-green-hover-bg-end);
+        //border: 1px solid @button-green-hover-border-color;
+    }
+    &:active{
+        background: @button-green-hover-bg-end;
+    }
+}
+
+
+
+/*红色按钮*/
+.red-button{
+    .linear-gradient(@button-red-bg-start, @button-red-bg-end);
+    //border: 1px solid @button-red-border-color;
+    color: @button-red-color;
+    &:link{
+        color: @button-red-color;
+    }
+    &:visited{
+        color: @button-red-color;
+    }
+    &:hover{
+        .linear-gradient(@button-red-hover-bg-start, @button-red-hover-bg-end);
+        //border: 1px solid @button-red-hover-border-color;
+    }
+    &:active{
+        background: @button-red-hover-bg-end;
+    }
+}
+
+
+/*橙色色按钮*/
+.orange-button{
+    .linear-gradient(@button-orange-bg-start, @button-orange-bg-end);
+    //border: 1px solid @button-orange-border-color;
+    background: #B9AB2F;
+    color: @button-orange-color;
+    &:link{
+        color: @button-orange-color;
+    }
+    &:visited{
+        color: @button-orange-color;
+    }
+    &:hover{
+        .linear-gradient(@button-orange-hover-bg-start, @button-orange-hover-bg-end);
+        //border: 1px solid @button-orange-hover-border-color;
+    }
+    &:active{
+        background: @button-orange-hover-bg-end;
+    }
+}
+
+
+.disable-button,.disable-button:link, .disable-button:hover, .disable-button:active {
+    .disable-liner-gradient();
+    background: @button-disabled-bg;
+    color: @button-disabled-font-color;
+    //border: 1px solid @button-disabled-border-color;
+    cursor: default;
+}
+
+.QM-cui-button{//怪异模式
+    height:@buttonHeight + 2;
+}

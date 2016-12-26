@@ -1,0 +1,37 @@
+﻿@import "common";
+
+@fc: @common-font-color;
+@hover: @common-bg-hover;
+@checked: @common-bg-impotent;
+@checkedfc: @common-font-impotent;
+@icon: url(../images/multinav/icon.png);
+@icon-checked:url(../images/multinav/icon-checked.png);
+
+.multinav{padding:0; margin: 0;line-height: 28px;
+    a{
+        position: relative;
+        span{
+            position: absolute;
+            right: 10px;
+        }
+    }
+}
+.multinav ul{margin-left: 0; padding: 0;}
+.multinav li{list-style: none; margin:0;padding: 0; }
+.multinav li a{display: block;text-decoration: none;outline: none;padding:0 12px;color:@fc;zoom:1; background: #F5F5F5;border-bottom:1px solid #ddd;}
+.multinav li a:hover{background: @hover;}
+
+.multinav li ul{ overflow: hidden; display: none;}
+.multinav li ul.multinav-ul-unfold{
+    display: block;
+    a{
+        padding-left: 20px;
+        background: #fff;
+    }
+}
+.multinav li a.multinav-checked{background: #3CB74F!important; color:@checkedfc; }
+
+.multinav-unfold-icon, .multinav-fold-icon{padding-right: 3px;}
+.multinav-unfold-icon{display: none;}
+.multinav-unfold .multinav-unfold-icon{display: inline;}
+.multinav-unfold .multinav-fold-icon{display: none;}

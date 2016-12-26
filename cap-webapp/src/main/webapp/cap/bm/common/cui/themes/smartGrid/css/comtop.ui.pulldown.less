@@ -1,0 +1,223 @@
+﻿@import "common";
+@import "function";
+/**
+* 模块：CUI PullDown所有模块样式
+* 作者：王伟
+* 日期：2013-9-25
+*/
+@inner-height: 26px;    /*定义pulldown 包裹 input的div高度*/
+
+@icon: url(../images/core/icon.png);
+@loading: url(../images/core/loading.gif);
+
+@box-border:1px solid @common-border-color-default;
+@box-bg:@common-bg;
+@box-shadow: 4px 4px 4px rgba(0,0,0,.1);
+@select-bg: @common-bg-impotent;
+@select-fc: @common-font-impotent;
+@hover-bg: @common-bg-hover;
+
+@ckeckbox-default: url(../images/checkbox-radio/checkbox-default.png);
+@ckeckbox-checked: url(../images/checkbox-radio/checkbox-checked.png);
+
+.pulldown-main {
+    display: inline-block;
+    vertical-align: middle;
+    height: @height;
+    width: 200px;
+    font-size: 12px;
+    line-height: 22px;
+    background: @common-bg-form;
+    border-radius: @radius;
+}
+
+.pulldown-inner{
+    //box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1) inset;
+}
+
+.pulldown-textmode{
+    box-shadow:none;
+}
+
+:root .pulldown-main {
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); //IE9-10
+}
+
+.pulldown-main .pulldown-inner {
+    padding: 0 26px 0 5px;
+    border: 1px solid @common-border-color-form;
+    height: @inner-height;
+    overflow: hidden;
+    border-radius: @radius;
+    .transition();
+}
+
+.pulldown-main-qm .pulldown-inner {
+    height:@height;
+}
+
+.pulldown-main .pulldown-readonly {
+    background: @common-bg-form-readonly;
+    //padding-right: 6px;
+    .pulldown-btn{
+        display: none;
+    }
+}
+
+.pulldown-main .pulldown-error {
+    border: 1px solid @common-border-color-error;
+}
+
+.pulldown-main .pulldown-text {
+    border: 0;
+    background:transparent;
+    font-size: 12px;
+    vertical-align: top;
+    color: @common-font-color-form-readonly;
+    height: 14px;
+    line-height: 14px;
+    width: 100%;
+    padding: 6px 0;
+    outline: none;
+    margin: 0;
+    float:left;
+    box-shadow: none!important;
+}
+
+.pulldown-main .pulldown-text-qm {
+    height: 26px;
+    line-height: 26px;
+    padding: 0;
+}
+
+.pulldown-main .pulldown-readonly .pulldown-text {
+    //background: @common-bg-form-readonly;
+}
+
+
+.pulldown-main .pulldown-inner-focus {
+    .transition;
+    border: 1px solid @common-border-color-focus;
+    //box-shadow: 0 0 5px @common-border-shadow-focus;
+}
+
+.pulldown-main .pulldown-text-value, .pulldown-main .pulldown-inner-focus .pulldown-text {
+    color: @common-font-color;
+}
+
+.pulldown-main .pulldown-btn {
+    width: 26px;
+    height: 26px;
+    line-height: 27px;
+    /*background: @icon no-repeat 7px -240px;*/
+    float:right;
+    margin: 0 -26px auto auto;
+    //    *margin-top: -26px;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    color: #fff;//@common-icon-color;
+    text-align: center;
+    font-weight: 900;
+    background: #8A8A8A;
+}
+
+.pulldown-main .pulldown-btn:hover{
+    color: #fff;//@common-icon-color-hover;
+    /*background-position: -43px -240px;*/
+}
+.pulldown-main .pulldown-btn:active{
+    //color: @common-icon-color-hover;
+    /*background-position: -93px -240px;*/
+}
+
+.pulldown-loading {
+    background: @loading center center no-repeat;
+    text-indent: -99900px;
+}
+/*pulldown-box*/
+.pulldown-box {
+    border: @box-border;
+    position: absolute;
+    z-index: 11000;
+    background: @box-bg;
+    width: 198px;
+    overflow: hidden;
+    overflow-y: auto;
+    box-shadow:@box-shadow;
+    top: -999999px;
+}
+
+.pulldown-box iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #fff;
+}
+
+.pulldown-box .pulldown-box-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: @box-bg;
+    width: 100%;
+}
+/*Single Multi*/
+.pulldown-box .pulldown-list {
+    display: block;
+    height: 28px;
+    font-size: 12px;
+    text-decoration: none;
+    color: @common-font-color;
+    padding-left: 11px;
+    line-height: 28px;
+    outline: none;
+    overflow: hidden;
+    white-space: nowrap;
+    *white-space: pre;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    *word-break: break-all;
+    _word-break: keep-all;
+}
+
+.pulldown-box .pulldown-checked {
+    background-color: @select-bg!important;
+    color:@select-fc!important;
+}
+
+.pulldown-box .pulldown-list:hover, .pulldown-box .pulldown-hover {
+    background-color: @hover-bg;
+    color:@common-font-color;
+}
+
+
+/*multi*/
+.multi-pulldown-box .pulldown-box-inner {
+    padding-top: 28px;
+}
+
+.multi-pulldown-box .pulldown-list {
+    background: @ckeckbox-default 5px 8px transparent no-repeat;
+    padding-left: 20px;
+}
+
+
+.multi-pulldown-box .pulldown-checked {
+    background-color: @select-bg!important;
+    background-image: @ckeckbox-checked;
+    color:@select-fc!important;
+}
+.multi-pulldown-box .pulldown-hover {
+    background-color: @hover-bg;
+    color:@common-font-color;
+}
+.multi-pulldown-box .pulldown-list-all {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    font-weight: 700;
+    z-index: 1;
+    left: 0;
+}

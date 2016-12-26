@@ -1,0 +1,91 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*组件的高度*/
+/**圆角全局有效**/
+/*组件的圆角*/
+/*msgbox,dialog,grid*/
+/*渐变*/
+/*配合上面的函数使用，禁用IE的渐变*/
+/*组件发光效果的动画*/
+.checkbox-group {
+  border-radius: 0;
+  padding: 1px;
+}
+.checkbox-group,
+.checkboxgroup-inner {
+  display: inline-block;
+  font-size: 12px;
+  overflow: hidden;
+  zoom: 1;
+  vertical-align: middle;
+  *display: inline;
+}
+.checkboxgroup-inner {
+  padding: 4px;
+  line-height: 18px;
+  display: block;
+}
+.checkbox-group-error {
+  border: 1px solid #cc4b3d;
+  padding: 0;
+}
+.checkboxgroup-border {
+  border: 1px solid 1px solid #4585e5;
+  padding: 0;
+}
+.checkboxgroup-inner label {
+  margin-right: 8px;
+  cursor: pointer;
+  line-height: 18px;
+  *line-height: 16px;
+  display: inline-block;
+}
+.checkboxgroup-inner input {
+  cursor: pointer;
+  vertical-align: top;
+  margin: 2px 3px 0 0;
+  padding: 0;
+  *margin: 0 3px 0 0;
+  *vertical-align: middle;
+  _vertical-align: text-bottom;
+}
+.checkboxgroup-inner .checkbox-group-readonly {
+  cursor: default;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+.checkbox-group-readonly input {
+  cursor: default;
+}

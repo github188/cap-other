@@ -1,0 +1,320 @@
+﻿/**全局颜色**/
+
+/*文字*/
+@common-font-color: #333333; //文字主色，所有文字颜色
+
+@common-font-impotent: #ffffff; //文字副色，选中行文字颜色
+
+@common-font-color-form: @common-font-color; //表单元素文字颜色
+
+@common-font-color-form-readonly: #888888; //表单元素只读，以及项目禁用的文字颜色
+
+@common-font-color-form-empty: #aaaaaa; //输入框空文字提示
+
+@common-font-color-link: #2b71d9; //链接颜色
+
+@common-font-color-link-hover: #2663bf; //链接hover颜色
+
+/*图标*/
+@common-icon-color: #666; //全局图标颜色
+
+@common-icon-color-hover: #4585e5;  //全局图标hover颜色
+
+@common-icon-color-readonly: #cccccc;  //全局图标hover颜色
+
+
+/*背景*/
+@common-bg: #ffffff; //背景主色，整体背景颜色
+
+@common-bg-impotent: #4585e5; //背景副色，选中行背景颜色
+
+@common-bg-hover: #eeeeee; //鼠标移入背景色
+
+@common-bg-form: #ffffff; //表单元素的背景颜色
+
+@common-bg-form-readonly:#f5f5f5; //表单元素只读背景颜色
+/*边框*/
+
+@common-border-color-default: #dddddd; //默认边框颜色
+
+@common-border-color-form : #cccccc; //表单元素默认边框颜色
+
+@common-border-color-error : #cc4b3d; //表单元素填写错误时边框颜色
+
+@common-border-color-focus: #4585e5; //表单元素获取焦点时边框颜色
+
+@common-border-shadow-focus: rgba(69, 133, 229, 0.5); //表单获取焦点时的发光颜色：rgba
+
+/**borderlayout**/
+
+@borderlayout-bg: @common-bg; //背景颜色
+
+@borderlayout-border-color: #e5e5e5; //边框颜色
+
+@borderlayout-header-bg-start: #ffffff; //标题背景渐变开始
+
+@borderlayout-header-bg-end: #f2f2f2; //标题背景渐变结束
+
+@border-arrow-color: @common-icon-color; //隐藏箭头颜色
+
+@border-arrow-color-hover: @common-icon-color-hover; //隐藏箭头hover颜色
+
+
+/**button**/
+/*默认按钮*/
+@button-default-bg-start: #ffffff; //默认按钮背景渐变开始
+
+@button-default-bg-end: #e6e6e6; //默认按钮背景渐变结束，以及active背景
+
+@button-default-border-color: #cccccc; //默认按钮边框
+
+@button-default-hover-bg-start: #f2f2f2; //默认按钮hover背景渐变开始
+
+@button-default-hover-bg-end: #dadada; //默认按钮hover背景渐变开始
+
+@button-default-hover-border-color: #c0c0c0; //默认按钮hover边框
+
+@button-default-color: @common-font-color; //默认按钮文字颜色
+
+/*红色按钮*/
+@button-red-bg-start: #e55545; //红色按钮背景渐变开始
+
+@button-red-bg-end: #cc4b3d; //红色按钮背景渐变结束，以及active背景
+
+@button-red-border-color: #bf3626; //红色按钮边框
+
+@button-red-hover-bg-start: #cc4b3d; //红色按钮hover背景渐变开始
+
+@button-red-hover-bg-end: #b34236; //红色按钮hover背景渐变开始
+
+@button-red-hover-border-color: #a62e21; //红色按钮hover边框
+
+@button-red-color: #ffffff; //红色按钮文字颜色
+
+/*蓝色按钮*/
+@button-blue-bg-start: #4c94ff; //蓝色按钮背景渐变开始
+
+@button-blue-bg-end: #4585e5; //蓝色按钮背景渐变结束，以及active背景
+
+@button-blue-border-color: #2b71d9; //蓝色按钮边框
+
+@button-blue-hover-bg-start: #4585e5; //蓝色按钮hover背景渐变开始
+
+@button-blue-hover-bg-end: #3d76cc; //蓝色按钮hover背景渐变开始
+
+@button-blue-hover-border-color: #2663bf; //蓝色按钮hover边框
+
+@button-blue-color: #ffffff; //蓝色按钮文字颜色
+
+/*绿色按钮*/
+@button-green-bg-start: #3dcc4b; //绿色按钮背景渐变开始
+
+@button-green-bg-end: #36b342; //绿色按钮背景渐变结束，以及active背景
+
+@button-green-border-color: #32a63d; //绿色按钮边框
+
+@button-green-hover-bg-start: #36b342; //绿色按钮hover背景渐变开始
+
+@button-green-hover-bg-end: #2a8c34; //绿色按钮hover背景渐变开始
+
+@button-green-hover-border-color: #26802f; //绿色按钮hover边框
+
+@button-green-color: #ffffff; //绿色按钮文字颜色
+
+/*橙色按钮*/
+@button-orange-bg-start: #ffa31a; //橙色按钮背景渐变开始
+
+@button-orange-bg-end: #e59317; //橙色按钮背景渐变结束，以及active背景
+
+@button-orange-border-color: #d98b16; //橙色按钮边框
+
+@button-orange-hover-bg-start: #e59317; //橙色按钮hover背景渐变开始
+
+@button-orange-hover-bg-end: #cc8314; //橙色按钮hover背景渐变开始
+
+@button-orange-hover-border-color: #bf7a13; //橙色按钮hover边框
+
+@button-orange-color: #ffffff; //橙色按钮文字颜色
+
+/*禁用状态按钮*/
+
+@button-disabled-bg: #e5e5e5; //禁用状态按钮颜色
+
+@button-disabled-border-color: #cccccc; //禁用状态下的边框
+
+@button-disabled-font-color: #808080; //禁用状态下文字颜色
+
+
+/**calender**/
+
+/*主体颜色*/
+@calender-hover: #eeeeee; //所有鼠标hover颜色
+
+/*顶部面板*/
+@calender-header-bg:  #4585e5; //顶部面板背景颜色
+
+@calender-header-arrow: #ffffff; //顶部面板箭头颜色
+
+/*星期条*/
+@calender-bar-bg: #f2f2f2; //星期条背景
+
+@calender-bar-font-color: @common-font-color; //星期条文字颜色
+
+/*日期面板*/
+@calender-today-bg: #e5f0ff; //日期面板今天日期背景
+
+@calender-today-font-color: @common-font-color; //日期面板今天日期文字颜色
+
+@calender-notcurrmonth-font-color: #888888; //日期面板非本月文字颜色
+
+@calender-disabled-font-color: #cccccc; //日期面板不可选的日期文字颜色
+
+@calender-weekbar-bg: #e5f0ff; //日期面板左边周数背景颜色
+
+@calender-weekbar-font-color: @common-font-color; //日期面板左边周数背景颜色
+
+/*时间面板*/
+
+@calender-timebar-bg: #ffffff; //时间面板背景颜色
+
+@calender-timebar-button-bg: #ffffff; //时间面板按钮背景颜色
+
+@calender-timebar-button-color: @common-font-color; //时间面板按钮颜色
+
+/*按钮条*/
+
+@calender-buttonbar-bg: #f2f2f2; //按钮条背景颜色
+
+/**clickInput**/
+
+/**dialog**/
+
+@dialog-header-bg: #f2f2f2; //dialog背景颜色
+
+
+/**grid and editableGrid**/
+
+/*表头*/
+@grid-header-bg: #E7E7E7; //表头背景
+
+@grid-header-font-color: #333333; //表头文字颜色
+
+@grid-header-shadow: #f2f2f2; //表头下部分投影颜色
+
+@grid-header-bg-hover: #f2f2f2; //表头hover背景
+
+@grid-header-icon-color: @common-icon-color; //表头图标颜色
+
+@grid-header-icon-color-hover: @common-icon-color-hover; //表头图标hover颜色
+
+/*表体*/
+@grid-border-td-bottom: #CCC; //td下边框颜色
+
+@grid-tr-even-bg:#fafafa ; //偶数行背景
+
+@grid-select-bg:#EDFFCE ; //选中行背景
+
+@grid-select-font-color:#333; //选中行文字颜色
+
+@grid-tr-bg-hover:#EDFFCE ; //行hover背景
+
+@grid-tr-highlight: #EDFFCE; //高亮行颜色
+
+@grid-loadingoverlay-bg:#f2f2f2; //loading遮盖背景颜色
+
+@grid-loadingbox-bg:#ffffff; //loading遮盖背景颜色
+
+/*隐藏列面板*/
+
+@grid-hidecol-bg:#ffffff ; //隐藏列面板背景
+
+@grid-hidecol-toolbar-bg: #f2f2f2; //隐藏列按钮区域背景
+
+@grid-hidecol-list-bg-hover: @common-bg-hover; //隐藏列hover背景
+
+@grid-pagelist-bg: #fafafa; //分页背景
+
+
+/*editable特有*/
+
+@editablegrid-header-require: #cc4b3d; //必填项型号标记颜色
+
+@editablegrid-editing-bg: #ffffff ; //当前编辑状态单元格背景
+
+
+/**listbox**/
+
+@listbox-bg: #fafafa; //背景
+
+/**msgBox**/
+
+@msgbox-toolbar-bg: #f2f2f2; //按钮区域背景
+
+@msg-alert-bg:#e5f0ff ;//alert背景
+
+@msg-alert-border-color:#b8cae5 ;//alert边框颜色
+
+@msg-alert-bg-font-color:#3d76cc;//alert文字颜色
+
+@msg-warn-bg:#fff5e5 ;//warn背景
+
+@msg-warn-border-color:#e5d3b8 ;//warn边框颜色
+
+@msg-warn-bg-font-color:#cc8314;//warn文字颜色
+
+@msg-error-bg:#ffe8e5 ;//error背景
+
+@msg-error-border-color:#e5bcb8 ;//error边框颜色
+
+@msg-error-bg-font-color:#b34236;//error文字颜色
+
+@msg-success-bg:#e5ffe8 ;//success背景
+
+@msg-success-border-color:#b8e5bc ;//success边框颜色
+
+@msg-success-bg-font-color:#36b342;//success文字颜色
+
+/**Pagination**/
+@Pagination-curr-bg: #f2f2f2; //当前页，背景颜色
+
+
+/**panel**/
+@panel-header-bg-start: #ffffff; //标题背景渐变开始
+
+@panel-header-bg-end: #f2f2f2; //标题背景渐变结束
+
+
+/**tab**/
+@tab-tag-bg: #e5e5e5; //默认标签背景
+
+@tab-tag-select-bg: @common-bg-impotent; //选中标签背景颜色
+
+@tab-select-font-color: #ffffff; //选中标签文字颜色
+
+@tab-select-icon-color: @tab-select-font-color;//选中标签关闭按钮颜色
+
+@tab-select-icon-color-hover: @tab-tag-bg ;//选中标签关闭按钮hover颜色
+
+@tab-top-border-color: @common-bg-impotent; //顶部边框颜色
+
+/**tree**/
+
+@tree-node-focus-bg: #f2f2f2; //节点获取焦点时背景
+
+/**tip**/
+
+@tip-error-bg: #ffe8e5; //Error背景颜色
+
+@tip-error-border-color: #e5bcb8; //Error边框颜色
+
+@tip-error-closeicon-color: #b34236; //Error关闭按钮颜色
+
+@tip-normal-bg: #FFF9D4; //Normal背景颜色
+
+@tip-normal-border-color: #E6B803 ; //Normal边框颜色
+
+@tip-normal-closeicon-color: #cc8314; //Normal关闭按钮颜色
+
+@tip-font-color: @common-font-color; //文字颜色
+
+@tip-closeicon-color-hover: @tip-font-color;//关闭按钮hover颜色
