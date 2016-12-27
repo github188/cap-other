@@ -1,0 +1,247 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*组件的高度*/
+/**圆角全局有效**/
+/*组件的圆角*/
+/*msgbox,dialog,grid*/
+/*渐变*/
+/*配合上面的函数使用，禁用IE的渐变*/
+/*组件发光效果的动画*/
+/*
+* msgbox css
+*/
+/*button 样式*/
+/*定义按钮的高度*/
+/*定义按钮的圆角*/
+/*定义按钮的左右padding*/
+/*弹出框公用样式*/
+/*定义弹出框标题字体大小*/
+/*定义弹出框内容文字颜色*/
+/*定义弹出框内容字体大小*/
+/*定义弹出框border样式*/
+/*定义弹出框border大小*/
+/*定义弹出框boxShadow*/
+/*定义弹出框底部的背景颜色,即包含按钮部分的背景颜色*/
+/*定义弹出框圆角*/
+/*alert，confirm，message-alert样式*/
+/*定义弹出框上部分背景颜色*/
+/*定义弹出框border颜色*/
+/*定义弹出框标题颜色*/
+/*warn,message-warn样式*/
+/*定义弹出框上部分背景颜色*/
+/*定义弹出框border颜色*/
+/*定义弹出框标题颜色*/
+/*error,message-error样式*/
+/*定义弹出框上部分背景颜色*/
+/*定义弹出框border颜色*/
+/*定义弹出框标题颜色*/
+/*success,message-success样式*/
+/*定义弹出框上部分背景颜色*/
+/*定义弹出框border颜色*/
+/*定义弹出框标题颜色*/
+/* msgbox border */
+/* msgbox footer style */
+.cui-msg-extend-alert,
+.cui-msg-extend-confirm,
+.cui-msg-extend-message-alert,
+.cui-msg-extend-message-message {
+  color: #3d76cc;
+  background-color: #e5f0ff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #b8cae5;
+}
+.cui-msg-extend-alert .msgbox-ft,
+.cui-msg-extend-confirm .msgbox-ft,
+.cui-msg-extend-message-alert .msgbox-ft,
+.cui-msg-extend-message-message .msgbox-ft {
+  border-top: solid 1px #b8cae5;
+}
+.cui-msg-extend-warn,
+.cui-msg-extend-message-warn {
+  color: #cc8314;
+  background-color: #fff5e5;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e5d3b8;
+}
+.cui-msg-extend-warn .msgbox-ft,
+.cui-msg-extend-message-warn .msgbox-ft {
+  border-top: solid 1px #e5d3b8;
+}
+.cui-msg-extend-error,
+.cui-msg-extend-message-error {
+  color: #b34236;
+  background-color: #ffe8e5;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e5bcb8;
+}
+.cui-msg-extend-error .msgbox-ft,
+.cui-msg-extend-message-error .msgbox-ft {
+  border-top: solid 1px #e5bcb8;
+}
+.cui-msg-extend-success,
+.cui-msg-extend-message-success {
+  color: #36b342;
+  background-color: #e5ffe8;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #b8e5bc;
+}
+.cui-msg-extend-success .msgbox-ft,
+.cui-msg-extend-message-success .msgbox-ft {
+  border-top: solid 1px #b8e5bc;
+}
+.cui-msg-extend-message-alert div.box-msg,
+.cui-msg-extend-message-success div.box-msg,
+.cui-msg-extend-message-message div.box-msg,
+.cui-msg-extend-message-error div.box-msg,
+.cui-msg-extend-message-warn div.box-msg {
+  margin-left: 50px;
+}
+.cui-msg-extend-message-alert div.box-icon,
+.cui-msg-extend-message-success div.box-icon,
+.cui-msg-extend-message-message div.box-icon,
+.cui-msg-extend-message-error div.box-icon,
+.cui-msg-extend-message-warn div.box-icon {
+  left: 20px;
+}
+.msg-box {
+  display: none;
+  padding: 0;
+  z-index: 10001;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  *zoom: 1;
+}
+.msg-box.msg-box-rb {
+  position: fixed;
+  _position: absolute;
+  bottom: 2px;
+  right: 2px;
+}
+.msg-box.msg-box-center {
+  position: fixed;
+  _position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.msg-box.msg-box-custom {
+  position: fixed;
+  _position: absolute;
+}
+.msg-box .msgbox-titlebar {
+  display: block;
+  padding: 11px 0 0 13px;
+  border: none;
+  cursor: move;
+  *zoom: 1;
+}
+.msg-box .msgbox-title {
+  font-size: 14px;
+  line-height: 16px;
+  height: 16px;
+  display: block;
+  width: 60%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.msg-box a.msgbox-close-btn {
+  display: none;
+}
+.msg-box .msgbox-content {
+  position: relative;
+  padding-top: 1px;
+}
+.msg-box .msgbox-ft {
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 13px;
+  *zoom: 1;
+}
+.msg-box .btn-normal {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  padding: 0 11px;
+  border-radius: 3px;
+  height: 26px;
+  line-height: 26px;
+  margin-left: 6px;
+  cursor: pointer;
+  overflow: visible;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #333333;
+}
+.msg-box .btn-normal .button-icon {
+  display: none;
+}
+.msg-box .box-icon {
+  width: 27px;
+  height: 27px;
+  line-height: 27px;
+  position: absolute;
+  left: 35px;
+  top: 16px;
+  font-size: 28px;
+}
+.msg-box .box-msg {
+  font-size: 12px;
+  color: #333333;
+  line-height: 24px;
+  margin: 18px 10px 10px 70px;
+  word-break: break-all;
+  word-wrap: break-word;
+  min-height: 40px;
+  max-height: 300px;
+  _height: 50px;
+  overflow: auto;
+}
+.cui_overlay_iframe {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: alpha(opacity=0);
+}

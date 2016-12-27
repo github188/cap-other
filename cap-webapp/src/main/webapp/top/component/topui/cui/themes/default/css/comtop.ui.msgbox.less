@@ -1,0 +1,199 @@
+﻿
+@import "common";
+@import "function";
+/*
+* msgbox css
+*/
+/*button 样式*/
+@buttonHeight: 26px;   /*定义按钮的高度*/
+@buttonRadius: 3px;    /*定义按钮的圆角*/
+@textPadding: 11px;    /*定义按钮的左右padding*/
+
+/*弹出框公用样式*/
+@titleFontSize:14px;  /*定义弹出框标题字体大小*/
+@contentColor:@common-font-color;  /*定义弹出框内容文字颜色*/
+@contentFontSize:12px;  /*定义弹出框内容字体大小*/
+@borderStyle:solid;  /*定义弹出框border样式*/
+@borderWidth:1px;   /*定义弹出框border大小*/
+@boxShadow:0 0 5px rgba(0,0,0,0.1);  /*定义弹出框boxShadow*/
+@footerBgColor:@msgbox-toolbar-bg; /*定义弹出框底部的背景颜色,即包含按钮部分的背景颜色*/
+@borderRadius:@radius-big;  /*定义弹出框圆角*/
+
+/*alert，confirm，message-alert样式*/
+@alertBgColor: @msg-alert-bg;  /*定义弹出框上部分背景颜色*/
+@alertBorderColor:@msg-alert-border-color;  /*定义弹出框border颜色*/
+@alertTitleColor:@msg-alert-bg-font-color;  /*定义弹出框标题颜色*/
+
+/*warn,message-warn样式*/
+@warnBgColor: @msg-warn-bg;  /*定义弹出框上部分背景颜色*/
+@warnBorderColor:@msg-warn-border-color;  /*定义弹出框border颜色*/
+@warnTitleColor:@msg-warn-bg-font-color;  /*定义弹出框标题颜色*/
+
+/*error,message-error样式*/
+@errorBgColor: @msg-error-bg;  /*定义弹出框上部分背景颜色*/
+@errorBorderColor:@msg-error-border-color;  /*定义弹出框border颜色*/
+@errorTitleColor:@msg-error-bg-font-color;  /*定义弹出框标题颜色*/
+
+/*success,message-success样式*/
+@successBgColor: @msg-success-bg;  /*定义弹出框上部分背景颜色*/
+@successBorderColor:@msg-success-border-color;  /*定义弹出框border颜色*/
+@successTitleColor:@msg-success-bg-font-color;  /*定义弹出框标题颜色*/
+
+
+.position(){
+    position:fixed;
+    _position:absolute;
+}
+
+/* msgbox border */
+.borderRadius(){
+    -moz-border-radius:@borderRadius;
+    -webkit-border-radius: @borderRadius;
+    border-radius: @borderRadius;
+};
+/* msgbox footer style */
+.footClazz(@color:@alertTitleColor,@bgColor: @alertBgColor,@borderColor:@alertBorderColor){
+    color:@color;
+    background-color: @bgColor;
+    border-style: @borderStyle;
+    border-width: @borderWidth;
+    border-color: @borderColor;
+    .msgbox-ft{
+        border-top: solid 1px @borderColor;
+    }
+}
+
+.cui-msg-extend-alert,.cui-msg-extend-confirm,.cui-msg-extend-message-alert,.cui-msg-extend-message-message{
+    .footClazz(@alertTitleColor,@alertBgColor,@alertBorderColor);
+}
+
+
+.cui-msg-extend-warn,.cui-msg-extend-message-warn{
+    .footClazz(@warnTitleColor,@warnBgColor,@warnBorderColor);
+}
+
+.cui-msg-extend-error,.cui-msg-extend-message-error{
+    .footClazz(@errorTitleColor,@errorBgColor,@errorBorderColor);
+}
+
+.cui-msg-extend-success,.cui-msg-extend-message-success{
+    .footClazz(@successTitleColor,@successBgColor,@successBorderColor);
+}
+
+
+.cui-msg-extend-message-alert,.cui-msg-extend-message-success,.cui-msg-extend-message-message,
+.cui-msg-extend-message-error,.cui-msg-extend-message-warn{
+    div.box-msg {
+        margin-left: 50px;
+    }
+    div.box-icon{
+        left:20px;
+    }
+}
+.msg-box {
+    display: none;
+    padding: 0;
+    z-index: 10001;
+    .borderRadius();
+    overflow: hidden;
+    box-shadow: @boxShadow;
+    *zoom: 1;
+    &.msg-box-rb{
+        .position();
+        bottom:2px;
+        right:2px;
+    }
+    &.msg-box-center{
+        .position();
+        top:50%;
+        left:50%;
+    }
+    &.msg-box-custom{
+        .position();
+    }
+    .msgbox-titlebar {
+        display: block;
+        padding: 11px 0 0 13px;
+        border: none;
+        cursor: move;
+        *zoom:1;
+
+    }
+    .msgbox-title {
+        font-size: @titleFontSize;
+        line-height: 2+@titleFontSize;
+        height: 2+@titleFontSize;
+        display: block;
+        width:60%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis;
+    }
+    a.msgbox-close-btn{
+        display: none;
+    }
+
+    .msgbox-content {
+        position: relative;
+        padding-top: 1px;
+    }
+
+    .msgbox-ft {
+        text-align: center;
+        background-color: @footerBgColor;
+        padding: 13px;
+        *zoom: 1;
+    }
+    .btn-normal{
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+        padding: 0 @textPadding;
+        border-radius: @buttonRadius;
+        height:@buttonHeight;
+        line-height: @buttonHeight;
+        margin-left:6px;
+        cursor: pointer;
+        overflow: visible;
+        text-decoration: none;
+        white-space: nowrap;
+        font-size:12px;
+        color: @button-default-color;
+        .button-icon{display: none;}
+    }
+
+
+    .box-icon {
+        width: 27px;
+        height: 27px;
+        line-height: 27px;
+        position: absolute;
+        left: 35px;
+        top: 16px;
+        font-size: 28px;
+    }
+
+
+    .box-msg {
+        font-size: @contentFontSize;
+        color:@contentColor;
+        line-height: 24px;
+        margin: 18px 10px 10px 70px;
+        word-break:break-all;
+        word-wrap:break-word;
+        min-height: 40px;
+        max-height: 300px;
+        _height: 50px;
+        overflow: auto;
+
+    }
+}
+.cui_overlay_iframe {
+    display: none;
+    width:100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    filter:alpha(opacity=0);
+}

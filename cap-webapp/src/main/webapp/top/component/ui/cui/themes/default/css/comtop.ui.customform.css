@@ -1,0 +1,20 @@
+﻿.customform{
+    margin:0;
+    padding:0;
+    width:100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.customform .td_label{
+    padding:7px 5px;
+    text-align: right;
+}
+
+.customform .td_content{
+    padding:7px 5px;
+}
+
+.customform .td_required{
+    color: red;
+}

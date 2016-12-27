@@ -1,0 +1,104 @@
+.topui_error_bg {
+	background-color: #eef2fb;
+	padding-top:80px;
+}
+.topui_error {
+	width: 70%;
+	margin:auto;
+	padding: 10px;
+	border: 1px solid #c2d1df;
+	background-color: #fff;
+    border-radius: 3px 3px 3px 3px;
+}
+.topui_error_box404 {
+	/*height: 235px;*/
+	padding-left: 195px;
+	background: url(images/error_404.gif) no-repeat left;
+}
+.topui_error_box503 {
+	/*height: 235px;*/
+	padding-left: 195px;
+	background: url(images/error_503.gif) no-repeat left;
+}
+.topui_error_box500 {
+	/*height: 235px;*/
+	padding-left: 195px;
+	background: url(images/error_500.gif) no-repeat left;
+}
+.topui_error_boxErr {
+	/*height: 235px;*/
+	padding-left: 195px;
+	background: url(images/error_err.jpg) no-repeat left;
+}
+.topui_error_box_line {
+	border-bottom: 1px solid #c7c7c7;
+	margin-bottom: 5px;
+	padding-bottom:3px;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 15px;
+	color: #3b5998;
+	padding-left: 10px;
+}
+.topui_error_box_line h1{
+	color: #21438b;
+	padding-bottom: 20px;
+}
+.topui_error_box_font{
+	color: #3b5998;
+	font-size:12px;
+	line-height: 10px;
+	padding-left: 10px;
+}
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+	background-color: #fff;
+}
+.topui_error_custom {
+	position: absolute;
+	top: 45%;
+	left: 0;
+	right: 0;
+	height: 300px;
+	margin-top: -150px;
+}
+.topui_error_warp {
+    margin: 0 auto;
+    padding: 50px 0 50px 320px;
+    width: 500px;
+    background: url(images/error.jpg) center left no-repeat;
+}
+.topui_error_info {
+	width: 430px;
+	height: 94px;
+	 text-align: left;
+	border-top: solid 1px #ddd;
+	border-bottom: solid 1px #ddd;
+}
+.topui_error_warp h1 {
+	font-family: "Î¢ÈíÑÅºÚ", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 30px;
+	color: #333;
+}
+
+.topui_error_info p span {
+	color: red;
+}
+.topui_error_help {
+	text-align: left;
+	font-size: 12px;
+	color: #888;
+	clear :both;
+}
+.topui_error_title, .topui_error_text {
+	float:left;
+}
+.topui_error_title{
+	width: 70px;
+}
+.topui_error_text {
+	width: 350px;
+}

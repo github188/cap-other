@@ -1,0 +1,120 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*组件的高度*/
+/**圆角全局有效**/
+/*组件的圆角*/
+/*msgbox,dialog,grid*/
+/*渐变*/
+/*配合上面的函数使用，禁用IE的渐变*/
+/*组件发光效果的动画*/
+/*panel title高度 不包含border*/
+/*panel border*/
+/*panel title border radius*/
+/*panel content border radius*/
+/*panel content background color*/
+/*panel title字体设置*/
+/*panel 背景图片*/
+.cui-panel {
+  position: relative;
+}
+.cui-panel .cui-panel-title {
+  height: 34px;
+  line-height: 34px;
+  background: #f2f2f2;
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#ffffff), to(#f2f2f2));
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #ffffff, #f2f2f2);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ffffff, endColorstr=#f2f2f2);
+  /*IE<9>*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#f2f2f2)";
+  /*IE8+*/
+  background-image: -ms-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
+  border: 1px solid #dddddd;
+  -moz-border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  padding: 0px 11px;
+  margin: 0px;
+  font-weight: normal;
+  position: relative;
+  font-size: 12px;
+  color: #333333;
+  /*    -O-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            white-space:normal;
+            word-break:break-all;*/
+  overflow: hidden;
+}
+.cui-panel .cui-panel-trigger-customer {
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: 9px 5px 0px 0px;
+  float: right;
+}
+.cui-panel .cui-panel-trigger {
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin-top: 1px;
+  float: right;
+  cursor: pointer;
+  color: #666666;
+}
+.cui-panel .cui-panel-trigger:hover {
+  color: #4585e5;
+}
+.cui-panel .cui-panel-content {
+  border: 1px solid #dddddd;
+  border-top: 0;
+  background-color: #ffffff;
+  overflow: hidden;
+  -moz-border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+  /*  position: relative;
+        */
+  zoom: 1;
+  padding: 0px;
+}
+.cui-panel .cui-panel-content iframe {
+  width: 100%;
+  display: block;
+}

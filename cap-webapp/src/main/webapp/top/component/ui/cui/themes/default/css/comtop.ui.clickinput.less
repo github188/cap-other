@@ -1,0 +1,131 @@
+﻿@import "common";
+@import "function";
+
+@defaultWidth: 200px;     /*定义clickinput的默认宽度*/
+@iconWidth: 34px;     /*定义clickinput的按钮宽度*/
+@clickInputHeight: @height - 2 * 1 - 2 * 4px;    /*定义里面clickinput框的高度*/
+
+
+.icon(@image) {
+    background-image: url("../images/icons-black/@{image}.png");
+}
+
+.click_input_wrap {
+    width: @defaultWidth;
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    vertical-align:middle;
+    border-radius: @radius;
+}
+
+.BC_click_input_wrap {
+    *width: @defaultWidth;
+}
+.click_input_base {
+    background: transparent!important;
+    border: 0 none!important;
+    width: 100%;
+    height: @clickInputHeight!important;
+    line-height: @clickInputHeight!important;
+    font-size: 12px;
+    padding: 0!important;
+    /*解决IE8下获取焦点晃动问题*/
+    vertical-align: middle;
+    outline: none;
+    margin: 0!important;
+    display: block;
+    box-shadow: none!important;
+}
+
+.click_input_box {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1) inset;
+    .transition;
+    border: 1px solid @common-border-color-form;
+    border-radius:@radius 0 0 @radius;
+    color: @common-font-color-form;
+    height: @clickInputHeight;
+    line-height: @clickInputHeight;
+    padding: 4px 5px ;
+    overflow: hidden;
+    margin:-@height 34px 0 0;
+    background: @common-bg-form;
+}
+:root .click_input_box {
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); //IE9-10
+}
+.BC_click_input_box {
+    *height: @height!important;
+}
+
+.input_tipcolor{
+    color: @common-font-color-form;
+}
+
+.input_focus {
+    border: 1px solid @common-border-color-focus;
+    box-shadow:  0 0 5px @common-border-shadow-focus;
+}
+
+.input_garybg{
+    .click_input_box {
+        background: @common-bg-form-readonly;
+        border-radius:@radius;
+    }
+    .click_input_base{
+        color: @common-font-color-form-readonly;
+    }
+}
+.cui_clickinput_empty{
+    height: @height;
+    line-height: @height;
+    color: @common-font-color-form-empty;
+    padding-left: 6px;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.click_input_icon{
+    .linear-gradient(@button-default-bg-start, @button-default-bg-end);
+    border: 1px solid @common-border-color-form;
+    border-left: 0 none;
+    border-radius:0 @radius @radius 0;
+    text-align: center;
+    height: @clickInputHeight + 8;
+    line-height: @clickInputHeight + 8;
+    width: @iconWidth;
+    text-decoration: none;
+    white-space: nowrap;
+    outline:none;
+    float: right;
+    cursor: pointer;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    margin:0!important;
+    *margin-left: -3px!important;
+    color: @common-icon-color;
+}
+.click_input_icon:hover{
+    .linear-gradient(@button-default-hover-bg-start, @button-default-hover-bg-end);
+    .click_input_icon_bg {
+        color: @common-icon-color-hover;
+    }
+}
+.click_input_icon:active{
+    background: @button-default-bg-end;
+    .click_input_icon_bg {
+        color: @common-icon-color-hover;
+    }
+}
+.click_input_icon .click_input_icon_bg{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.click_input_invalid {
+    border: 1px solid @common-border-color-error;
+}

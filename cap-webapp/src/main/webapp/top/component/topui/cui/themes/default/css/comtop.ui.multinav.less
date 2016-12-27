@@ -1,0 +1,23 @@
+﻿@import "common";
+
+@fc: @common-font-color;
+@hover: @common-bg-hover;
+@checked: @common-bg-impotent;
+@checkedfc: @common-font-impotent;
+@icon: url(../images/multinav/icon.png);
+@icon-checked:url(../images/multinav/icon-checked.png);
+
+.multinav{padding:0; margin: 0;line-height: 28px;}
+.multinav ul{margin-left: 0;padding-left: 12px;}
+.multinav li{list-style: none; margin:0;padding-left: 0;}
+.multinav li a{display: block;text-decoration: none;outline: none;padding-left:12px;color:@fc;zoom:1}
+.multinav li a:hover{background: @hover;}
+
+.multinav li ul{ overflow: hidden; display: none;padding-left:12px}
+.multinav li ul.multinav-ul-unfold{display: block}
+.multinav li a.multinav-checked{background: @checked; color:@checkedfc; }
+
+.multinav-unfold-icon, .multinav-fold-icon{padding-right: 3px;}
+.multinav-unfold-icon{display: none;}
+.multinav-unfold .multinav-unfold-icon{display: inline;}
+.multinav-unfold .multinav-fold-icon{display: none;}

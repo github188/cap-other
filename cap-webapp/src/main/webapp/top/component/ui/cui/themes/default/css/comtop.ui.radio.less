@@ -1,0 +1,14 @@
+﻿@import "common";
+@import "function";
+@error-border-color: @common-border-color-error; //错误
+@border: 1px solid  @common-border-color-focus;
+
+.radio-group{border-radius: @radius;padding:1px;}
+.radio-group, .radiogroup-inner{display:inline-block; font-size: 12px; overflow: hidden; zoom:1; vertical-align: middle; *display:inline; }
+.radiogroup-inner{padding: 4px; line-height: 18px;display: block;}
+.radio-group-error{border:1px solid @error-border-color;padding: 0;}
+.radiogroup-border{border:1px solid @border; padding: 0;}
+.radiogroup-inner label{margin-right:8px;cursor: pointer; line-height: 18px; *line-height: 16px; display: inline-block;}
+.radiogroup-inner input{cursor: pointer; vertical-align:top; margin: 2px 3px 0 0;padding: 0;*margin:0 3px 0 0;*vertical-align:middle;_vertical-align:text-bottom; outline: none}
+.radiogroup-inner .radio-group-readonly{cursor:default;opacity: .5;filter:alpha(opacity=50);}
+.radio-group-readonly input{cursor:default;}

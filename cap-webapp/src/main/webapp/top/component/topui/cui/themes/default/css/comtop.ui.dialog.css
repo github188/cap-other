@@ -1,0 +1,194 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*组件的高度*/
+/**圆角全局有效**/
+/*组件的圆角*/
+/*msgbox,dialog,grid*/
+/*渐变*/
+/*配合上面的函数使用，禁用IE的渐变*/
+/*组件发光效果的动画*/
+/*
+*  dialog css
+*/
+/*定义dialog边框*/
+/*定义dialog boxShadow*/
+/*定义dialog圆角*/
+/*定义dialog字体颜色*/
+/*定义dialog内容区背景颜色*/
+/*定义dialog顶部样式*/
+/*定义dialog底部样式*/
+/*定义dialog title字体大小*/
+/*定义按钮的高度*/
+/*定义按钮的圆角*/
+/*定义按钮左右padding*/
+/*定义按钮的文字颜色*/
+.cui-dialog {
+  position: fixed;
+  _position: absolute;
+  left: -50000px;
+}
+.cui-dialog-noscroll {
+  overflow: hidden;
+}
+.cui-dialog-container {
+  display: none;
+  position: fixed;
+  _position: absolute;
+  border: 1px solid #dddddd;
+  padding: 0;
+  z-index: 10000;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  *zoom: 1;
+  color: #333333;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  /*    .dialog-close-btn span {
+            margin: 8px;
+            width: 14px;
+            height: 14px;
+            line-height: 0;
+            font-size: 0;
+            cursor: pointer;
+            background: url(../images/dialog/dialog.png) 0 -244px;
+    }*/
+  /*  .btn-normal-dis{
+        .buttonBg(#e5e5e5,#e5e5e5,#e5e5e5,#ccc);
+        color: #808080;
+      }*/
+}
+.cui-dialog-container .dialog-titlebar {
+  display: block;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 0 0 13px;
+  background-color: #f2f2f2;
+  cursor: move;
+}
+.cui-dialog-container .dialog-title {
+  font-size: 14px;
+  display: block;
+  height: 100%;
+  width: 60%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cui-dialog-container .dialog-close-btn {
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  *zoom: 1;
+  line-height: 24px;
+  text-align: center;
+  /*color: @common-icon-color;*/
+  text-decoration: none;
+  background: url(../images/dialog/dialog.png) no-repeat 0 -33px;
+}
+.cui-dialog-container .dialog-close-btn:hover {
+  /* color: @common-icon-color-hover;*/
+  background-position: 0 -3px;
+}
+.cui-dialog-container .dialog-content {
+  border-top: 1px solid #dddddd;
+  background-color: #ffffff;
+  *zoom: 1;
+  position: relative;
+}
+.cui-dialog-container .dialog-content .dialog-content-iframe {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.cui-dialog-container .dialog-content .dialog-content-inner {
+  overflow: auto;
+}
+.cui-dialog-container .dialog-ft {
+  padding: 13px;
+  height: 28px;
+  text-align: right;
+  border-top: 1px solid #dddddd;
+}
+.cui-dialog-container .dialog-ft a {
+  margin-left: 6px;
+  font-size: 12px;
+}
+.cui-dialog-container .btn-normal-hide {
+  display: none;
+}
+.cui-dialog-container .dialog-iframe-loading {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: url("../images/core/loading.gif") no-repeat 50% 50%;
+}
+.cui_dialog_eventproxylay {
+  display: none;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  background-color: #EFF1F6;
+  z-index: 10001;
+  position: fixed;
+  _position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: move;
+}
+.cui_overlay_iframe {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: alpha(opacity=0);
+}
+.cui_overlay_dialog_ie6 {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}

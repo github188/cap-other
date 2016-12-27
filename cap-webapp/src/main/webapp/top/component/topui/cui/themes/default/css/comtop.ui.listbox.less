@@ -1,0 +1,65 @@
+﻿@import "common";
+
+@listboxRadius: 3px;    /*定义listbox的圆角*/
+@listboxBorder: 1px solid @common-border-color-form;    /*定义listbox边框*/
+@listboxBg: @listbox-bg;    /*定义listbox背景颜色*/
+@listboxHoverBg: @common-bg-hover;    /*定义hover时候背景颜色*/
+@listboxSelectedBg: @common-bg-impotent;    /*定义选中时候背景颜色*/
+@listboxSelectedColor: @common-font-impotent;    /*定义选中时候字体的颜色*/
+@listboxLineHeight: 28px;    /*定义listbox高度*/
+@listboxPaddingLeft: 11px;    /*定义左边距高度*/
+.listbox{
+    border: @listboxBorder;
+    border-radius: @listboxRadius;
+    background: @listboxBg;
+    position: relative;
+    font-size: 12px;
+    width:100px;
+    height:200px;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.listbox .listboxQM{
+    
+}
+	
+.listbox .tr{
+    list-style-type:none;
+    height:100%;
+    margin: 0;
+    padding: 0;
+    zoom:1;
+}
+
+.listbox .tr .td{
+    background-color: transparent;
+    display: block;
+    *width:100%;
+    line-height: @listboxLineHeight;
+    min-width: 0px;
+    text-align: left;
+    cursor: pointer;
+    margin: 0;
+    padding-left: @listboxPaddingLeft;
+    word-break:break-all;
+    overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.listbox .tr .td.hover{
+   background: @listboxHoverBg;
+}
+
+.listbox .tr .td.selected{
+    border-left-color: @listboxSelectedBg;
+    border-left-width: 3px;
+    border-left-style: solid;
+    background: @listboxSelectedBg;
+    color: @listboxSelectedColor;
+    padding-left: @listboxPaddingLeft - 3;
+}
