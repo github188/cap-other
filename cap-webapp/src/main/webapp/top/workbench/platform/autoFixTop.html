@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>上边固定，下面自适应</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        html {
+            padding-top: 50px; /*上部设置为50px*/
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        html, body {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .banner {
+            width: 100%;
+            height: 50px; /*高度和padding设置一样*/
+            margin-top: -50px; /*值和padding设置一样*/
+            background-color: #ff6600;
+            overflow: hidden;
+            /*position: fixed;*/
+        }
+
+        .top {
+            height: 60px;
+            width: 100%;
+            overflow: hidden;
+            background-color: #005580;
+        }
+
+        .main {
+            height: 100px;
+            width: 100%;
+            overflow: hidden;
+            background-color: #FFE69F;
+        }
+    </style>
+    <script type="text/javascript">
+        /* 函数 GetPageSize 能够获得页面大小和窗口大小。执行这个函数会得到一个包含页面宽度、页面高度、窗口宽度、窗口高度的对象。
+         这个函数还是很容易读懂的。
+         第一部分是获得页面的实际大小，通过一个有3个分支的if...else语句实现。第1个分支针对Mozilla家族的浏览器例如Firefox；第2个分支针对普通IE浏览器；第3个分支针对IE Mac浏览器。
+         第二部分是获得窗口的实际大小，通过一个有3个分支的if...else语句实现。第1个分支针对Mozilla家族的浏览器例如Firefox；第2个分支针对Strict模式的IE 6.0 浏览器；第3个分支针对普通IE和其他浏览器。
+         第三个部分是在页面高度或者宽度少于窗口高度或者宽度的情况下，调整页面大小的数值。因为即使页面大小不足窗口大小，我们看到的仍然是窗口大小，所以调整后的数值更加符合实际需要。*/
+        function GetPageSize() {
+            var scrW, scrH;
+            if (window.innerHeight && window.scrollMaxY) {
+                // Mozilla
+                scrW = window.innerWidth + window.scrollMaxX;
+                scrH = window.innerHeight + window.scrollMaxY;
+            } else if (document.body.scrollHeight > document.body.offsetHeight) {
+                // all but IE Mac
+                scrW = document.body.scrollWidth;
+                scrH = document.body.scrollHeight;
+            } else if (document.body) { // IE Mac
+                scrW = document.body.offsetWidth;
+                scrH = document.body.offsetHeight;
+            }
+            var winW, winH;
+            if (window.innerHeight) {
+                // all except IE
+                winW = window.innerWidth;
+                winH = window.innerHeight;
+            } else if (document.documentElement
+                    && document.documentElement.clientHeight) {
+                // IE 6 Strict Mode
+                winW = document.documentElement.clientWidth;
+                winH = document.documentElement.clientHeight;
+            } else if (document.body) { // other
+                winW = document.body.clientWidth;
+                winH = document.body.clientHeight;
+            }
+            // for small pages with total size less then the viewport
+            var pageW = (scrW < winW) ? winW : scrW;
+            var pageH = (scrH < winH) ? winH : scrH;
+            return {PageW: pageW, PageH: pageH, WinW: winW, WinH: winH};
+        }
+
+        /* 获得滚动条位置的 Javascript 函数
+         函数 GetPageScroll 能够给出滚动条的位置。执行这个函数会得到一个包含滚动条水平位置和滚动条垂直位置的对象。
+         这个函数通过一个有3个分支的 if...else 语句实现。第1个分支针对Mozilla家族的浏览器例如Firefox；第2个分支针对Strict模式的IE 6.0 浏览器；第3个分支针对普通IE和其他浏览器。*/
+        function GetPageScroll() {
+            var x, y;
+            if (window.pageYOffset) {
+                // all except IE
+                y = window.pageYOffset;
+                x = window.pageXOffset;
+            } else if (document.documentElement
+                    && document.documentElement.scrollTop) {
+                // IE 6 Strict
+                y = document.documentElement.scrollTop;
+                x = document.documentElement.scrollLeft;
+            } else if (document.body) {
+                // all other IE
+                y = document.body.scrollTop;
+                x = document.body.scrollLeft;
+            }
+            return {X: x, Y: y};
+        }
+
+
+        /*测试函数*/
+        function main() {
+            var div = document.getElementById("div");
+            for (var i = 0; i < 10; i++) {
+                document.body.appendChild(document.createTextNode("Hello, World!"));
+                document.body.appendChild(document.createElement("br"));
+            }
+            var sz = GetPageSize();
+            alert([sz.PageW, sz.PageH, sz.WinW, sz.WinH].join(", "));
+            var sl = GetPageScroll();
+            alert([sl.X, sl.Y].join(", "));
+            window.scrollTo(0, sz.PageH);
+        }
+    </script>
+</head>
+<body onload="main()">
+
+<div class="banner">
+    <p> 此布局仅适用于在body内布局 banner 高度50px </p>
+</div>
+
+<div class="top">
+    <p> 此布局仅适用于在body内布局 top 高度50px </p>
+</div>
+
+
+<div class="main">
+    <h3>下面自适应,此布局仅适用于在body内布局,main 高度自适应 </h3>
+</div>
+</body>
+</html>

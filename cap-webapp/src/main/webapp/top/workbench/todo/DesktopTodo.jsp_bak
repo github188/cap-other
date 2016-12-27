@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=GBK"
+	pageEncoding="GBK"%>
+<%@ include file="/top/component/common/Taglibs.jsp"%>
+<html>
+<head>
+<%@ include file="/top/workbench/base/Header.jsp"%>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/top/workbench/todo/css/todo.css"/>
+<title>桌面待办</title>
+<script type="text/javascript"
+	src="${pageScope.cuiWebRoot}/top/workbench/dwr/interface/DesktopTodoAction.js"></script>
+</head>
+<body>
+
+<%@ include file="/top/workbench/base/MainNav.jsp"%>
+
+<div id="list_id" ></div>
+
+<!-- 定义模版 -->	
+<script type="text/template" id="template_id">	
+<div class="top-panel-div">
+    <ul>
+		<@  _.each(dataSourceList,function(item,index){  @>
+			<li style="border-left:4px solid <@=colorArray[index]@>">
+				<span><@= item.todoName @></span>
+            	<a href="javascript:void(0);" onclick="gotoTodoCenter('<@= item.todoId @>')"><@= item.todoCount @></a>
+        	</li>
+		<@ });  @>
+    </ul>
+</div>
+</script>
+<script language="javascript">
+
+	function gotoTodoCenter(todoId){
+		var url = '${pageScope.cuiWebRoot}/top/workbench/todo/TodoCenter.jsp?todoId='+todoId;
+		window.location.href = url;
+	}
+	
+	var dataSourceList;
+	var colorArray = ["#559701","#014EC2","#D58B0E","#7D54E1","#D38C0E","#CE5252","#32A6A5","#1C50AD"];
+	require([ 'jquery', 'underscore' ], function() {
+		DesktopTodoAction.queryTodoList(function(data) {
+			dataSourceList = data.list;
+			var html = _.template($("#template_id").html(), dataSourceList);
+			$("#list_id").html(html);
+		});
+	});
+</script>	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

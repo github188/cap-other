@@ -1,0 +1,127 @@
+/* Reset */
+body, images, p, h1, h2, h3, h4, h5, h6, ul, ol { margin: 0; padding: 0; list-style: none; border: none; }
+/* End Reset */
+a { color: white; }
+
+.color-yellow { background: #f2bc00;}
+.color-red { background: #dd0000; }
+.color-blue { background: #148ea4; }
+.color-white { background: #dfdfdf; }
+.color-orange { background: #f66e00; }
+.color-green { background: #8dc100; }
+.color-gray { background: #808080; }
+.color-burlywood { background: #DEB887; }
+.color-yellow h3, .color-white h3, .color-green h3 { color: #000; }
+.color-red h3, .color-blue h3, .color-orange h3 { color: #FFF; }
+/* End Colors */
+
+/* Head section */
+.head { background: #000 url(../img/head-bg.png) repeat-x; height: 60px; }
+.head h1 { line-height: 60px; color: #FFF; text-align: center;}
+/* End Head Section */
+
+/* Columns section */
+/*#columns{margin: 0 auto;width: 100%;}
+#columns .column { float: left;  *//* Min-height: *//* min-height: 400px; height: auto !important; height: 400px; }
+
+#columns #column1 { width: 35%;}
+#columns #column2 { width: 64%;}
+
+#columns #column1 .widget { margin: 30px 35px 0 25px; }
+#columns #column2 .widget { margin: 30px 35px 0 25px; }*/
+
+#columns{padding: 0 10px; height: 100%; }
+#columns .column { height: 100%; }
+
+#columns .column1 { float: left; width: 330px;}
+#columns .column2 { margin-left: 340px;}
+#columns .column-full .column1{ width: 0;}
+#columns .column-full .column2{ margin-left: 0;}
+
+#columns .column .widget { margin-top: 10px;box-shadow: 0 0 3px rgba(0,0,0,0.1);}
+
+/*#columns .widget { margin: 30px 20px 0 20px; padding: 2px; -moz-border-radius: 4px; -webkit-border-radius: 4px; overflow:hidden; }
+#columns .widget .widget-head { color: #000; overflow: hidden; width: 100%; height: 30px; line-height: 30px; }
+#columns .widget .widget-head h3 { padding: 0 5px; float: left; }
+#columns .widget .widget-content { background: #333 url(../img/widget-content-bg.png) repeat-x; padding: 0 5px; color: #DDD; -moz-border-radius-bottomleft: 2px; -moz-border-radius-bottomright: 2px; -webkit-border-bottom-left-radius: 2px; -webkit-border-bottom-right-radius: 2px; line-height: 1.2em; overflow: hidden; }
+#columns .widget .widget-content p { padding: 0.8em 0; border-bottom: 1px solid #666; }
+#columns .widget .widget-content images { float: right; margin: 10px; border: 1px solid #FFF; }*/
+
+#columns .widget {padding: 0 10px;border: 1px solid #C4C6D2; overflow:hidden; background: #fff!important; }
+#columns .widget .widget-head { color: #000; overflow: hidden; width: 100%; height: 35px; line-height: 35px; background: #fff!important;border-bottom: 1px solid #E6E6E6;}
+#columns .widget .widget-head h3 { padding: 0; float: left; color: #333!important;}
+#columns .widget .widget-content { background: #fff!important; padding: 8px 0; color: #333;  line-height: 1.2em; overflow: hidden; }
+#columns .widget .widget-content p { padding: 0.8em 0; }
+#columns .widget .widget-content images { float: right; margin: 10px; border: 1px solid #FFF; }
+
+
+
+#columns .widget .widget-content pre { padding: 0.5em 5px; color: #EEE; font-size: 12px; }
+#columns .widget .widget-content ul { padding: 5px 0 5px 20px; list-style: disc; }
+#columns .widget .widget-content ul li { padding: 3px 0; }
+#columns .widget .widget-content ul.images { padding: 7px 0 0 0; list-style: none; height: 1%; }
+#columns .widget .widget-content ul.images li { display: inline; float: left; }
+#columns .widget .widget-content ul.images images { display: inline; float: left; margin: 0 0 7px 7px; }
+
+.borderline{/*border: dashed #222222 1px;*/background: #ddd}
+/* End Columns section */
+
+.widget-head a.remove { float: right;
+    margin: 7px 4px; display: inline; background: 0 -100px url(../img/drag.png) no-repeat;
+    width: 20px; height: 20px; text-indent: -9999em; outline: none; }
+.widget-head a.remove:hover{
+    background-position: 0 -80px;
+}
+
+.widget-head a.reload { float: right;
+    margin: 7px 4px; display: inline; background: url(../img/drag.png)  0 -20px no-repeat;
+    width: 20px; height: 20px; text-indent: -9999em; outline: none; }
+.widget-head a.reload:hover{
+    background-position: 0 0;
+}
+
+/*.widget-head a.edit { float: right; display: inline; background: url(../img/buttons.gif) no-repeat; width: 24px; height: 14px; text-indent: -9999em; margin: 8px 4px 8px 4px; outline: none; }*/
+.widget-head a.edit { float: right;
+    display: inline; background: 0 -60px url(../img/drag.png) no-repeat; width: 20px; height: 20px; text-indent: -9999em; margin: 7px 4px; outline: none; }
+
+.widget-head a.edit:hover{
+    background-position: 0 -40px;
+}
+.widget-head a.edited{
+    background-position: 0 -40px;
+}
+
+/*.widget-head a.collapse { float: left; display: inline; background: url(../img/buttons.gif) no-repeat -52px 0; width: 14px; height: 14px; text-indent: -9999em; margin: 8px 0 8px 4px; outline: none; }*/
+.widget-head a.collapse { float: left; display: none; background: url(../img/drag.png) no-repeat -52px 0; width: 14px; height: 14px; text-indent: -9999em; margin: 8px 5px 8px 0; outline: none; }
+
+.widget-placeholder { border: 2px dashed #999; }
+/*#column1 .widget-placeholder { margin: 30px 35px 0 25px; }
+#column2 .widget-placeholder { margin: 30px 35px 0 25px; }*/
+.column1 .widget-placeholder,
+.column2 .widget-placeholder { margin-top:10px; }
+
+.edit-box { overflow: hidden; background: #333; margin-bottom: 2px;}
+.edit-box li.item { padding: 10px 0; overflow: hidden;  }
+.edit-box label { display: inline-block;*display: inline;*zoom: 1; width: 80px; height: 30px; line-height: 30px; color: #FFF; padding: 0 0 0 10px; }
+.edit-box ul.colors li { width: 20px; height: 20px; border: 1px solid #EEE; float: left; display: inline; margin: 0 5px 0 0; cursor: pointer; }
+
+.edit-input{
+    padding: 3px 5px;
+    height: 24px;
+    overflow: hidden;
+    outline: none;
+    border-radius: 4.01px;
+    border: 2px solid #C3C9DD;
+    z-index: 3;
+    line-height: 24px;
+    border: 0;
+    color: #125293;
+    background: #fff;
+    cursor: text;
+    font-size: 16px;
+    outline:none;
+}
+.widget-iframe{
+    width: 100%;
+    height: 10px;
+}

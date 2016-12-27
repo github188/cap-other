@@ -1,0 +1,25 @@
+{
+    "name": "Base",
+    "version": "0.1.0",
+    "description": "Base",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "readme": "Base UI 0.1.0",
+    "warning": "Do not modify this build file, go and check the /src folder ",
+    "readmeFilename": "README.md",
+    "author": "zhouyiping",
+    "license": "BSD-2-Clause",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.6.0",
+        "grunt-contrib-uglify": "~0.5.0",
+        "grunt-contrib-qunit": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-less": "*",
+        "grunt-contrib-cssmin": "*",
+        "grunt-contrib-yuidoc": "*",
+        "grunt-contrib-copy": "*" ,
+        "grunt-banner": "*"
+    }
+}

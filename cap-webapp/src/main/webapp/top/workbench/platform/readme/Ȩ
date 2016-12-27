@@ -1,0 +1,11 @@
+地市局领导工作台                    TEMPLATE_DSJ
+省级领导工作台                      TEMPLATE_SJ
+县级领导工作台                      TEMPLATE_XJ
+镇级领导工作台                      TEMPLATE_ZJ
+公共微件                            TEMPLATE_COMMON
+微件——项目需求申报及时率准确率统计  PORTLET_REQUIRE_REPORT
+微件-我负责的项目                   PORTLET_MYPROJECT
+微件——物资到货快捷查询              PORTLET_OBJECT_ARRIVED
+微件——物资记账中心                  PORTLET_MONEY_CENTER
+微件——履约统计                      PORTLET_TRUETALK
+微件——统计中心查询                  PORTLET_QUERYCENTER

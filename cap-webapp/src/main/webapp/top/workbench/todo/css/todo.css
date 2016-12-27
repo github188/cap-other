@@ -1,0 +1,120 @@
+body,ul,li,div{padding: 0; margin: 0;}
+ul,li{list-style: none;}
+body{font-size: 14px;}
+/**
+.scroll-wrap{
+	background:url(../img/todo_bg.png) no-repeat center;
+}
+**/
+.scroll-body{
+    position: relative;
+    height: 130px;
+    overflow: hidden;
+}
+
+.left-button{
+	display:none;
+	line-height:130px;
+	z-index:1;
+	position: absolute;
+	left: 0;
+	top: 0;	
+	width:35px;
+	height:130px;
+	background:url(../img/left_normal.png) no-repeat center;
+}
+.left-button:hover{
+    background:url(../img/left_press.png) no-repeat center;
+}
+
+.right-button{
+	display:none;
+	line-height:130px;
+	z-index:1;
+	position: absolute;
+	right: 0;
+	top: 0;	
+	width:35px;
+	height:130px;
+	background:url(../img/right_normal.png) no-repeat center;
+}
+
+.right-button:hover{
+    background:url(../img/right_press.png) no-repeat center;
+}
+
+.scroll-inner{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 130px;
+    width: 100%
+}
+.scroll-inner ul{
+    float: left;
+    padding: 0 4px 0;
+    font-size: 0;
+}
+.scroll-inner ul li{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin-bottom: 10px;
+    width: 25%;
+    height: 60px;
+}
+.scroll-inner ul a{
+    display: block;
+    margin: 0 5px;
+    height: 100%;
+    border-left: 5px solid green;
+    font-size: 14px;
+    text-decoration: none;
+    outline: none;
+    color: #666666;
+    /**background:url(../img/normal.png) repeat-x center;**/
+   background:#e3f3ff;
+}
+.scroll-inner ul a:hover{
+	color: #333333;
+    /**background:url(../img/press.png) repeat-x center;**/
+   background:#eff8fe;
+}
+.scroll-inner ul strong{
+    display: block;
+    padding: 0 10px;
+    font-size: 14px;
+    height:30px;
+    line-height:30px;
+}
+.scroll-inner ul span{
+    display: block;
+    padding: 0 10px;
+    font-size: 26px;
+    height:30px;
+    line-height:30px;
+}
+.scroll-btn{
+    padding: 5px 0;
+    text-align: center;
+    font-size: 0;
+}
+.scroll-btn a{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin: 0 6px;
+    width: 20px;
+    height: 3px;
+    font-size: 0;
+    background: #C4C5B3;
+    outline: none;
+}
+.scroll-btn a.cur{
+    background: #0064E0;
+}
+
+
+
+
+

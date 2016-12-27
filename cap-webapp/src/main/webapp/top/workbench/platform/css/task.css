@@ -1,0 +1,369 @@
+body,html{
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    height: auto;
+}
+body{
+	padding-bottom:55px;
+}
+a{
+    text-decoration: none;
+}
+
+.task-portlet-tip{
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -8px 0 0 -125px;
+    width: 250px;
+    text-align: center;
+    font-size: 16px;
+    z-index: 20;
+}
+
+.task-portlet-tip a{
+    font-weight: 900;
+    color: #096ae2;
+    text-decoration: underline;
+}
+.task-portlet-tip a:hover{
+    color: #f60;
+}
+
+.task-wrap{
+	position: fixed;
+	bottom: -1px;
+	left: 0;
+	width: 100%;
+    height: 45px;
+    background: #fff;
+    /*
+	opacity: 0.85;
+    filter: alpha(opactiy=85);
+    _filter: alpha(opactiy=100);*/
+}
+/**注释了透明度**/
+/*.task-wrap:hover{
+    opacity: 1;
+    filter: alpha(opactiy=100);
+}*/
+.task-wrap a{
+    text-decoration: none;
+}
+.task-wrap .task-bar{
+    height: 43px;
+    border: 1px solid #E0E0E0;
+}
+.task-wrap .task{
+    margin-right: 200px;
+    height: 100%;
+    overflow: hidden;
+    font-size: 0;
+}
+.task-wrap ul,
+.task-wrap li,
+.task-wrap a,
+.task-wrap a span{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+.task-wrap a span{
+    padding-left: 30px;
+    height: 100%;
+    background: url(../img/task-icon.png) 0 12px no-repeat;
+}
+.task-wrap a:hover{
+    color: #0A6FD9;
+    background: #f6f6f6;
+}
+.task-wrap a:hover span{
+    background-position: 0 -28px;
+}
+.task-wrap ul,
+.task-wrap a.add-task{
+    height: 100%;
+    list-style: none;
+    font-size: 0;
+    vertical-align: top;
+}
+.task-wrap a.add-task,
+.task-wrap li{
+    border-right: 1px solid #E0E0E0;
+}
+.task-wrap a.add-task span{
+    padding: 0;
+    display: block;
+    height: 100%;
+    background-position: 50% -68px;
+}
+.task-wrap a.add-task:hover span{
+    background-position: 50% -108px;
+}
+.task-wrap a{
+    width: 130px;
+    height: 100%;
+    line-height: 43px;
+    text-align: center;
+    outline: none;
+    color: #666666;
+    font-size: 12px;
+}
+.task-wrap a.add-task{
+    width: 45px;
+    font-size: 12px;
+}
+.task-wrap li a.cur{
+    border-bottom: 3px solid #0B6ED4;
+    height: 40px;
+    color: #0A6FD9;
+}
+.task-wrap li a.cur span{
+    background-position: 0 -28px;
+}
+.task-wrap .add-desktop,
+.task-wrap .add-portlet{
+    width: 100px;
+}
+.task-wrap a.add-desktop span{
+    background-position: 0 -148px;
+}
+.task-wrap a.add-desktop:hover span{
+    background-position: 0 -188px;
+}
+.task-wrap a.add-portlet span{
+    background-position: 0 -230px;
+}
+.task-wrap a.add-portlet:hover span{
+    background-position: 0 -270px;
+}
+.task-wrap .tools{
+    float: right;
+    width: 200px;
+    height: 100%;
+    list-style: none;
+    text-align: right;
+}
+.task-wrap .tools li{
+    position: relative;
+    border: 0;
+}
+.task-wrap .tools-menu{
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 43px;
+    height: auto;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    outline: none;
+}
+.task-wrap .tools-menu li{
+    height: 30px;
+}
+.task-wrap .tools-menu a{
+    height: 30px;
+    line-height: 30px;
+}
+.task-wrap .tools-menu a:hover{
+    color: #fff;
+    background: #0A6FD9;
+}
+.task-dialog{
+    display: none;
+    padding: 15px 15px;
+    width: 485px;
+    background: #fff;
+}
+.task-dialog .desktop-form{
+    padding: 0 0;
+}
+.task-dialog .desktop-template{
+    margin-top: 10px;
+}
+.task-dialog .desktop-template div{
+    padding: 7.5px 0 0 0;
+    border: 1px solid #DCDCDC;
+    height: 258px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.task-dialog .desktop-template p{
+    margin: 0;
+    padding: 8px 0;
+}
+.task-dialog .desktop-template ul{
+    list-style: none;
+}
+.task-dialog .desktop-template li{
+    display: block;
+    float: left;
+    margin: 7.5px 15px;
+    width: 88px;
+}
+.task-dialog .desktop-template a{
+    display: block;
+
+}
+.task-dialog .desktop-template span{
+    display: block;
+    width: 84px;
+    height: 84px;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    background: #fff;
+}
+.task-dialog .desktop-template img{
+    display: block;
+    width: 82px;
+    height: 82px;
+    border: 1px solid #DCDCDC;
+    border-radius: 6px;
+}
+.task-dialog .desktop-template strong{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-weight: 400;
+    color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    *white-space: pre;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    *word-break: break-all;
+    _word-break: keep-all;
+}
+.task-dialog .desktop-template a.cur img,
+.task-dialog .desktop-template a.cur span{
+    border-color: #096ED6;
+    background: #096ED6;
+}
+.task-dialog .desktop-template a.cur strong{
+    color: #096ED6;
+}
+
+.portlet-dialog{
+    display: none;
+    width: 680px;
+    height: 420px;
+    background: #fff;
+}
+.portlet-dialog .class-list-wrap{
+    float: left;
+    width: 140px;
+    height: 100%;
+    background: #F5F5F5;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.portlet-dialog .class-list a{
+    display: block;
+    padding: 0 8px;
+    height: 35px;
+    line-height: 35px;
+    color: #333;
+    font-weight: 900;
+}
+.portlet-dialog .class-list a:hover{
+    background: #ddd;
+}
+.portlet-dialog .class-list a.cur{
+    background: #096ED6;
+    color: #fff;
+}
+.portlet-dialog .portlet-list-wrap{
+    margin-left: 140px;
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.portlet-dialog .empty-content{
+	text-align: center;
+	color: #333;
+	margin-top: 25px;
+}
+.portlet-dialog .portlet-list{
+    padding: 10px;
+    overflow: hidden;
+}
+.portlet-dialog .portlet-list dl{
+    float: left;
+    margin: 10px;
+    width: 230px;
+    height: 112px;
+}
+.portlet-dialog .portlet-list dt{
+    float: left;
+    width: 86px;
+    height: 100%;
+}
+.portlet-dialog .portlet-list dt span{
+    display: block;
+    width: 86px;
+    height: 86px;
+}
+.portlet-dialog .portlet-list dt i,
+.portlet-dialog .portlet-list dt a{
+    margin-top: 3px;
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    color: #666;
+    background: #cfcfcf;
+    border-radius: 3px;
+}
+.portlet-dialog .portlet-list dt i{
+    font-style: normal;
+    background: none;
+    color: #ffffff;
+    background: #096ED6;
+    cursor: pointer;
+}
+.portlet-dialog .portlet-list dt i:hover{
+    background: #308CEC;
+}
+.portlet-dialog .portlet-search{
+    margin: 5px 0 0 19px;
+    border: none;
+    padding: 0px 20px 0 0;
+}
+#search a:hover{
+    text-decoration: none;
+}
+.portlet-dialog .portlet-list dt a:hover{
+    color: #fff;
+    background: #096ED6;
+}
+.portlet-dialog .portlet-list dd{
+    padding-left: 8px;
+    margin-left: 84px;
+    height: 100%;
+}
+.portlet-dialog .portlet-list dd strong{
+    display: block;
+    height: 32px;
+    line-height: 100%;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    *white-space: pre;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    *word-break: break-all;
+    _word-break: keep-all;
+}
+.portlet-dialog .portlet-list dd span{
+    display: block;
+    height: 80px;
+    line-height: 150%;
+    overflow: hidden;
+    color: #666;
+
+}

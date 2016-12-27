@@ -1,0 +1,62 @@
+.borderline{/*border: dashed #222222 1px;*/background: #ddd}
+/* End Columns section */
+
+.widget-head a.remove { float: right;
+    margin: 7px 4px; display: inline; background: 0 -100px url(../img/drag.png) no-repeat;
+    width: 20px; height: 20px; text-indent: -9999em; outline: none; }
+.widget-head a.remove:hover{
+    background-position: 0 -80px;
+}
+
+.widget-head a.reload { float: right;
+    margin: 7px 4px; display: inline; background: url(../img/drag.png)  0 -20px no-repeat;
+    width: 20px; height: 20px; text-indent: -9999em; outline: none; }
+.widget-head a.reload:hover{
+    background-position: 0 0;
+}
+
+/*.widget-head a.edit { float: right; display: inline; background: url(../img/buttons.gif) no-repeat; width: 24px; height: 14px; text-indent: -9999em; margin: 8px 4px 8px 4px; outline: none; }*/
+.widget-head a.edit { float: right;
+    display: inline; background: 0 -60px url(../img/drag.png) no-repeat; width: 20px; height: 20px; text-indent: -9999em; margin: 7px 4px; outline: none; }
+
+.widget-head a.edit:hover{
+    background-position: 0 -40px;
+}
+.widget-head a.edited{
+    background-position: 0 -40px;
+}
+
+/*.widget-head a.collapse { float: left; display: inline; background: url(../img/buttons.gif) no-repeat -52px 0; width: 14px; height: 14px; text-indent: -9999em; margin: 8px 0 8px 4px; outline: none; }*/
+.widget-head a.collapse { float: left; display: none; background: url(../img/drag.png) no-repeat -52px 0; width: 14px; height: 14px; text-indent: -9999em; margin: 8px 5px 8px 0; outline: none; }
+
+.widget-placeholder { border: 2px dashed #999; }
+/*#column1 .widget-placeholder { margin: 30px 35px 0 25px; }
+#column2 .widget-placeholder { margin: 30px 35px 0 25px; }*/
+.column1 .widget-placeholder,
+.column2 .widget-placeholder { margin-top:10px; }
+
+.edit-box { overflow: hidden; background: #333; margin-bottom: 2px;}
+.edit-box li.item { padding: 10px 0; overflow: hidden;  }
+.edit-box label { display: inline-block;*display: inline;*zoom: 1; width: 80px; height: 30px; line-height: 30px; color: #FFF; padding: 0 0 0 10px; }
+.edit-box ul.colors li { width: 20px; height: 20px; border: 1px solid #EEE; float: left; display: inline; margin: 0 5px 0 0; cursor: pointer; }
+
+.edit-input{
+    padding: 3px 5px;
+    height: 24px;
+    overflow: hidden;
+    outline: none;
+    border-radius: 4.01px;
+    border: 2px solid #C3C9DD;
+    z-index: 3;
+    line-height: 24px;
+    border: 0;
+    color: #125293;
+    background: #fff;
+    cursor: text;
+    font-size: 16px;
+    outline:none;
+}
+.widget-iframe{
+    width: 100%;
+    height: 10px;
+}
