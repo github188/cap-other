@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.func.model">
+	
+	<generateOperate class="com.comtop.cap.bm.req.func.model.ReqFunctionRelFlowVO"></generateOperate>
+	
+	<delete id="deleteFunctionRelFlowByFunItemId" parameterType="String">
+		DELETE FROM CAP_REQ_FUNCTION_REL_FLOW WHERE FUNCTION_ITEM_ID=#{funItemId}
+	</delete>
+	
+	<select id="getRelFlowListByFunItemId" parameterType="String" resultType="com.comtop.cap.bm.req.func.model.ReqFunctionRelFlowVO">
+		select T1.*,T2.PROCESS_NAME as bizFlowName from CAP_REQ_FUNCTION_REL_FLOW T1,CAP_BIZ_PROCESS_INFO T2 where 
+			T1.FUNCTION_ITEM_ID=#{reqFunctionItemId} and T1.BIZ_FLOW_ID=T2.id
+	</select>
+</mapper>

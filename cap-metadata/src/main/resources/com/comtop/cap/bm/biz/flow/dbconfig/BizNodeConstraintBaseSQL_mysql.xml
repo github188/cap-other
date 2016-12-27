@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	<select id ="queryBizNodeConstraintDTOList" parameterType="com.comtop.cap.doc.biz.model.BizNodeConstraintDTO" resultType="com.comtop.cap.doc.biz.model.BizNodeConstraintDTO">
+		SELECT T.ID id,
+	       T.NODE_ID     nodeId,
+	       T.CHECK_RULE  checkRule,
+	       T.OBJ_DATA_ID dataItemId,
+	       T.BIZ_OBJ_ID  objectId,
+	       S.NODE_NAME   nodeName,
+	       S.NODE_NO   nodeSerialNo,
+	       S.DOMAIN_ID  domainId,
+	       R.CODE  objectCode,
+	       R.NAME        objectName,
+	       N.PROCESS_NAME processName,
+	       '0' 			  newData,
+	       T.SORT_NO   sortNo,
+	       M.NAME        dataItemName
+	  	FROM CAP_BIZ_NODE_CONSTRAINT T,
+		     CAP_BIZ_PROCESS_NODE    S,
+		     CAP_BIZ_OBJ_INFO        R,
+		     CAP_BIZ_OBJ_DATA_ITEM   M,
+         	 CAP_BIZ_PROCESS_INFO   N
+         <if test = "nodeId == null or  nodeId == ''  " >
+		  ,(SELECT
+			*
+			FROM
+			CAP_BIZ_DOMAIN
+			WHERE
+			FIND_IN_SET(
+			ID,
+			CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+			)) T2
+		  </if>
+	 	WHERE T.NODE_ID = S.ID
+	   	AND T.OBJ_DATA_ID = M.ID
+	   	AND T.BIZ_OBJ_ID = R.ID
+	   	AND N.ID=S.PROCESS_ID
+	   	<if test = "nodeId == null or  nodeId == ''  " >
+		 	 AND S.DOMAIN_ID=T2.ID
+		</if>
+	   	<if test = "nodeId != null and  nodeId != ''  " > 
+	   		AND (T.NODE_ID = #{nodeId})
+		</if>
+		<if test = "dataItemId != null and  dataItemId != ''  " > 
+	  		AND (T.OBJ_DATA_ID = #{dataItemId})
+	   </if>
+	   <if test = "objectId != null and  objectId != ''  " > 
+	   		AND (T.BIZ_OBJ_ID = #{objectId})
+	   </if>
+	    <if test = "domainId != null and  domainId != ''  " > 
+	   		AND (N.DOMAIN_ID = #{domainId})
+	   		AND (S.DOMAIN_ID = #{domainId})
+	   		AND (R.DOMAIN_ID = #{domainId})
+	   </if>
+	   ORDER BY T.SORT_NO ASC
+	</select>
+
+	<select id ="queryBizNodeConstraintDTOListByNodeId" resultType="com.comtop.cap.doc.biz.model.BizNodeConstraintDTO">
+		SELECT T.ID id,
+	       T.NODE_ID     nodeId,
+	       T.CHECK_RULE  checkRule,
+	       T.OBJ_DATA_ID dataItemId,
+	       T.BIZ_OBJ_ID  objectId,
+	       S.NODE_NAME   nodeName,
+	       S.NODE_NO   nodeSerialNo,
+	       S.DOMAIN_ID  domainId,
+	       R.CODE  objectCode,
+	       R.NAME        objectName,
+	       R.PACKAGE_ID        objectPackageId,
+	       N.PROCESS_NAME processName,
+	       '0' 			  newData,
+	       @ROWNUM := @ROWNUM+1  sortIndex,
+	       T.SORT_NO   sortNo,
+	       M.NAME        dataItemName
+	  	FROM CAP_BIZ_NODE_CONSTRAINT T,
+		     CAP_BIZ_PROCESS_NODE    S,
+		     CAP_BIZ_OBJ_INFO        R,
+		     CAP_BIZ_OBJ_DATA_ITEM   M,
+         	 CAP_BIZ_PROCESS_INFO   N,
+         	 (SELECT @ROWNUM := 0) R
+	 	WHERE T.NODE_ID = S.ID
+	   	AND T.OBJ_DATA_ID = M.ID
+	   	AND T.BIZ_OBJ_ID = R.ID
+	   	AND N.ID=S.PROCESS_ID
+	   	AND (T.NODE_ID = #{nodeId})
+	   ORDER BY T.SORT_NO ASC
+	</select>
+</mapper>

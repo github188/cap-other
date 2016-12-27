@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.ptc.notice.model">
+	
+	<generateOperate class="com.comtop.cap.ptc.notice.model.CapPtcNoticeVO"></generateOperate>
+	
+	<sql id = "capPtcNotice_default_query_condition" >
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID = #{id} ) 
+		</if>
+		<if test = "title != null and  title != ''  " > 
+			 AND (T1.TITLE LIKE '%${title}%' ) 
+		</if>
+		<if test = "type != null and  type != ''  " > 
+			 AND (T1.TYPE = #{type} ) 
+		</if>
+		<if test = "creatorId != null and  creatorId != ''  " > 
+			 AND (T1.CREATOR_ID = #{creatorId} ) 
+		</if>
+		
+		<if test = "cdtEnd != null  and  cdtEnd != '' " > 
+			<![CDATA[ AND T1.CDT <= #{cdtEnd} ]]>
+		</if>
+		
+		<if test = "cdtStart != null and  cdtStart != '' " > 
+			<![CDATA[ AND T1.CDT >= #{cdtStart}]]>
+		</if>
+	</sql>
+	
+	<select id="queryCapPtcNoticeList" parameterType="com.comtop.cap.ptc.notice.model.CapPtcNoticeVO" resultType="com.comtop.cap.ptc.notice.model.CapPtcNoticeVO">
+		SELECT T1.* FROM CAP_PTC_NOTICE T1
+		<where> 
+			<include refid="capPtcNotice_default_query_condition" />
+		</where>
+		<if test = "sortFieldName != null and  sortType != null " > 
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+		
+	</select>
+	
+	<select id="queryCapPtcNoticeCount" parameterType="com.comtop.cap.ptc.notice.model.CapPtcNoticeVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_PTC_NOTICE T1
+			<where> 
+				 <include refid="capPtcNotice_default_query_condition" />
+			</where>
+	</select>
+	
+</mapper>

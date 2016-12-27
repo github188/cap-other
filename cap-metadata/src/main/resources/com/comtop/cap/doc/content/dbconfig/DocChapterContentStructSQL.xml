@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.doc.content.model">
+	
+	<generateOperate class="com.comtop.cap.doc.content.model.DocChapterContentStructVO"></generateOperate>
+	
+	<sql id = "docChapterContentStruct_default_query_condition" >
+		<if test = " sortNo!= null and  sortNo != ''  " > 
+			 AND (T1.SORT_NO =#{sortNo}) 
+		</if>
+		<if test = "containerUri != null and  containerUri != ''  " > 
+			 AND (T1.CONTAINER_URI = #{containerUri}) 
+		</if>
+		<if test = "documentId != null and  documentId != ''  " > 
+			 AND (T1.DOCUMENT_ID = #{documentId}) 
+		</if>
+	</sql>
+	<select id="queryDocChapterContentStructList" parameterType="com.comtop.cap.doc.content.model.DocChapterContentStructVO" resultType="com.comtop.cap.doc.content.model.DocChapterContentStructVO">
+		SELECT T1.* FROM CAP_DOC_CHAPTER_CONTENT_STRUCT T1
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryDocChapterContentStructCount" parameterType="com.comtop.cap.doc.content.model.DocChapterContentStructVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_DOC_CHAPTER_CONTENT_STRUCT T1
+	</select>
+	
+	<select id="loadDocChapterContentStructVOList" parameterType="com.comtop.cap.doc.content.model.DocChapterContentStructVO" resultType="com.comtop.cap.doc.content.model.DocChapterContentStructVO">
+		SELECT T1.* FROM CAP_DOC_CHAPTER_CONTENT_STRUCT T1
+		<where> 
+			 <include refid="docChapterContentStruct_default_query_condition" />
+		</where>
+		ORDER BY T1.CONTAINER_URI ASC
+	</select>
+	
+	
+	<select id="queryDocChapterStructByUniqueCondition" parameterType="com.comtop.cap.doc.content.model.DocChapterContentStructVO" resultType="com.comtop.cap.doc.content.model.DocChapterContentStructVO">
+		select s.* from cap_doc_chapter_content_struct s where s.document_id = #{documentId} and s.CONTAINER_URI = #{containerUri} and s.sort_no = #{sortNo}
+	</select>
+	
+	<select id="queryDocChapterStructBycontainerUri" parameterType="com.comtop.cap.doc.content.model.DocChapterContentStructVO" resultType="com.comtop.cap.doc.content.model.DocChapterContentStructVO">
+		select s.* from cap_doc_chapter_content_struct s where s.document_id = #{documentId} and s.CONTAINER_URI = #{containerUri}
+	</select>
+	
+	<delete id="deleteByContainerUri" parameterType="java.util.Map">
+		DELETE
+          FROM CAP_DOC_CHAPTER_CONTENT_STRUCT
+         WHERE DOCUMENT_ID = #{documentId}
+           AND CONTAINER_URI LIKE '${oldUriPrefix}%'
+	</delete>
+	<update id="updateContainerUri" parameterType="java.util.Map">
+		   UPDATE CAP_DOC_CHAPTER_CONTENT_STRUCT T
+            SET T.CONTAINER_URI = REPLACE(T.CONTAINER_URI,
+                                          #{oldUriPrefix},
+                                          #{newUriPrefix})
+          WHERE T.DOCUMENT_ID = #{documentId}
+            AND T.CONTAINER_URI LIKE '${oldUriPrefix}%'
+	</update>
+	<select id="loadContentSegList" parameterType="com.comtop.cap.document.word.docmodel.data.ContentSeg" resultType="com.comtop.cap.document.word.docmodel.data.ContentSeg">
+		SELECT S.ID,
+                   S.CONTAINER_URI containerUri,
+                   S.CONTAINER_TYPE containerType,
+                   S.CONTENT_TYPE contentType,
+                   S.SORT_NO sortNo,
+                   S.CONTENT_ID contentId,
+                   S.DATA_FROM dataFrom,
+                   S.DOCUMENT_ID documentId,
+                   T.CONTENT content
+              FROM CAP_DOC_CHAPTER_CONTENT_STRUCT S,
+                   CAP_DOC_CHAPTER_CONTENT        T
+              WHERE T.ID = S.CONTENT_ID
+             	<if test = " sortNo!= null and  sortNo != ''  " > 
+				 AND (S.SORT_NO =#{sortNo}) 
+				</if>
+				<if test = "containerUri != null and  containerUri != ''  " > 
+					 AND (S.CONTAINER_URI = #{containerUri}) 
+				</if>
+				<if test = "documentId != null and  documentId != ''  " > 
+					 AND (S.DOCUMENT_ID = #{documentId}) 
+				</if>
+	</select>
+</mapper>

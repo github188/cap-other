@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.role.model">
+	
+
+	
+	<select id="loadBizRoleDTOList" parameterType="com.comtop.cap.doc.biz.model.BizRoleDTO" resultType="com.comtop.cap.doc.biz.model.BizRoleDTO">
+		WITH DOMAINCHAIN AS
+			 (SELECT *
+			    FROM CAP_BIZ_DOMAIN S
+			  CONNECT BY PRIOR S.ID = S.PARENT_ID
+			   START WITH S.ID = #{domainId})
+		SELECT S.ID id,
+             S.ROLE_CODE roleCode,
+             S.ROLE_NAME name,
+             S.SHORT_NAME shortName,
+             S.DOMAIN_ID domainId,
+             S.DOCUMENT_ID documentId,
+             S.DATA_FROM dataFrom,
+             S.REMARK remark,
+             S.BIZ_LEVEL bizlevel,
+              ROWNUM  sortIndex,
+              S.SORT_NO   sortNo,
+             '0' newData
+        FROM CAP_BIZ_ROLE S,DOMAINCHAIN T2
+		WHERE S.DOMAIN_ID = T2.ID
+		ORDER BY S.SORT_NO ASC
+	</select>
+	
+	<select id="loadBizLevelList" parameterType="com.comtop.cap.bm.biz.role.model.BizRoleVO" resultType="java.lang.String">
+		SELECT DISTINCT BIZ_LEVEL
+		  FROM CAP_BIZ_ROLE
+		 WHERE LENGTH(BIZ_LEVEL) > 0
+		 ORDER BY LENGTH(BIZ_LEVEL) DESC
+	</select>
+	
+</mapper>

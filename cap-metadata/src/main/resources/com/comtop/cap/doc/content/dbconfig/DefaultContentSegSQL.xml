@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.doc.content.model">
+	
+	<generateOperate class="com.comtop.cap.doc.content.model.DefaultContentSegVO"></generateOperate>
+	
+	<select id="queryDefaultContentSegDTOList" parameterType="com.comtop.cap.doc.content.model.DefaultContentSegDTO" resultType="com.comtop.cap.doc.content.model.DefaultContentSegDTO">
+			SELECT T1.ID id,
+  				   T1.VALUE    value,
+				   T1.KEY      key,
+				   T1.DOC_TYPE  docType 
+				   FROM cap_doc_default_content_seg T1
+			<where>
+				<if test = " id!= null and  id != ''  " > 
+					 AND (T1.ID =#{id}) 
+				</if>
+				<if test = " key!= null and  key != ''  " > 
+					 AND (T1.KEY =#{key}) 
+				</if>
+				<if test = " docType!= null and  docType != ''  " > 
+					 AND (T1.DOC_TYPE =#{docType}) 
+				</if>
+			</where>
+	</select>
+	<select id="readByKey" resultType="com.comtop.cap.doc.content.model.DefaultContentSegDTO">
+			SELECT T1.ID id,
+  				   T1.VALUE    value,
+				   T1.KEY      key,
+				   T1.DOC_TYPE  docType 
+			FROM cap_doc_default_content_seg T1 where  T1.KEY =#{key} 
+	</select>
+</mapper>

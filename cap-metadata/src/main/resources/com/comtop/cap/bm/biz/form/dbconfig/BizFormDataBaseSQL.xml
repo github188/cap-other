@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.form.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.form.model.BizFormDataVO"></generateOperate>
+	
+	<select id="queryFormDataListByFormId" parameterType="com.comtop.cap.bm.biz.form.model.BizFormDataVO" resultType="com.comtop.cap.bm.biz.form.model.BizFormDataVO">
+		SELECT T1.* FROM CAP_BIZ_FORM_DATA T1 where T1.FORM_ID=#{formId}
+	</select>
+	
+	<select id="loadBizFormDataVOList" parameterType="com.comtop.cap.bm.biz.form.model.BizFormDataVO" resultType="com.comtop.cap.bm.biz.form.model.BizFormDataVO">
+		SELECT T1.* FROM CAP_BIZ_FORM_DATA T1 where 1=1
+		<if test="formId != null and  formId != ''">
+			 AND T1.FORM_ID=#{formId} 
+		</if>
+		 <if test="domainId != null and  domainId != ''">
+			AND	T1.DOMAIN_ID = #{domainId}  
+		</if>
+		ORDER BY T1.SORT_NO ASC
+	</select>
+	
+	<select id="queryFormDataCountByFormId" parameterType="com.comtop.cap.bm.biz.form.model.BizFormDataVO" resultType="int">
+		SELECT COUNT(1) FROM CAP_BIZ_FORM_DATA T1 where T1.FORM_ID=#{formId}
+	</select>
+	
+	<delete id="deleteDataByFormId" parameterType="String">
+		delete from CAP_BIZ_FORM_DATA where FORM_ID=#{formId}
+	</delete>
+	
+	<delete id="deleteByDomainId" parameterType="String">
+		delete from CAP_BIZ_FORM_DATA where form_id in (select form.id from CAP_BIZ_FORM form where form.DOMAIN_ID = #{domainId} or form.DOMAIN_ID in (select dm.ID from CAP_BIZ_DOMAIN dm where dm.PARENT_ID=#{domainId}))
+	</delete>
+	<select id="loadBizFormDataNotExistCodeOrSortNo" resultType="com.comtop.cap.bm.biz.form.model.BizFormDataVO">
+		SELECT * FROM cap_biz_form_data T WHERE  t.sort_no IS NULL 
+	</select>
+</mapper>

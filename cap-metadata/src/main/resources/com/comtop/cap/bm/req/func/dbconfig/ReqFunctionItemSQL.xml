@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.func.model">
+	
+	<generateOperate class="com.comtop.cap.bm.req.func.model.ReqFunctionItemVO"></generateOperate>
+	
+	<sql id = "reqViewReqTree_default_query_condition" >
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID = #{id} ) 
+		</if>
+		<if test = "parentId != null and  parentId != ''  " > 
+			 AND (T1.PARENT_ID = #{parentId} ) 
+		</if>
+		<if test = "name != null and  name != ''  " > 
+			 AND (T1.NAME LIKE '%${name}%' ) 
+		</if>
+		<if test = "type != null and  type != ''  " > 
+			 AND (T1.TYPE LIKE =#{type} ) 
+		</if>
+	</sql>
+
+	<select id="queryViewReqTreeCount" parameterType="com.comtop.cap.bm.req.func.model.ReqTreeVO" resultType="int">
+			SELECT COUNT(1) FROM V_CAP_REQ_TREE T1
+		<where> 
+			 <include refid="reqViewReqTree_default_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryViewReqTreeList" parameterType="com.comtop.cap.bm.req.func.model.ReqTreeVO" resultType="com.comtop.cap.bm.req.func.model.ReqTreeVO">
+		SELECT T1.* FROM V_CAP_REQ_TREE T1
+		<where> 
+			 <include refid="reqViewReqTree_default_query_condition" />
+		</where>
+		order by T1.sort_no
+	</select>
+	
+	<select id="queryViewReqTreeListByTypeAndIds" parameterType="com.comtop.cap.bm.req.func.model.ReqTreeVO" resultType="com.comtop.cap.bm.req.func.model.ReqTreeVO">
+		SELECT T1.* FROM V_CAP_REQ_TREE T1 where T1.TYPE = #{type}	AND T1.ID IN 
+		<foreach collection="idList" item="item" index="index" 
+			open="(" separator="," close=")">#{item}
+		</foreach>
+	
+	</select>
+	
+	<select id="queryReqFunctionItemById" parameterType="String" resultType="com.comtop.cap.bm.req.func.model.ReqFunctionItemVO">
+		SELECT T1.*,T2.NAME as domainName FROM CAP_REQ_FUNCTION_ITEM T1,CAP_BIZ_DOMAIN T2 where T1.id=#{reqFunctionItemIdT1} and T1.BIZ_DOMAIN_ID=T2.id
+	</select>
+	
+	<select id="checkSubFunByFunItem" parameterType="com.comtop.cap.bm.req.func.model.ReqFunctionItemVO" resultType="int">
+		SELECT count(id) FROM CAP_REQ_FUNCTION_SUBITEM T1 where T1.ITEM_ID=#{id}
+	</select>
+	
+	<select id="checkFuncItemName" parameterType="com.comtop.cap.bm.req.func.model.ReqFunctionItemVO" resultType="int">
+		SELECT count(id) FROM CAP_REQ_FUNCTION_ITEM T1 where T1.BIZ_DOMAIN_ID=#{bizDomainId} and T1.CN_NAME=#{cnName}
+		<if test = "id != null and  id != ''  " > 
+			 AND T1.ID != #{id}
+		</if>
+	</select>
+	
+	<select id="getMaxSortNoFromReqTree" resultType="int">
+			select greatest((select nvl(max(SORT_NO),0) from cap_req_function_item ),(select nvl(max(SORT_NO),0) as d2 from cap_biz_domain))max from dual
+	</select>
+	
+	<update id="updateSortNoById" parameterType="com.comtop.cap.bm.req.func.model.ReqFunctionItemVO">
+		update cap_req_function_item set SORT_NO=#{sortNo} where ID=#{id}
+	</update>
+	
+	<select id="loadReqFunctionItemVOList" resultType="com.comtop.cap.bm.req.func.model.ReqFunctionItemVO">
+			SELECT T1.* FROM CAP_REQ_FUNCTION_ITEM T1
+			<where> 
+				<if test = "id != null and  id != ''  " > 
+				 AND (T1.ID = #{id} ) 
+				</if>
+				<if test = "bizDomainId != null and  bizDomainId != ''  " > 
+				 AND T1.BIZ_DOMAIN_ID = #{bizDomainId}
+				</if>
+			</where>
+			ORDER BY T1.SORT_NO
+	</select>
+	
+	<select id="queryReqFunctionItemDTOList" parameterType="com.comtop.cap.doc.srs.model.ReqFunctionItemDTO" resultType="com.comtop.cap.doc.srs.model.ReqFunctionItemDTO">
+			SELECT T1.T1.CN_NAME   AS itemName,
+		       T1.ID           AS itemId,
+		       T1.CODE         AS itemCode,
+		       T1.IT_IMP       AS itImp,
+		       T1.REQ_ANALYSIS AS reqAnalysis,
+			   T1.BIZ_DOMAIN_ID domainId,
+			   T1.FUNCTION_DESCRIPTION description,
+			   T1.SORT_NO    sortNo,
+			   T1.REMARK     remark,
+			   T1.DATA_FROM  dataFrom,
+			   T1.DOCUMENT_ID  documentId,
+		       FROM CAP_REQ_FUNCTION_ITEM T1
+			<where> 
+				<if test = "id != null and  id != ''  " > 
+				 AND (T1.ID = #{id} ) 
+				</if>
+				<if test = "domainId != null and  domainId != ''  " > 
+				 AND T1.BIZ_DOMAIN_ID = #{bizDomainId}
+				</if>
+			</where>
+			ORDER BY T1.SORT_NO
+	</select>
+	
+	<select id="queryReqFunctionItemWithProcess" parameterType="com.comtop.cap.doc.srs.model.ReqFunctionWithProcessDTO" resultType="com.comtop.cap.doc.srs.model.ReqFunctionWithProcessDTO">
+		SELECT T1.CN_NAME      AS itemName,
+		       T1.ID           AS itemId,
+		       T1.CODE         AS itemCode,
+		       T1.IT_IMP       AS itImp,
+		       T1.REQ_ANALYSIS AS reqAnalysis,
+		       T3.Id           AS flowId,
+		       T3.PROCESS_NAME as name,
+		       T3.code 
+		  FROM CAP_REQ_FUNCTION_ITEM T1
+		  LEFT JOIN CAP_REQ_FUNCTION_REL_FLOW T2
+		    ON T1.ID = T2.FUNCTION_ITEM_ID
+		  LEFT JOIN CAP_BIZ_PROCESS_INFO T3
+		    ON T2.BIZ_FLOW_ID = T3.ID
+		    <where> 
+				<if test = "domainId != null and  domainId != ''  " > 
+				 AND T1.BIZ_DOMAIN_ID = #{domainId}
+				</if>
+			</where>
+		ORDER BY T1.CODE
+	</select>
+	
+</mapper>

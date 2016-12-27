@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.subfunc.model">
+	
+	<select id="queryReqUsecaseRelFormBysubitemId" parameterType="String" resultType="com.comtop.cap.bm.req.subfunc.model.ReqUsecaseRelFormVO">
+		SELECT group_concat(T1.ID) as ID,
+	       group_concat(T1.BIZ_FORM_ID) as BIZ_FORM_ID,
+	       group_concat(T2.NAME) AS bizFormName
+	  FROM CAP_REQ_USECASE_REL_FORM T1
+	  left join CAP_BIZ_FORM T2
+	    on T1.BIZ_FORM_ID = T2.ID
+	 WHERE 1 = 1
+	   AND T1.USECASE_ID = #{value}
+	</select>
+	
+</mapper>

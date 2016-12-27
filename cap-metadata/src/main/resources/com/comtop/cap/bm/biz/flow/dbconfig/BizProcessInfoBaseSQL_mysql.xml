@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	
+	<select id ="queryBizProcessDTOList" parameterType="com.comtop.cap.doc.biz.model.BizProcessDTO" resultType="com.comtop.cap.doc.biz.model.BizProcessDTO">
+	      SELECT   T.ID id,
+	      		   T.PROCESS_ID processId,
+	               T.CODE code,
+	               T.PROCESS_NAME processName,
+	               T.MANAGE_POLICY managePolicy,
+	               T.NORM_POLICY normPolicy,
+	               T.SYS_NAME itImpl,
+	               T.PROCESS_LEVEL processLevel,
+	               T.PROCESS_DEF processDef,
+	               T.DOMAIN_ID domainId,
+	               T.FLOW_CHART_ID flowChartId,
+	               T.DOCUMENT_ID documentId,
+	               T.DATA_FROM dataFrom,
+	               T.WORK_CONTEXT workContext,
+	               T.WORK_DEMAND workDemand,
+	               T.SORT_NO sortNo,
+	               '0' newData,
+	             S.ID        bizItemId,
+	             S.NAME      bizItemName,
+	             S.CODE      bizItemCode,
+	             S.DOMAIN_ID bizItemDomainId
+	        FROM (SELECT   T.*
+          		FROM CAP_BIZ_PROCESS_INFO T,
+	               (SELECT
+					*
+					FROM
+					CAP_BIZ_DOMAIN
+					WHERE
+					FIND_IN_SET(
+					ID,
+					CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+					)) R
+         		WHERE T.DOMAIN_ID = R.ID) T
+	        left join CAP_BIZ_ITEMS S on T.ITEMS_ID = S.ID
+	       ORDER BY T.SORT_NO ASC
+	</select>
+
+	<select id ="queryBizProcessDTOListWithNoItemCondition" parameterType="com.comtop.cap.doc.biz.model.BizProcessDTO" resultType="com.comtop.cap.doc.biz.model.BizProcessDTO">
+	      SELECT   T.ID id,
+	      		   T.PROCESS_ID processId,
+	               T.CODE code,
+	               T.PROCESS_NAME processName,
+	               T.MANAGE_POLICY managePolicy,
+	               T.NORM_POLICY normPolicy,
+	               T.SYS_NAME itImpl,
+	               T.PROCESS_LEVEL processLevel,
+	               T.PROCESS_DEF processDef,
+	               T.DOMAIN_ID domainId,
+	               T.FLOW_CHART_ID flowChartId,
+	               T.DOCUMENT_ID documentId,
+	               T.DATA_FROM dataFrom,
+	               T.WORK_CONTEXT workContext,
+	               T.WORK_DEMAND workDemand,
+	               T.SORT_NO sortNo,
+	               '0' newData,
+	             S.ID        bizItemId,
+	             S.NAME      bizItemName,
+	             S.CODE      bizItemCode,
+	             S.DOMAIN_ID bizItemDomainId
+	        FROM (SELECT   T.*
+          		FROM CAP_BIZ_PROCESS_INFO T,
+	               (SELECT
+					*
+					FROM
+					CAP_BIZ_DOMAIN
+					WHERE
+					FIND_IN_SET(
+					ID,
+					CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+					)) R
+         		WHERE T.DOMAIN_ID = R.ID) T
+         		left join CAP_BIZ_ITEMS S on T.ITEMS_ID = S.ID
+	       ORDER BY T.SORT_NO ASC
+	</select>
+	
+	<select id ="queryBizProcessDTOListWithItem" parameterType="com.comtop.cap.doc.biz.model.BizProcessDTO" resultType="com.comtop.cap.doc.biz.model.BizProcessDTO">
+			SELECT T.ID,
+		       T.ID            id,
+		       T.PROCESS_ID    processId,
+		       T.SORT_NO       sortNo,
+		       T.CODE          code,
+		       T.PROCESS_NAME  processName,
+		       T.MANAGE_POLICY managePolicy,
+		       T.NORM_POLICY normPolicy,
+		       T.SYS_NAME itImpl,
+		       T.PROCESS_LEVEL processLevel,
+		       T.PROCESS_DEF processDef,
+		       T.DOMAIN_ID domainId,
+		       T.FLOW_CHART_ID flowChartId,
+		       T.DOCUMENT_ID documentId,
+		       T.DATA_FROM dataFrom,
+		       T.WORK_CONTEXT workContext,
+		       T.WORK_DEMAND workDemand,
+		       S.ID bizItemId,
+               S.NAME bizItemName ,
+                T.SORT_NO   sortNo,
+               '0' newData,
+               S.CODE  bizItemCode,
+               S.DOMAIN_ID  bizItemDomainId
+		   FROM CAP_BIZ_PROCESS_INFO T ,CAP_BIZ_ITEMS S 
+		   <if test = "bizItemId == null or  bizItemId == ''  " > ,(SELECT
+			*
+			FROM
+			CAP_BIZ_DOMAIN
+			WHERE
+			FIND_IN_SET(
+			ID,
+			CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+			)) R </if>
+		   WHERE T.ITEMS_ID = S.ID
+			  <if test = "bizItemId == null or  bizItemId == ''  " >
+			 	 AND S.DOMAIN_ID=R.ID
+			  </if>
+			   <if test = "bizItemId != null and  bizItemId != ''  " > 
+			   		AND (T.ITEMS_ID = #{bizItemId})
+			   </if>
+		 ORDER BY T.SORT_NO ASC
+	</select>
+	
+	<select id ="queryBizProcessDTListOWithNoItem" parameterType="com.comtop.cap.doc.biz.model.BizProcessDTO" resultType="com.comtop.cap.doc.biz.model.BizProcessDTO">
+			SELECT T.ID,
+		       T.ID            id,
+		       T.PROCESS_ID    processId,
+		       T.SORT_NO       sortNo,
+		       T.CODE          code,
+		       T.PROCESS_NAME  processName,
+		       T.MANAGE_POLICY managePolicy,
+		       T.NORM_POLICY normPolicy,
+		       T.SYS_NAME itImpl,
+		       T.PROCESS_LEVEL processLevel,
+		       T.PROCESS_DEF processDef,
+		       T.DOMAIN_ID domainId,
+		       T.DOCUMENT_ID documentId,
+		       T.DATA_FROM dataFrom,
+		       '0' newData,
+		        T.SORT_NO   sortNo,
+		       T.WORK_CONTEXT workContext,
+		       T.WORK_DEMAND workDemand 
+		   FROM CAP_BIZ_PROCESS_INFO T,(SELECT
+				*
+				FROM
+				CAP_BIZ_DOMAIN
+				WHERE
+				FIND_IN_SET(
+				ID,
+				CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+				)) T2
+		   WHERE T.ITEMS_ID IS NULL
+		   AND T.DOMAIN_ID=T2.ID
+		   ORDER BY T.SORT_NO ASC
+	</select>
+</mapper>

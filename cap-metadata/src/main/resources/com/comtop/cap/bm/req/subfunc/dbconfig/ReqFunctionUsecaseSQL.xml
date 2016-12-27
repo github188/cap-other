@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.subfunc.model">
+	
+	<generateOperate class="com.comtop.cap.bm.req.subfunc.model.ReqFunctionUsecaseVO"></generateOperate>
+	
+	<sql id = "reqFunctionUsecase_default_query_condition" >
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID = #{id} ) 
+		</if>
+		<if test = "subitemId != null and  subitemId != ''  " > 
+			 AND (T1.SUBITEM_ID = #{subitemId} ) 
+		</if>
+	</sql>
+	
+	<select id="queryReqFunctionUsecaseList" parameterType="com.comtop.cap.bm.req.subfunc.model.ReqFunctionUsecaseVO" resultType="com.comtop.cap.bm.req.subfunc.model.ReqFunctionUsecaseVO">
+		SELECT T1.*,T3.BIZ_DOMAIN_ID AS domainId  FROM CAP_REQ_FUNCTION_USECASE T1 ,CAP_REQ_FUNCTION_SUBITEM T2 ,CAP_REQ_FUNCTION_ITEM T3
+		  WHERE T1.SUBITEM_ID = T2.ID AND T2.ITEM_ID = T3.ID
+		<include refid="reqFunctionUsecase_default_query_condition" />
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryReqFunctionUsecaseCount" parameterType="java.lang.String" resultType="int">
+			SELECT COUNT(1) FROM CAP_REQ_FUNCTION_USECASE T1
+	</select>
+	
+</mapper>

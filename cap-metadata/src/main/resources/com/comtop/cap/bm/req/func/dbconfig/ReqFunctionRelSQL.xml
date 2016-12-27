@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.func.model">
+<generateOperate class="com.comtop.cap.bm.req.func.model.ReqFunctionRelVO"></generateOperate>
+	<select id="queryFunctionRelByFunItemId" parameterType="com.comtop.cap.bm.req.func.model.ReqFunctionRelVO" resultType="com.comtop.cap.bm.req.func.model.ReqFunctionRelVO">
+		select T1.* ,T2.CN_NAME as reFuntionItemName from CAP_REQ_FUNCTION_REL T1,CAP_REQ_FUNCTION_ITEM T2 
+		where T1.FUNCTION_ITEM_ID = #{functionItemId} and T2.id=T1.RE_FUNTION_ITEM_ID
+	</select>
+	
+	<select id="checkRelFunctionItemId" parameterType="String" resultType="int">
+		select count(id) from CAP_REQ_FUNCTION_REL T1 where T1.RE_FUNTION_ITEM_ID=#{reFuntionItemId} and T1.FUNCTION_ITEM_ID=#{functionItemId}
+	</select>
+	<select id="queryFunctionRelById" parameterType="String" resultType="com.comtop.cap.bm.req.func.model.ReqFunctionRelVO">
+		select T1.*,T2.CN_NAME as reFuntionItemName from cap_req_function_rel T1,CAP_REQ_FUNCTION_ITEM T2  where T1.id=#{funcitemRelId} and T2.id=T1.RE_FUNTION_ITEM_ID
+	</select>
+	
+</mapper>

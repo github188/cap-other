@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	<select id="queryBizRelationDTOList" parameterType="com.comtop.cap.doc.biz.model.BizRelationDTO" resultType="com.comtop.cap.doc.biz.model.BizRelationDTO">
+		SELECT T.ID id,
+		       T.CODE code,
+		       T.NAME name,
+		       T.REL_TYPE relType,
+		       T.REL_ORIENT relOrient,
+		       T.TRIGGER_CONDITION triggerCondition,
+		       T.ROLEA_DOMAIN_ID roleaDomainId,
+		       T.ROLEA_DOMAIN_NAME roleaDomainName,
+		       T.ROLEA_ITEM_ID roleaItemId,
+		       T.ROLEA_ITEM_NAME roleaItemName,
+		       T.ROLEA_PROCESS_ID roleaProcessId,
+		       T.ROLEA_PROCESS_NAME roleaProcessName,
+		       T.ROLEA_NODE_ID roleaNodeId,
+		       T.ROLEA_NODE_NAME roleaNodeName,
+		       T.ROLEA_WORK_CONTEXT roleaWorkContext,
+		       T.ROLEA_WORK_DEMAND roleaWorkDemand,
+		       T.ROLEB_DOMAIN_ID rolebDomainId,
+		       T.ROLEB_DOMAIN_NAME rolebDomainName,
+		       T.ROLEB_ITEM_ID rolebItemId,
+		       T.ROLEB_ITEM_NAME rolebItemName,
+		       T.ROLEB_PROCESS_ID rolebPocessId,
+		       T.ROLEB_PROCESS_NAME rolebProcessName,
+		       T.ROLEB_NODE_ID rolebNodeId,
+		       T.ROLEB_NODE_NAME rolebNodeName,
+		       T.ROLEB_WORK_CONTEXT rolebWorkContext,
+		       T.ROLEB_WORK_DEMAND rolebWorkDemand,
+		       T.DATA_FROM dataFrom,
+		       '0' 		   newData,
+		       @ROWNUM := @ROWNUM+1  sortIndex,
+		       T.SORT_NO   sortNo,
+		       T.DOCUMENT_ID documentId
+		  FROM (select @ROWNUM :=0) R,
+		  CAP_BIZ_REL_INFO  T
+		 <if test = "roleaNodeId == null or  roleaNodeId == ''  " > 
+			,(SELECT
+			*
+			FROM
+			CAP_BIZ_DOMAIN
+			WHERE
+			FIND_IN_SET(
+			ID,
+			CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+			)) T2
+		 </if>
+		 where 1=1
+		 <if test = "roleaNodeId == null or  roleaNodeId == ''  " > 
+			AND T.ROLEA_DOMAIN_ID = T2.ID
+		 </if>
+	    <if test = "roleaNodeId != null and  roleaNodeId != ''  " >
+		 	AND (T.ROLEA_NODE_ID = #{roleaNodeId} ) 
+		</if>
+		ORDER BY T.SORT_NO ASC
+	</select>
+	
+</mapper>

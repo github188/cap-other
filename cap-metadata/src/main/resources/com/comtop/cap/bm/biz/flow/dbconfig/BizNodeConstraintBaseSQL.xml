@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.flow.model.BizNodeConstraintVO"></generateOperate>
+	
+	<select id="queryBizNodeConstraintList" parameterType="com.comtop.cap.bm.biz.flow.model.BizNodeConstraintVO" resultType="com.comtop.cap.bm.biz.flow.model.BizNodeConstraintVO">
+		SELECT CON.ID,
+		       CON.NODE_ID,
+		       CON.BIZ_OBJ_ID,
+		       CON.OBJ_DATA_ID,
+		       A.BIZ_OBJ_CODE AS bizObjCode,
+		       A.BIZ_OBJ_NAME AS bizObjName,
+		       ITEM.NAME AS itemName,
+		       CON.CHECK_RULE
+		  FROM (SELECT OBJ.ID AS BIZ_OBJ_ID, OBJ.CODE AS BIZ_OBJ_CODE, OBJ.NAME AS BIZ_OBJ_NAME
+		          FROM CAP_BIZ_OBJ_INFO OBJ
+		           <if test="bizObjId != null and bizObjId != ''">     
+						WHERE OBJ.ID =#{bizObjId}     
+		           </if> 
+		         ) A,
+		       CAP_BIZ_NODE_CONSTRAINT CON left join
+		       CAP_BIZ_OBJ_DATA_ITEM ITEM on CON.OBJ_DATA_ID = ITEM.ID 
+		   WHERE CON.BIZ_OBJ_ID = A.BIZ_OBJ_ID
+		         <if test="nodeId != null and nodeId != ''">     
+		              AND CON.NODE_ID = #{nodeId}
+				     </if> 
+	</select>
+	
+	<select id="loadBizNodeConstraintVOList" parameterType="com.comtop.cap.bm.biz.flow.model.BizNodeConstraintVO" resultType="com.comtop.cap.bm.biz.flow.model.BizNodeConstraintVO">
+		SELECT CON.ID,
+		       CON.NODE_ID,
+		       CON.BIZ_OBJ_ID,
+		       CON.OBJ_DATA_ID,
+		       A.BIZ_OBJ_CODE AS bizObjCode,
+		       A.BIZ_OBJ_NAME AS bizObjName,
+		       ITEM.NAME AS itemName,
+		       CON.CHECK_RULE,
+		       CON.SORT_NO
+		  FROM (SELECT OBJ.ID AS BIZ_OBJ_ID, OBJ.CODE AS BIZ_OBJ_CODE, OBJ.NAME AS BIZ_OBJ_NAME
+		          FROM CAP_BIZ_OBJ_INFO OBJ
+		           <if test="bizObjId != null and bizObjId != ''">     
+						WHERE OBJ.ID =#{bizObjId}     
+		           </if> 
+		         ) A,
+		       CAP_BIZ_NODE_CONSTRAINT CON left join
+		       CAP_BIZ_OBJ_DATA_ITEM ITEM ON CON.OBJ_DATA_ID = ITEM.ID
+		   WHERE CON.BIZ_OBJ_ID = A.BIZ_OBJ_ID
+		    
+		         <if test="nodeId != null and nodeId != ''">     
+		              AND CON.NODE_ID = #{nodeId}
+				     </if> 
+	</select>
+	
+	<select id="queryBizNodeConstraintCount" parameterType="com.comtop.cap.bm.biz.flow.model.BizNodeConstraintVO" resultType="int">
+			SELECT count(CON.ID)
+		  FROM CAP_BIZ_NODE_CONSTRAINT CON left join
+		  (SELECT OBJ.ID AS BIZ_OBJ_ID, OBJ.CODE AS BIZ_OBJ_CODE, OBJ.NAME AS BIZ_OBJ_NAME
+		          FROM CAP_BIZ_OBJ_INFO OBJ
+		           <if test="bizObjId != null and bizObjId != ''">     
+						WHERE OBJ.ID =#{bizObjId}     
+		           </if> 
+		         ) A on CON.BIZ_OBJ_ID = A.BIZ_OBJ_ID
+		       left join CAP_BIZ_OBJ_DATA_ITEM ITEM on CON.OBJ_DATA_ID = ITEM.ID
+		   WHERE 1=1
+	         <if test="nodeId != null and nodeId != ''">     
+	              AND CON.NODE_ID = #{nodeId}
+			     </if> 
+	</select>
+	
+	<select id ="queryBizNodeConstraintGroupObjId" parameterType="com.comtop.cap.bm.biz.flow.model.BizNodeConstraintVO" resultType="com.comtop.cap.bm.biz.flow.model.BizNodeConstraintVO">
+		select BIZ_OBJ_ID FROM CAP_BIZ_NODE_CONSTRAINT 
+		<where> 		
+			<if test = "nodeId != null and  nodeId != ''  " > 
+				 AND (NODE_ID = #{nodeId} ) 
+			</if>
+		</where>
+		 group by  BIZ_OBJ_ID
+	</select>
+	
+	<update id ="updateConstraintRelationToNode" parameterType="java.util.Map">
+		UPDATE CAP_BIZ_NODE_CONSTRAINT SET NODE_ID = #{newNodeId} WHERE NODE_ID = #{oldNodeId}
+    </update>
+</mapper>

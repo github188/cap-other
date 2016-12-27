@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.doc.content.model">
+	<generateOperate class="com.comtop.cap.doc.content.model.DocCommAttributeVO"></generateOperate>
+	
+	<sql id = "docCommAttribute_default_query_condition" >
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID LIKE '%${id}%' ) 
+		</if>
+		<if test = "objectId != null and  objectId != ''  " > 
+			 AND (T1.OBJECT_ID = #{objectId} ) 
+		</if>
+		<if test = "classUri != null and  classUri != ''  " > 
+			 AND (T1.CLASS_URI = #{classUri} ) 
+		</if>
+		<if test = "attributeUri != null and  attributeUri != ''  " > 
+			 AND (T1.ATTRIBUTE_URI = #{attributeUri} ) 
+		</if>
+	</sql>
+	
+	<select id="queryDocCommAttributeList" parameterType="com.comtop.cap.doc.content.model.DocCommAttributeVO" resultType="com.comtop.cap.doc.content.model.DocCommAttributeVO">
+		SELECT T1.* FROM CAP_DOC_COMM_ATTRIBUTE T1 
+		<where> 
+			 <include refid="docCommAttribute_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryDocCommAttributeCount" parameterType="com.comtop.cap.doc.content.model.DocCommAttributeVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_DOC_COMM_ATTRIBUTE T1
+			<where> 
+			 <include refid="docCommAttribute_default_query_condition" />
+			</where>
+	</select>
+	
+</mapper>

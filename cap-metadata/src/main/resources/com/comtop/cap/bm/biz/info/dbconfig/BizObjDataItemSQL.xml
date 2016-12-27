@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.info.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.info.model.BizObjDataItemVO"></generateOperate>
+	
+	<sql id = "bizObjDataItem_default_query_condition" >
+		<if test = "bizObjId != null and  bizObjId != ''  " > 
+			 AND (T1.BIZ_OBJ_ID = #{bizObjId} ) 
+		</if>
+	</sql>
+	
+	<select id="queryBizObjDataItemList" parameterType="com.comtop.cap.bm.biz.info.model.BizObjDataItemVO" resultType="com.comtop.cap.bm.biz.info.model.BizObjDataItemVO">
+		SELECT T1.* FROM CAP_BIZ_OBJ_DATA_ITEM T1
+		<where> 
+			 <include refid="bizObjDataItem_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="loadBizObjDataItemVOList" parameterType="com.comtop.cap.bm.biz.info.model.BizObjDataItemVO" resultType="com.comtop.cap.bm.biz.info.model.BizObjDataItemVO">
+		SELECT T1.* FROM CAP_BIZ_OBJ_DATA_ITEM T1 WHERE 1=1
+		 <if test="bizObjId != null and  bizObjId != ''">
+			AND T1.BIZ_OBJ_ID = #{bizObjId}  
+		</if>
+		 <if test="domainId != null and  domainId != ''">
+					AND  T1.DOMAIN_ID = #{domainId}  
+		</if>
+		ORDER BY T1.SORT_NO ASC
+	</select>
+	
+	<select id="queryBizObjDataItemListByIds" resultType="com.comtop.cap.bm.biz.info.model.BizObjDataItemVO">
+		SELECT T1.* FROM CAP_BIZ_OBJ_DATA_ITEM T1 where T1.id in 
+		<foreach collection="list" item="item" index="index" 
+			open="(" separator="," close=")">#{item}
+		</foreach>
+	</select>
+	
+	<select id="queryBizObjDataItemCount" parameterType="com.comtop.cap.bm.biz.info.model.BizObjDataItemVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_OBJ_DATA_ITEM T1
+		<where> 
+			 <include refid="bizObjDataItem_default_query_condition" />
+		</where>
+	</select>
+	<select id="loadBizObjDataItemNotExistCodeOrSortNo" resultType="com.comtop.cap.bm.biz.info.model.BizObjDataItemVO">
+		SELECT *
+  		FROM CAP_BIZ_OBJ_DATA_ITEM T
+	 	WHERE T.SORT_NO IS NULL
+	    OR T.CODE IS NULL
+	</select>
+	<select id="loadBizObjDataItemsByIds" resultType="com.comtop.cap.bm.biz.info.model.BizObjDataItemVO">
+		SELECT distinct T1.*,
+		       T2.ID               AS objectId,
+		       T2.NAME             AS objectName,
+		       T2.CODE             AS objectCode,
+		       T2.DESCRIPTION      AS objectDesc,
+		       T2.DOMAIN_ID AS domainId,
+		       t1.remark as remark,
+		       t1.code_note as codeNote
+		  FROM CAP_BIZ_OBJ_DATA_ITEM T1, CAP_BIZ_OBJ_INFO T2
+		 WHERE T1.BIZ_OBJ_ID = T2.ID
+		  <if test="objIds != null">
+		  		AND T2.ID IN
+			  <foreach item="objId" collection="objIds" open="(" separator="," close=")">
+				#{objId}
+			  </foreach>
+		 </if>
+		 order by t2.code
+	</select>
+</mapper>

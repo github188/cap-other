@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.ptc.team.model">
+<generateOperate class="com.comtop.cap.ptc.team.model.TeamAndEmployeeRelVO"></generateOperate>
+<generateOperate class="com.comtop.cap.ptc.team.model.CapEmployeeVO"></generateOperate>
+<generateOperate class="com.comtop.cap.ptc.team.model.TeamVO"></generateOperate>
+
+<sql id = "capRel_default_query_condition" >
+	<if test = "employeeId != null and  employeeId != ''  " > 
+		 AND (T1.EMPLOYEE_ID = #{employeeId} ) 
+	</if>
+</sql>	
+	
+<select id="queryTeamAndEmployeeRelList" resultType="com.comtop.cap.ptc.team.model.TeamAndEmployeeRelVO">
+		SELECT T1.* FROM CAP_PTC_TEAM_EMPLOYEE_REL T1
+		<where> 
+			 <include refid="capRel_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	<select id="queryEmployeeByTeamId" parameterType="String" resultType="com.comtop.cap.ptc.team.model.CapEmployeeVO">
+		<![CDATA[ select emp.* ,rel.role_id as roleSetName,rel.id as relId from cap_ptc_employee emp,CAP_PTC_TEAM_EMPLOYEE_REL rel 
+		where emp.employee_id in(
+		select employee_id from CAP_PTC_TEAM_EMPLOYEE_REL 
+		where team_id =#{teamId}  and emp.employee_id = rel.employee_id) and rel.team_id=#{teamId} ]]>
+	</select>
+	<delete id="deleteFromTeam" parameterType="String">
+		DELETE FROM CAP_PTC_TEAM_EMPLOYEE_REL WHERE TEAM_ID=#{teamId}
+	</delete>
+	
+	<delete id="deleteRelation" parameterType="String">
+		DELETE FROM CAP_PTC_TEAM_EMPLOYEE_REL WHERE EMPLOYEE_ID=#{employeeId}
+	</delete>
+</mapper>

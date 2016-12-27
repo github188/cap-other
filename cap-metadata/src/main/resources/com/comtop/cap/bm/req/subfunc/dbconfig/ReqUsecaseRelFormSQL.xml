@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.subfunc.model">
+	
+	<generateOperate class="com.comtop.cap.bm.req.subfunc.model.ReqUsecaseRelFormVO"></generateOperate>
+	
+	<sql id = "reqUsecaseRelForm_default_query_condition" >
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID = #{id} ) 
+		</if>
+		<if test = "usecaseId != null and  usecaseId != ''  " > 
+			 AND (T1.USECASE_ID = #{usecaseId} ) 
+		</if>
+	</sql>
+	
+	<select id="queryReqUsecaseRelFormList" parameterType="com.comtop.cap.bm.req.subfunc.model.ReqUsecaseRelFormVO" resultType="com.comtop.cap.bm.req.subfunc.model.ReqUsecaseRelFormVO">
+		SELECT T1.*,T2.NAME AS bizFormName 
+		FROM CAP_REQ_USECASE_REL_FORM T1 left join CAP_BIZ_FORM T2 on T1.BIZ_FORM_ID = T2.ID 
+		WHERE 1=1
+			 <include refid="reqUsecaseRelForm_default_query_condition" />
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryReqUsecaseRelFormCount" parameterType="com.comtop.cap.bm.req.subfunc.model.ReqUsecaseRelFormVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_REQ_USECASE_REL_FORM T1
+		<where> 
+			 <include refid="reqUsecaseRelForm_default_query_condition" />
+		</where>
+	</select>
+	
+</mapper>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.form.model">
+	<select id="queryFormListByDomainId" parameterType="com.comtop.cap.bm.biz.form.model.BizFormVO" resultType="com.comtop.cap.bm.biz.form.model.BizFormVO">
+		SELECT T1.* FROM CAP_BIZ_FORM T1 where T1.DOMAIN_ID=#{domainId}
+		<if test = "keyWords != null and  keyWords != ''  " > 
+			 AND T1.CODE REGEXP trim(#{keyWords}) OR 
+				T1.NAME REGEXP trim(#{keyWords})
+		</if>
+	</select>
+	
+	<select id="queryBizFormDTOList" parameterType="com.comtop.cap.doc.biz.model.BizFormDTO" resultType="com.comtop.cap.doc.biz.model.BizFormDTO">
+			SELECT   T1.ID id,
+	             T1.DOMAIN_ID domainId,
+	             T1.SORT_NO sortNo,
+	             T1.CODE code,
+	             T1.NAME  name,
+	             T1.DATA_FROM dataFrom,
+	             T1.DOCUMENT_ID documentId,
+	             T1.PACKAGE_ID packageId,
+	             T3.NAME packageName,
+	             T1.PACKAGE_FLAG packageFlag,
+	             T1.ATTACHMENT_ID attachmentId,
+	              '0' newData,
+	             T1.REMARK        remark
+     			FROM CAP_BIZ_FORM T1
+		<if test = "packageId == null or  packageId == ''  " > 
+			,(SELECT
+					*
+					FROM
+					CAP_BIZ_DOMAIN
+					WHERE
+					FIND_IN_SET(
+					ID,
+					CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+					)) T2
+		</if>
+			left join CAP_BIZ_FORM T3 on T1.PACKAGE_ID=T3.ID
+			WHERE 1=1
+		<if test = "packageId == null or  packageId == ''  " > 
+			AND T1.DOMAIN_ID = T2.ID
+		</if>
+		<if test = "packageId != null and  packageId != ''  " > 
+			 AND (T1.PACKAGE_ID = #{packageId}) 
+		</if>
+		ORDER BY T1.SORT_NO ASC
+	</select>
+	
+	<select id="loadBizFormVOList" parameterType="com.comtop.cap.bm.biz.form.model.BizFormVO" resultType="com.comtop.cap.bm.biz.form.model.BizFormVO">
+		SELECT T1.* FROM CAP_BIZ_FORM T1
+		<if test = "packageId == null and  packageId == ''  " > 
+		,(SELECT
+				*
+				FROM
+				CAP_BIZ_DOMAIN
+				WHERE
+				FIND_IN_SET(
+				ID,
+				CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+				)) T2
+		</if>
+		WHERE 1=1
+		<if test = "packageId == null and  packageId == ''  " > 
+			T1.DOMAIN_ID = T2.ID
+		</if>
+		<if test = "packageId != null and  packageId != ''  " > 
+			 AND (T1.PACKAGE_ID = #{packageId}) 
+		</if>
+		ORDER BY T1.SORT_NO ASC
+	</select>
+	
+	<select id="queryBizFormDTOListWithNoPackageId" parameterType="com.comtop.cap.doc.biz.model.BizFormDTO" resultType="com.comtop.cap.doc.biz.model.BizFormDTO">
+		SELECT 
+			T1.ID id,
+		             T1.DOMAIN_ID domainId,
+		             T1.SORT_NO sortNo,
+		             T1.CODE code,
+		             T1.NAME  name,
+		             '0' newData,
+		             T1.DATA_FROM dataFrom,
+		             T1.DOCUMENT_ID documentId,
+		             T1.PACKAGE_ID packageId,
+		             T1.PACKAGE_FLAG packageFlag,
+		             T1.ATTACHMENT_ID attachmentId,
+		             T1.REMARK        remark
+	 	FROM CAP_BIZ_FORM T1 ,(SELECT
+				*
+				FROM
+				CAP_BIZ_DOMAIN
+				WHERE
+				FIND_IN_SET(
+				ID,
+				CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+				)) T2
+		WHERE T1.DOMAIN_ID = T2.ID
+		 AND (T1.PACKAGE_ID IS NULL) 
+		ORDER BY T1.SORT_NO ASC
+	</select>
+	
+</mapper>

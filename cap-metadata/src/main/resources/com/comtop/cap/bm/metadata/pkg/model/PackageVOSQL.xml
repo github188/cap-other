@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.metadata.pkg.model">
+	<select id="queryPackageInPackageByName" parameterType="java.util.Map"
+		resultType="com.comtop.cap.bm.metadata.pkg.model.PackageVO">
+		SELECT P.*
+		FROM CIP_PACKAGE P
+		INNER JOIN CIP_DIRECTORY D
+		ON P.PACKAGE_ID
+		= D.NODE_ID
+		WHERE 1=1
+		<if test="packageId != null">
+			AND P.PACKAGE_ID != #{packageId}
+		</if>
+		<if test="parentPkgId != null">
+			AND D.PARENT_NODE_ID = #{parentPkgId}
+		</if>
+		<if test="name != null">
+			AND (P.CH_NAME=#{name} OR P.ENG_NAME=#{name})
+		</if>
+	</select>
+
+	<select id="queryPackageByShortName" parameterType="java.util.Map"
+		resultType="com.comtop.cap.bm.metadata.pkg.model.PackageVO">
+		SELECT P.*
+		FROM CIP_PACKAGE P
+		INNER JOIN CIP_DIRECTORY D
+		ON P.PACKAGE_ID
+		= D.NODE_ID
+		WHERE 1=1
+		<if test="packageId != null">
+			AND P.PACKAGE_ID != #{packageId}
+		</if>
+		<if test="parentId != null">
+			AND D.PARENT_NODE_ID = #{parentId}
+		</if>
+		<if test="shortName != null">
+			AND  P.SHORT_NAME = #{shortName} 
+		</if>
+	</select>
+	
+	<generateOperate class="com.comtop.cap.bm.metadata.pkg.model.PackageVO"></generateOperate>
+</mapper>

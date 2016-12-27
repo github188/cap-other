@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO"></generateOperate>
+	<generateOperate class="com.comtop.cap.bm.biz.flow.model.BizProcessNodeRoleVO"></generateOperate>
+	
+	<sql id = "bizProcessNode_default_query_condition" >
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID = #{id} ) 
+		</if>
+		<if test = "processId != null and  processId != ''  " > 
+			 AND (T1.PROCESS_ID = #{processId} ) 
+		</if>
+		<if test = "documentId != null and  documentId != ''  " > 
+			 AND (T1.DOCUMENT_ID = #{documentId} ) 
+		</if>
+		<if test = "domainId != null and domainId != ''  " > 
+			 AND (T1.DOMAIN_ID = #{domainId} ) 
+		</if>
+		<if test = "name != null and  name != ''  " > 
+			AND (regexp_like(T1.NODE_NAME,trim(#{name})))
+		</if>
+	</sql>
+	
+	<select id="queryBizProcessNodeList" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO">
+		SELECT T1.*,T2.PROCESS_NAME AS processName,T3.NAME AS domainName 
+	 	FROM CAP_BIZ_PROCESS_NODE T1 left join CAP_BIZ_PROCESS_INFO T2 on T1.PROCESS_ID = T2.ID
+	 	left join CAP_BIZ_DOMAIN T3 on T1.DOMAIN_ID = T3.ID
+	    WHERE 1=1
+			<include refid="bizProcessNode_default_query_condition" />
+			<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType}
+			</if>
+	</select>
+	
+		
+	<select id="queryNodeListForChoose" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO">
+			select t1.id as domainId,t1.name as domainName,t3.id as processId,t3.process_name as processName,t4.* from 
+			cap_biz_domain t1,cap_biz_items t2,cap_biz_process_info t3,cap_biz_process_node t4 where 
+			t1.id = t2.domain_id and t2.id = t3.items_id and t3.id = t4.process_id
+			<if test = "domainId != null and  domainId != ''  " > 
+			 	AND (regexp_like(t1.id,trim(#{domainId})))
+			</if>
+			<if test = "name != null and  name != ''  " > 
+			 	AND (regexp_like(t4.NODE_NAME,trim(#{name})))
+			</if>
+	</select>
+	
+	<select id="loadBizProcessNodeVOList" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO">
+		SELECT T1.* FROM CAP_BIZ_PROCESS_NODE T1
+		<where> 
+			 <include refid="bizProcessNode_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryBizProcessNodeCount" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_PROCESS_NODE T1
+		<where> 
+			 <include refid="bizProcessNode_default_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryNodeInfoById" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO">
+			select t1.id           as domainId,
+			       t1.name         as domainName,
+			       t3.id           as processId,
+			       t3.process_name as processName,
+			       t4.*
+			  from cap_biz_domain       t1,
+			       cap_biz_items        t2,
+			       cap_biz_process_info t3,
+			       cap_biz_process_node t4
+			 where t1.id = t2.domain_id
+			   and t2.id = t3.items_id
+			   and t3.id = t4.process_id
+		   	<if test = "id != null and  id != ''  " > 
+			   and t4.id = #{id} 
+			</if>
+	</select>
+	<select id="queryNodeDTOListWithProcessCondition" parameterType="com.comtop.cap.doc.biz.model.BizProcessNodeDTO" resultType="com.comtop.cap.doc.biz.model.BizProcessNodeDTO">
+		SELECT T.PROCESS_NAME processName,
+		       T.ITEMS_ID     bizItemId,
+		       R.NAME         bizItemName,
+		       S.ID           id,
+		       S.PROCESS_ID   processId,
+		       S.NODE_NAME    name,
+		       S.NODE_NO      serialNo,
+		       S.DOCUMENT_ID  documentId,
+		       S.DOMAIN_ID    domainId,
+		       S.DATA_FROM    dataFrom,
+			   S.ROLE_IDS     roleIds,
+			   S.SORT_NO      sortNo,
+			   S.SYS_NAME     sysName,
+			   S.NODE_FLAG    nodeFlag,
+			   S.MANAGE_LEVEL manageLevel,
+			   S.WORK_DEMAND  workDemand,
+			   S.WORK_CONTEXT workContext,
+			   S.RISK_AREA    riskArea,
+			   S.CLAUSE       clause,
+			   S.REMARK       remark,
+			   S.NODE_DEF     nodeDef,
+			   '0' 			  newData,
+			    S.SORT_NO   sortNo,
+			   S.GROUP_ID     groupId
+ 	 	FROM CAP_BIZ_PROCESS_NODE S,CAP_BIZ_PROCESS_INFO T 
+ 	 	left join CAP_BIZ_ITEMS R on T.ITEMS_ID = R.ID
+		 	WHERE S.PROCESS_ID =T.ID 
+			AND S.PROCESS_ID = #{processId} 
+		ORDER BY S.SORT_NO ASC
+	</select>	
+		
+	<select id="queryUseBizProcessNodeCount" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO" resultType="int">
+			select sum(a.count)
+			  from (select count(t1.id) as count
+			          from CAP_BIZ_FORM_NODE_REL t1
+			          	<if test = "id != null and  id != ''  " > 
+				        	 where t1.node_id =  #{id}
+						</if>
+			        union
+			        select count(t2.id) as count
+			          from CAP_BIZ_REL_INFO t2
+			          	<if test = "id != null and  id != ''  " > 
+				         where t2.rolea_node_id = #{id}
+				            or t2.roleb_node_id = #{id}
+						</if>
+			        union
+			        select count(t3.id) as count
+			          from CAP_BIZ_NODE_CONSTRAINT t3
+			              	<if test = "id != null and  id != ''  " > 
+				   			where t3.node_id = #{id}
+						</if>
+			        ) a
+	</select>
+	<select id="queryBizProcessNodeRolesByNodeId" parameterType="String" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeRoleVO">
+		SELECT T.ID ID,
+	       T.NODE_ID nodeId,
+	       T.ROLE_ID roleId,
+	       S.ROLE_NAME roleName,
+	       S.BIZ_LEVEL bizLevel
+	   FROM CAP_BIZ_PROCESS_NODE_ROLE T, CAP_BIZ_ROLE S
+	   WHERE T.ROLE_ID = S.ID
+	   	AND T.NODE_ID=#{nodeId}
+	</select>
+	
+	 <delete id="deleteByNodeId" parameterType="String">
+		DELETE FROM CAP_BIZ_PROCESS_NODE_ROLE WHERE NODE_ID = #{nodeId}
+	</delete>
+	
+	<select id="loadBizProcessNodeNotExistCodeOrSortNo" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO">
+		SELECT * FROM CAP_BIZ_PROCESS_NODE T WHERE T.SORT_NO IS NULL
+	</select>
+	
+	<update id="updateProcessNodeDomainId">
+	    UPDATE cap_biz_process_node s SET s.domain_id=
+    	(SELECT domain_id FROM cap_biz_process_info t WHERE s.process_id = t.id)
+    </update>
+</mapper>

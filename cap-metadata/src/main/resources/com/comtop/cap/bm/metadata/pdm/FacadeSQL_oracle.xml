@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.metadata.pdm">
+	<select id="queryChildrenModuleVOList" resultType="com.comtop.top.sys.module.model.ModuleVO" parameterType="java.lang.String">
+	     SELECT T3.*,T2.MODULE_CODE PRARENTMODULECODE FROM 
+		    (SELECT TSM.* FROM TOP_SYS_MODULE TSM
+		            WHERE TSM.STATE = 1
+		            AND  TSM.FULL_PATH IS NOT NULL
+		            AND TSM.MODULE_TYPE = 2
+		            START WITH TSM.PARENT_MODULE_ID = (
+		               SELECT T1.MODULE_ID FROM TOP_SYS_MODULE T1 
+		               WHERE T1.MODULE_ID =  #{moduleId} AND T1.STATE = 1 AND  T1.FULL_PATH IS NOT NULL
+		               ) 
+		            CONNECT BY PRIOR TSM.MODULE_ID = TSM.PARENT_MODULE_ID ) T3
+		     LEFT JOIN TOP_SYS_MODULE T2
+	     on T3.PARENT_MODULE_ID = T2.MODULE_ID
+	</select>
+</mapper>

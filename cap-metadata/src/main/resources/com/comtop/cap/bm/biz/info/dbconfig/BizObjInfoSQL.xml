@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.info.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.info.model.BizObjInfoVO"></generateOperate>
+	
+	<sql id = "bizObjInfo_default_query_condition" >
+		<if test = "domainId != null and  domainId != ''  " > 
+			 AND (T1.DOMAIN_ID = #{domainId} ) 
+		</if>
+		<if test = "code != null and  code != ''  " > 
+			 AND (T1.CODE LIKE '%${code}%' ) 
+		</if>
+		<if test = "name != null and  name != ''  " > 
+			 AND (T1.NAME LIKE '%${name}%' ) 
+		</if>
+		<if test = "packageId != null and  packageId != ''  " > 
+			 AND (T1.PACKAGE_ID = #{packageId}) 
+		</if>
+		<if test = "keyWords != null and  keyWords != ''  " > 
+			 AND (regexp_like(T1.NAME,trim(#{keyWords})) OR 
+				regexp_like(T1.CODE,trim(#{keyWords})))
+		</if>
+		<if test="idList != null and idList != ''">  
+			AND T1.ID IN 
+			<foreach collection="idList" item="item" index="index" 
+				open="(" separator="," close=")">#{item}
+			</foreach>
+		</if>
+	</sql>
+	
+	<sql id = "bizObjInfo_query_condition" >
+		<if test = "code != null and  code != ''  " > 
+			 AND (T1.CODE LIKE '%${code}%' ) 
+		</if>
+		<if test = "name != null and  name != ''  " > 
+			 AND (T1.NAME LIKE '%${name}%' ) 
+		</if>
+		<if test = "packageId != null and  packageId != ''  " > 
+			 AND (T1.PACKAGE_ID = #{packageId}) 
+		</if>
+		<if test = "keyWords != null and  keyWords != ''  " > 
+			 AND (regexp_like(T1.NAME,trim(#{keyWords})) OR 
+				regexp_like(T1.CODE,trim(#{keyWords})))
+		</if>
+		<if test="domainIdList != null and domainIdList != ''">  
+			AND T1.DOMAIN_ID IN 
+			<foreach collection="domainIdList" item="domainId" index="index" 
+				open="(" separator="," close=")">#{domainId}
+			</foreach>
+		</if>
+		<if test="idList != null and idList != ''">  
+			AND T1.ID IN 
+			<foreach collection="idList" item="item" index="index" 
+				open="(" separator="," close=")">#{item}
+			</foreach>
+		</if>
+	</sql>
+	
+	<select id="queryBizObjInfoList" parameterType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO" resultType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO">
+		SELECT T1.* FROM CAP_BIZ_OBJ_INFO T1
+		<where> 
+			 <include refid="bizObjInfo_default_query_condition" />
+		</where>
+		ORDER BY T1.SORT_NO ASC
+	</select>
+	
+	<select id="queryBizObjInfoCount" parameterType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_OBJ_INFO T1
+		<where> 
+			 <include refid="bizObjInfo_default_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryBizObjInfoListByDomainIdList" parameterType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO" resultType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO">
+		SELECT T1.* FROM CAP_BIZ_OBJ_INFO T1
+		<where> 
+			 <include refid="bizObjInfo_query_condition" />
+		</where>
+		ORDER BY T1.SORT_NO ASC
+	</select>
+	
+	<select id="queryBizObjInfoCountByDomainIdList" parameterType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_OBJ_INFO T1
+		<where> 
+			 <include refid="bizObjInfo_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryBizObjInListByIds" resultType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO">
+		SELECT T1.* FROM CAP_BIZ_OBJ_INFO T1 where T1.id in 
+		<foreach collection="list" item="item" index="index" 
+			open="(" separator="," close=")">#{item}
+		</foreach>
+	</select>
+	
+	<select id="queryBizObjInfoCount" parameterType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_OBJ_INFO T1
+		<where> 
+			 <include refid="bizObjInfo_default_query_condition" />
+		</where>
+	</select>
+		
+    <delete id="deleteBizObjDataItemListByBizObjInfoId" parameterType="java.lang.String" >
+		DELETE FROM CAP_BIZ_OBJ_DATA_ITEM WHERE BIZ_OBJ_ID = #{bizObjInfoId}
+	</delete>
+	
+	<select id="queryBizObjNextSortNoByDomainId" parameterType="java.lang.String" resultType="int">
+		SELECT NVL(MAX(SORT_NO),0)+1 FROM CAP_BIZ_OBJ_INFO WHERE DOMAIN_ID=#{domainId}
+	</select>
+	
+	<select id="isExistSameNameBizInfo" parameterType="java.lang.String" resultType="int">
+		SELECT COUNT(1) FROM CAP_BIZ_OBJ_INFO  where DOMAIN_ID  = #{domainId} and name = #{name}
+		<if test = "id != null and  id != ''  " > 
+			 AND (ID  &lt;&gt;  #{id}  ) 
+		</if>
+	</select>
+	
+	<select id="isExistSameCodeBizInfo" parameterType="java.lang.String" resultType="int">
+		SELECT COUNT(1) FROM CAP_BIZ_OBJ_INFO  where DOMAIN_ID  = #{domainId} and CODE = #{code}
+		<if test = "id != null and  id != ''  " > 
+			 AND (ID  &lt;&gt;  #{id}  ) 
+		</if>
+	</select>	
+	
+	<select id="proCapBizObjDownSortNo" statementType="CALLABLE">	
+		<![CDATA[
+		    {call P_CAP_BIZ_OBJ_DOWN (#{id})}
+		]]>
+	</select>
+	
+	<select id="proCapBizObjUpSortNo" statementType="CALLABLE">	
+		<![CDATA[
+		    {call P_CAP_BIZ_OBJ_UP (#{id})}
+		]]>
+	</select>
+	
+	<select id="checkObjInfoIsUse" parameterType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO" resultType="int">
+		SELECT COUNT(id) FROM CAP_BIZ_NODE_CONSTRAINT T1 where T1.BIZ_OBJ_ID  = #{id}
+	</select>
+	
+	<select id="loadBizObjInfoNotExistCodeOrSortNo" resultType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO">
+		SELECT *
+		  FROM CAP_BIZ_OBJ_INFO T
+		 WHERE T.SORT_NO IS NULL
+		    OR T.CODE IS NULL
+	</select>
+	
+	<update id="updateSortNo" parameterType="com.comtop.cap.bm.biz.info.model.BizObjInfoVO">
+		update CAP_BIZ_OBJ_INFO T1 set T1.SORT_NO=#{sortNo} where T1.ID=#{id}
+	</update>
+</mapper>

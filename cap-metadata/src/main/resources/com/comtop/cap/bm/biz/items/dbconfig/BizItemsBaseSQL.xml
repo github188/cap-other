@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.items.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.items.model.BizItemsVO"></generateOperate>
+	<generateOperate class="com.comtop.cap.bm.biz.items.model.BizItemsRoleVO"></generateOperate>
+	
+	<sql id = "bizItems_default_query_condition" >
+		<if test = "domainId != null and  domainId != ''  " > 
+			 AND (T1.DOMAIN_ID = #{domainId} ) 
+		</if>
+		<if test = "documentId != null and  documentId != ''  " > 
+			 AND (T1.DOCUMENT_ID = #{documentId} ) 
+		</if>
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID = #{id} ) 
+		</if>
+		<if test = "keyWords != null and  keyWords != ''  " > 
+			 AND (regexp_like(T1.CODE,trim(#{keyWords})) OR 
+				regexp_like(T1.NAME,trim(#{keyWords})))
+		</if>
+	</sql>
+	
+	<select id="queryBizItemsList" parameterType="com.comtop.cap.bm.biz.items.model.BizItemsVO" resultType="com.comtop.cap.bm.biz.items.model.BizItemsVO">
+		SELECT T1.* FROM CAP_BIZ_ITEMS T1
+		<where> 
+			 <include refid="bizItems_default_query_condition" />
+		</where>
+		ORDER BY T1.SORT_NO ASC 
+	</select>
+	
+	<select id="queryBizItemsCount" parameterType="com.comtop.cap.bm.biz.items.model.BizItemsVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_ITEMS T1
+		<where> 
+			 <include refid="bizItems_default_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryBizItemsById" parameterType="com.comtop.cap.bm.biz.items.model.BizItemsVO" resultType="com.comtop.cap.bm.biz.items.model.BizItemsVO">
+		SELECT T1.*,do.name as belongDomain FROM CAP_BIZ_ITEMS T1,CAP_BIZ_DOMAIN do where T1.id=#{id} and do.ID= T1.DOMAIN_ID
+	</select>
+	
+	<delete id="deleteByDomainId" parameterType="String">
+		delete from CAP_BIZ_ITEMS where DOMAIN_ID = #{domainId} or DOMAIN_ID in (select dm.ID from CAP_BIZ_DOMAIN dm where dm.PARENT_ID=#{domainId})
+	</delete>
+	
+	<select id="checkItemName" parameterType="com.comtop.cap.bm.biz.items.model.BizItemsVO" resultType="int">
+		SELECT COUNT(id) FROM CAP_BIZ_ITEMS T1 where T1.name=#{name} and T1.DOMAIN_ID = #{domainId}
+			<if test = "id != null and  id != ''  " > 
+			 AND T1.ID != #{id}
+			</if>
+	</select>
+	
+	<select id="checkItemIsUse" parameterType="com.comtop.cap.bm.biz.items.model.BizItemsVO" resultType="int">
+		SELECT COUNT(1) FROM CAP_BIZ_PROCESS_INFO T1 where T1.ITEMS_ID=#{id}
+	</select>
+	
+	<select id="getItemMaxSort" parameterType="com.comtop.cap.bm.biz.items.model.BizItemsVO" resultType="int">
+			SELECT nvl(max(T1.SORT_NO),0) FROM CAP_BIZ_ITEMS T1
+	</select>
+	<delete id="deleteByItemsId" parameterType="String">
+		DELETE FROM CAP_BIZ_ITEMS_ROLE WHERE ITEMS_ID  = #{itemsId}
+	</delete>
+	
+	<select id="queryBizItemsRolesByItemsId" parameterType="String" resultType="com.comtop.cap.bm.biz.items.model.BizItemsRoleVO">
+		SELECT T.ITEMS_ID  itemsId,
+		       T.ROLE_ID   roleId,
+		       S.ROLE_NAME roleName,
+		       S.BIZ_LEVEL bizLevel
+		  FROM (select i.id ITEMS_ID, nr.role_id
+		    from cap_biz_items             i,
+		         cap_biz_process_info      pi,
+		         cap_biz_process_node      pn,
+		         cap_biz_process_node_role nr
+		   where i.id = pi.items_id
+		     and pi.id = pn.process_id
+		     and pn.id = nr.node_id
+		     and i.id = #{itemsId}  
+		     
+		  union
+		  
+		  select ir.items_id, ir.role_id
+		    from CAP_BIZ_ITEMS_ROLE ir
+		   where ir.items_id = #{itemsId}) T, CAP_BIZ_ROLE S
+		 WHERE T.ROLE_ID = S.ID
+		   AND T.ITEMS_ID = #{itemsId}
+	</select>
+	
+	<select id="loadBizItemsNotExistCodeOrSortNo" resultType="com.comtop.cap.bm.biz.items.model.BizItemsVO">
+		SELECT *
+		  FROM CAP_BIZ_ITEMS T
+		 WHERE T.SORT_NO IS NULL
+		    OR T.CODE IS NULL
+	</select>
+	
+	
+	<select id="queryItemByidlist" resultType="com.comtop.cap.bm.biz.items.model.BizItemsVO">
+		SELECT T1.* from cap_biz_items T1 where T1.id in 
+		<foreach collection="list" item="item" index="index" 
+			open="(" separator="," close=")">#{item}
+		</foreach>
+	</select>
+	
+	<select id="getRoleListByItemId" parameterType="String" resultType="com.comtop.cap.bm.biz.items.model.BizItemsRoleVO">
+		select t.* ,s.role_name as roleName from CAP_BIZ_ITEMS_ROLE t,CAP_BIZ_ROLE s where  t.items_id = #{itemsId} and t.role_id=s.id
+	</select>
+	
+	<select id="deleteItemRoleByRoleId" parameterType="String" >
+		delete from CAP_BIZ_ITEMS_ROLE where ROLE_ID=#{roleId}
+	</select>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.func.model">
+	
+	<generateOperate class="com.comtop.cap.bm.req.func.model.ReqFunctionRelItemsVO"></generateOperate>
+	
+	<delete id="deleteFunctionRelItemByFunItemId" parameterType="String">
+		DELETE FROM CAP_REQ_FUNCTION_REL_ITEMS WHERE FUNCTION_ID=#{funItemId}
+	</delete>
+	
+	<select id="getRelItemListByFunItemId" parameterType="String" resultType="com.comtop.cap.bm.req.func.model.ReqFunctionRelItemsVO">
+		select T1.*,T2.NAME as bizItemName from CAP_REQ_FUNCTION_REL_ITEMS T1,CAP_BIZ_ITEMS T2 where 
+			T1.FUNCTION_ID=#{reqFunctionItemId} and T1.BIZ_ITEMS_ID=T2.id
+	</select>
+</mapper>

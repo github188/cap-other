@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.func.model">
+	
+	<generateOperate class="com.comtop.cap.bm.req.func.model.ReqFunctionDistributedVO"></generateOperate>
+	
+	
+	<select id="getFunctionDistributedByFunItemId" parameterType="String" resultType="com.comtop.cap.bm.req.func.model.ReqFunctionDistributedVO">
+		SELECT T1.* FROM CAP_REQ_FUNCTION_DISTRIBUTED T1 where T1.ITEM_ID=#{funItemId}
+	</select>
+	
+	
+	<delete id="deleteFunDistributeByFunItemId" parameterType="String">
+		DELETE FROM CAP_REQ_FUNCTION_DISTRIBUTED  WHERE ITEM_ID=#{funItemId}
+	</delete>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.func.model">
+
+	<select id="queryReqFunctionItemWithRole" parameterType="com.comtop.cap.doc.srs.model.ReqFunctionRoleDTO" resultType="com.comtop.cap.doc.srs.model.ReqFunctionRoleDTO">
+	     SELECT ROLEID,
+	            CODE,
+	            NAME,
+	            WM_CONCAT(DESCRIPTION) AS DESCRIPTION
+	       FROM (SELECT DISTINCT T4.ID AS ROLEID,
+		                   T4.ROLE_CODE AS CODE,
+		                   (CONCAT((CASE T4.BIZ_LEVEL
+		                     WHEN 'HQ' THEN '公司总部'
+		                     WHEN 'CC' THEN '分子公司'
+		                     WHEN 'BU' THEN '地市单位'
+		                     WHEN 'CSG' THEN '网公司'
+		                     WHEN 'PROVINCE' THEN '省公司'
+		                     WHEN 'PROVINCE_SD' THEN '省公司系统部'
+		                     WHEN 'BUREAU' THEN '地市局'
+		                     WHEN 'UHV' THEN '超高压'
+		                     WHEN 'EC' THEN '能源公司'
+		                     WHEN 'UNKNOWN' THEN ''
+		                     ELSE T4.BIZ_LEVEL
+		                   END), T4.ROLE_NAME)) AS NAME,
+		                   T1.BIZ_DOMAIN_ID AS DOMAINID,
+		                   T3.DESCRIPTION
+		     FROM CAP_REQ_FUNCTION_ITEM    T1,
+		          CAP_REQ_FUNCTION_SUBITEM T2,
+		          CAP_REQ_SUBITEM_DUTY     T3,
+		          CAP_BIZ_ROLE             T4
+		    WHERE T1.ID = T2.ITEM_ID
+		      AND T2.ID = T3.SUBITEM_ID
+		      AND T3.ROLE_ID = T4.ID
+			<if test = "domainId != null and  domainId != ''  " > 
+			   AND T1.BIZ_DOMAIN_ID = #{domainId}
+			</if>
+			) REQ_FUNCTION_ROLE
+	      GROUP BY ROLEID, CODE, NAME
+		  ORDER BY CODE
+	</select>
+	
+	<select id="queryViewPTreeById" parameterType="String" resultType="com.comtop.cap.bm.req.func.model.ReqTreeVO">
+		select * from V_CAP_REQ_TREE t1 start with t1.id=#{id} connect by prior t1.parent_id = t1.id
+	</select>
+	
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.form.model">
+	
+	<select id="queryBizFormDataItemDTOList" parameterType="com.comtop.cap.doc.biz.model.BizFormDataItemDTO" resultType="com.comtop.cap.doc.biz.model.BizFormDataItemDTO">
+		SELECT T1.ID id,
+           T1.DOMAIN_ID domainId,
+           T1.SORT_NO sortNo,
+           T1.NAME  name,
+           T1.DATA_FROM dataFrom,
+           T1.DOCUMENT_ID documentId,
+           T1.DESCRIPTION description,
+           T1.REMARK     remark,
+           T1.FORM_ID objectId,
+           T1.TYPE type,
+            '0' newData,
+           T1.UNIT unit,
+           T1.REQURIED requried
+      	FROM cap_biz_form_data T1
+		<if test = "objectId == null or  objectId == ''  " > 
+			,(SELECT
+					*
+					FROM
+					CAP_BIZ_DOMAIN
+					WHERE
+					FIND_IN_SET(
+					ID,
+					CONVERT (F_CAP_GetDomainChildrenId(#{domainId} ) USING utf8)
+					)) T2
+		</if>
+		WHERE 1=1
+		<if test = "objectId == null or  objectId == ''  " > 
+			AND T1.DOMAIN_ID = T2.ID
+		</if>
+		<if test = "objectId != null and  objectId != ''  " > 
+			 AND (T1.FORM_ID = #{objectId}) 
+		</if>
+		ORDER BY T1.SORT_NO ASC
+	</select>
+</mapper>

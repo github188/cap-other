@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.subfunc.model">
+	
+	<select id="queryBizRolesBySubitemId" parameterType="String" resultType="String">
+		SELECT wm_concat(ROLE_ID) FROM CAP_REQ_SUBITEM_DUTY T1
+		where T1.SUBITEM_ID=#{subitemId}
+	</select>
+	
+</mapper>

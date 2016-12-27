@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.flow.model.BizRelInfoVO"></generateOperate>
+	
+	<sql id = "bizRelInfo_default_query_condition" >
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID = #{id} ) 
+		</if>
+		<if test = "queryId != null and  queryId != ''" > 
+			AND (T1.ID != #{queryId} )
+		</if>
+		<if test = "roleaNodeId != null and  roleaNodeId != ''  " > 
+			 AND (T1.ROLEA_NODE_ID = #{roleaNodeId} ) 
+		</if>
+		<if test = "rolebNodeId != null and  rolebNodeId != ''  " > 
+			 AND (T1.ROLEB_NODE_ID = #{rolebNodeId} ) 
+		</if>
+		<if test = "relOrient != null and  relOrient != ''  " > 
+			 AND (T1.REL_ORIENT = #{relOrient} ) 
+		</if>
+		<if test = "code != null and  code != ''  " > 
+			 AND (regexp_like(T1.CODE,trim(#{code})))
+		</if>
+		<if test = "name != null and  name != ''  " > 
+			 AND (regexp_like(T1.NAME,trim(#{name})))
+		</if>
+	</sql>
+	
+	<select id="queryBizRelInfoList" parameterType="com.comtop.cap.bm.biz.flow.model.BizRelInfoVO" resultType="com.comtop.cap.bm.biz.flow.model.BizRelInfoVO">
+		SELECT T1.* FROM CAP_BIZ_REL_INFO T1
+		<where> 
+			 <include refid="bizRelInfo_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="loadBizRelInfoVOList" parameterType="com.comtop.cap.bm.biz.flow.model.BizRelInfoVO" resultType="com.comtop.cap.bm.biz.flow.model.BizRelInfoVO">
+		SELECT T1.* FROM CAP_BIZ_REL_INFO T1
+		<where> 
+			 <include refid="bizRelInfo_default_query_condition" />
+		</where>
+			ORDER BY T1.SORT_NO ASC
+	</select>
+	
+	<select id="queryBizRelInfoCount" parameterType="com.comtop.cap.bm.biz.flow.model.BizRelInfoVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_REL_INFO T1
+		<where> 
+			 <include refid="bizRelInfo_default_query_condition" />
+		</where>
+	</select>
+	<update id ="updateRelinfoRelationToNode" parameterType="java.util.Map">
+		UPDATE CAP_BIZ_REL_INFO S SET S.ROLEA_NODE_ID = #{newNodeId} WHERE S.ROLEA_NODE_ID = #{oldNodeId}
+    </update>
+	
+	<select id="queryBizRelationDTOListById" parameterType="com.comtop.cap.doc.biz.model.BizRelationDTO" resultType="com.comtop.cap.doc.biz.model.BizRelationDTO">
+			SELECT T.ID id,
+			       T.CODE code,
+			       T.NAME name,
+			       T.REL_TYPE relType,
+			       T.REL_ORIENT relOrient,
+			       T.TRIGGER_CONDITION triggerCondition,
+			       T.ROLEA_DOMAIN_ID roleaDomainId,
+			       T.ROLEA_DOMAIN_NAME roleaDomainName,
+			       T.ROLEA_ITEM_ID roleaItemId,
+			       T.ROLEA_ITEM_NAME roleaItemName,
+			       T.ROLEA_PROCESS_ID roleaProcessId,
+			       T.ROLEA_PROCESS_NAME roleaProcessName,
+			       T.ROLEA_NODE_ID roleaNodeId,
+			       T.ROLEA_NODE_NAME roleaNodeName,
+			       T.ROLEA_WORK_CONTEXT roleaWorkContext,
+			       T.ROLEA_WORK_DEMAND roleaWorkDemand,
+			       T.ROLEB_DOMAIN_ID rolebDomainId,
+			       T.ROLEB_DOMAIN_NAME rolebDomainName,
+			       T.ROLEB_ITEM_ID rolebItemId,
+			       T.ROLEB_ITEM_NAME rolebItemName,
+			       T.ROLEB_PROCESS_ID rolebPocessId,
+			       T.ROLEB_PROCESS_NAME rolebProcessName,
+			       T.ROLEB_NODE_ID rolebNodeId,
+			       T.ROLEB_NODE_NAME rolebNodeName,
+			       T.ROLEB_WORK_CONTEXT rolebWorkContext,
+			       T.ROLEB_WORK_DEMAND rolebWorkDemand,
+			       T.DATA_FROM dataFrom,
+			       '0' 		   newData,
+			       T.SORT_NO   sortNo,
+			       T.DOCUMENT_ID documentId
+			  FROM CAP_BIZ_REL_INFO  T
+			 where 1=1
+		    <if test = "id != null and  id != ''  " >
+			 	AND (T.ID = #{id} ) 
+			</if>
+	</select>
+	
+	
+	<select id="loadBizRelInfoNotExistCodeOrSortNo" resultType="com.comtop.cap.bm.biz.flow.model.BizRelInfoVO">
+		SELECT * FROM CAP_BIZ_REL_INFO T WHERE T.CODE IS NULL 
+	</select>
+	<update id="updateRelinfoDomainId">
+	     UPDATE cap_biz_rel_info s SET s.rolea_domain_id=
+	    (SELECT domain_id FROM cap_biz_process_Node t WHERE s.rolea_node_id = t.id)
+	    where s.rolea_node_id is not null
+	</update>
+</mapper>

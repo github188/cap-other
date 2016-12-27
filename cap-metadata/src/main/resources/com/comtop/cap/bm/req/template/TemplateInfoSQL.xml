@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.req.template.model">
+	<generateOperate class="com.comtop.cap.bm.req.template.model.TemplateInfoVO"></generateOperate>
+	
+	<select id="queryTemplateInfoList" parameterType="String" resultType="com.comtop.cap.bm.req.template.model.TemplateInfoVO">
+		SELECT T1.* FROM CAP_REQ_TEMPLATE_INFO T1 where T1.TEMPLATE_TYPE_ID = #{templateTypeId}
+	</select>
+	
+	<select id="queryTemplateInfoCount" parameterType="String" resultType="int">
+		SELECT COUNT(1) FROM CAP_REQ_TEMPLATE_INFO T1 where T1.TEMPLATE_TYPE_ID = #{templateTypeId}
+	</select>
+	<delete id="deleteTemplateInfoByTypeId" parameterType="String">
+		DELETE FROM CAP_REQ_TEMPLATE_INFO WHERE  TEMPLATE_TYPE_ID = #{templateTypeId}
+	</delete>
+</mapper>

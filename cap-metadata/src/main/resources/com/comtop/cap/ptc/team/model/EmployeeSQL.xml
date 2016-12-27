@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.ptc.team.model">
+	<generateOperate class="com.comtop.cap.ptc.team.model.CapEmployeeVO"></generateOperate>
+	
+	<sql id = "capEmployee_default_query_condition" >
+		<if test = "keywords != null and  keywords != ''  " > 
+			 AND (regexp_like(T1.EMPLOYEE_NAME,trim(#{keywords})) OR 
+				regexp_like(T1.EMPLOYEE_ACCOUNT,trim(#{keywords})))
+		</if>
+		<if test="teamId != null and teamId != ''">
+			<![CDATA[ AND (exists (select *
+          from CAP_PTC_TEAM_EMPLOYEE_REL
+         where team_id = #{teamId}
+           and T1.employee_id = employee_id) ) ]]>
+		</if>
+		<if test = "employeeAccount != null and  employeeAccount != ''  " > 
+			 AND (T1.EMPLOYEE_ACCOUNT = #{employeeAccount} ) 
+		</if>
+		<if test = "employeePassword != null and  employeePassword != ''  " > 
+			 AND (T1.EMPLOYEE_PASSWORD = #{employeePassword} ) 
+		</if>
+	</sql>
+	
+	<select id="queryEmployeeList" resultType="com.comtop.cap.ptc.team.model.CapEmployeeVO">
+		SELECT T1.* FROM cap_ptc_employee T1 
+		<where> 
+			 <include refid="capEmployee_default_query_condition" />
+		</where>
+		<choose>
+			<when test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType}
+			</when>
+			<otherwise>
+				ORDER BY T1.CDT DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="queryTestEmployeeList" resultType="com.comtop.cap.ptc.team.model.CapEmployeeVO">
+		select distinct T1.* from cap_ptc_employee t1,cap_ptc_team_employee_rel t2
+		where t1.employee_id = t2.employee_id
+		and t2.role_id like '%test%'
+		<include refid="capEmployee_default_query_condition" />
+		<choose>
+			<when test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType}
+			</when>
+			<otherwise>
+				ORDER BY T1.CDT DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="queryEmployeeCount" parameterType="com.comtop.cap.ptc.team.model.CapEmployeeVO" resultType="int">
+			SELECT COUNT(1) FROM cap_ptc_employee T1
+			<where> 
+				 <include refid="capEmployee_default_query_condition" />
+			</where>
+	</select>
+</mapper>

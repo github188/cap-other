@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.metadata.pkg.model">
+	<generateOperate class="com.comtop.cap.bm.metadata.pkg.model.ProjectJarVO"></generateOperate>
+	
+	<select id="queryProjectJarByProjectId" parameterType="java.lang.String" resultType="com.comtop.cap.bm.metadata.pkg.model.ProjectJarVO">
+		SELECT * FROM CIP_PROJECT_JAR WHERE PROJECT_ID = #{projectId}
+	</select>
+	
+	<delete id="deleteProjectJarByProjectId"  parameterType="java.lang.String">
+		DELETE FROM CIP_PROJECT_JAR WHERE PROJECT_ID = #{projectId}
+	</delete>
+</mapper>

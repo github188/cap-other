@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.doc.operatelog.model">
+	
+	<generateOperate class="com.comtop.cap.doc.operatelog.model.DocOperLogVO"></generateOperate>
+	<sql id = "capOperLog_default_query_condition" >
+		<if test = "bizDomainId != null and  bizDomainId != ''  " > 
+			 AND (T1.BIZ_DOMAIN_ID = #{bizDomainId} ) 
+		</if>
+		<if test = "userId != null and  userId != ''  " > 
+			 AND (T1.USER_ID= #{userId} ) 
+		</if>
+		<if test = "operType != null and  operType != ''  " > 
+			 AND (T1.OPER_TYPE= #{operType} ) 
+		</if>
+	</sql>
+	
+	<update id="updateOperResult" parameterType="com.comtop.cap.doc.operatelog.model.DocOperLogVO">
+		update CAP_DOC_OPER_LOG set OPER_RESULT=#{operResult} where ID=#{id}
+	</update>
+	
+	<update id="addFileLoadPath" parameterType="com.comtop.cap.doc.operatelog.model.DocOperLogVO">
+		update CAP_DOC_OPER_LOG set FILE_ADDR=#{zipPath} where ID=#{id}
+	</update>
+	
+	<select id="queryOperLogList" parameterType="com.comtop.cap.doc.operatelog.model.DocOperLogVO" resultType="com.comtop.cap.doc.operatelog.model.DocOperLogVO">
+		SELECT T1.* FROM CAP_DOC_OPER_LOG T1
+		<where> 
+			<include refid="capOperLog_default_query_condition" />
+		</where>
+		<if test = "sortFieldName != null and  sortType != null " > 
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryOperLogCount" parameterType="com.comtop.cap.doc.operatelog.model.DocOperLogVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_DOC_OPER_LOG T1
+			<where> 
+				 <include refid="capOperLog_default_query_condition" />
+			</where>
+	</select>
+</mapper>

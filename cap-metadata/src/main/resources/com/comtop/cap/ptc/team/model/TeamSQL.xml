@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.ptc.team.model">
+<generateOperate class="com.comtop.cap.ptc.team.model.TeamVO"></generateOperate>
+<select id="queryTeamList" parameterType="com.comtop.cap.ptc.team.model.TeamVO" resultType="com.comtop.cap.ptc.team.model.TeamVO">
+		SELECT T1.* FROM CAP_PTC_TEAM T1
+	</select>
+	
+	<select id="queryTestTeamList" parameterType="com.comtop.cap.ptc.team.model.TeamVO" resultType="com.comtop.cap.ptc.team.model.TeamVO">
+		select distinct t1.* from cap_ptc_team t1,cap_ptc_team_employee_rel t2
+		where t1.team_id = t2.team_id
+		and t2.role_id like '%test%'
+	</select>
+	
+	<select id="queryTeamCount"  resultType="int">
+			SELECT COUNT(1) FROM CAP_PTC_TEAM T1
+	</select>
+	
+	<select id="queryTeamVOByTeamId" parameterType="String" resultType="com.comtop.cap.ptc.team.model.TeamVO">
+	     <![CDATA[ select T1.* from CAP_PTC_TEAM T1 where T1.team_id =#{teamId} ]]>
+	</select>
+</mapper>

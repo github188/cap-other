@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.metadata.consistency.entity">
+
+   <!-- 校验当前表是否在数据库 -->
+   <select id="validateIsExistTable" parameterType="com.comtop.cap.bm.metadata.entity.model.EntityVO" resultType="int">
+     SELECT count(1) FROM ${dbObjectName} T  WHERE 1 = 0
+   </select>
+   
+   <!-- 校验流程是否可用 -->
+   <select id="validateProcessEnable" parameterType="com.comtop.cap.bm.metadata.entity.model.EntityVO" resultType="int">
+	SELECT count(1)
+	  FROM bpms_def_process t
+	  LEFT JOIN bpms_def_deploye d
+	    ON t.deploye_id = d.deploye_id
+	 WHERE t.process_id = #{processId}
+	   AND d.state != 2
+   </select>
+
+</mapper>

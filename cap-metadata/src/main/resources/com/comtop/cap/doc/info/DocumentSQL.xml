@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.doc.info.model">
+	<generateOperate class="com.comtop.cap.doc.info.model.DocumentVO"></generateOperate>
+	
+	<select id="queryDocumentList" parameterType="com.comtop.cap.doc.info.model.DocumentVO" resultType="com.comtop.cap.doc.info.model.DocumentVO">
+		SELECT T1.*,T2.NAME docTemplateName,T2.TYPE docType,T2.DOC_CONFIG_TYPE docConfigType FROM CAP_DOC_DOCUMENT T1
+		INNER JOIN CAP_DOC_TEMPLATE T2 ON T1.DOC_TMPL_ID = T2.ID
+		<where>
+			<if test="id != null and id != ''">
+			AND T1.ID = #{id}
+			</if>
+			<if test="bizDomain != null and bizDomain != ''">
+			AND T1.BIZ_DOMAIN = #{bizDomain}
+			</if>
+			<if test="docType != null and docType != ''">
+			AND T2.TYPE = #{docType}
+			</if>
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryDocumentCount" parameterType="com.comtop.cap.doc.info.model.DocumentVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_DOC_DOCUMENT T1 
+			<if test="docType != null and docType != ''">
+			INNER JOIN CAP_DOC_TEMPLATE T2 ON T1.DOC_TMPL_ID = T2.ID
+			</if>
+			WHERE T1.BIZ_DOMAIN = #{bizDomain}
+			<if test="docType != null and docType != ''">
+			AND T2.TYPE = #{docType}
+			</if>
+	</select>
+	
+	<select id="queryDocumentByName" parameterType="com.comtop.cap.doc.info.model.DocumentVO" resultType="com.comtop.cap.doc.info.model.DocumentVO">
+		SELECT T1.*,T2.NAME docTemplateName,T2.TYPE docType FROM CAP_DOC_DOCUMENT T1 
+		INNER JOIN CAP_DOC_TEMPLATE T2 ON T1.DOC_TMPL_ID = T2.ID
+		
+		<where>
+			<if test="id != null">
+				AND T1.id != #{id}
+			</if>
+			<if test="bizDomain != null">
+				AND T1.BIZ_DOMAIN = #{bizDomain}
+			</if>
+			<if test="name != null">
+				AND T1.NAME = #{name}
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryDocumentListByCondition" parameterType="com.comtop.cap.doc.info.model.DocumentVO" resultType="com.comtop.cap.doc.info.model.DocumentVO">
+		SELECT * FROM CAP_DOC_DOCUMENT WHERE 1 = 1
+		<if test="id != null">
+			AND id = #{id} 
+		</if>
+		<if test="name != null">
+			AND NAME = #{name}
+		</if>
+	</select>
+	
+	<delete id="deleteDocContentStruct">
+		delete from cap_doc_chapter_content_struct  where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteDocContent">
+		delete from cap_doc_chapter_content_struct  where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteDocTemplate">
+		delete from cap_doc_template 
+		 where doc_config_type = 'PRIVATE'
+		   and id =
+		       (select doc_tmpl_id from cap_doc_document where id = #{documentId})
+	</delete>
+	
+	<delete id="deleteBizItems">
+		delete from cap_biz_items  where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteBizProcessInfo">
+		delete from cap_biz_process_info  where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteBizFormNodeRel">
+		delete from cap_biz_form_node_rel 
+		 where node_id in
+		       (select id from cap_biz_process_node  where document_id = #{documentId})
+	</delete>
+	
+	<delete id="deleteBizNodeConstraint">
+		delete from CAP_BIZ_NODE_CONSTRAINT 
+	 		where node_id in
+	       		(select id from cap_biz_process_node  where document_id = #{documentId})
+	</delete>
+	
+	<delete id="deleteBizProcessNode">
+		delete from cap_biz_process_node where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteBizObjInfo">
+		delete from CAP_BIZ_OBJ_INFO where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteBizObjDataItem">
+		delete from CAP_BIZ_OBJ_DATA_ITEM where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteBizForm">
+		delete from CAP_BIZ_FORM where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteBizFormData">
+		delete from CAP_BIZ_FORM_DATA where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteBizRelData">
+		delete from CAP_BIZ_REL_DATA 
+		 where rel_info_id in
+		       (select id from cap_biz_rel_info where document_id = #{documentId})
+	</delete>
+	
+	<delete id="deleteBizRelInfo">
+		delete from CAP_BIZ_REL_INFO where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteBizRole">
+		delete from CAP_BIZ_ROLE where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteReqFunctionRel">
+		delete from CAP_REQ_FUNCTION_REL 
+		 where function_item_id in
+		       (select id from cap_req_function_item where document_id = #{documentId})
+	</delete>
+	
+	<delete id="deleteReqFunctionRelItems">
+		delete from CAP_REQ_FUNCTION_REL_ITEMS 
+		 where function_id in
+		       (select id from cap_req_function_item where document_id = #{documentId})
+	</delete>
+	
+	<delete id="deleteReqFunctionRelFlow">
+		delete from CAP_REQ_FUNCTION_REL_FLOW
+		 where function_item_id in
+		       (select id from cap_req_function_item where document_id = #{documentId})
+	</delete>
+	
+	<delete id="deleteReqFunctionItem">
+		delete from cap_req_function_item where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteReqFunctionDistribute">
+		delete from CAP_REQ_FUNCTION_DISTRIBUTED where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteReqDutyRelRole">
+		delete from CAP_REQ_DUTY_REL_ROLE
+		 where duty_id in
+		       (select id from cap_req_subitem_duty where document_id = #{documentId})
+	</delete>
+	
+	<delete id="deleteReqSubitemDuty">
+		delete from cap_req_subitem_duty where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteReqFunctionSubitem">
+		delete from CAP_REQ_FUNCTION_SUBITEM where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteReqPage">
+		delete from CAP_REQ_PAGE where document_id = #{documentId}
+	</delete>
+	
+	<delete id="deleteReqUsecaseRelForm">
+		delete from CAP_REQ_USECASE_REL_FORM
+		 where USECASE_ID in
+		       (select id from CAP_REQ_FUNCTION_USECASE where document_id = #{documentId})
+	</delete>
+	
+	<delete id="deleteReqFunctionUsecase">
+		delete from CAP_REQ_FUNCTION_USECASE where document_id = #{documentId}
+	</delete>
+	
+</mapper>

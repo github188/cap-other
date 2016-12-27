@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	
+	<select id="queryNodeDTOListWithProcess" parameterType="com.comtop.cap.doc.biz.model.BizProcessNodeDTO" resultType="com.comtop.cap.doc.biz.model.BizProcessNodeDTO">
+		SELECT T.PROCESS_NAME processName,
+		       T.ITEMS_ID     bizItemId,
+		       R.NAME         bizItemName,
+		       S.ID           id,
+		       S.PROCESS_ID   processId,
+		       S.NODE_NAME    name,
+		       S.NODE_NO      serialNo,
+		       S.DOCUMENT_ID  documentId,
+		       S.DOMAIN_ID    domainId,
+		       S.DATA_FROM    dataFrom,
+			   S.ROLE_IDS     roleIds,
+			   S.SORT_NO      sortNo,
+			   S.SYS_NAME     sysName,
+			   S.NODE_FLAG    nodeFlag,
+			   S.MANAGE_LEVEL manageLevel,
+			   S.WORK_DEMAND  workDemand,
+			   S.WORK_CONTEXT workContext,
+			   S.RISK_AREA    riskArea,
+			   S.CLAUSE       clause,
+			   S.REMARK       remark,
+			   S.NODE_DEF     nodeDef,
+			   '0' 			  newData,
+			    S.SORT_NO   sortNo,
+			   S.GROUP_ID     groupId
+ 	 	FROM CAP_BIZ_PROCESS_NODE S JOIN CAP_BIZ_PROCESS_INFO T ON S.PROCESS_ID =T.ID 
+ 	 	<if test = "processId == null or  processId == ''  " >JOIN (SELECT *
+		  FROM CAP_BIZ_DOMAIN
+		 WHERE FIND_IN_SET(ID,
+		                   CONVERT(F_CAP_GetDomainChildrenId(#{domainId}) USING utf8))
+		) T2 ON  T.DOMAIN_ID = T2.ID</if>
+			LEFT JOIN CAP_BIZ_ITEMS R ON T.ITEMS_ID = R.ID
+	  	<if test = "processId != null and  processId != ''  " > 
+			WHERE S.PROCESS_ID = #{processId} 
+		</if>
+		ORDER BY S.SORT_NO ASC
+	</select>
+	
+	<select id="queryBizProcessNodeNames" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeVO" resultType="String">
+			SELECT group_concat(NODE_NAME) FROM CAP_BIZ_PROCESS_NODE T1
+			<if test="idList != null and idList != ''">  
+				<where> 
+					AND T1.ID IN 
+						<foreach collection="idList" item="item" index="index" 
+								open="(" separator="," close=")">#{item}
+						</foreach>
+				</where>
+			</if>
+	</select>
+</mapper>

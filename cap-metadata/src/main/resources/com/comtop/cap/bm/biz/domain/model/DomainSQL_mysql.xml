@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.domain.model">
+	<select id="queryDomainChildChainById" parameterType="String" resultType="com.comtop.cap.doc.biz.model.BizDomainDTO">
+			SELECT T.ID id,
+			       T.PARENT_ID parentId,
+			       T.NAME name,
+			       T.SHORT_NAME shortName,
+			       T.NO no,
+			       T.CODE code,
+			       T.REMARK remark,
+			       T.SORT_NO sortNo,
+			       T1.NAME parentName
+			  FROM (SELECT *
+					  FROM CAP_BIZ_DOMAIN
+					 WHERE FIND_IN_SET(ID,
+                   CONVERT(F_CAP_GetDomainChildrenId(#{domainId}) USING utf8))) T left join CAP_BIZ_DOMAIN T1 on T.PARENT_ID = T1.ID
+			 
+	</select>
+	
+	<select id="queryDomainParentChainById" parameterType="String" resultType="com.comtop.cap.doc.biz.model.BizDomainDTO">
+			SELECT T.ID id,
+			       T.PARENT_ID parentId,
+			       T.NAME name,
+			       T.SHORT_NAME shortName,
+			       T.NO no,
+			       T.CODE code,
+			       T.REMARK remark,
+			       T.SORT_NO sortNo,
+			       T1.NAME parentName
+			  FROM (SELECT *
+					  FROM CAP_BIZ_DOMAIN
+					 WHERE FIND_IN_SET(ID,
+                   CONVERT(F_CAP_GetDomainChildrenId(#{domainId}) USING utf8))) T left join CAP_BIZ_DOMAIN T1 on T.PARENT_ID = T1.ID
+	</select>
+</mapper>

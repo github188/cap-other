@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+
+	<select id="queryBizRelationDataItemDTOList" parameterType="com.comtop.cap.doc.biz.model.BizRelationDataItemDTO" resultType="com.comtop.cap.doc.biz.model.BizRelationDataItemDTO">
+		<if test = "relationId == null or  relationId == ''  " > 
+			WITH DOMAINCHAIN AS
+				 (SELECT *
+				    FROM CAP_BIZ_DOMAIN S
+				  CONNECT BY PRIOR S.ID = S.PARENT_ID
+				   START WITH S.ID = #{domainId})
+		</if>
+		SELECT T.ID ID,
+	       T.REL_INFO_ID relationId,
+	       T.OBJ_ID objectId,
+	       T.ITEM_ID dataItemId,
+	       T.REMARK remark,
+	       S.NAME relationName,
+	       R.NAME objectName,
+	       R.PACKAGE_ID objectPackageId,
+	       '0' 	newData,
+	       M.NAME dataItemName,
+	       M.CODE_NOTE codeNote,
+	        T.SORT_NO   sortNo,
+	       S.ROLEA_DOMAIN_ID  domainId
+		  FROM CAP_BIZ_REL_DATA      T,
+		       CAP_BIZ_REL_INFO      S,
+		       CAP_BIZ_OBJ_INFO      R,
+		       CAP_BIZ_OBJ_DATA_ITEM M
+		  <if test = "relationId == null or  relationId == ''  " >
+	  		  ,DOMAINCHAIN T2
+	  	  </if>
+		 WHERE T.REL_INFO_ID = S.ID
+		   AND T.OBJ_ID = R.ID
+		   AND T.ITEM_ID = M.ID
+		   <if test = "relationId == null or  relationId == ''  " > 
+		   		AND S.ROLEA_DOMAIN_ID = T2.ID
+		   </if>
+		   <if test = "relationId != null and  relationId != ''  " > 
+		   		AND T.REL_INFO_ID = #{relationId}
+		   </if>
+		   ORDER BY T.SORT_NO ASC
+	</select>
+	
+</mapper>

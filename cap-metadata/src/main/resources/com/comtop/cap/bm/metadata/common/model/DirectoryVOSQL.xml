@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.metadata.common.model">
+	<select id="queryNodeByProjectId" resultType="com.comtop.cap.bm.metadata.common.model.DirectoryVO">
+		SELECT * FROM CIP_DIRECTORY WHERE 1=1
+		<if test="projectId !=null">
+			AND PROJECT_ID = #{projectId}
+		</if>
+		<if test="keyword !=null">
+			AND (CH_NAME LIKE #{keyword} OR ENG_NAME LIKE #{keyword})
+		</if>
+		<if test="nodeTypes !=null and nodeTypes.length>0">
+			AND NODE_TYPE IN
+			<foreach item="nodeType" index="index" collection="nodeTypes"
+				open="(" separator="," close=")">
+				#{nodeType}
+			</foreach>
+		</if>
+		ORDER BY ENG_NAME
+	</select>
+
+	<select id="queryChildrenNodeByKeyword" resultType="com.comtop.cap.bm.metadata.common.model.DirectoryVO">
+		SELECT * FROM CIP_DIRECTORY WHERE 1=1
+		<if test="parentNodeId !=null">
+			AND PARENT_NODE_ID = #{parentNodeId}
+		</if>
+		<if test="keyword !=null and isForTable == true">
+			AND (CH_NAME LIKE #{keyword} OR ENG_NAME LIKE #{keyword} OR ENTITY_TABLE_NAME LIKE #{keyword})
+		</if>
+		<if test="keyword !=null and isForTable != true">
+			AND (CH_NAME LIKE #{keyword} OR ENG_NAME LIKE #{keyword})
+		</if>
+		<if test="isForTable == true">
+			AND (NODE_TYPE != 'entity' OR (NODE_TYPE = 'entity' AND ENTITY_TABLE_NAME IS NOT NULL) )
+		</if>
+		<if test="nodeTypes !=null and nodeTypes.length>0">
+			AND NODE_TYPE IN
+			<foreach item="nodeType" index="index" collection="nodeTypes"
+				open="(" separator="," close=")">
+				#{nodeType}
+			</foreach>
+		</if>
+		ORDER BY ENG_NAME
+	</select>
+
+	<select id="queryChildrenNodeById" resultType="com.comtop.cap.bm.metadata.common.model.DirectoryVO">
+		SELECT * FROM CIP_DIRECTORY WHERE 1=1
+		<if test="parentNodeId !=null">
+			AND PARENT_NODE_ID = #{parentNodeId}
+		</if>
+		ORDER BY ENG_NAME
+	</select>
+	
+	<select id="queryChildEntityCount" resultType="int">
+		SELECT COUNT(1) 
+    	FROM CIP_ENTITY CE
+    	WHERE CE.PARENT_ID = #{nodeId}
+    	AND CE.ENTITY_ID != #{nodeId}
+	</select>
+	
+	<select id="queryRelationshipEntityCount" resultType="int">
+		SELECT COUNT(1) 
+    	FROM CIP_ENTITY_ATTRIBUTE CEA, CIP_ENTITY_RELATIONSHIP CER
+    	WHERE CEA.RELATIONSHIP_ID = CER.RELATIONSHIP_ID
+   		AND CEA.ENTITY_ID != #{nodeId}
+    	AND (CER.TARGET_ENTITY_ID = #{nodeId} OR
+        	CER.SOURCE_ENTITY_ID = #{nodeId})
+	</select>
+	
+	<select id="queryRelMethodParamCount" resultType="int">
+ 		SELECT COUNT(1) A
+          FROM CIP_ENTITY_METHOD CEM
+         WHERE CEM.ENTITY_ID != #{nodeId}
+           AND CEM.RETURN_ENTITY_ID = #{nodeId}
+        
+	</select>
+	
+	<select id="queryRelMethodReturnValCount" resultType="int">
+		SELECT COUNT(1) A
+          FROM CIP_ENTITY_METHOD CEM, CIP_METHOD_PARAMETER CEP
+         WHERE CEM.ENTITY_ID != #{nodeId}
+           AND CEM.METHOD_ID = CEP.METHOD_ID
+           AND CEP.ENTITY_ID = #{nodeId}
+	</select>
+	
+	<select id="queryEntityAssArrtCount" resultType="int">
+		SELECT COUNT(1) A
+		  FROM (CIP_ENTITY_ATTRIBUTE CEA1 INNER JOIN CIP_ENTITY_ATTRIBUTE CEA2 ON
+		        CEA1.ATTRIBUTE_ID = CEA2.ASSOCIATED_ATTRIBUTE_ID AND
+		        CEA1.ENTITY_ID = #{nodeId}) 
+	</select>
+
+	<generateOperate class="com.comtop.cap.bm.metadata.common.model.DirectoryVO"></generateOperate>
+
+</mapper>

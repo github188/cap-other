@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.flow.model.BizProcessInfoVO"></generateOperate>
+	
+	<sql id = "bizProcessInfo_default_query_condition" >
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID = #{id} ) 
+		</if>
+		<if test = "itemsId != null and  itemsId != ''  " > 
+			 AND (T1.ITEMS_ID = #{itemsId} ) 
+		</if>
+		<if test = "processId != null and  processId != ''  " > 
+			 AND (T1.PROCESS_ID = #{processId} ) 
+		</if>
+		<if test = "code != null and  code != ''  " > 
+			 AND (T1.CODE = #{code} ) 
+		</if>
+		<if test = "processName != null and processName != ''  " > 
+			 AND (regexp_like(T1.PROCESS_NAME,trim(#{processName})))
+		</if>
+		<if test = "documentId != null and  documentId != ''  " > 
+			 AND (T1.DOCUMENT_ID = #{documentId} ) 
+		</if>
+		<if test = "queryId != null and queryId != ''  " > 
+			 AND (T1.ID != #{queryId} ) 
+		</if>
+		<if test = "domainId != null and domainId != ''  " > 
+			 AND (T1.DOMAIN_ID = #{domainId} ) 
+		</if>
+	</sql>
+	
+	<select id="queryBizProcessInfoList" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessInfoVO" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessInfoVO">
+		SELECT T1.* FROM CAP_BIZ_PROCESS_INFO T1
+		<where> 
+			 <include refid="bizProcessInfo_default_query_condition" />
+		</where>
+		<choose>
+			<when test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType}
+			</when>
+			<otherwise>
+				ORDER BY T1.SORT_NO
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="loadBizProcessInfoVOList" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessInfoVO" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessInfoVO">
+		SELECT T1.* FROM CAP_BIZ_PROCESS_INFO T1
+		<where> 
+			 <include refid="bizProcessInfo_default_query_condition" />
+		</where>
+		<choose>
+			<when test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType}
+			</when>
+			<otherwise>
+				ORDER BY T1.SORT_NO
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="queryBizProcessInfoCount" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessInfoVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_PROCESS_INFO T1
+		<where> 
+			 <include refid="bizProcessInfo_default_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryProcessNodeCount" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessInfoVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_PROCESS_NODE T1
+			<if test="idList != null and idList != ''">  
+				<where> 
+					AND T1.PROCESS_ID IN 
+					<foreach collection="idList" item="item" index="index" 
+						open="(" separator="," close=")">#{item}
+					</foreach>
+				</where>
+			</if>
+	</select>
+	
+	<select id ="queryBizProcessDTOListWithItemCondition" parameterType="com.comtop.cap.doc.biz.model.BizProcessDTO" resultType="com.comtop.cap.doc.biz.model.BizProcessDTO">
+			SELECT T.ID,
+		       T.ID            id,
+		       T.PROCESS_ID    processId,
+		       T.SORT_NO       sortNo,
+		       T.CODE          code,
+		       T.PROCESS_NAME  processName,
+		       T.MANAGE_POLICY managePolicy,
+		       T.NORM_POLICY normPolicy,
+		       T.SYS_NAME itImpl,
+		       T.PROCESS_LEVEL processLevel,
+		       T.PROCESS_DEF processDef,
+		       T.DOMAIN_ID domainId,
+		       T.FLOW_CHART_ID flowChartId,
+		       T.DOCUMENT_ID documentId,
+		       T.DATA_FROM dataFrom,
+		       T.WORK_CONTEXT workContext,
+		       T.WORK_DEMAND workDemand,
+		       S.ID bizItemId,
+               S.NAME bizItemName ,
+                T.SORT_NO   sortNo,
+               '0' newData,
+               S.CODE  bizItemCode,
+               S.DOMAIN_ID  bizItemDomainId
+		   FROM CAP_BIZ_PROCESS_INFO T ,CAP_BIZ_ITEMS S 
+		   WHERE T.ITEMS_ID = S.ID
+			AND (T.ITEMS_ID = #{bizItemId})
+		 	ORDER BY T.SORT_NO ASC
+	</select>
+	
+	
+	<select id="loadBizProcessInfoNotExistCodeOrSortNo" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessInfoVO">
+		  SELECT * FROM CAP_BIZ_PROCESS_INFO T
+		  WHERE T.CODE IS NULL
+		    OR T.SORT_NO IS NULL
+	</select>
+	
+	<update id="updateProcessDomainId">
+		UPDATE cap_biz_process_info SET domain_id = 
+    		(SELECT domain_id FROM cap_biz_items t WHERE items_id = t.id)
+   	 		WHERE items_id is NOT NULL 
+	</update>
+</mapper>

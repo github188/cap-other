@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.flow.model.BizProcessNodeRoleVO"></generateOperate>
+	
+	<sql id = "bizProcessNodeRole_default_query_condition" >
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID = #{id} ) 
+		</if>
+		<if test = "nodeId != null and  nodeId != ''  " > 
+			 AND (T1.NODE_ID = #{nodeId} ) 
+		</if>
+	</sql>
+	
+	<select id="queryBizProcessNodeRoleList" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeRoleVO" resultType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeRoleVO">
+		SELECT T1.* FROM CAP_BIZ_PROCESS_NODE_ROLE T1
+		<where> 
+			 <include refid="bizProcessNodeRole_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryBizProcessNodeRoleCount" parameterType="com.comtop.cap.bm.biz.flow.model.BizProcessNodeRoleVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_PROCESS_NODE_ROLE T1
+		<where> 
+			 <include refid="bizProcessNodeRole_default_query_condition" />
+		</where>
+	</select>
+	
+</mapper>

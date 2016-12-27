@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<Consistency>
+
+   <mappingKeyClass>com.comtop.cap.bm.metadata.consistency.entity.util.EntityConsistencyCheckType</mappingKeyClass>
+   <consistencyCheckResultTypeClass>com.comtop.cap.bm.metadata.consistency.ConsistencyCheckResultType</consistencyCheckResultTypeClass>
+   
+   <!-- 实体依赖实体的映射关系 -->
+   <mapping class="com.comtop.cap.bm.metadata.consistency.entity.model.EntityDependOnMapping" elementTypes="message,type,expression">
+      <message>
+         <key>ENTITY_PARENT_ENTITY_TYPE</key>
+         <value>当前实体{0}对应的父实体{1}不存在.</value>
+      </message>
+      <message>
+         <key>ENTITY_PROCESS_TYPE</key>
+         <value>当前实体{0}对应的工作流流程{1}不存在.</value>
+      </message>
+      <message>
+         <key>ENTITY_TABLE_TYPE</key>
+         <value>当前实体{0}对应的数据库表{1}不存在.</value>
+      </message>
+      <message>
+         <key>ENTITY_ATTRIBUTE_RELATION_TYPE</key>
+         <value>当前实体属性{0}所关联的目标实体{1}不存在.</value>
+      </message>
+      <message>
+         <key>ENTITY_ATTRIBUTE_ENUM_TYPE</key>
+         <value>当前实体属性{0}所关联的枚举类{1}不存在.</value>
+      </message>
+      <message>
+         <key>ENTITY_METHOD_RETURN_TYPE</key>
+         <value>当前实体方法名{0}的返回值所关联的实体{1}不存在.</value>
+      </message>
+       <message>
+         <key>ENTITY_METHOD_PARAMETER_TYPE</key>
+         <value>当前实体方法名{0}的参数所关联的实体{1}不存在.</value>
+      </message>
+       <message>
+         <key>ENTITY_METHOD_CASCADE_TYPE</key>
+         <value>当前实体方法名{0}的级联属性所关联的实体{1}不存在.</value>
+      </message>
+       <message>
+         <key>ENTITY_RELATIONSHIP_TYPE</key>
+         <value>当前实体关系{0}的所关联的目标实体{1}不存在.</value>
+      </message>
+      
+      <type>
+        <key>ENTITY_PARENT_ENTITY_TYPE</key>
+        <value>entityBaseInfo</value>
+      </type>
+      <type>
+        <key>ENTITY_PROCESS_TYPE</key>
+        <value>entityBaseInfo</value>
+      </type>
+      <type>
+        <key>ENTITY_TABLE_TYPE</key>
+        <value>entityBaseInfo</value>
+      </type>
+      <type>
+        <key>ENTITY_ATTRIBUTE_RELATION_TYPE</key>
+        <value>entityAttribute</value>
+      </type>
+       <type>
+        <key>ENTITY_ATTRIBUTE_ENUM_TYPE</key>
+        <value>entityAttribute</value>
+      </type>
+      <type>
+         <key>ENTITY_METHOD_RETURN_TYPE</key>
+         <value>entityMethod</value>
+      </type>
+      <type>
+         <key>ENTITY_METHOD_PARAMETER_TYPE</key>
+         <value>entityMethod</value>
+      </type>
+      <type>
+         <key>ENTITY_METHOD_CASCADE_TYPE</key>
+         <value>entityMethod</value>
+      </type>
+      <type>
+         <key>ENTITY_RELATIONSHIP_TYPE</key>
+         <value>entityRelation</value>
+      </type>
+      
+      <expression>
+         <key></key>
+         <value></value>
+      </expression>
+   </mapping>
+   
+   <!-- 实体属性被实体关系依赖映射 -->
+   <mapping class="com.comtop.cap.bm.metadata.consistency.entity.model.EntityAttrBeingDependOnMapping" elementTypes="message,type,expression">
+      <message>
+        <key>ENTITY_RELATIONSHIP_TARGET_FIELD</key>
+        <value>当前实体属性{0}被实体{1}的关系目标实体属性所依赖</value>
+      </message>
+      <message>
+        <key>ENTITY_RELATIONSHIP_ASSOCIATION_FIELD</key>
+        <value>当前实体属性{0}被实体{1}的关系中间实体源属性所依赖</value>
+      </message>
+      
+      <type>
+        <key>ENTITY_RELATIONSHIP_TARGET_FIELD</key>
+        <value>entityRelation</value>
+      </type>
+      <type>
+        <key>ENTITY_RELATIONSHIP_ASSOCIATION_FIELD</key>
+        <value>entityRelation</value>
+      </type>
+      
+      <expression>
+         <key>ENTITY_RELATIONSHIP_TARGET_FIELD</key>
+         <value>entity[lstRelation[targetField='{0}' and targetEntityId='{1}'] and @modelId !='{1}' ]</value>
+      </expression>
+       <expression>
+         <key>ENTITY_RELATIONSHIP_ASSOCIATION_FIELD</key>
+         <value>entity[lstRelation[associateSourceField='{0}' and associateEntityId='{1}'] and @modelId !='{1}' ]</value>
+      </expression>
+   </mapping>
+   
+   <!-- 实体被实体属性,方法,关系,自身依赖映射 -->
+   <mapping class="com.comtop.cap.bm.metadata.consistency.entity.model.EntityBeingDependOnMapping" elementTypes="message,type,expression">
+	  <message>
+         <key>ENTITY_METHOD_PARAMETER_ENTITY_TYPE</key>
+         <value>实体{0}中方法所对应的实体类型参数依赖当前实体{1}</value>
+	  </message>
+	  <message>
+	     <key>ENTITY_METHOD_PARAMETER_GENERIC_TYPE</key>
+	     <value>实体{0}中方法所对应的泛型实体类型参数依赖当前实体{1}</value>
+	  </message>
+	   <message>
+	     <key>ENTITY_METHOD_RETURN_ENTITY_TYPE</key>
+	     <value>实体{0}中方法所对应的实体类型返回值依赖当前实体{1}</value>
+	  </message>
+	   <message>
+	     <key>ENTITY_METHOD_RETURN_GENERIC_TYPE</key>
+	     <value>实体{0}中方法所对应的泛型实体类型返回值依赖当前实体{1}</value>
+	  </message>
+	   <message>
+	     <key>ENTITY_RELATIONSHIP_ASSOSIATE_TYPE</key>
+	     <value>实体{0}中关系所对应的多对多中间实体依赖当前实体{1}</value>
+	  </message>
+	   <message>
+	     <key>ENTITY_RELATIONSHIP_TARGET_TYPE</key>
+	     <value>实体{0}中关系所对应的目标实体依赖当前实体{1}</value>
+	  </message>
+	   <message>
+	     <key>ENTITY_ATTRIBUTE_ENTITY_TYPE</key>
+	     <value>实体{0}中属性所关联的实体依赖当前实体{1}</value>
+	  </message>
+	   <message>
+	     <key>ENTITY_ATTRIBUTE_GENERIC_TYPE</key>
+	     <value>实体{0}中属性所关联的泛型实体依赖当前实体{1}</value>
+	  </message>
+	   <message>
+	     <key>ENTITY_PARENT_ENTITY_TYPE</key>
+	     <value>实体{0}中父实体依赖当前实体{1}</value>
+	  </message>
+	      
+	  <type>
+	     <key>ENTITY_METHOD_PARAMETER_ENTITY_TYPE</key>
+	     <value>entityMethod</value>
+	  </type>
+	  <type>
+	     <key>ENTITY_METHOD_PARAMETER_GENERIC_TYPE</key>
+	     <value>entityMethod</value>
+	  </type>
+	  <type>
+	     <key>ENTITY_METHOD_RETURN_ENTITY_TYPE</key>
+	     <value>entityMethod</value>
+	  </type>
+	  <type>
+	     <key>ENTITY_METHOD_RETURN_GENERIC_TYPE</key>
+	     <value>entityMethod</value>
+	  </type>
+	  <type>
+	     <key>ENTITY_RELATIONSHIP_ASSOSIATE_TYPE</key>
+	     <value>entityRelation</value>
+	  </type>
+	  <type>
+	     <key>ENTITY_RELATIONSHIP_TARGET_TYPE</key>
+	     <value>entityRelation</value>
+	  </type>
+	  <type>
+	     <key>ENTITY_ATTRIBUTE_ENTITY_TYPE</key>
+	     <value>entityAttribute</value>
+	  </type>
+	  <type>
+	     <key>ENTITY_ATTRIBUTE_GENERIC_TYPE</key>
+	     <value>entityAttribute</value>
+	  </type>
+	  <type>
+	     <key>ENTITY_PARENT_ENTITY_TYPE</key>
+	     <value>entityBaseInfo</value>
+	  </type>
+	      
+	  <expression>
+	     <key>ENTITY_METHOD_PARAMETER_ENTITY_TYPE</key>
+	     <value>entity[methods[parameters[dataType/value='{0}']] and @modelId !='{0}']</value>
+	  </expression>
+	  <expression>
+	     <key>ENTITY_METHOD_PARAMETER_GENERIC_TYPE</key>
+	     <value>entity[methods[parameters[dataType//generic[value='{0}'] ]] and @modelId !='{0}']</value>
+	  </expression>
+	  <expression>
+	     <key>ENTITY_METHOD_RETURN_ENTITY_TYPE</key>
+	     <value>entity[methods[returnType/value='{0}'] and @modelId !='{0}']</value>
+	  </expression>
+	  <expression>
+	     <key>ENTITY_METHOD_RETURN_GENERIC_TYPE</key>
+	     <value>entity[methods[returnType//generic[value='{0}']] and @modelId !='{0}' ]</value>
+	  </expression>
+	  <expression>
+	     <key>ENTITY_RELATIONSHIP_ASSOSIATE_TYPE</key>
+	     <value>entity[lstRelation[associateEntityId='{0}'] and @modelId !='{0}' ]</value>
+	  </expression>
+	  <expression>
+	     <key>ENTITY_RELATIONSHIP_TARGET_TYPE</key>
+	     <value>entity[lstRelation[targetEntityId='{0}'] and @modelId !='{0}' ]</value>
+	  </expression>
+	  <expression>
+	     <key>ENTITY_ATTRIBUTE_ENTITY_TYPE</key>
+	     <value>entity[attributes[attributeType[contains(value,'{0}')]] and @modelId !='{0}' ]</value>
+	  </expression>
+	  <expression>
+	     <key>ENTITY_ATTRIBUTE_GENERIC_TYPE</key>
+	     <value>entity[attributes[attributeType/generic[value='{0}'] ] and @modelId !='{0}' ]</value>
+	  </expression>
+	  <expression>
+	     <key>ENTITY_PARENT_ENTITY_TYPE</key>
+	     <value>entity[parentEntityId='{0}' and @modelId !='{0}']</value>
+	  </expression>
+   </mapping>
+   
+   <!-- 实体被页面所依赖 -->
+   <mapping class="com.comtop.cap.bm.metadata.consistency.entity.model.EntityBeingPageDependOnMapping" elementTypes="message,type,expression">
+      <message>
+         <key>PAGE_DATA_STORE_TYPE</key>
+         <value>当前实体被页面【%s-%s】所依赖</value>
+      </message>
+      
+      <type>
+         <key>PAGE_DATA_STORE_TYPE</key>
+         <value>pageDataStore</value>
+      </type>
+      
+      <expression>
+         <key>PAGE_DATA_STORE_TYPE</key>
+         <value>page[dataStoreVOList[entityId='%s']]</value>
+      </expression>
+   
+   </mapping>
+   
+</Consistency>

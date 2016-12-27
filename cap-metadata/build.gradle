@@ -1,0 +1,55 @@
+//archivesBaseName =''
+dependencies{
+	compile project(':cap-runtime')
+	compile project(':cap-common')
+	compile project(':cap-document')
+	
+	//cap引入第三方包
+	compile 'org.freemarker:freemarker:2.3.20'
+	compile 'org.tmatesoft.svnkit:svnkit:1.8.3-1'
+	compile 'net.contentobjects:jnotify:0.94'
+	
+	//cap修改第三方json包
+	compile 'com.comtop.cip:comtop-cip-json:1.1'
+	
+	//soa发布包
+	compile 'com.comtop.cap.runtime.soa:comtop-soa-core:' + soaReleaseVersion
+	
+	//bpms引入第三方包
+	compile 'commons-jxpath:commons-jxpath:1.3'
+	compile 'dom4j:dom4j:1.6.1'
+	compile 'jaxen:jaxen:1.1.1'
+	
+	//eic发布包
+	compile 'com.comtop.cap.runtime.eic:eic-core-1.0.6:' + eicCoreReleaseVersion
+	compile 'com.comtop.cap.runtime.eic:eic-view-1.0.6:' + eicViewReleaseVersion
+	compile 'commons.beanutils:commons.beanutils:1.8.0'
+	
+	//top发布包
+	compile 'com.comtop.cap.runtime.top:comtop-top-module-classify:' + topModuleClassifyVersion
+	
+	testCompile 'junit:junit:4.10'
+}
+
+eclipse {
+	project {
+		classpath {
+			file {
+				//if you want to mess with the resulting XML in whatever way you fancy
+				//定制化生成的.classpath文件内容
+				withXml {
+					def node = it.asNode()
+					//找到<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6/"/>
+					def javaCP = node.find{it.@kind=='con' && it.@path.indexOf('org.eclipse.jdt.launching.JRE_CONTAINER') > -1}
+					if(javaCP) {
+						javaCP.appendNode('accessrules').appendNode('accessrule',[kind: 'accessible',pattern:'com/sun/xml/**'])
+					}
+				}
+			}
+		}
+	}
+}
+
+javadoc{
+
+}

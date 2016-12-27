@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.doc.content.model">
+	
+	<generateOperate class="com.comtop.cap.doc.content.model.DocChapterContentVO"></generateOperate>
+	
+	
+	<select id="queryDocChapterContentList" parameterType="com.comtop.cap.doc.content.model.DocChapterContentVO" resultType="com.comtop.cap.doc.content.model.DocChapterContentVO">
+		SELECT T1.* FROM CAP_DOC_CHAPTER_CONTENT T1
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryDocChapterContentCount" parameterType="com.comtop.cap.doc.content.model.DocChapterContentVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_DOC_CHAPTER_CONTENT T1
+	</select>
+	<delete id="deleteContentByContainerUri" parameterType="java.util.Map">
+			DELETE
+			  FROM CAP_DOC_CHAPTER_CONTENT
+			 WHERE EXISTS (SELECT CONTENT_ID
+			          FROM CAP_DOC_CHAPTER_CONTENT_STRUCT T
+			         WHERE ID = T.CONTENT_ID
+			           AND T.CONTAINER_URI LIKE '${oldUriPrefix}%'
+			           AND T.DOCUMENT_ID = #{documentId})
+	</delete>
+</mapper>

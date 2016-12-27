@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.domain.model">
+
+	<select id="queryDomainChildChainById" parameterType="String" resultType="com.comtop.cap.doc.biz.model.BizDomainDTO">
+			WITH DATACHAIN AS
+			 (SELECT *
+			    FROM CAP_BIZ_DOMAIN S
+			  CONNECT BY PRIOR S.ID = S.PARENT_ID
+			   START WITH S.ID = #{domainId})
+			SELECT T.ID id,
+			       T.PARENT_ID parentId,
+			       T.NAME name,
+			       T.SHORT_NAME shortName,
+			       T.NO no,
+			       T.CODE code,
+			       T.REMARK remark,
+			       T.SORT_NO sortNo,
+			       T1.NAME parentName
+			  FROM DATACHAIN T, DATACHAIN T1
+			 WHERE T.PARENT_ID = T1.ID(+)
+	</select>
+	
+	<select id="queryDomainParentChainById" parameterType="String" resultType="com.comtop.cap.doc.biz.model.BizDomainDTO">
+			WITH DATACHAIN AS
+			 (SELECT *
+			    FROM CAP_BIZ_DOMAIN S
+			  CONNECT BY PRIOR S.PARENT_ID=S.ID
+			   START WITH S.ID = #{domainId})
+			SELECT T.ID id,
+			       T.PARENT_ID parentId,
+			       T.NAME name,
+			       T.SHORT_NAME shortName,
+			       T.NO no,
+			       T.CODE code,
+			       T.REMARK remark,
+			       T.SORT_NO sortNo,
+			       T1.NAME parentName
+			  FROM DATACHAIN T, DATACHAIN T1
+			 WHERE T.PARENT_ID = T1.ID(+)
+	</select>
+	
+</mapper>

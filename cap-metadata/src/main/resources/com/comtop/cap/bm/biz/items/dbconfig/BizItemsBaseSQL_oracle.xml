@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.items.model">
+
+	<select id="queryItemsListByDomainId" parameterType="com.comtop.cap.bm.biz.items.model.BizItemsVO" resultType="com.comtop.cap.bm.biz.items.model.BizItemsVO">
+		SELECT T1.* FROM CAP_BIZ_ITEMS T1 where T1.DOMAIN_ID=#{domainId}
+		<if test = "keywords != null and  keywords != ''  " > 
+			 AND (regexp_like(T1.NAME,trim(#{keywords})) OR 
+				regexp_like(T1.CODE,trim(#{keywords})))
+		</if>
+		<choose>
+			<when test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+				ORDER BY T1.${sortFieldName} ${sortType}
+			</when>
+			<otherwise>
+				ORDER BY T1.SORT_NO ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="queryItemsCountByDomainId" parameterType="com.comtop.cap.bm.biz.items.model.BizItemsVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_ITEMS T1 where T1.DOMAIN_ID=#{domainId}
+		<if test = "keywords != null and  keywords != ''  " > 
+			 AND (regexp_like(T1.NAME,trim(#{keywords})) OR 
+				regexp_like(T1.CODE,trim(#{keywords})))
+		</if>
+	</select>
+	
+	<select id="queryBizItemDTOList" parameterType="com.comtop.cap.doc.biz.model.BizItemDTO" resultType="com.comtop.cap.doc.biz.model.BizItemDTO">
+		WITH DOMAINCHAIN AS
+			 (SELECT *
+			    FROM CAP_BIZ_DOMAIN S
+			  CONNECT BY PRIOR S.ID = S.PARENT_ID
+			   START WITH S.ID = #{domainId})
+		SELECT T1.ID id,
+            T1.DOMAIN_ID domainId,
+            T1.SORT_NO sortNo,
+            T1.CODE code,
+            T1.NAME  name,
+            T1.DATA_FROM dataFrom,
+            T1.DOCUMENT_ID documentId,
+            T1.REMARK  remark   ,
+             '0' newData,
+            T1.BIZ_DESC   bizDesc    ,
+		 T1.REFERENCE_FILE referenceFile ,
+		 T1.MANAGE_POINTS managePoints   
+    		 FROM cap_biz_items T1,DOMAINCHAIN T2
+		WHERE T1.DOMAIN_ID = T2.ID 
+		ORDER BY T1.SORT_NO ASC
+	</select>
+	
+	
+	<select id="loadBizItemsVOList" parameterType="com.comtop.cap.bm.biz.items.model.BizItemsVO" resultType="com.comtop.cap.bm.biz.items.model.BizItemsVO">
+		<if test = "id == null or  id == ''  " > 
+			WITH DOMAINCHAIN AS
+				 (SELECT *
+				    FROM CAP_BIZ_DOMAIN S
+				  CONNECT BY PRIOR S.ID = S.PARENT_ID
+				   START WITH S.ID = #{domainId})
+			SELECT T1.* FROM CAP_BIZ_ITEMS T1,DOMAINCHAIN T2
+			WHERE T1.DOMAIN_ID = T2.ID ORDER BY T1.SORT_NO ASC
+		</if>
+		<if test = "id != null and  id != ''  " > 
+			SELECT T1.* FROM CAP_BIZ_ITEMS T1 WHERE T1.ID = #{id}
+		</if>
+	</select>
+	
+</mapper>

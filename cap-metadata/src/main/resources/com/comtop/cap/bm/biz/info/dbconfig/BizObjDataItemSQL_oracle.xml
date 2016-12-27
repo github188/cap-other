@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.info.model">
+	
+	<select id="queryBizObjectDataItemDTOList" parameterType="com.comtop.cap.doc.biz.model.BizObjectDataItemDTO" resultType="com.comtop.cap.doc.biz.model.BizObjectDataItemDTO">
+		<if test = "objectId == null or  objectId == ''  " > 
+			WITH DOMAINCHAIN AS
+				 (SELECT *
+				    FROM CAP_BIZ_DOMAIN S
+				  CONNECT BY PRIOR S.ID = S.PARENT_ID
+				   START WITH S.ID = #{domainId})
+		</if>
+		SELECT T1.ID id,
+	       T1.DOMAIN_ID domainId,
+	       T1.SORT_NO sortNo,
+	       T1.CODE code,
+	       T1.NAME  name,
+	       T1.DATA_FROM dataFrom,
+	       T1.DOCUMENT_ID documentId,
+	       T1.DESCRIPTION description,
+	       T1.REMARK     remark,
+	       '0' newData,
+		  T1.BIZ_OBJ_ID objectId ,
+		  T1.CODE_NOTE   codeNote
+		  FROM CAP_BIZ_OBJ_DATA_ITEM T1
+		<if test = "objectId == null or  objectId == ''  " > 
+			,DOMAINCHAIN T2
+		</if>
+		WHERE 1=1
+		<if test = "objectId == null or  objectId == ''  " > 
+			AND T1.DOMAIN_ID = T2.ID
+		</if>
+		<if test = "objectId != null and  objectId != ''  " > 
+			 AND (T1.BIZ_OBJ_ID = #{objectId}) 
+		</if>
+		ORDER BY T1.SORT_NO ASC
+	</select>
+	
+</mapper>

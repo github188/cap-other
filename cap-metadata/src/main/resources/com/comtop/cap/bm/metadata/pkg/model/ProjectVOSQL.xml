@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.metadata.pkg.model">
+	<select id="queryProjectsByUserId" parameterType="java.util.Map"
+		resultType="com.comtop.cap.bm.metadata.pkg.model.ProjectVO">
+		SELECT * FROM CIP_PROJECT_INFO PI WHERE 1=1 AND
+		<if test="userId != null">
+			AND PI.USER_ID != #{userId}
+		</if>
+	</select>
+
+	<generateOperate class="com.comtop.cap.bm.metadata.pkg.model.ProjectVO"></generateOperate>
+</mapper>

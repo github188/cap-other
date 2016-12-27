@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.domain.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.domain.model.BizDomainVO"></generateOperate>
+	
+	<select id="queryDomainList" parameterType="com.comtop.cap.bm.biz.domain.model.BizDomainVO" resultType="com.comtop.cap.bm.biz.domain.model.BizDomainVO">
+		SELECT T1.* FROM CAP_BIZ_DOMAIN T1
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryDomainCount" parameterType="com.comtop.cap.bm.biz.domain.model.BizDomainVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_DOMAIN T1
+	</select>
+	
+	<select id="queryDomainById" parameterType="String" resultType="com.comtop.cap.bm.biz.domain.model.BizDomainVO">
+			SELECT T1.* FROM CAP_BIZ_DOMAIN T1 where T1.ID=#{domainId}
+	</select>
+	
+	
+	<select id="queryDomainByfuncSubId" parameterType="String" resultType="com.comtop.cap.bm.biz.domain.model.BizDomainVO">
+	 		select rs1.*  from cap_biz_domain  rs1, cap_req_function_item rs2, cap_req_function_subitem rs3
+ 				where rs1.id=rs2.biz_domain_id and rs2.id =rs3.item_id and rs3.id=#{funcSubId}
+	</select>
+	
+	<delete id="deleteDomain" parameterType="String">
+		delete from CAP_BIZ_DOMAIN where id=#{domainId} or PARENT_ID=#{domainId}
+	</delete>
+	
+	<select id="checkDomainName" parameterType="com.comtop.cap.bm.biz.domain.model.BizDomainVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_BIZ_DOMAIN T1 where T1.NAME=#{name}
+			<if test = "paterId != null and  paterId != ''  " > 
+			 AND T1.PARENT_ID = #{paterId}
+			</if>
+			<if test = "id != null and  id != ''  " > 
+			 AND T1.ID != #{id}
+			</if>
+	</select>
+	
+	<select id="checkDomainIsUse" parameterType="String" resultType="int">
+		select sum(a.count) from (select count(id) as count from CAP_BIZ_ITEMS where domain_id = #{domainId}
+        union
+        select count(id) as count from CAP_BIZ_OBJ_INFO where domain_id = #{domainId}
+        union
+        select count(id) as count from CAP_BIZ_FORM where domain_id = #{domainId}
+        union
+        select count(id) as count from CAP_BIZ_ROLE where domain_id = #{domainId}
+        union
+        select count(id) as count from CAP_DOC_DOCUMENT where BIZ_DOMAIN = #{domainId}) a
+	</select>
+	
+	<select id="getDomainMaxSort" parameterType="com.comtop.cap.bm.biz.domain.model.BizDomainVO" resultType="int">
+			SELECT nvl(max(T1.SORT_NO),0) FROM CAP_BIZ_DOMAIN T1
+	</select>
+	
+	<update id="updateSortNoById" parameterType="com.comtop.cap.bm.biz.domain.model.BizDomainVO">
+		update CAP_BIZ_DOMAIN set SORT_NO=#{sortNo} where ID=#{id}
+	</update>
+	
+	<select id="querybizDomainByReqFuncId" parameterType="java.util.List" resultType="com.comtop.cap.bm.biz.domain.model.BizDomainVO">
+			select fi.biz_domain_id id
+			  from cap_req_function_item fi
+			 where fi.id in 
+			 <foreach collection="list" item="item" open="(" separator="," close=")">
+			 	#{item.itemId}
+			 </foreach>
+			
+			union
+			
+			select t1.biz_domain_id id
+			  from cap_req_function_item t1, cap_req_function_subitem t2
+			 where t1.id = t2.item_id
+			   and t2.id in 
+			<foreach collection="list" item="item" open="(" separator="," close=")">
+			 	#{item.itemId}
+			 </foreach>			
+	</select>
+</mapper>

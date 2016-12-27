@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.doc.tmpl.model">
+	
+	<generateOperate class="com.comtop.cap.doc.tmpl.model.CapDocTemplateVO"></generateOperate>
+	
+	
+	<sql id = "capDocTemplate_default_query_condition" >
+		<if test = "docConfigType != null and  docConfigType != ''  " > 
+			 AND (T1.DOC_CONFIG_TYPE = #{docConfigType} ) 
+		</if>
+		<if test = "id != null and  id != ''  " > 
+			 AND (T1.ID LIKE '%${id}%' ) 
+		</if>
+		<if test = "type != null and  type != ''  " > 
+			 AND (T1.TYPE = #{type} ) 
+		</if>
+		<if test = "name != null and  name != ''  " > 
+			 AND (T1.NAME = #{name} ) 
+		</if>
+	</sql>
+	
+	<select id="queryCapDocTemplateList" parameterType="com.comtop.cap.doc.tmpl.model.CapDocTemplateVO" resultType="com.comtop.cap.doc.tmpl.model.CapDocTemplateVO">
+		SELECT DISTINCT T1.* FROM CAP_DOC_TEMPLATE T1
+		<where> 
+			 <include refid="capDocTemplate_default_query_condition" />
+		</where>
+		<if test="sortFieldName != null and sortFieldName != '' and sortType != null and sortType != ''">
+			ORDER BY T1.${sortFieldName} ${sortType}
+		</if>
+	</select>
+	
+	<select id="queryCapDocTemplateCount" parameterType="com.comtop.cap.doc.tmpl.model.CapDocTemplateVO" resultType="int">
+			SELECT COUNT(1) FROM CAP_DOC_TEMPLATE T1
+		<where> 
+			 <include refid="capDocTemplate_default_query_condition" />
+		</where>
+	</select>
+	
+</mapper>

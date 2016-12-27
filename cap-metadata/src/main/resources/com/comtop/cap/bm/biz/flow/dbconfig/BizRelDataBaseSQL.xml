@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.flow.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.flow.model.BizRelDataVO"></generateOperate>
+	
+	<sql id = "bizRelData_default_query_condition" >
+		<if test = "relInfoId != null and  relInfoId != ''  " > 
+			 AND (t1.REL_INFO_ID = #{relInfoId} ) 
+		</if>
+	</sql>
+	
+	<select id="queryBizRelDataList" parameterType="com.comtop.cap.bm.biz.flow.model.BizRelDataVO" resultType="com.comtop.cap.bm.biz.flow.model.BizRelDataVO">
+		select a.*, t3.name as bizObjName
+		 from (select t1.id,t1.rel_info_id, t1.item_id, t1.obj_id, t1.remark,t2.name as itemName,t2.code_note as itemCodeNote, t1.sort_no as sortNo
+		  from cap_biz_rel_data t1, cap_biz_obj_data_item t2
+		 where t1.item_id = t2.id
+		 <include refid="bizRelData_default_query_condition" />
+			)a,cap_biz_obj_info t3
+	   where a.obj_id = t3.id  order by a.sortNo asc
+	</select>
+	
+	<select id="loadBizRelDataVOList" parameterType="com.comtop.cap.bm.biz.flow.model.BizRelDataVO" resultType="com.comtop.cap.bm.biz.flow.model.BizRelDataVO">
+		select a.*, t3.name as bizObjName
+		 from (select t1.id,t1.rel_info_id, t1.item_id, t1.obj_id,t1.SORT_NO, t1.remark,t2.name as itemName,t2.code_note as itemCodeNote
+		  from cap_biz_rel_data t1, cap_biz_obj_data_item t2
+		 where t1.item_id = t2.id
+		 <include refid="bizRelData_default_query_condition" />
+			)a,cap_biz_obj_info t3
+	   where a.obj_id = t3.id
+	</select>
+	
+	<select id="queryBizRelDataCount" parameterType="com.comtop.cap.bm.biz.flow.model.BizRelDataVO" resultType="int">
+		select count(a.id) 
+		 from (select t1.id,t1.rel_info_id, t1.item_id, t1.obj_id, t1.remark,t2.name as itemName,t2.code_note as itemCodeNote
+		  from cap_biz_rel_data t1, cap_biz_obj_data_item t2
+		 where t1.item_id = t2.id
+		 <include refid="bizRelData_default_query_condition" />
+			)a,cap_biz_obj_info t3
+	   where a.obj_id = t3.id
+	</select>
+	
+</mapper>

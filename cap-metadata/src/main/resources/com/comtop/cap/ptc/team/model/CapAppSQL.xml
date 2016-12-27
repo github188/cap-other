@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.ptc.team.model">
+	
+	<generateOperate class="com.comtop.cap.ptc.team.model.CapAppVO"></generateOperate>
+	
+	<select id="queryMyAppIncludeStore" resultType="com.comtop.cap.ptc.team.model.CapAppVO">
+		   select t2.*, f.func_name appName, f.menu_icon_url appIconUrl
+			  from (select pa.*
+			          from cap_ptc_app pa
+			         where pa.app_type = 1
+			           and pa.employee_id = #{userId}
+			        union
+			        select *
+			          from cap_ptc_app t1
+			         where t1.app_id not in
+			               (select pa.app_id
+			                  from cap_ptc_app pa
+			                 where pa.app_type = 1
+			                   and pa.employee_id = #{userId})
+			           and t1.employee_id = #{userId}
+			           and t1.app_type = 2) t2,
+			       top_per_func f
+			 where t2.app_id = f.parent_func_id
+			   and t2.employee_id = #{userId}
+			 order by t2.app_type
+	</select>
+	
+	<select id="queryMyAppOnlyAssign" resultType="com.comtop.cap.ptc.team.model.CapAppVO">
+		select t1.*, f.func_name appName, f.menu_icon_url appIconUrl
+		  from cap_ptc_app t1, top_per_func f
+		 where t1.app_id = f.parent_func_id
+		   and t1.employee_id = #{userId}
+		   and t1.app_type = 1
+	</select>
+	
+	<select id="isExistRelation" parameterType="com.comtop.cap.ptc.team.model.CapAppVO"
+			resultType="com.comtop.cap.ptc.team.model.CapAppVO">
+			select *
+			  from cap_ptc_app pa
+			 where pa.employee_id = #{employeeId}
+			   and pa.app_id = #{appId}
+			   and pa.app_type = #{appType}
+	</select>
+	
+	<select id="queryEmployeeListByAppId" parameterType="com.comtop.cap.ptc.team.model.CapAppVO"
+			resultType="com.comtop.cap.ptc.team.model.CapEmployeeVO">
+			 select t2.* from cap_ptc_app t1
+             inner join cap_ptc_employee t2 on t1.employee_id = t2.employee_id
+			 <if test="teamId != null and teamId !='' ">
+			 inner join CAP_PTC_TEAM_EMPLOYEE_REL t3 on t2.employee_id = t3.employee_id
+             and t3.team_id = #{teamId}
+			 </if>
+			   and t1.app_id = #{appId}
+			   and t1.app_type = 1
+	</select>
+	
+	<delete id = "deleteAppByTeamId" parameterType = "com.comtop.cap.ptc.team.model.CapAppVO"> 
+		delete from cap_ptc_app
+		 where app_id = #{appId}
+		 <if test="teamId != null and teamId !='' ">
+		   and employee_id in
+		       (select e.employee_id from CAP_PTC_TEAM_EMPLOYEE_REL e where e.team_id = #{teamId})
+		</if>
+		   and app_type = 1
+	</delete>
+	
+</mapper>

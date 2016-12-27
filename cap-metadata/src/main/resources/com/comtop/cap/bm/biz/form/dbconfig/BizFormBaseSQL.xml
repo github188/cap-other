@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.biz.form.model">
+	
+	<generateOperate class="com.comtop.cap.bm.biz.form.model.BizFormVO"></generateOperate>
+	
+	<sql id = "form_default_query_condition" >
+		<if test = "keyWords != null and  keyWords != ''  " > 
+			 AND (regexp_like(T1.CODE,trim(#{keyWords})) OR 
+				regexp_like(T1.NAME,trim(#{keyWords})))
+		</if>
+		<if test = "domainId != null and  domainId != ''  " > 
+		 AND (T1.DOMAIN_ID = #{domainId}) 
+		</if>
+		<if test = "packageId != null and  packageId != ''  " > 
+			 AND (T1.PACKAGE_ID = #{packageId}) 
+		</if>
+	</sql>
+	
+	<sql id = "form_query_condition" >
+		<if test = "keyWords != null and  keyWords != ''  " > 
+			 AND (regexp_like(T1.CODE,trim(#{keyWords})) OR 
+				regexp_like(T1.NAME,trim(#{keyWords})))
+		</if>
+		<if test = "packageId != null and  packageId != ''  " > 
+			 AND (T1.PACKAGE_ID = #{packageId}) 
+		</if>
+		<if test="domainIdList != null and domainIdList != ''">  
+			AND T1.DOMAIN_ID IN 
+			<foreach collection="domainIdList" item="domainId" index="index" 
+				open="(" separator="," close=")">#{domainId}
+			</foreach>
+		</if>
+	</sql>
+	
+	<select id="queryFormById" parameterType="String" resultType="com.comtop.cap.bm.biz.form.model.BizFormVO">
+		SELECT T1.* FROM CAP_BIZ_FORM T1 where T1.ID=#{formId}
+	</select>
+	
+	<delete id="deleteForm" parameterType="String">
+		delete from CAP_BIZ_FORM where ID=#{formId}
+	</delete>
+	
+	<select id="queryFormList" resultType="com.comtop.cap.bm.biz.form.model.BizFormVO">
+		SELECT T1.* FROM CAP_BIZ_FORM T1
+		<where> 
+			 <include refid="form_default_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryFormListByDomainIdList" resultType="com.comtop.cap.bm.biz.form.model.BizFormVO">
+		SELECT T1.* FROM CAP_BIZ_FORM T1
+		<where> 
+			 <include refid="form_query_condition" />
+		</where>
+	</select>
+	
+	<delete id="deleteFormByDomainId" parameterType="String">
+		delete from CAP_BIZ_FORM where DOMAIN_ID = #{domainId} or DOMAIN_ID in (select dm.ID from CAP_BIZ_DOMAIN dm where dm.PARENT_ID=#{domainId})
+	</delete>
+	
+	<select id="checkFormIsUse" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM CAP_BIZ_FORM_NODE_REL T1,CAP_BIZ_FORM_DATA T2 where T1.FORM_ID=#{bizFormId} or T2.FORM_ID=#{bizFormId}
+	</select>
+	
+	<select id="queryFormCount" parameterType="com.comtop.cap.bm.biz.form.model.BizFormVO" resultType="int">
+		SELECT COUNT(*) FROM CAP_BIZ_FORM T1
+		<where> 
+			 <include refid="form_default_query_condition" />
+		</where>
+	</select>
+	
+	<select id="queryFormCountByDomainIdList" parameterType="com.comtop.cap.bm.biz.form.model.BizFormVO" resultType="int">
+		SELECT COUNT(*) FROM CAP_BIZ_FORM T1
+		<where> 
+			 <include refid="form_query_condition" />
+		</where>
+	</select>
+	
+	<select id="checkFormCode" parameterType="com.comtop.cap.bm.biz.form.model.BizFormVO" resultType="int">
+		SELECT COUNT(1) FROM CAP_BIZ_FORM T1 where T1.CODE=#{code}
+			<if test = "id != null and  id != ''  " > 
+			 AND T1.ID != #{id}
+			</if>
+	</select>
+	
+	<select id="getFormMaxSort" parameterType="com.comtop.cap.bm.biz.form.model.BizFormVO" resultType="int">
+			SELECT nvl(max(T1.SORT_NO),0) FROM CAP_BIZ_FORM T1
+	</select>
+	<select id="loadBizFormNotExistCodeOrSortNo" resultType="com.comtop.cap.bm.biz.form.model.BizFormVO">
+		SELECT * FROM CAP_BIZ_FORM T WHERE T.CODE IS NULL OR T.SORT_NO IS NULL 
+	</select>
+</mapper>

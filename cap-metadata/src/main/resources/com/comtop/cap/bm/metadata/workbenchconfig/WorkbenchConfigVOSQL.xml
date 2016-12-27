@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comtop.cap.bm.metadata.workbenchconfig">
+<generateOperate class="com.comtop.cap.bm.metadata.workbenchconfig.model.WorkbenchConfigVO"></generateOperate>
+
+	<!-- 工作台配置数量 -->
+	<select id="queryWorkbenchConfigCount" resultType="int">
+		  select count(process_id)
+		  from workbench_process_config 
+		  where process_id in 
+		  <foreach item="process_id" collection="processIdList" open="(" separator="," close=")">
+			            	 #{process_id}
+			  		</foreach>
+	</select>
+	
+	<!-- 工作台配置信息 -->
+	<select id="queryWorkbenchConfigList" resultType="com.comtop.cap.bm.metadata.workbenchconfig.model.WorkbenchConfigVO">
+		  select process_id,process_name,todo_url,done_url 
+		  from workbench_process_config 
+		  where process_id in 
+		  <foreach item="process_id" collection="processIdList" open="(" separator="," close=")">
+			            	 #{process_id}
+			  		</foreach>
+	</select>
+	
+	<!-- 工作台删除 -->
+	<delete id="deleteWorkbenchConfig">
+			     delete FROM workbench_process_config t WHERE t.process_id in 
+	               	<foreach item="process_id" collection="processIdList" open="(" separator="," close=")">
+		            	 #{process_id}
+		  		    </foreach>
+    </delete>
+    
+    <!-- 调用工作台存储过程 -->
+    <select id="callProCapWbProcesscfg" statementType="CALLABLE">
+		<![CDATA[  
+		    {call P_CAP_WB_PROcessCfg(#{processId,mode=IN,jdbcType=VARCHAR},#{processName,mode=IN,jdbcType=VARCHAR},#{pathUrl,mode=IN,jdbcType=VARCHAR},#{pathType,mode=IN,jdbcType=INTEGER})}  
+		]]>  
+	</select>
+
+</mapper>
