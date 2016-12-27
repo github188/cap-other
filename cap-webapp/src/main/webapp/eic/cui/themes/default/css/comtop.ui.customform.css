@@ -1,0 +1,30 @@
+.customform{
+    border-left:1px solid #BEC2CD;
+    border-top:1px solid #BEC2CD;
+    margin:0;
+    padding:0;
+    width:100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.customform .td_label{
+    background-color:#DFEFFD;
+    border-bottom:1px solid #BEC2CD;
+    border-right:1px solid #BEC2CD;
+    line-height:22px;
+    padding:2px 5px 2px 3px;
+    text-align:right;
+}
+
+.customform .td_content{
+    background-color:#FFFFFF;
+    border-bottom:1px solid #BEC2CD;
+    border-right:1px solid #BEC2CD;
+    line-height:18px;
+    padding:2px 2px 2px 3px;
+}
+
+.customform .td_required{
+    color: red;
+}

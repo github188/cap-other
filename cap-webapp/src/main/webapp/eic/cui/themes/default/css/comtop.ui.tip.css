@@ -1,0 +1,436 @@
+
+/*
+* tip组件样式
+*/
+.ctip {
+	font-size: 12px;
+	position: absolute;
+	padding: 5px;
+	z-index: 100000;
+	*zoom:1;
+	display: none;
+}
+
+.ctip-content {
+	/*background-color: #000;*/
+	color: #FFF;
+	max-width: 150px;
+	padding: 8px;
+	text-align: left;
+	background-color: #FFF9D4;
+	border: 1px solid #E6B803;
+	color: #666;
+	*font-size: 12px;
+	font-size: 12px\0;
+}
+
+.ctip-closed {
+	padding-right: 15px;
+}
+.ctip-content {
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.ctip .ctip-msg {
+	line-height: 1.5;
+	word-break:break-all;
+    word-wrap:break-word;
+    _display: inline;
+}
+
+.ctip-arrow {
+	position: absolute;
+	background: url(../images/tip/ctip-arrow.png);
+}
+
+
+.ctip-x {
+	position: absolute;
+	top: 10px;
+	right: 8px;
+	display: block;
+	width: 11px;
+	height: 11px;
+	line-height: 0;
+	font-size: 0;
+	cursor: pointer;
+	background: url("../images/core/c-icon-1.png") no-repeat 0 -12px;
+	*zoom:1;
+}
+
+.ctip-x:hover {
+	background-position: 0 0;
+}
+
+
+.ctip-b .ctip-arrow {
+	width: 20px;
+	height: 10px;
+	left: 50%;
+	margin-left: -10px;
+	top: -4px;
+}
+
+.ctip-lb .ctip-arrow {
+	width: 20px;
+	height: 10px;
+	left: 20px;
+	top: -4px;
+}
+
+.ctip-rb .ctip-arrow {
+	width: 20px;
+	height: 10px;
+	right: 20px;
+	top: -4px;
+}
+
+.ctip-t .ctip-arrow {
+	width: 20px;
+	height: 10px;
+	left: 50%;
+	margin-left: -10px;
+	bottom: -4px;
+	background-position: 0 -12px;
+}
+
+.ctip-rt .ctip-arrow {
+	width: 20px;
+	height: 10px;
+	right: 20px;
+	bottom: -4px;
+	background-position: 0 -12px;
+}
+
+.ctip-lt .ctip-arrow {
+	width: 20px;
+	height: 10px;
+	left: 10px;
+	bottom: -4px;
+	background-position: 0 -12px;
+}
+
+
+
+.ctip-r .ctip-arrow {
+	width: 10px;
+	height: 20px;
+	left: -4px;
+	top: 13px;
+}
+
+.ctip-l .ctip-arrow {
+	width: 10px;
+	height: 20px;
+	right: -4px;
+    top: 13px;
+	background-position: -12px 0;
+}
+
+
+/* Rules to colour arrows 
+.ctip-arrow-n {
+	border-bottom-color: #000;
+}
+
+.ctip-arrow-s {
+	border-top-color: #000;
+}
+
+.ctip-arrow-e {
+	border-left-color: #000;
+}
+
+.ctip-arrow-w {
+	border-right-color: #000;
+}
+*/
+/*
+
+.ctip-b .ctip-arrow {
+	top: 0;
+	left: 50%;
+	margin-left: -10px;
+	margin-top: -5px;
+	margin-top: 0\0;
+	*margin-top: 0;
+	border-bottom-style: solid;
+	border-top: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.ctip-b .ctip-content {
+	*margin-top: 10px;
+	margin-top: 5px\0;
+}
+
+
+.ctip-b .ctip-arrow  i{
+	top: 1px;
+	left: 50%;
+	margin-left: -10px;
+	border-bottom-style: solid;
+	border-top: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.ctip-rb .ctip-arrow {
+	top: 0;
+	left: 20px;
+	margin-top: -5px;
+	*margin-top:0;
+	margin-top:0\0;
+	border-bottom-style: solid;
+	border-top: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.ctip-rb .ctip-content {
+	*margin-top: 10px;
+	margin-top: 5px\0;
+}
+
+.ctip-rb .ctip-arrow i{
+	top: 1px;
+	left: -10px;
+	border-bottom-style: solid;
+	border-top: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+
+.ctip-lb .ctip-arrow {
+	top: 0;
+	right: 20px;
+	margin-top: -5px;
+	*margin-top: 0;
+	margin-top: 0\0;
+	border-bottom-style: solid;
+	border-top: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.ctip-lb .ctip-content {
+	*margin-top: 10px;
+	margin-top: 5px\0;
+}
+
+.ctip-lb .ctip-arrow i{
+	top: 1px;
+	left: -10px;
+	border-bottom-style: solid;
+	border-top: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.ctip-b .ctip-x,.ctip-lb .ctip-x,.ctip-rb .ctip-x{
+	top: 15px\0;
+}
+
+
+.ctip-t .ctip-arrow {
+	bottom: 0;
+	left: 50%;
+	margin-left: -10px;
+	*margin-left: -5px;
+	margin-bottom: -5px;
+	*margin-bottom: 0;
+	margin-bottom: 0\0;
+	border-top-style: solid;
+	border-bottom: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.ctip-t .ctip-content {
+	*margin-bottom: 5px;
+	 margin-bottom: 5px\0;
+}
+
+.ctip-t .ctip-arrow i {
+	bottom: 1px;
+	left: 50%;
+	margin-left: -10px;
+	border-top-style: solid;
+	border-bottom: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+
+.ctip-rt .ctip-arrow {
+	bottom: 0;
+	left: 20px;
+	margin-bottom: -5px;
+	*margin-bottom: 0;
+	margin-bottom: 0\0;
+	border-top-style: solid;
+	border-bottom: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.ctip-rt .ctip-content {
+	*margin-bottom: 5px;
+	margin-bottom: 5px\0;
+}
+
+.ctip-rt .ctip-arrow  i{
+	bottom: 1px;
+	left: -10px;
+	border-top-style: solid;
+	border-bottom: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+
+.ctip-lt .ctip-arrow {
+	bottom: 0;
+	right: 20px;
+	margin-bottom: -5px;
+	*margin-bottom: 0;
+	margin-bottom: 0\0;
+	border-top-style: solid;
+	border-bottom: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.ctip-lt .ctip-content {
+	*margin-bottom: 5px;
+	margin-bottom: 5px\0;
+}
+
+.ctip-lt .ctip-arrow  i{
+	bottom: 1px;
+	left: -10px;
+	border-top-style: solid;
+	border-bottom: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+
+
+.ctip-l .ctip-arrow {
+	right: 0;
+	top: 50%;
+	margin-top: -10px;
+	margin-right: -5px;
+	*margin-right: 0;
+	margin-right: 0\0;
+	border-left-style: solid;
+	border-right: none;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+
+.ctip-l .ctip-content {
+	*margin-right: 5px;
+	margin-right: 5px\0;
+}
+
+.ctip-l .ctip-arrow i{
+	right: 1px;
+	top: -10px;
+	border-left-style: solid;
+	border-right: none;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+
+.ctip-l .ctip-x {
+	*top: 12px;
+	*right: 16px;
+	right: 16px\0;
+}
+
+.ctip-r .ctip-arrow {
+	left: 0;
+	top: 50%;
+	margin-top: -10px;
+	margin-left: -5px;
+	*margin-left: 0;
+	margin-left: 0\0;
+	border-right-style: solid;
+	border-left: none;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+
+.ctip-r .ctip-content {
+	*margin-left: 5px;
+	margin-left: 5px\0;
+}
+
+.ctip-r .ctip-arrow  i{
+	left: 1px;
+	top: -10px;
+	border-right-style: solid;
+	border-left: none;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+
+.ctip-known {
+	text-align: right;
+	margin-top: 13px;
+	display: block;
+	*margin-top: 8px;
+	*zoom:1;
+}
+
+.ctip-known a {
+	height: 22px;
+	padding: 0 10px;
+	line-height: 22px;
+	background-color: #009FD4;
+	display: inline-block;
+	vertical-align: middle;
+	text-decoration: none;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	*zoom:1;
+	cursor: pointer;
+}
+
+.ctip-known a:hover{
+	text-decoration: none;
+	background-color: #03AAE0;
+}
+
+.ctip-known a em {
+	font-style: normal;
+	color: white;
+	*zoom:1;
+}
+
+
+.digital-icon {
+	z-index: 100000;
+	background: #C80000;
+	color: white;
+	font-weight: bold;
+	max-width: 40px;
+	position: absolute;
+	padding: 1px 3px;
+	text-align: center;
+	min-width: 13px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+
+
+*/

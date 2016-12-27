@@ -1,0 +1,77 @@
+.click_input_wrap {
+    width: 200px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    vertical-align:middle;
+    _vertical-align:baseline;
+}
+
+.BC_click_input_wrap {
+    *width: 200px;
+}
+
+.click_input_base {
+    background-color: #fff;
+    border: 0 none;
+    width: 100%;
+    height: 17px;
+    line-height: 17px;
+    font-size: 12px;
+    font-family: Arial,"宋体";
+    padding: 0;
+    /*解决IE8下获取焦点晃动问题*/
+    vertical-align: middle;
+    outline: none;
+    margin: 0;
+    display: block;
+}
+
+.click_input_box {
+    border: 1px solid #ddd;
+    border-top: 1px solid #9e9e9e;
+    background-color: #fff;
+    color: #333;
+    height: 17px;
+    line-height: 17px;
+    padding: 2px 5px ;
+    *padding: 1px 5px 3px;
+    overflow: hidden;
+    display: block;
+}
+
+.BC_click_input_box {
+    *height: 23px !important;
+}
+
+.input_tipcolor{
+    color: #ababa7;
+}
+
+.input_focus {
+    border:1px solid #63acfe;
+    border-top:1px solid #0260cb;
+}
+
+.input_garybg {
+    background-color: #f3f1f1;
+    color: #ababa7;
+}
+
+.click_input_icon {
+    background: url(../images/input/select_item.gif) 50% 50% no-repeat;
+    height: 23px;
+    width: 17px;
+    float: right;
+    cursor: pointer;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: middle;
+    margin:0!important;
+}
+
+.click_input_invalid {
+    border-color: red!important;
+}

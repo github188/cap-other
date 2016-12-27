@@ -1,0 +1,18 @@
+.bindToTop {
+    position: fixed !important;
+    top: 0px !important;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.absolute {
+	position: absolute !important;
+}
+
+.floatLeft {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}

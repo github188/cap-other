@@ -1,0 +1,170 @@
+/**
+* 模块：CUI PullDown所有模块样式
+* 作者：王伟
+* 日期：2013-9-25
+*/
+.pulldown-main {
+    display: inline-block;
+    vertical-align: middle;
+    height: 23px;
+    width: 200px;
+    position: relative;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 23px;
+    background:#fff;
+}
+
+.pulldown-main .pulldown-inner {
+    padding: 0 23px 0 6px;
+    border: 1px solid #ddd;
+    border-top-color: #aaa;
+    height: 21px;
+    overflow: hidden;
+}
+
+.pulldown-main .pulldown-readonly {
+    background: #eee;
+    padding-right: 6px;
+}
+
+.pulldown-main .pulldown-error {
+    border-color: red;
+}
+
+.pulldown-main .pulldown-text {
+    border: 0;
+    background-color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+    color: #ABABA7;
+    height: 13px;
+    line-height: 13px;
+    width: 100%;
+    padding: 4px 0;
+    outline: none;
+    margin: 0;
+}
+
+.pulldown-main .pulldown-text-qm {
+    height: 21px;
+    line-height: 21px;
+    padding: 0;
+}
+
+.pulldown-main .pulldown-readonly .pulldown-text {
+    background: #eee;
+}
+
+
+.pulldown-main .pulldown-inner-focus {
+    border-color: #6ca3fe;
+    border-top-color: #4e83d9
+}
+
+.pulldown-main .pulldown-text-value, .pulldown-main .pulldown-inner-focus .pulldown-text {
+    color: #333;
+}
+
+.pulldown-btn {
+    width: 21px;
+    height: 21px;
+    background: url(../images/pulldown/pullDownIcon.gif) no-repeat center center;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.pulldown-btn:hover {
+    transform: rotate(360deg);
+}
+
+.pulldown-loading {
+    background-image: url(../images/pulldown/loading.gif)
+}
+/*pulldown-box*/
+.pulldown-box {
+    border: 1px solid #ddd;
+    position: absolute;
+    z-index: 11000;
+    background: #fff;
+    width: 198px;
+    overflow: hidden;
+    overflow-y: auto;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    top: -999999px;
+}
+
+.pulldown-box iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #fff;
+}
+
+.pulldown-box .pulldown-box-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+}
+/*Single Multi*/
+.pulldown-box .pulldown-list {
+    display: block;
+    height: 23px;
+    font-size: 12px;
+    text-decoration: none;
+    color: #333;
+    border-left: 3px solid #fff;
+    padding-left: 3px;
+    line-height: 23px;
+    outline: none;
+    overflow: hidden;
+    white-space: nowrap;
+    *white-space: pre;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    *word-break: break-all;
+    _word-break: keep-all;
+}
+
+.pulldown-box .pulldown-checked {
+    border-color: #ff7d20;
+    background-color: #EAF2FF;
+}
+
+.pulldown-box .pulldown-list:hover, .pulldown-box .pulldown-hover {
+    background-color: #eee;
+}
+/*multi*/
+.multi-pulldown-box .pulldown-box-inner {
+    padding-top: 23px;
+}
+
+.multi-pulldown-box .pulldown-list {
+    background: url(../images/pulldown/checkbox_icon.png) 0 -45px transparent no-repeat;
+    padding-left: 20px;
+}
+
+.multi-pulldown-box .pulldown-checked {
+    background-position: 0 -1px;
+    background-color: #EAF2FF;
+}
+
+.multi-pulldown-box .pulldown-hover {
+    background-color: #eee;
+}
+
+.multi-pulldown-box .pulldown-list-all {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    font-weight: 700;
+    z-index: 1;
+    left: 0;
+}
+

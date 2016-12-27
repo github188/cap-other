@@ -1,0 +1,106 @@
+
+@tab_def_width: 65px; // tab default width
+@header_height: 30px; // tab height
+@tab_padding: 8px; // padding of the tab round corner
+@tab_gap: 3px; // the gap between two tabs.
+@closebtn_width: 13px; // width of close button
+@closebtn_height: 13px; // height of close button
+@closebtn_text_gap: 5px; // gap between text and close button
+@img_url: "../images/tab.png";
+
+
+.cui-tab {
+	position: relative;
+	font-size: 12px;
+	color: #333;
+
+	ul.cui-tab-nav {
+		padding: 0px;
+		margin: 0px;
+		height: @header_height;
+		overflow: hidden;
+
+		li {
+			float: left;
+			height: @header_height;
+			line-height: @header_height;
+			text-align: center;
+			list-style: none;
+			padding-left: @tab_padding;
+			margin-right: @tab_gap;
+			background: url(@img_url) left -60px no-repeat;
+			position: relative;
+			overflow: hidden;
+			width: @tab_def_width;
+		}
+	}
+
+	.cui-tab-nav {
+		padding: 0px;
+
+		.cui-tab-title {
+			display: block;
+			height: 100%;
+			background: url(@img_url) right -90px no-repeat;
+			padding-right: @tab_padding;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		.closeable {
+			.cui-tab-title {
+				padding-right: @tab_padding + @closebtn_width + @closebtn_text_gap;
+			}
+		}
+
+		.cui-active {
+			cursor: default;
+			background-position: 0px 0px;
+			position: relative;
+			z-index: 2;
+
+			.cui-tab-title {
+				background-position: right -30px;
+			}
+		}
+
+		.cui-tab-hover {
+			background-position: left -120px;
+
+			.cui-tab-title {
+				background-position: right -150px;
+			}
+		}
+
+		.cui-tab-close {
+			display: block;
+			width: 13px;
+			height: 13px;
+			background: url(@img_url) 0 -180px no-repeat;
+			cursor: pointer;
+			position: absolute;
+			right: @tab_padding;
+			top: 50%;
+			margin-top: -@closebtn_height / 2;
+
+			&.hover {
+				background-position: -13px -180px;
+			}
+		}
+	}
+
+	.cui-tab-content {
+		border: 1px solid #C3C4C5;
+		padding: 5px 2px 3px;
+		overflow: auto;
+		background: #EAF2FF;
+		position: relative;
+		z-index: 1;
+		margin-top: -1px;
+
+		iframe {
+			width: 100%;
+		}
+	}
+	
+}

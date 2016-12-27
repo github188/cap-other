@@ -1,0 +1,7 @@
+.checkbox-group, .checkboxgroup-inner{display: inline-block;font-size: 12px; overflow: hidden; zoom:1; vertical-align: middle;padding:2px 0; line-height: 21px;*display:inline}
+.checkboxgroup-inner{padding:1px 5px;}
+.checkbox-group-error{border:1px solid red;padding: 0 4px;}
+.checkboxgroup-border{border:1px solid #7F9DB9;padding: 0 4px;}
+.checkboxgroup-inner label{margin-right:8px;cursor: pointer; line-height: 18px; display: inline-block;}
+.checkboxgroup-inner input{cursor: pointer; vertical-align:top; margin: 2px 5px 0 0; padding: 0;*margin:0 5px 0 0;*vertical-align:middle;_vertical-align:text-bottom;}
+.checkbox-group-readonly{opacity: .5; filter:alpha(opacity=50);}

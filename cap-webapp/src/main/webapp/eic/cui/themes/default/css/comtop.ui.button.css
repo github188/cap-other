@@ -1,0 +1,61 @@
+.button_box{
+    background-repeat: repeat-x;
+    background-position: top;
+    border-radius: 3px 3px 3px 3px;
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+    cursor:pointer;
+    height:21px;
+    line-height: 21px;
+	*margin-left:6px;
+    background-image: url(../images/button/button_bg.gif);
+    border: 1px solid #dedede;
+    font-size:12px;
+    font-family:"ËÎÌו", Arial,Sans;
+    vertical-align: top;
+    color:#333333;
+}
+.button_box.button_box_visited{
+    background-image: url(../images/button/button_visited.gif);
+    border: 1px solid #a5c4eb;
+}
+.button_box.button_box_hover{
+    background-image: url(../images/button/button_over.gif);
+    border: 1px solid #92b6e2;
+}
+.button_box .button_text_container{
+    cursor:pointer;
+    -moz-user-select:none ;
+    white-space: nowrap;
+    background-color: transparent;
+    margin: 0px;
+    float: left;
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 100%;
+    padding: 0px 7px 0px 8px;
+    _padding-top: 1px ;
+}
+.button_box .button_icon_container{
+    background-position: left center;
+    background-repeat: no-repeat;
+    margin: 0px -3px 0px 8px;
+    _margin-left: 4px;
+    width:16px;
+    height:100%;
+    float:left;
+}
+.button_box .button_arrow_container {
+    display:block;
+    background: url(../images/button/arrow.gif) no-repeat right center;
+    float: left;
+    width: 14px;
+    height: 100%;
+    margin:0px 8px 0px -10px;
+    _margin-right:4px
+}
+
+.button_box.button_box_disable{
+    color:#ACA899;
+}

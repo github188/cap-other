@@ -1,0 +1,28 @@
+.pullDownBody .searchWarp{
+	height:23px;
+}
+.pullDownBody .searchIcon{
+	position:absolute;
+	left:5px;
+	width:49px;
+	height:100%;
+	display:inline-block;
+	background:url(../images/pulldown/search.png) no-repeat 0 0;
+	
+}
+.pullDownBody .searchText{
+	width:70px;
+}
+
+.pullDownBody .searchTextWarp{
+	position:absolute;
+	left:60px;
+}
+.pullDownBody .searchButton{
+	position:absolute;
+	right:5px;
+	background:url(../images/pulldown/search.png) no-repeat -49px 0;
+	width:60px;
+	height:20px;
+	border:medium none
+}

@@ -1,0 +1,27 @@
+.bl_main{zoom:1;overflow: hidden;}
+.bl_main .bl_inner{zoom:1;overflow: hidden}
+.bl_main iframe{height:100%;width:100%;display: block}
+.bl_main .bl_header{background:url(../images/borderlayout/layout_bg.gif) repeat-x;white-space:nowrap;}
+.bl_main .bl_top, .bl_main .bl_left,.bl_main .bl_center,.bl_main .bl_right,.bl_main .bl_bottom{position: relative;background:#f0f0f0;}
+.bl_main .bl_middle{overflow: hidden;zoom:1;clear: both}
+.bl_main .bl_box_top, .bl_main .bl_box_right, .bl_main .bl_box_bottom, .bl_main .bl_box_left, .bl_main .bl_box_center{overflow:auto;float: left; width:100%;background: #fff}
+.bl_main .bl_left, .bl_main .bl_top {*z-index:1;}
+.bl_main .bl_left, .bl_main .bl_center{float: left;height:100%;}
+.bl_main .bl_right{float: left;height:100%;}
+.bl_main .bl_top, .bl_main .bl_bottom{width:100%;zoom:1;float: left;}
+.bl_main .bl_move, .bl_main .bl_border{position: absolute;height:0;width:0;z-index:2;font-size: 0;line-height: 0;}
+.bl_top .bl_move, .bl_top .bl_border{width:100%;bottom:0; left:0;cursor:row-resize;}
+.bl_left .bl_move, .bl_left .bl_border{height:100%;right:0;top:0;cursor:col-resize}
+.bl_right .bl_move, .bl_right .bl_border{height:100%;left:0;top:0;right:auto;cursor:col-resize}
+.bl_bottom .bl_move, .bl_bottom .bl_border{width:100%;left:0;top:0;cursor:row-resize;}
+.bl_main div.bl_border{cursor:default;}
+.bl_main .bl_fold{width:12px; height:12px;position: absolute;cursor:pointer;z-index:3;}
+.bl_main .bl_top .bl_fold{background:url(../images/borderlayout/top.gif) no-repeat;width:38px;margin-left:-19px;left:50%;bottom:-12px;}
+.bl_main .bl_bottom .bl_fold{background:url(../images/borderlayout/bottom.gif) no-repeat;width:38px;margin-left:-19px;left:50%;top:-12px;}
+.bl_main .bl_left .bl_fold{background:url(../images/borderlayout/left.gif) no-repeat;height:38px;margin-top:-19px;top:50%;right:-12px;}
+.bl_main .bl_right .bl_fold{background:url(../images/borderlayout/right.gif) no-repeat;height:38px;margin-top:-19px;top:50%;left:-12px;right:auto;}
+.bl_main .bl_top .bl_unfold{background-image:url(../images/borderlayout/to-top.gif);}
+.bl_main .bl_bottom .bl_unfold{background-image:url(../images/borderlayout/to-bottom.gif);}
+.bl_main .bl_left .bl_unfold{background-image:url(../images/borderlayout/to-left.gif);}
+.bl_main .bl_right .bl_unfold{background-image:url(../images/borderlayout/to-right.gif);}
+.bl_main .bl_overlay{position: absolute;left:0;top:0;height:100%;width:100%;z-index: 4;background: #ff0; opacity: 0; filter:alpha(opacity=0); display: none;}

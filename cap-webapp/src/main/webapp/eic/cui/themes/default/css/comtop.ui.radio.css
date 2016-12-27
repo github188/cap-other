@@ -1,0 +1,8 @@
+.radio-group, .radiogroup-inner{display:inline-block; font-size: 12px; overflow: hidden; zoom:1; vertical-align: middle; padding:2px 0; line-height: 21px;*display:inline;}
+.radiogroup-inner{padding: 1px 5px;}
+.radio-group-error{border:1px solid red;padding: 0 4px;}
+.radiogroup-border{border:1px solid #7F9DB9; padding: 0 4px;}
+.radiogroup-inner label{margin-right:8px;cursor: pointer; line-height: 18px; display: inline-block;}
+.radiogroup-inner input{cursor: pointer; vertical-align:top; margin: 2px 5px 0 0;padding: 0;*margin:0 5px 0 0;*vertical-align:middle;_vertical-align:text-bottom;}
+.radio-group-readonly{color:#999}
+.radio-group-readonly input{opacity: .5;}

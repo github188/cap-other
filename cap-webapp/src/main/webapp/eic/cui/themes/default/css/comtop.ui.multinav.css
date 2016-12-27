@@ -1,0 +1,11 @@
+.multinav{padding:0; margin: 0;}
+.multinav ul{margin-left: 0;padding-left: 10px;}
+.multinav li{list-style: none; margin:0;padding-left: 0;}
+.multinav li a{display: block;text-decoration: none;outline: none;padding-left:6px;color:#444;zoom:1}
+.multinav li a:hover{background: #eee;}
+.multinav li a span{padding-left: 10px;display: block;font-weight: 700;}
+.multinav li ul{ overflow: hidden; display: none;padding-left: 1em}
+.multinav li ul.multinav_ul_unfold{display: block}
+.multinav .checked{border-left: 3px solid #ff7d20; padding-left: 3px; background: #EAF2FF}
+.multinav .multinav_fold span{background: url(../images/multinav/icon1.png) no-repeat left 10px;}
+.multinav .multinav_unfold span{background: url(../images/multinav/icon2.png) no-repeat left 10px;}

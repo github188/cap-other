@@ -1,0 +1,17 @@
+.menu_box .menu{
+	border: 1px solid #718bb7;
+	background-color: #F0F0F0;
+}
+.menu_box .menu_item{
+	background-color: #F0F0F0;
+}
+.menu_box .menu_item_a{
+	border: 1px solid #F0F0F0;
+}
+.menu_box .menu_item_a_background{
+    background: url(../images/menu/menu-parent.gif) right no-repeat;
+}
+.menu_box .menu_item_a:hover{
+	background-color: #DBE8F9;
+	border: 1px solid #B6CBE6;
+}

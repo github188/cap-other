@@ -1,0 +1,741 @@
+/*!
+ * Calendar Plugin StyleSheet
+ * Author: chaoqun.lin
+ */
+/*--- image load ---*/
+.C_CR .C_CR_YM_wrap,
+.C_CR .C_CR_YM_prev,
+.C_CR .C_CR_YM_next,
+.C_CR .C_CR_Date_title,
+.C_CR .C_CR_Date td a,
+.C_CR .C_CR_main_DateList a,
+.C_CR .C_CR_Timer_op a,
+.C_CR .C_CR_Timer_op a span,
+.C_CR .C_CR_OPBar_wrap,
+.C_CR .C_CR_OPBar_wrap a,
+.C_CR .C_CR_YMer_tx_wrap,
+.C_CR .C_CR_YMer_pop a,
+.C_CR .C_CR_Timer_pop a,
+.C_CR_calIcon{
+    background: url(../images/calender/comtop.ui.calender.png) repeat-x;
+}
+.noIME{
+    ime-mode: disabled;
+}
+
+/*------  ‰»ÎøÚ—˘ Ω ----*/
+.C_CR_calInput_bd{
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    vertical-align:middle;
+    _vertical-align:baseline;
+}
+.C_CR_calInput_wrap{
+    display: block;
+    padding:2px 5px;
+    height: 17px;
+    line-height: 17px;
+    border:1px solid #ddd;
+    border-top:1px solid #9e9e9e;
+    background: #fff;
+    overflow: hidden;
+}
+.C_CR_calInput {
+    height:17px;
+    line-height: 17px;
+    border:0;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    display: block;
+    color: #333;
+    width:100%;
+    background: #fff;
+	cursor: text;
+}
+.C_CR_calInput_empty{
+    color:#ABABA7!important;
+}
+.C_CR_calInput_wmr{
+    margin-right:23px;
+    _margin-right:20px;
+}
+.C_CR_calIcon{
+    display: block;
+    float: right;
+    height: 23px;
+    width: 18px;
+    background-position: 2px -468px;
+    outline: none;
+}
+.C_CR_calInput_focus .C_CR_calInput_wrap{
+    border: 1px solid #63acfe;
+    border-top: 1px solid #0260cb;
+}
+.C_CR_calInput_rd .C_CR_calInput_wrap{
+    margin-right: 0;
+    background: #f3f1f1!important;
+    color: #ababa7!important;
+    border:1px solid #ddd!important;
+    border-top:1px solid #9e9e9e!important;
+}
+.C_CR_calInput_rd .C_CR_calInput{
+    background: #f3f1f1!important;
+    cursor: default;
+    color:#ABABA7!important;
+}
+.C_CR_calInput_rd .C_CR_calIcon{
+    display: none;
+    cursor: default!important;
+}
+.C_CR_calInput_err .C_CR_calInput_wrap{
+    background: #fff!important;
+    border:1px solid red!important;
+}
+
+
+
+/*--- wrap ---*/
+.C_CR{
+    display: none;
+    left:0;
+    top:0;
+    position:absolute;
+    background:#fff;
+    font:12px/1.333 tahoma,arial,\5b8b\4f53,sans-serif;
+    -webkit-text-size-adjust:none;
+}
+.C_CR a{
+    outline: none;
+}
+.C_CR iframe{
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: -1;
+}
+.C_CR ul{
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    padding:0;
+    margin: 0;
+    /*width:175px;*/
+    list-style: none;
+}
+.C_CR .C_CR_tx{
+    padding:3px 5px;
+    _padding:2px 5px;
+    height:15px;
+    line-height: 15px;
+    background: #fff;
+    border: 0;
+    font-size: 12px!important;
+}
+.C_CR .C_CR_main_wrap{
+    overflow: hidden;
+    zoom:1;
+}
+.C_CR .C_CR_YM_wrap{
+    position: relative;
+    padding:3px 0;
+    height: 23px;
+    border: 1px solid #c1c1c1;
+    border-bottom: 0;
+}
+.C_CR .C_CR_Tag_wrap{
+    height:20px;
+    line-height: 20px;
+    border: 1px solid #c1c1c1;
+    border-bottom: 0;
+}
+.C_CR .C_CR_YMer_wrap{
+    width: auto;
+    text-align: center;
+    height: 23px;
+}
+.C_CR .C_CR_Date_wrap{
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    overflow: hidden;
+}
+.C_CR .C_CR_Timer_wrap{
+    border: 1px solid #c1c1c1;
+    border-width: 0 1px 1px 1px;
+    text-align: center;
+    background:#F3F2F3;
+    /*overflow: hidden;*/
+}
+.C_CR .C_CR_OPBar_wrap{
+    padding: 3px 4px;
+    height:23px;
+    background-position: 0 -40px;
+    text-align: right;
+    border: 1px solid #c1c1c1;
+    border-top:0;
+}
+
+
+/*--- tag style ---*/
+.C_CR .C_CR_Tag_wrap{
+    padding:6px 3px;
+    height:17px;
+    line-height: 17px;
+    overflow: hidden;
+}
+.C_CR .C_CR_Tag_wrap li{
+    float:left;
+    margin-right: 4px;
+    _display:inline;
+    height:17px;
+}
+.C_CR .C_CR_Tag_wrap a{
+    display: block;
+    _float: left;
+    padding: 0 6px;
+    height: 100%;
+    text-decoration: none!important;
+    color: #000;
+}
+.C_CR .C_CR_Tag_wrap a:hover{
+    color:#000;
+    background: #E7F1FF;
+}
+.C_CR .C_CR_Tag_wrap a.C_CR_Tag_cur{
+    background: #34A3DC!important;
+    color: #fff!important;
+}
+
+
+/*--- year and month selector ---*/
+.C_CR .C_CR_YMer_layout{
+    width:100%;
+    height:23px;
+}
+.C_CR .C_CR_YMer{
+    height:22px;
+    line-height: 22px;
+
+    font-size: 12px;
+}
+.C_CR .C_CR_YMer_tx_wrap{
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    padding-right:14px;
+    width:38px;
+    height:21px;
+    overflow: hidden;
+    border:1px solid #c1c1c1;
+    border-top: 1px solid #9E9E9E;
+    background-color: #fff;
+    background-position: 100% -431px;
+    cursor: pointer;
+}
+
+
+.C_CR .C_CR_YMer_item{
+    position: relative;
+    height:23px;
+}
+.C_CR .C_CR_YMer td{
+    text-align: center;
+}
+.C_CR .C_CR_YMer input{
+    width:28px;
+    cursor: pointer;
+}
+.C_CR .C_CR_YMer .C_CR_DisMark{
+    height:23px;
+}
+.C_CR .C_CR_YMer_tx_m{
+    width: 29px;
+}
+.C_CR .C_CR_YMer_tx_m input{
+    width:18px;
+    text-align: center;
+}
+
+/* year and month popwin */
+.C_CR .C_CR_YMer_pop{
+    display: none;
+    position: absolute;
+    left:0;
+    top:24px;
+    background: #fff;
+}
+.C_CR .C_CR_YMer_pop table{
+    border: 1px solid #63ACFF;
+    text-align: center;
+}
+.C_CR .C_CR_YMer_pop th,
+.C_CR .C_CR_YMer_pop td{
+    font-weight: 400;
+    border: 1px solid #c1c1c1;
+    border-width:0 1px 1px 0;
+    text-align: center;
+    background: #F8F8F8;
+}
+.C_CR .C_CR_YMer_pop_lastTd{
+    border-right:0!important;
+}
+.C_CR .C_CR_YMer_pop_lastTr td{
+    border-bottom: 0!important;
+}
+.C_CR .C_CR_YMer_pop a{
+    display: block;
+    margin: 1px;;
+    height:21px;
+    line-height: 21px;
+    color: #333;
+    font-size: 11px!important;
+    cursor: pointer;
+    text-decoration: none;
+    background-position: 500px 500px;
+    text-align: center;
+}
+.C_CR .C_CR_YMer_pop_m a{
+    width:23px;
+}
+.C_CR .C_CR_YMer_pop_y a{
+    width:35px;
+}
+.C_CR .C_CR_YMer_pop a:hover,
+.C_CR .C_CR_YMer_pop_cur{
+    background-position: 0 -110px;
+    color:#333;
+}
+.C_CR .C_CR_YMer_pop_cur_d{
+    height:19px;
+    background-position: 0 -154px!important;
+    border: 1px dashed #0078FF;
+}
+
+/* year and month button */
+.C_CR .C_CR_YM_prev,
+.C_CR .C_CR_YM_next{
+    position: absolute;
+    display: block;
+    width:20px;
+    height:23px;
+    background-repeat: no-repeat;
+}
+.C_CR .C_CR_YM_prev{
+    left:0;
+    top:3px;
+    background-position: 8px -369px;
+}
+.C_CR .C_CR_YM_prev:hover{
+    background-position: -35px -369px;
+}
+.C_CR .C_CR_YM_next{
+    right:0;
+    top:3px;
+    background-position: 2px -329px;
+}
+.C_CR .C_CR_YM_next:hover{
+    background-position: -41px -329px;
+}
+
+
+/*--- main ---*/
+.C_CR .C_CR_main_loading{
+    position: relative;
+    height:163px;
+    border:1px solid #c1c1c1;
+}
+.C_CR .C_CR_main_loading span{
+    position: absolute;
+    left:50%;
+    top: 50%;
+    margin: -12px 0 0 -12px;
+    width:24px;
+    height:24px;
+    background: url(../images/calender/comtop.ui.calender.loading.gif) no-repeat;
+}
+.C_CR .C_CR_main_panel{
+    display: none;
+    overflow: hidden;
+}
+
+/*--- date grid ---*/
+.C_CR .C_CR_Date{
+    width:auto;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid #c1c1c1;
+    border-width: 1px 0 0 1px;
+}
+.C_CR .C_CR_Date_title{
+    background-position: 0 -80px;
+}
+.C_CR .C_CR_Date th{
+    width:23px;
+    height:20px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #fff;
+    cursor: default;
+    vertical-align: top;
+    border-right:1px solid #c1c1c1;
+    text-shadow: 0 1px 0 #333;
+}
+.C_CR .C_CR_Date td{
+    width:23px;
+    height:23px;
+    color: #a6aba7;
+    cursor: default;
+    border: 1px solid #c1c1c1;
+    border-width: 0 1px 1px 0;
+    background: #fff;
+    font-size: 11px!important;
+}
+.C_CR .C_CR_Date td.C_CR_Date_week{
+    background: #E7F1FF;
+    color: #333;
+}
+.C_CR .C_CR_Date td.C_CR_Date_week span{
+    color: #333;
+}
+.C_CR .C_CR_Date td span{
+    display: block;
+    margin: 1px;
+    width:23px;
+    height: 21px;
+    line-height: 21px;
+    color: #ccc;
+    font-size: 11px!important;
+}
+.C_CR .C_CR_Date td a.C_CR_Date_noCurMonth{
+    color: #888;
+}
+.C_CR .C_CR_Date td a{
+    display: block;
+    margin: 1px;
+    width:23px;
+    height: 21px;
+    line-height: 21px;
+    text-decoration: none;
+    color:#333;
+    background-position: 500px 500px;
+    overflow: hidden;
+}
+.C_CR .C_CR_Date td a:hover{
+    color: #333;
+    background-position: 0 -110px;
+}
+.C_CR .C_CR_Date .C_CR_main_cur a{
+    width:21px;
+    height:19px;
+    line-height: 19px;
+    border: 1px dashed #FF0000;
+    background-position: 0 -194px!important;
+}
+.C_CR .C_CR_Date .C_CR_main_cur_d a{
+    width:21px;
+    height:19px;
+    line-height: 19px;
+    background-position: 0 -154px!important;
+    border: 1px dashed #0078FF;
+}
+
+
+/*--- date list style ---*/
+.C_CR .C_CR_main_DateList{
+    width:209px;
+    height: 163px;
+    border: 1px solid #c1c1c1;
+    font-size: 12px;
+    overflow: hidden;
+    border-spacing: 2px;
+    border-collapse: separate;
+}
+.C_CR .C_CR_main_DateList td{
+    width:99px;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+}
+.C_CR .C_CR_main_DateList a{
+    display: block;
+    padding: 0 5px;
+    height: 24px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #333;
+    background-position: 500px 500px;
+}
+.C_CR .C_CR_main_DateList a:hover{
+    color: #333;
+    background-position: 0 -111px;
+}
+.C_CR .C_CR_main_DateList .C_CR_main_cur a{
+    height: 22px;
+    line-height: 22px;
+    border: 1px dashed #FF0000;
+    background-position: 0 -193px!important;
+}
+.C_CR .C_CR_main_DateList .C_CR_main_cur_d a{
+    height: 22px;
+    line-height: 22px;
+    background-position: 0 -153px!important;
+    border: 1px dashed #0078FF;
+}
+
+/*--- timer ---*/
+.C_CR .C_CR_Timer_item{
+    width:207px;
+    height:29px;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-align: center;
+    vertical-align: bottom;
+}
+.C_CR .C_CR_Timer{
+    margin: 3px auto;
+    font-size: 12px;
+}
+.C_CR .C_CR_Timer td{
+    height: 23px;
+}
+.C_CR .C_CR_Timer_tx_wrap{
+    position: relative;
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    width:22px;
+    height:21px;
+    border:1px solid #c1c1c1;
+    background: #fff;
+    vertical-align: bottom;
+}
+.C_CR .C_CR_Timer .C_CR_tx{
+    _margin-top: -1px;
+    width:16px;
+    _width: 15px;
+    height:14px;
+    padding: 3px 2px 3px 4px;
+    _padding:3px 1px 3px 6px;
+    border:0;
+    cursor: pointer;
+}
+
+.C_CR .C_CR_Timer_op{
+    margin-left: -1px;
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    width:20px;
+    height:23px;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+.C_CR .C_CR_Timer_op a{
+    display: block;
+    height:10px;
+    border:1px solid #c1c1c1;
+    cursor: pointer;
+    font-size: 0;
+    background-position: 0 -235px;
+    overflow: hidden;
+}
+.C_CR .C_CR_Timer_op a:hover{
+    background-position: 0 -265px;
+}
+.C_CR .C_CR_Timer_op a span{
+    display: block;
+    height:10px;
+    font-size: 0;
+    background-repeat: no-repeat;
+    margin:0!important;
+    float: none!important;
+}
+.C_CR .C_CR_Timer_op .C_CR_Timer_up{
+    border-bottom:0;
+}
+.C_CR .C_CR_Timer_op .C_CR_Timer_up span{
+    background-position: -40px -402px;
+}
+.C_CR .C_CR_Timer_op .C_CR_Timer_disable .C_CR_Timer_up_span{
+    background-position: 6px -402px;
+}
+.C_CR .C_CR_Timer_op .C_CR_Timer_down span{
+    background-position: -40px -416px;
+}
+.C_CR .C_CR_Timer_op .C_CR_Timer_disable .C_CR_Timer_down_span{
+    background-position: 6px -416px;
+}
+.C_CR .C_CR_Timer_op .C_CR_Timer_disable{
+    cursor: default;
+    background-position: 0 -235px!important;
+}
+
+.C_CR .C_CR_Timer_pop{
+    display: none;
+    position: absolute;
+    left:0;
+    background: #fff;
+}
+.C_CR .C_CR_Timer_pop table{
+    border: 1px solid #63ACFF;
+    text-align: center;
+}
+.C_CR .C_CR_Timer_pop td{
+    padding: 0!important;
+    height:10px;
+    font-weight: 400;
+    border: 1px solid #c1c1c1;
+    border-width:0 1px 1px 0;
+    text-align: center;
+    background: #F8F8F8;
+}
+.C_CR .C_CR_Timer_pop_lastTd{
+    border-right:0!important;
+}
+.C_CR .C_CR_Timer_pop_lastTr td{
+    border-bottom: 0!important;
+}
+.C_CR .C_CR_Timer_pop a{
+    display: block;
+    margin: 1px;;
+    height:21px;
+    width:23px;
+    line-height: 21px;
+    color: #333;
+    font-size: 11px!important;
+    cursor: pointer;
+    text-decoration: none;
+    background-position: 500px 500px;
+    text-align: center;
+}
+.C_CR .C_CR_Timer_pop a:hover{
+    background-position: 0 -110px;
+    color:#333;
+}
+.C_CR .C_CR_Timer_pop_h{
+    position: absolute;
+    left:-1px;
+    top:-99px;
+}
+.C_CR .C_CR_Timer_pop_m{
+    position: absolute;
+    left:-56px;
+    top:-51px;
+}
+.C_CR .C_CR_Timer_pop_s{
+    position: absolute;
+    left:-111px;
+    top:-51px;
+}
+.C_CR .C_CR_Timer_pop_down{
+    top:23px!important;
+}
+
+
+.C_CR .C_CR_tx_wrap_focus{
+    border:1px solid #63acfe;
+    border-top-color: #0260cb;
+}
+.C_CR .C_CR_tx_wrap_disable{
+    border:1px solid #ddd;
+    border-top-color: #9e9e9e;
+    background: #F3F1F1;
+}
+.C_CR .C_CR_tx_wrap_disable input{
+    background: #F3F1F1!important;
+}
+
+/*--- operate bar ---*/
+.C_CR .C_CR_OPBar_wrap a{
+    margin-left:4px;
+    padding:0 7px;
+    display:inline-block;
+    *display: inline;
+    zoom:1;
+    text-align:center;
+    line-height:21px;
+    height:21px;
+
+    color:#333;
+    background-position:0 -230px;
+    background-repeat: repeat-x;
+    border:solid 1px #c1c1c1;
+    text-align:center;
+    text-shadow:0 1px 1px rgba(255, 255, 255, 1);
+    text-decoration: none;
+    cursor:pointer;
+}
+.C_CR .C_CR_OPBar_wrap a:hover{
+    background-position: 0 -260px;
+    color:#333;
+}
+
+.C_CR_DisMark{
+    display: none;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 999;
+    width:100%;
+    height:100%;
+    background: #fff;
+    opacity: 0;
+}
+
+/*--- BackCompat style ---*/
+.QM_C_CR .C_CR_YMer_tx_wrap{
+    *width:56px;
+    *height:23px;
+}
+.QM_C_CR .C_CR_YMer_tx_m{
+    *width:44px;
+}
+.QM_C_CR .C_CR_YMer input{
+    height:21px;
+    *line-height: 17px;
+    width:38px;
+}
+.QM_C_CR .C_CR_YMer_tx_m input{
+    width:28px;
+}
+
+.QM_C_CR .C_CR_Timer .C_CR_Timer_tx_wrap{
+    *width:24px;
+    *height:23px;
+}
+.QM_C_CR .C_CR_Timer .C_CR_tx{
+    width:22px;
+    height:20px;
+    _margin-top: -1px;
+}
+.QM_C_CR .C_CR_Timer_op{
+    *margin-left: -1px;
+}
+.QM_C_CR .C_CR_Timer_op a{
+    *height:12px;
+}
+.QM_C_CR .C_CR_Timer_op .C_CR_Timer_up{
+    *height:11px;
+}
+.QM_C_CR .C_CR_calInput_wrap{
+    *height:23px;
+}
+.QM_C_CR .C_CR_Tag_wrap{
+    *height:30px;
+}
+.QM_C_CR .C_CR_Date td a,
+.QM_C_CR .C_CR_Date .C_CR_Date_cur,
+.QM_C_CR .C_CR_Date .C_CR_Date_cur_d{
+    *width:23px;
+    *height:21px;
+    *line-height: 19px;
+}
+.QM_C_CR .C_CR_main_DateList a.C_CR_main_DateList_cur_d,
+.QM_C_CR .C_CR_main_DateList a.C_CR_main_DateList_cur{
+    *height: 24px;
+    line-height: 20px;
+}

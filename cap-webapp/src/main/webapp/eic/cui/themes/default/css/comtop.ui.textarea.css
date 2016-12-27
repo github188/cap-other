@@ -1,0 +1,73 @@
+/*文本域默认样式*/
+/*.textarea_textarea_wrap{*/
+/*背景*/
+/*background-color: #ffffff;*/
+/*边框*/
+/*border: 1px solid #ddd;*/
+/*border-top: 1px solid #9e9e9e;*/
+/*字体*/
+/*font: 12px/20px Arial,"宋体";*/
+/*color: #333;*/
+/*边距*/
+/*padding: 5px;*/
+/*margin: 0;*/
+/*overflow-y: scroll;*/
+/*}*/
+
+/*文本域默认样式*/
+/*.textarea_textarea{*/
+/*背景*/
+/*background-color: #ffffff;*/
+/*边框*/
+/*border: 0 none;*/
+/*字体*/
+/*font: 12px/20px Arial,"宋体";*/
+/*color: #333;*/
+/*边距*/
+/*padding: 0;*/
+/*margin: 0;*/
+/*vertical-align: top;*/
+/*outline: none;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*resize: none;*/
+/*overflow: hidden;*/
+/*}*/
+
+/*文本域默认样式*/
+.textarea_textarea{
+    background-color: #ffffff;
+	border: 1px solid #ddd;
+    border-top: 1px solid #9e9e9e;
+    font: 12px/17px Arial,"宋体";
+    color: #333;
+    /*padding: 5px;*/
+    padding: 2px 1px 2px 4px;
+    margin: 0;
+    vertical-align: top;
+    outline: none;
+    resize: none;
+}
+
+/*只读时背景与字体颜色*/
+.textarea_garybg {
+    background-color: #f3f1f1;
+    color: #ababa7;
+}
+
+/*输入框内提示文字颜色*/
+.textarea_tipcolor{
+    color: #ababa7;
+}
+
+/*获取焦点时边框改变*/
+.textarea_textareafocus {
+    /*边框*/
+	border: 1px solid #63acfe;
+    border-top: 1px solid #0260cb;
+}
+
+.textarea_invalid {
+    border-color: red!important;
+}
+

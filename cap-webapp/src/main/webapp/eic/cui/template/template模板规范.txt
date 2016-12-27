@@ -1,0 +1,8 @@
+template模板规范
+
+1、模板必须有且只有一个根标签<tpls>
+2、每一个组件模板都必须包在<cmptpl>标签内
+3、<cmptpl>标签必须包含uiType、var和parse三个属性；uiType为组件名，var为存放此模板的变量名，parse为设置模板是否自动加载
+4、模板编辑必须为"UTF-8"
+5、模板相互调用，以#ref=cmptplName#完成其它版块的调用
+6、引用非指定目录的template，必须在相应的JS标签上添加 cuiTemplate="template.html"

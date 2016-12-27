@@ -1,0 +1,56 @@
+.cui_inputCMP_wrap{
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    vertical-align:middle;
+    _vertical-align:baseline;
+}
+.cui_inputCMP{
+    display: block;
+    padding:2px 5px;
+    height: 17px;
+    line-height: 17px;
+    border:1px solid #ddd;
+    border-top:1px solid #9e9e9e;
+    background: #fff;
+    overflow: hidden;
+    margin: 0;
+    outline: none;
+}
+.cui_inputCMP_input{
+    height:17px;
+    line-height: 17px;
+    border:0;
+    padding: 0 1px 0 0;
+    margin: 0 0 0 -1px;
+    vertical-align: middle;
+    display: block;
+    color: #333;
+    width:100%;
+    background: #fff;
+    cursor: text;
+    font-size:12px;
+    outline:none!important;
+}
+.cui_inputCMP_readonly .cui_inputCMP{
+    background: #f3f1f1!important;
+}
+.cui_inputCMP_readonly .cui_inputCMP_input{
+    color: #ababa7!important;
+    background: #f3f1f1!important;
+}
+.cui_inputCMP_focus  .cui_inputCMP{
+    border:1px solid #63acfe;
+    border-top:1px solid #0260cb;
+}
+.cui_inputCMP_error .cui_inputCMP{
+    border-color: red!important;
+}
+.cui_inputCMP_empty .cui_inputCMP_input{
+    color: #ababa7;
+}
+
+.BC_cui_inputCMP .cui_inputCMP {
+    /*width: 200px;*/
+    height: 23px;
+}

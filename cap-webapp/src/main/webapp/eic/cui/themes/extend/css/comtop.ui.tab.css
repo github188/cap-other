@@ -1,0 +1,22 @@
+#styleExtend .cui-tab-nav{
+	float:left;
+	height:auto;
+}
+#styleExtend .cui-tab-nav li{
+	clear:left;
+	margin-right:0;
+	margin-top:2px;
+	background-position: -15px -60px;
+}
+#styleExtend  .cui-tab-nav .cui-tab-title{
+	background: url("");
+}
+#styleExtend  .cui-tab-nav .cui-tab-hover {
+  	background-position: -15px -120px;
+}
+#styleExtend .cui-tab-nav .cui-active {
+	background-position: -15px 0px;
+}
+#styleExtend  .cui-tab-nav .cui-active .cui-tab-title {
+	background-position: right -30px;
+}

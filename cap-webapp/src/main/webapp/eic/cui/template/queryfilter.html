@@ -1,0 +1,81 @@
+<!-- 查询过滤器组件  start -->
+	<cmptpl uiType="SaveQueryFilter" var="QueryFilter" parse="true">
+		<!---// options-->
+		<!---
+			var uuId = options.uid,
+			    name = options.name;
+		 -->	
+		 <input type="button" id="+-uuId-+_queryFilterbutton" class="cui_query_buttonbg button_box" value="+-name-+" events="click=_buttonClick;mouseover=_mouseoverHandler;mouseout=_mouseoutHandler;">
+	</cmptpl>
+	
+	<cmptpl uiType="SaveQueryFilter" var="saveQueryFilterName" parse="false">
+	<!---// options-->
+		<!---
+			var uuId = options.uid,
+			    data = options.datasource,
+			    valueField = options.value_field,
+                labelField = options.label_field;
+		 -->	
+		 <div class="cui_forms_filterSave" id="+-uuId-+_save_filter_dialog" >
+				<div class="cui_forms_filterSave_div">
+				   <label>常用条件名：</label>
+				   <div class="cui_forms_filterSave_input" id="+-uuId-+_filterInput">	   
+				   </div>
+				</div>
+				<div class="cui_forms_filterSave_div"><span>条件名称不能超过32字符</span>
+				   <input type="button" value="关闭" id="+-uuId-+_filterSave" class="cui_forms_filterSave_button" events="click=_saveClick;"/>
+				   <input type="button" value="保存" id="+-uuId-+_filterSaveQuery" class="cui_forms_filterSave_button" events="click=_saveQueryClick;"/>
+				</div>
+		 	</div>
+	</cmptpl>
+	
+	<!-- 显示过滤条件  start  -->
+	<cmptpl uiType="ShowQueryFilter" var="queryFilterListHead" parse="true">
+	<!---// options-->
+		<!---
+			var uuId = options.uid,
+			    data = options.datasource,
+			    valueField = options.value_field,
+                labelField = options.label_field;
+                
+		 -->	
+        <div id="+-uuId-+_myQueryFilterBody" class="cui_displayFilterBody" ></div>
+	</cmptpl>
+	
+	<cmptpl uiType="ShowQueryFilter" var="queryFilterList" parse="false">
+	    <!---// options-->
+		<!---
+			var uuId = options.uid,
+			    data = options.datasource,
+			    valueField = options.value_field,
+                labelField = options.label_field,
+                isShare = options.is_share,
+                defaultTitle = "设置默认";               
+		 -->	
+		  <!---
+	            if(data && typeof data != 'function'){
+	             
+	              for(var i = 0,j=data.length; i < j; i++){ 
+	                
+	                 if(data[i].isDefault == 1){
+	                    defaultTitle = "取消默认";
+	                 }
+	                
+	          -->
+			          <a class="showqueryfilter_b" id="+-data[i][valueField]-+" title="+-data[i][labelField]-+" events="click=_dataClick;" href="javascript:;">+-data[i][labelField]-+
+			          <span class="cui_operate" id="+-data[i][valueField]-+_operate">
+			              <!--- if(isShare){  -->
+				          <input type="button" class="cui_share_button" events="click=_shareClick;"  id="+-data[i][valueField]-+_share" title="分享"/>
+				          <!--- } -->
+				          <input type="button" class="cui_default_button" events="click=_defaultClick;"  id="+-data[i][valueField]-+_default" title="+-defaultTitle-+"/>
+				          <input type="button" class="cui_delete_button" events="click=_deleteClick;" id="+-data[i][valueField]-+_delete" title="删除"/>
+				      </span>
+				      </a>
+	          <!---
+	              }
+	           }
+	          -->   
+	          
+	          
+	</cmptpl>
+	<!-- 查询过滤器组件  end -->

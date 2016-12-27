@@ -1,0 +1,111 @@
+/**
+ * Css reset(for component)
+ */
+html{
+    _background-image: url(about:blank);     /*用浏览器空白页面作为背景*/
+    _background-attachment: fixed;     /* prevent screen flash in IE6 确保滚动条滚动时，元素不闪动*/
+}
+.cui{
+    font: 12px/1.5 Arial, "\5B8B\4F53", Helvetica, sans-serif;
+    color: #000;
+}
+
+.cui div,.cui dl,.cui dt,.cui dd,.cui ul,.cui ol,.cui li,.cui h1,.cui h2,.cui h3,.cui h4,
+.cui h5,.cui h6,.cui pre,.cui code,.cui form,.cui fieldset,.cui legend,.cui input,
+.cui textarea,.cui p,.cui blockquote,.cui th,.cui td {
+    margin: 0;
+    padding: 0;
+}
+
+.cui table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.cui fieldset,.cui img {
+    border: 0;
+}
+
+.cui address,.cui caption,.cui cite,.cui code,.cui dfn,.cui em,.cui strong,.cui th,.cui var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+.cui ol,.cui ul {
+    list-style: none;
+}
+
+.cui h1,.cui h2,.cui h3,.cui h4,.cui h5,.cui h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+.cui q:before,.cui q:after {
+    content: '';
+}
+
+.cui abbr,.cui acronym {
+    border: 0;
+    font-variant: normal;
+}
+
+.cui sup {
+    vertical-align: text-top;
+}
+
+.cui sub {
+    vertical-align: text-bottom;
+}
+
+.cui input,.cui textarea,.cui select {
+    /*font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;*/
+}
+
+.cui input,.cui textarea,.cui select {
+    *font-size: 100%;
+}
+
+.cui legend {
+    color: #000;
+}
+
+/*==========a tag button normal style============*/
+.btn-normal{
+	padding:0 8px;
+	height:21px;
+	line-height:21px;
+	display:inline-block;
+	*display:inline;
+	zoom:1;
+	overflow:hidden;
+	cursor: pointer;
+   	text-decoration: none!important;
+	font-style:noraml!important;
+	font-size:12px;
+	color:#333!important;
+	border:1px solid #B3B3B3;
+	border-radius:2;
+	background:url(../images/core/btn_normal_bg.png);
+}
+.btn-normal:active{
+	background-position: 0 -30px;
+	border-color: #A5C4EB;
+}
+.btn-normal:hover{
+	background-position: 0 -30px;
+	border-color: #A5C4EB;
+}
+.btn-normal-dis{
+    color:#ACA899!important;
+    cursor: default;
+}
+.btn-normal-hide{
+    display: none!important;
+}
+.btn-normal-dis:active,
+.btn-normal-dis:hover{
+    background-position: 0 0!important;
+    border-color: #b3b3b3!important;
+}

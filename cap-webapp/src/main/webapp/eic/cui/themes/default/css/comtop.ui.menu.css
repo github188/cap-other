@@ -1,0 +1,67 @@
+
+.menu_box {
+	position: absolute;
+	left:0;
+	top:0;
+	display:none;
+    z-index:2000;
+}
+.menu_box .menu{
+	border: 1px solid #dddddd;
+	background-color: #FFFFFF;
+	padding: 3px 0px;
+	position: absolute;
+	line-height: 23px;
+	cursor:pointer;
+	margin:0px;
+    list-style-type:none;
+    font-size:12px;
+    font-family:ËÎÌו,Arial,Sans;
+    color:#333333;
+}
+.menu_box .menu_item{
+	position: relative;
+	background-color: #FFFFFF;
+	height: 23px;
+	width:100%;
+	margin: 0px;
+	padding: 0px;
+	z-index:1;
+	*float:left;
+}
+.menu_box .menu_item_a{
+	position: relative;
+	display:block;
+	height:100%;
+	border-left:3px solid #FFFFFF;
+	text-decoration: none!important;
+}
+.menu_box .menu_item_sp{
+	color:black;
+	padding-left:7px;
+	padding-right:20px;
+	white-space:nowrap;
+}
+.menu_box .menu_item_a_background{
+    background: url(../images/menu/right_arrow.gif) right center no-repeat;
+	
+}
+.menu_box .menu_item_a:hover{
+	background-color:#f2f2f2;
+	border-left:3px solid #ff7d20;
+}
+
+.menu_box .menu_item_line{
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.menu_box .menu_item_disable{
+	color:#c7c4ac;
+}
+.menu_box iframe{
+	position: absolute;
+	background-color: #FFFFFF;
+	left:0;
+	top:3;
+	z-index: -1;
+}

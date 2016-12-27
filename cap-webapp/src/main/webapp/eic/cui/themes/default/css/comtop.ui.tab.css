@@ -1,0 +1,79 @@
+.cui-tab {
+  position: relative;
+  font-size: 12px;
+  color: #333333;
+}
+.cui-tab ul.cui-tab-nav {
+  padding: 0px;
+  margin: 0px;
+  height: 30px;
+  overflow: hidden;
+}
+.cui-tab ul.cui-tab-nav li {
+  float: left;
+  height: 30px;
+  line-height: 31px;
+  text-align: center;
+  list-style: none;
+  padding-left: 8px;
+  margin-right: 3px;
+  background: url("../images/tab/tab.png") left -60px no-repeat;
+  position: relative;
+  overflow: hidden;
+  width: 65px;
+}
+.cui-tab .cui-tab-nav {
+  padding: 0px;
+}
+.cui-tab .cui-tab-nav .cui-tab-title {
+  display: block;
+  height: 100%;
+  background: url("../images/tab/tab.png") right -90px no-repeat;
+  padding-right: 8px;
+  cursor: pointer;
+  text-align: center;
+}
+.cui-tab .cui-tab-nav .closeable .cui-tab-title {
+  padding-right: 26px;
+}
+.cui-tab .cui-tab-nav .cui-active {
+  cursor: default;
+  background-position: 0px 0px;
+  position: relative;
+  z-index: 2;
+}
+.cui-tab .cui-tab-nav .cui-active .cui-tab-title {
+  background-position: right -30px;
+}
+.cui-tab .cui-tab-nav .cui-tab-hover {
+  background-position: left -120px;
+}
+.cui-tab .cui-tab-nav .cui-tab-hover .cui-tab-title {
+  background-position: right -150px;
+}
+.cui-tab .cui-tab-nav .cui-tab-close {
+  display: block;
+  width: 13px;
+  height: 13px;
+  background: url("../images/tab/tab.png") 0 -180px no-repeat;
+  cursor: pointer;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  margin-top: -6.5px;
+}
+.cui-tab .cui-tab-nav .cui-tab-close:hover {
+  background-position: -13px -180px;
+}
+.cui-tab .cui-tab-content {
+  border: 1px solid #c3c4c5;
+  padding: 3px 2px 2px;
+  background-color: #FFF;
+  /*position: relative;*/
+  z-index: 1;
+  margin-top: -1px;
+  overflow: hidden;
+}
+.cui-tab .cui-tab-content iframe {
+  width: 100%; margin:0; padding:0;display:block;
+}
