@@ -1,0 +1,128 @@
+@appHeigth:180px;
+@logoHeight:120px;
+.record-icon{
+    width: 32px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image:url(../img/app-record.png);
+}
+.app-store{
+    min-width:950px;
+    padding:0px 10px 0px 10px;
+    .app{
+        background-color:#fff;
+        display: inline-block;
+        *display:inline;
+        *zoom:1;
+        width: 220px;
+        height: @appHeigth;
+        *position: relative;
+        overflow: hidden;
+        margin-right:10px;
+        margin-bottom:10px;
+        text-align: left;
+        border:1px #ddd solid;
+        &:hover{
+            text-decoration: none;
+            .app-inner{
+                top: -@logoHeight;
+                /**ie9-用js实现动画*/
+                top:0px\9;
+                a{
+                    display:block;
+                }
+            }
+        }
+        .app-inner {
+            position: relative;
+            top:0px;
+            transition: top 500ms 200ms;
+            -webkit-transition: top 500ms 200ms;
+            -moz-transition: top 500ms 200ms;
+            a{
+                display:none;
+                margin-right: 4px;
+                color:#096ae2;
+            }
+        }
+        .app-logo{
+            text-align:center;
+            border-bottom:1px solid #ddd;
+            height:@logoHeight - 1;
+            img{
+                height:70px;
+                width:70px;
+                border-radius: 35px;
+                margin-top:(@logoHeight - 70)/2;
+            }
+        }
+        .app-info{
+            background-color:#efefef;
+            padding:5px;
+            margin:1px;
+            .app-name {
+                font-size: 14px;
+                font-weight:bold;
+                color:#333;
+                height:34px;
+            }
+            .app-status {
+                color:#888;
+                height: 20px;
+            }
+            .app-description {
+                word-wrap: break-word;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                //white-space:nowrap;
+                height:@logoHeight - 6;
+            }
+        }
+    }
+}   
+ 
+.app-footer{
+   height:46px;
+   background-color:#fff;
+   border:1px solid #ccc;
+   left:10px;
+   right:10px;
+   bottom:0px;
+   position: fixed;
+    _position:absolute;
+    _top:e(%("expression(eval(document.documentElement.scrollTop + document.documentElement.clientHeight-this.offsetHeight  -(parseInt(this.currentStyle.marginTop,10)||0) -(parseInt(this.currentStyle.marginBottom,10)||0)))"));
+   _left:10px;
+   _right:-12px;
+    .app-back{
+        width:80px;
+        height:30px;
+        margin-top:8px;
+        margin-right:10px;
+        line-height:30px;
+        display:inline-block;
+        _display:inline;
+        _zoom:1;
+        font-size:14px;
+        color: #fff !important;
+        background-color:#096BE1;
+        border-radius: 2px;
+        text-align: center;
+        text-decoration: none;
+    }
+}
+.update-time{
+    font-size:12px;
+    font-weight:bold;
+    color:#333;
+}
+.empty-app{
+    font-size:16px;
+    width:100%;
+    text-align: center;
+    position: fixed;
+    left:0px;
+    top:50%;
+}

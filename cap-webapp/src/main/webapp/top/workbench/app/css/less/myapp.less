@@ -1,0 +1,131 @@
+@import "../../../base/css/less/variables.less";
+@import "../../../base/css/less/mixins.less";
+.myapp-icon{
+    width: 32px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image:url(../img/my-app.png);
+}
+.myapp-container{
+    padding:10px;
+    background-color: #fff;
+}
+.app-search{
+    width:220px;
+    height:20px;
+    line-height:20px;
+    margin-right:20px;
+    border:1px solid @borderColor;
+    padding:3px 0px 3px 30px;
+    background:url(../img/search.png) no-repeat 5px center;
+}
+.app-header{
+    height:28px;
+    line-height: 28px;
+    margin-bottom: 30px;
+    .empty{
+        color:#ABABA7;
+    }
+}
+.app-manager{
+    display:inline-block;
+    height:28px;
+    padding-left:33px;
+    background:url(../img/app-manager.png) no-repeat left center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor:pointer;
+    color:#666;
+    &:hover{
+        color:#0A6FD9;
+    }
+    &:visited{
+        color:#666;
+    }
+}
+.app-category{
+    padding-left:10px;
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-left: 3px solid #6AA725;
+    height:20px;
+    hr{
+        height:0px;
+        border: 0px;
+        border-bottom: 1px solid #ddd;
+    }
+}
+.app-list{
+    padding-left:13px;
+}
+.app-list .app{
+    position:relative;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    padding:2px;
+    text-align: center;
+    width: 140px;
+    height:140px;
+    border:solid 1px #EBEBEB;
+    background: #fff;
+    .app-logo{
+      text-align: center;
+      border-radius: 35px;
+      width: 70px!important;
+      height: 70px!important;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      box-shadow: 0 0 0;
+    }
+    .app-name{
+        height: 40px;
+        text-align: left;
+        padding-left:5px;
+        color: @textColor;
+        font-size:14px;
+        background-color:#EFEFEF;
+    }
+    .red-point{
+        background: url(../img/red-point.png) no-repeat right 5px;
+    }
+    .app-op{
+        height:20px;
+        .op-name{
+            display: none;
+            border:1px solid @borderColor;
+            color:@textColor;
+            &:hover{
+                background-color:#096AE2;
+                color:#fff;
+                border-color:#096AE2;
+                text-decoration: none;
+            }
+        }
+        .op-state{
+            border:1px solid @borderColor;
+            color:@textColor;
+            background:url(../img/common-app.png) no-repeat left center;
+            padding-left:20px;
+        }
+    }
+    &:hover{
+        text-decoration: none;
+        border-color:#096AE2;
+        .app-name{
+            color: #096AE2;
+        }
+        .op-name{
+            display: block !important;
+        }
+        .op-state{
+            display: none !important;
+        }
+    }
+}

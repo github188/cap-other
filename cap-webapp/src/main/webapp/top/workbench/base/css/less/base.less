@@ -1,0 +1,76 @@
+// 全局变量
+@import "variables.less";
+//UI内部函数
+@import "mixins.less";
+//样式重置
+@import "reset.less";
+// 页面布局util 
+@import "routines.less";   
+
+html,body{
+    padding:0px;
+    margin:0px;
+    width: 100%;
+    background-color: #f5f5f5;
+    font-size: @baseFontSize;
+    font-family:  @baseFontFamily;
+    color: @textColor;
+}
+/**防止ie6绝对定位页面滚动时闪烁*/
+*html {/* 只有IE6支持 */
+    background-image: url(about:blank); /* 使用空背景 */
+    background-attachment: fixed; /* 固定背景 */
+}
+
+.workbench-container{
+    margin:10px;
+}
+
+/**全局box效果*/
+.box{
+    border:1px solid @borderColor;
+    //.box-shadow(1px 1px 3px @borderColor);
+}
+
+a{
+    color:@linkColor;
+    text-decoration: none;
+    cursor:pointer;
+    &:hover{
+        color:@linkColorHover;
+        text-decoration: underline;
+    }
+    &:visited{
+        color:@linkColorVisited;
+    }
+}
+/**回到顶部样式*/
+.goto-top{
+    width:36px;
+    height:36px;
+    display:inline-block;
+    background:url(../img/goto-top.png) no-repeat;
+    position: fixed;
+    right:20px;
+    bottom:20px;
+    cursor:pointer;
+    display: none;
+    _position:absolute;
+    _top:e(%("expression(eval(document.documentElement.scrollTop + document.documentElement.clientHeight-this.offsetHeight  -(parseInt(this.currentStyle.marginTop,10)||0) -(parseInt(this.currentStyle.marginBottom,10)||0))-20)"));
+}
+/**无数据样式*/
+.no-data{
+    background: url(../img/no-data.png) no-repeat left center;
+    padding-left:70px;
+    height:50px;
+    line-height: 50px;
+    width:56px;
+    font-size:14px;
+}
+
+//chrome scroll bar 样式  这样式可能会导致部分页面没办法产生滚动条
+//@import "scroll-bar.less";
+//主导航
+@import "main-nav.less";
+//应用导航
+@import "app-nav.less";

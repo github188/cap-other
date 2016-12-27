@@ -1,0 +1,99 @@
+.workbench-logo{
+    float:left;
+    margin-right:25px;
+    height:46px;
+    width:145px;
+    background:url(../img/nav-logo.png) no-repeat left center;
+}
+
+#main-nav {
+    margin:0px;
+    padding:0px 10px;
+    height: 46px;
+    border:0px;
+    //overflow: hidden;
+    background-color: #003c78;
+    color: @lighterTextColor;
+    .workbench-index{
+        background: url(../img/home.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .myapp{
+        background: url(../img/apps.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .query-center{
+        background: url(../img/search-white.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .message-box{
+        background: url(../img/message-box.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .todo-box{
+        background: url(../img/todo-box.png) no-repeat 5px;
+        padding-left: 28px !important;
+    }
+    .red-box{
+        display:inline-block;
+        background: url(../img/num.png) top left no-repeat;
+        line-height: 14px;
+        font-size: 12px;
+        height: 14px;
+        width: 25px;
+        text-align: center;
+        margin: 5px 0 0 -2px;
+    }
+    
+    .user-head{ 
+        display: inline-block; 
+        width: 20px; 
+        height: 20px; 
+        vertical-align: middle;
+        margin: -8px 0px 0px 0px;
+        _float:left;
+    }
+    
+    .menu{
+        & > li{
+            & > a{
+                line-height: 46px;
+                height:46px;
+                color: @lighterTextColor;
+                border: 0px;
+                font-size:14px;
+                &:hover{
+                    background-color: #003366;
+                    color: #ffffff;
+                    text-decoration: none;
+                }
+            }
+            .separate{
+                margin:17px 0px 0px;
+                padding:0px;
+                width:1px;
+                height:14px;
+                font-size:0;
+                background-color:#A5A5A5;
+            }
+            .caret{
+                border-top: 4px solid #fff;
+            }
+        }
+        .active > a{
+            background-color: transparent;
+        }
+        .open .dropdown-toggle{
+            background-color: #003366;
+        }
+        .dropdown .dropdown-menu a{
+            min-width:60px;
+        }
+        .menu-lable{
+            line-height:24px;
+            background-color:#EEEEEE;
+            color:#666;
+            text-indent:5px;
+        }
+    }
+}

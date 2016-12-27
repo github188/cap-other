@@ -1,0 +1,11 @@
+.done-table{
+	width:100%;
+	TABLE-LAYOUT:fixed;
+	WORD-WRAP:break_word;
+	font-size:12px;
+}
+.done-table td{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}

@@ -1,0 +1,30 @@
+<script type="text/template" id="sidebar-tmp">
+<div class="sidebar clearfix">
+    <div class="side" style="width:<@=width@>px;">
+        <@if(title || toggle){@>
+        <div class="menu-title clearfix ">
+            <@if(search||title){@>
+            <span class="min-hide pull-left <@if(toggle){@>toggle<@}@>">
+                <@if(search){@>
+                    <input class="search empty" type="text" value="<@=title@>" empty_text="<@=title@>"/>
+                <@}else{@>
+                    <@=title@>
+                <@}@>    
+            </span>
+            <@}@>
+            <@if(toggle){@>
+            <i class='toggle-btn'></i>
+            <@}@>
+        </div>
+        <@}@>
+        <ul class="side-menu clearfix" id="opt-list">
+            
+        </ul>
+    </div>
+    <div class="main" style='margin-left:<@=width + margin@>px;'>
+        <@if(iframe){@>
+            <div class="frame-wrap"><iframe id="<@=frameName@>" name="<@=frameName@>" frameborder="0" src="about:blank" allowTransparency="true"></iframe></div>
+        <@}@>
+    </div>
+</div>
+</script>

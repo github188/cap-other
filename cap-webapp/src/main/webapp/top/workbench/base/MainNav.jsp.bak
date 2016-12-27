@@ -1,0 +1,257 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import=" com.comtop.top.component.common.config.UniconfigManager" %>
+<style>
+    html,body{
+        min-width:990px;
+    }
+</style>
+<%//设置页眉导航菜单打开模式%>
+<c:if test="${openMode == null}">
+    <c:set var="openMode" value="_self" />
+</c:if>
+<div id="main-nav" class="clearfix">
+    <a href="${pageScope.cuiWebRoot}<%=UniconfigManager.getGlobalConfig("mainFrameURL")%>" class="workbench-logo"></a>
+    <ul class="menu pull-left " id="nav-menu">
+        <li>
+            <a href="${pageScope.cuiWebRoot}<%=UniconfigManager.getGlobalConfig("mainFrameURL")%>" class="workbench-index"> 首页 </a>
+        </li>
+        <li>
+            <a href="${pageScope.cuiWebRoot}/top/workbench/app/MyApp.jsp" class="myapp" target="${openMode}"> 应用 </a>
+        </li>
+        <li>
+            <a href="${pageScope.cuiWebRoot}/top/workbench/querycenter/QueryCenter.jsp" class="query-center" target="${openMode}"> 查询 </a>
+        </li>
+        <li>
+            <a href="${pageScope.cuiWebRoot}/top/workbench/todo/TodoCenter.jsp" class="todo-box" target="${openMode}"> 
+                <span class="pull-left">待办</span> 
+                <span id="todoId" class="red-box pull-left">0</span> 
+            </a>
+        </li>
+        <li>
+            <a href="${pageScope.cuiWebRoot}/top/workbench/done/gotoDoneCenter.do" class="done-box" target="${openMode}"> 
+                <span class="pull-left">已办</span> 
+            </a>
+        </li>
+    </ul>
+    <ul class="menu pull-right">
+        <li >
+            <a href="${pageScope.cuiWebRoot}/top/workbench/message/gotoMessageCenter.do" class="message-box"> 
+                <span id="messageId" class="red-box pull-left">0</span> 
+            </a>
+        </li>
+        <li id="nav-user-name">
+            <a href="javascript:void(0)" > 
+                <img class="user-head" src="${pageScope.cuiWebRoot}/top/workbench/base/img/user.png" />
+                <span>${userInfo.employeeName}</span> 
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="separate"></a>
+        </li>
+        <li>
+            <a href="${pageScope.cuiWebRoot}/top/workbench/personal/AccountSet.jsp" target="${openMode}"> 帐号设置 </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="separate"></a>
+        </li>
+        <li>
+            <a id="helpurl" href="javascript:void(0)" target="_blank" data-url="${requestScope.app.helpDocumentUrl}${param.helpDocumentUrl}"> 帮助 </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="separate"></a>
+        </li>
+        <li>
+            <a href="javascript:exit()"> 登出 </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="separate"></a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">登录服务平台<b class="caret"></b></a>
+          <ul class="dropdown-menu" style="left:-20px;" role=menu>
+             <li>
+                 <a href="http://10.150.73.118:7001/BigCentralizationCenter/bin/ReqSearchView.html?userName=${userInfo.account}&sysCode=0378-SC01-1304" target="_blank">安全生产(主网)</a>
+	        </li>
+	        <li>
+                 <a href="http://10.150.73.118:7001/BigCentralizationCenter/bin/ReqSearchView.html?userName=${userInfo.account}&sysCode=0378-SC01-1304-1" target="_blank">安全生产(配网)</a>
+	        </li>
+	        <li>
+                 <a href="http://10.150.73.118:7001/BigCentralizationCenter/bin/ReqSearchView.html?userName=${userInfo.account}&sysCode=jjxm" target="_blank">基建项目管理 </a>
+	        </li>
+	        <li>
+                 <a href="http://10.150.73.118:7001/BigCentralizationCenter/bin/ReqSearchView.html?userName=${userInfo.account}&sysCode=tzjh" target="_blank">投资计划管理</a>
+	        </li>
+	        <li>
+                 <a href="http://10.150.73.118:7001/BigCentralizationCenter/bin/ReqSearchView.html?userName=${userInfo.account}&sysCode=wzgl" target="_blank">物资管理</a>
+	        </li>
+	        <li>
+                 <a href="http://10.150.73.118:7001/BigCentralizationCenter/bin/ReqSearchView.html?userName=${userInfo.account}&sysCode=xmgl" target="_blank">项目管理</a>
+	        </li>
+	        <li>
+                 <a href="http://10.150.73.118:7001/BigCentralizationCenter/bin/ReqSearchView.html?userName=${userInfo.account}&sysCode=tytd" target="_blank">统一图档 </a>
+            </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- /navbar-inner -->
+</div>
+<script type="text/javascript">
+    $(function(){
+       if($.trim($("#helpurl").data("url")).length<1){
+    	   $("#helpurl").css("cursor","default");
+       }
+    })
+    /**
+     * 监听登录状态,多页面退出登录时自动关闭多余的页面 
+     * 该方法无法完全关闭所有页面,由于chrome的安全限制,只有window.open方法打开的页面才能window.close()关闭
+     */
+    //是否已登出
+    localStorage.isLogout = 'false';
+    var loginInterval = setInterval(function(){
+        if(localStorage.isLogout==='true'){
+            window.opener = null;
+            window.top.open('','_self');
+            window.top.close();
+            clearInterval(loginInterval);
+        }
+    },500);
+    
+    //退出系统
+    function exit() {
+        LoginAction.exit({callback:logoutCallback,errorHandler:logoutCallback});
+    }
+
+    function logoutCallback(loginType){
+        clearInterval(loginInterval);
+        localStorage.isLogout="true";
+        if (loginType == "1") {
+			window.location.href = "${pageScope.cuiWebRoot}" + "/signout";
+		} else if (loginType == "2") {
+			window.location.href = "${pageScope.cuiWebRoot}" + "/exit4ASSO.ac";
+		} else {
+			window.location.href = "${pageScope.cuiWebRoot}";
+		}
+    }
+    
+    /**
+     *获取动态导航菜单 
+     */
+    require(['workbench/dwr/interface/NavAction'],function(){
+        //获取自定义导航菜单
+        NavAction.queryNavs(function(navList){
+            if(!navList || navList.length == 0){
+                return ;
+            }
+            var liList = [];
+            $(navList).each(function(){
+                var nav = this;
+                liList.push('<li><a href="javascript:void(0)" target="${openMode}" data-url="'+ nav.url +'">'+ nav.name +'</a></li>');
+            });
+            if(liList.length == 1){
+                $('#nav-menu').append(liList);
+            }else{
+                var html = [
+                    '<li class="dropdown">',
+                        '<a class="dropdown-toggle" data-toggle="dropdown">更多<b class="caret"></b></a>',
+                            '<ul class="dropdown-menu" role=menu>',
+                                liList.join(''),
+                            '</ul>',
+                    '</li>'
+                ];
+                $('#nav-menu').append(html.join(''));
+            }
+        });
+        //获取可切换的人员组织列表
+        NavAction.queryUserAndOrg(function(userAndOrg){
+            userAndOrg = userAndOrg || {};
+            var $navUserName = $('#nav-user-name');
+            var users = userAndOrg.users || [];
+            var orgs = userAndOrg.orgs || [];
+            if(users.length==0&& orgs.length < 2){
+                //$navUserName.children().css('cursor','text');
+                $("#nav-user-name").addClass("only-one-itme");
+                return ;
+            }
+
+            $navUserName.children().addClass('dropdown-toggle').attr('data-toggle','dropdown').append('<b class="caret"></b>');
+            $navUserName.addClass('dropdown').append('<ul class="dropdown-menu" role=menu></ul>');
+            if(users.length > 0){
+                var liList = ['<li class="menu-lable">切换用户</li>'];
+                $(users).each(function(){
+                    var user = this;
+                    liList.push('<li><a href="javascript:void(0)" data-user="'+ user.userId +'">'+ user.userName +'</a></li>');
+                });
+                $navUserName.children('ul').append(liList.join(''));
+            }
+            if(orgs.length > 1){
+                var liList = ['<li class="menu-lable">切换组织</li>'];
+                $(orgs).each(function(){
+                    var org = this;
+                    liList.push('<li><a href="javascript:void(0)" data-org="'+ org.orgId +'">'+ org.orgName +'</a></li>');
+                });
+                $navUserName.children('ul').append(liList.join(''));
+            }
+            //人员切换
+            $(document).on('click','a[data-user]',function(){
+                var $this= $(this);
+                var userId = $this.data('user');
+                var userName = $this.html();
+                LoginAction.switchUserProcess(userId,function(){
+                    cui.message('已成功切换到用户：\n' + userName,'success');
+                    window.setTimeout(function(){
+                        window.location.reload();
+                    },1000);
+                });
+            });
+            //组织切换
+            $(document).on('click','a[data-org]',function(){
+                var $this= $(this);
+                var orgId = $this.data('org');
+                var orgName = $this.html();
+                LoginAction.resetUserOrgInfo(orgId,function(){
+                    cui.message('已成功切换到组织：\n' + orgName,'success');
+                    window.setTimeout(function(){
+                        window.location.reload();
+                    },1000);
+                });
+            });
+        });
+    });
+    
+    require(['workbench/dwr/interface/DesktopMessageAction'], function() {
+    	queryUnreadMessageCount = function  queryUnreadMessageCount(){
+    		//调用后台获取未读消息总数
+            DesktopMessageAction.queryUnreadMessageCount({callback:function(data) {
+                $("#messageId").html(data);
+            },errorHandler:function(){
+            	
+            }});
+    	}
+    	queryUnreadMessageCount();
+    	//5秒钟刷一次未读消息总数
+    	setInterval(function(){
+    		queryUnreadMessageCount();
+    	},500000);
+    }); 
+    
+    require(['workbench/dwr/interface/DesktopTodoAction'], function() {
+        queryTodoCount = function queryTodoCount(){
+            //调用后台获取待办总数
+            DesktopTodoAction.queryTodoCount({callback:function(data) {
+                $("#todoId").html(data);
+            },errorHandler:function(){
+                
+            }});
+        }
+        queryTodoCount();
+        //5秒钟刷一次待办总数
+        setInterval(function(){
+            queryTodoCount();
+        },500000);
+
+    });
+    
+    //加载cui,主要是为了提示
+    require(['cui','loginAction'], function() {});
+
+</script>

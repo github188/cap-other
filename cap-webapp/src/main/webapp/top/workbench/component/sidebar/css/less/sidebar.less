@@ -1,0 +1,219 @@
+@import "../../../../base/css/less/variables.less";
+@import "../../../../base/css/less/mixins.less";
+@sbLinkHeight:42px;
+@sideWidth :200px;
+@sbLinkActiveBg :#0970D6;
+@sbLinkHoverBg :#999;
+@sbLinkColor: @textColor;
+@sideMinWidth : 50px;
+.sidebar {
+	position : relative;
+	.main {
+        margin-left: @sideWidth + 10;
+        padding: 0px;
+        .frame-warp{
+            background-color:#fff;
+            border:1px @borderColor solid;
+            font-size: 0px;
+        } 
+        iframe{
+            width:100%;
+        } 
+    }
+    .side {
+        width: @sideWidth;
+        position: absolute;
+        left:0px;
+        font-size: 14px;
+        color:@sbLinkColor;
+        .break-word{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width:(@sideWidth - 72);
+            _width:122px;
+        }
+        .right-arrow {
+            margin: 0px;
+            height: 100%;
+            width: 12px;
+            display: inline-block;
+            vertical-align: middle;
+            background: url(../img/right-arrow1.png) no-repeat center;
+        }
+        .active .right-arrow,
+        a:hover .right-arrow,.menu-hove .right-arrow{
+            background-image: url(../img/right-arrow1-white.png);
+        }
+        .toggle-btn {
+            float: right;
+            cursor: pointer;
+            width: 16px;
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+            background: url(../img/left-arrow.png) no-repeat center;
+        }
+        .menu-title {
+            border: solid 1px @borderColor;
+            border-bottom: 0;
+            //.box-shadow(1px 1px 3px @borderColor);
+            background-color: #fff;
+            height: 44px;
+            line-height: 44px;
+            margin: 0px;
+            padding: 0px 10px;
+            width:auto;
+            font-weight:bold;
+        }
+        .side-menu {
+            background-color: #fff;
+            overflow: visible;
+            list-style: none;
+            //.box-shadow(1px 1px 3px @borderColor);
+            margin: 0px;
+            padding: 0px;
+            border-top: solid 1px @borderColor;
+            li {
+                //height:100%;
+                color: #000000;
+                width: 100%;
+                float: left;
+                position: relative;
+                a {
+                    display: block;
+                    *zoom: 1;
+                    color: @sbLinkColor;
+                    cursor: pointer;
+                    padding: 0px 10px;
+                    height: @sbLinkHeight;
+                    line-height: @sbLinkHeight;
+                    border: solid 1px @borderColor;
+                    border-top: 0px;
+                    text-decoration: none;
+                }
+               .menu-hove{
+                    text-decoration: none;
+                    background-color: @sbLinkHoverBg;
+                    border-color: @sbLinkHoverBg;
+                    color: white;
+                }
+                a:hover {
+                    .menu-hove;
+                }
+                &.active a {
+                    background-color: @sbLinkActiveBg;
+                    border-color: @sbLinkActiveBg;
+                    color: white;
+                }
+                img {
+                    width: 28px;
+                    height: 28px;
+                    margin: (@sbLinkHeight - 28)/2 10px 0px 0px;
+                }
+            }
+        }
+        .side-menu .sub-menu {
+            min-height: 400px;
+            _height:e(%("expression(this.scrollHeight < 400?'400px':'')"));
+            max-height: 600px;
+            z-index: 9999;
+            border: 1px solid #ccc;
+            background-color: #ffffff;
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            overflow: auto;
+            .sub-title {
+                line-height: 20px;
+                padding: 10px;
+                margin: 0px;
+                font-size:16px;
+                border-bottom:1px solid #eee;
+            }
+            .menu-body {
+                padding: 10px;
+            }
+            .menu-group {
+                font-size: 14px;
+                margin-bottom:10px;
+            }
+            .menu-item {
+                margin: 0px;
+                padding: 5px 10px;
+                float: left;
+                color: #4f4f4f;
+            }
+            a{
+                display: inline;
+                font-size:12px;
+                color: @linkColor;
+                padding: 0px;
+                line-height:20px;
+                height:20px;
+                border: 0;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                    background-color: transparent;
+                    border: 0;
+                    color: @linkColor;
+                }
+            }
+        }
+        .side-menu .active .sub-menu  a {
+            background-color: transparent;
+            color: @linkColor;
+        }
+    }
+    .search{
+        width:146px;
+        height:20px;
+        line-height:20px;
+        border:1px solid #ccc;
+        padding:3px 0px 3px 30px;
+        background:url(../img/search.png) no-repeat 5px center;
+    }
+    .toggle .search{
+        width:126px;
+    }
+    .empty{
+        color:#ABABA7;
+    }
+}
+ .min-sidebar .side {
+    width: @sideMinWidth;
+    .toggle-btn {
+        background-image: url(../img/right-arrow.png);
+        float: none;
+    }
+    .side-menu li a,
+    .menu-title{
+        text-align:center;
+    }
+    .right-arrow,
+    .break-word,
+    .min-hide {
+        display: none;
+    }
+    .side-menu li img{
+        margin-left:0px;
+        margin-right:0px;
+    }
+}
+    
+//ÑùÊ½¸²¸Ç
+.sidebar .app-nav{
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.base-icon(@width:28px,@height:28px){
+    width: @width;
+    height: @height;
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center;
+}

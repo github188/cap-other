@@ -1,0 +1,608 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]) {
+  display: none;
+}
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+a:hover,
+a:active {
+  outline: 0;
+}
+
+img {
+  /* Responsive images (ensure images don't scale beyond their parents) */
+  width: auto\9;
+  /* IE7-8 need help adjusting responsive images */
+  height: auto;
+  /* Part 2: Scale the height according to the width, otherwise you get stretching */
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+}
+button,
+input {
+  *overflow: visible;
+  /** Inner spacing ie IE6/7**/
+  line-height: normal;
+  /** FF3/4 have !important on line-height in UA stylesheet**/
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  /** Inner padding and border oddities in FF3/4**/
+  padding: 0;
+  border: 0;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /** Corrects inability to style clickable `input` types in iOS.**/
+  cursor: pointer;
+  /** Improves usability and consistency of cursor style between image-type `input` and others.**/
+}
+input[type="search"] {
+  /** Appearance in Safari/Chrome**/
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  /** Inner-padding issues in Chrome OSX, Safari 5**/
+}
+textarea {
+  overflow: auto;
+  /** Remove vertical scrollbar in IE6-9**/
+  vertical-align: top;
+  /** Readability and alignment cross-browser**/
+}
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  background-color: #f5f5f5;
+  font-size: 12px;
+  font-family: "Microsoft YaHei", sans-serif;
+  color: #333333;
+}
+/**防止ie6绝对定位页面滚动时闪烁*/
+*html {
+  /* 只有IE6支持 */
+  background-image: url(about:blank);
+  /* 使用空背景 */
+  background-attachment: fixed;
+  /* 固定背景 */
+}
+.workbench-container {
+  margin: 10px;
+}
+.frame-wrap {
+  background-color: #fff;
+  font-size: 0px;
+}
+.frame-wrap iframe {
+  width: 100%;
+  background-color: #fff;
+}
+/**全局box效果*/
+.box {
+  border: 1px solid #cccccc;
+}
+a {
+  color: #0088cc;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  color: #005580;
+  text-decoration: underline;
+}
+a:visited {
+  color: #9700ad;
+}
+/**回到顶部样式*/
+.goto-top {
+  z-index: 9999;
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  background: url(../img/goto-top.png) no-repeat;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+  display: none;
+  _position: absolute;
+  _top: expression(eval(document.documentElement.scrollTop + document.documentElement.clientHeight-this.offsetHeight  -(parseInt(this.currentStyle.marginTop,10)||0) -(parseInt(this.currentStyle.marginBottom,10)||0))-20);
+}
+/**无数据样式*/
+.no-data {
+  background: url(../img/no-data.png) no-repeat left center;
+  padding-left: 70px;
+  height: 50px;
+  line-height: 50px;
+  width: 56px;
+  font-size: 14px;
+}
+.load-tip{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    font-size: 16px;
+    z-index: 20;
+    padding-left: 30px;
+    margin: -8px 0 0 -100px;
+    width: 170px;
+    background: url(../img/loading.gif) 0 50% no-repeat;
+}
+
+.place-left {
+  float: left !important;
+  margin-right: 10px;
+}
+.place-right {
+  float: right !important;
+  margin-left: 10px;
+}
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}
+.workbench-logo {
+  float: left;
+  margin-right: 25px;
+  height: 46px;
+  width: 145px;
+  background: url(../img/nav-logo.png) no-repeat left center;
+}
+#main-nav {
+  margin: 0px;
+  padding: 0px 10px;
+  height: 46px;
+  border: 0px;
+  background-color: #003c78;
+  color: #eeeeee;
+}
+#main-nav .workbench-index {
+  background: url(../img/home.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .myapp {
+  background: url(../img/apps.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .query-center {
+  background: url(../img/search-white.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .message-box {
+  background: url(../img/message-box.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .todo-box {
+  background: url(../img/todo-box.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+#main-nav .done-box {
+  background: url(../img/done-box.png) no-repeat 5px;
+  padding-left: 28px !important;
+}
+
+#main-nav .red-box {
+  display: inline-block;
+  background: url(../img/num.png) top left no-repeat;
+  line-height: 14px;
+  font-size: 12px;
+  height: 14px;
+  width: 25px;
+  text-align: center;
+  margin: 5px 0 0 -2px;
+}
+#main-nav .user-head {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin: -8px 0px 0px 0px;
+  _float: left;
+}
+#main-nav .menu > li.only-one-itme > a{
+	cursor:default;
+}
+#main-nav .menu > li.only-one-itme > a:hover{
+	background-color:#003c78;
+	color:#eeeeee;
+}
+#main-nav .menu > li > a {
+  line-height: 46px;
+  height: 46px;
+  color: #eeeeee;
+  border: 0px;
+  font-size: 14px;
+}
+#main-nav .menu > li > a:hover {
+  background-color: #003366;
+  color: #ffffff;
+  text-decoration: none;
+}
+#main-nav .menu > li .separate {
+  margin: 17px 0px 0px;
+  padding: 0px;
+  width: 1px;
+  height: 14px;
+  font-size: 0;
+  background-color: #A5A5A5;
+}
+#main-nav .menu > li .caret {
+  border-top: 4px solid #fff;
+}
+#main-nav .menu > .active > a {
+  background-color: transparent;
+}
+#main-nav .menu .open .dropdown-toggle {
+  background-color: #003366;
+}
+#main-nav .menu .dropdown .dropdown-menu a {
+  min-width: 60px;
+}
+#main-nav .menu .menu-lable {
+  line-height: 24px;
+  background-color: #EEEEEE;
+  color: #666;
+  text-indent: 5px;
+}
+.app-nav {
+  border-bottom: solid 1px #cccccc;
+  margin: 0px 0px 10px 0px;
+  background-color: #ffffff;
+  padding: 0 10px;
+  height: 44px;
+  font-size: 14px;
+}
+.app-nav .app-logo {
+  width: 32px;
+  height: 32px;
+  margin: 5px 10px 0px 0px;
+  float: left;
+}
+.app-nav .app-name {
+  float: left;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  line-height: 44px;
+  height: 100%;
+  margin: 0px 20px 0px 0px;
+}
+/**
+ *     菜单样式
+ */
+.menu {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  font-size: 14px;
+}
+.menu li {
+  float: left;
+  height: 100%;
+}
+.menu li a {
+  display: inline-block;
+  height: 43px;
+  line-height: 43px;
+  margin: 0;
+  padding: 0px 10px;
+  color: #0088cc;
+  text-decoration: none;
+  border-radius: 0;
+  vertical-align: middle;
+  border-bottom: solid 1px transparent;
+  _border-bottom-color: #ffffff;
+  outline: none;
+}
+.menu li a:hover{
+  text-decoration: none;
+  background-color: #eeeeee;
+}
+.menu .active > a,
+.menu .active > a:hover {
+  border-bottom: 3px solid #0970d6;
+  color: #666666;
+  background: #ffffff;
+}
+.dropdown {
+  position: relative;
+}
+.dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10000;
+  display: none;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  outline: none;
+  _width: 120px;
+}
+.dropdown .dropdown-menu li {
+  width: 100%;
+}
+.dropdown .dropdown-menu a {
+  display: block;
+  _display: inline;
+  _zoom: 1;
+  padding: 5px 20px;
+  margin: 0px;
+  min-width: 100px;
+  _width: 120px;
+  _text-overflow: ellipsis;
+  _white-space: nowrap;
+  font-weight: normal;
+  height: 20px;
+  line-height: 20px;
+  color: #525252;
+  white-space: nowrap;
+  border-radius: 0px;
+  text-decoration: none;
+  border: 0px;
+}
+.dropdown .dropdown-menu a:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #0081c2;
+  border: 0px;
+}
+.dropdown .dropdown-menu .dropdown-submenu {
+  position: relative;
+}
+.dropdown .dropdown-menu .dropdown-submenu > .dropdown-menu {
+  left: auto;
+  right: 100%;
+  top: 0;
+}
+.dropdown .dropdown-menu .dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+.dropdown .dropdown-menu .dropdown-submenu > a:before {
+  display: block;
+  float: left;
+  width: 0;
+  height: 0;
+  margin-top: 5px;
+  margin-left: -10px;
+  border-color: transparent;
+  border-right-color: #ccc;
+  border-style: solid;
+  border-width: 5px 5px 5px 0px;
+  content: " ";
+}
+.dropdown.more {
+  position: relative;
+  height:auto;
+}
+
+.dropdown.more > .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.dropdown .caret {
+  content: "";
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  width: 0;
+  height: 0;
+  line-height: 20px;
+  font-size: 0px;
+  vertical-align: middle;
+  border-top: 4px solid #0088cc;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  margin: 0px 0px 0px 2px;
+  _margin-top: 20px;
+  _border-left-color: #123245;
+  _border-right-color: #123245;
+  _filter: chroma(color=#123245);
+}
+.dropdown .dropdown-submenu .caret {
+  display: none;
+}
+.dropdown.active .caret {
+  border-top-color: #666666;
+}
+.dropdown.open .caret {
+  border-top-color: #ffffff;
+}
+.dropdown.open > .dropdown-toggle:hover,
+.dropdown.open > .dropdown-toggle {
+  color: #ffffff;
+  background-color: #999999;
+  border-bottom: solid 1px transparent;
+}
+.dropdown.open > .dropdown-menu {
+  display: block;
+}
+/**
+ *     tab菜单样式
+ */
+.tab-menu {
+  border-bottom: 3px solid #0970d6;
+}
+.tab-menu > ul {
+  height: 38px;
+  margin: 0px;
+  border-style: solid;
+  border-width: 1px 1px 0 1px;
+  border-color: #ccc;
+  background: #f7f7f7;
+  list-style: none;
+  font-size: 14px;
+  *zoom: 1;
+}
+.tab-menu > ul li {
+  float: left;
+  line-height: 20px;
+}
+.tab-menu > ul li a {
+  border-radius: 0;
+  height: 38px;
+  line-height: 38px;
+  border: 0px;
+  color: #666;
+  text-decoration: none;
+  display: block;
+}
+.tab-menu > ul li a:hover,
+.tab-menu > ul li a:focus {
+  color: #005580;
+}
+.tab-menu > ul > .active > a,
+.tab-menu > ul > .active > a:hover,
+.tab-menu > ul > .active > a:focus {
+  font-weight: normal;
+  background-color: #0970d6;
+  color: #ffffff;
+  margin: -1px 0 0 -1px;
+}
+.tab-menu > ul .dropdown .caret {
+  border-top-color: #666666;
+}
+.tab-menu > ul .dropdown.active .caret,
+.tab-menu > ul .dropdown.open .caret {
+  border-top-color: #ffffff;
+}
+
+/**
+ *     快捷导航组件,我的应用中有用到
+ */
+.nav-anchor{
+    width:170px;
+    position:fixed;
+    z-index: 999;
+    bottom:60px; 
+    right:20px;
+}
+.nav-anchor .nav-anchor-menu{
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    border-color: #ccc;
+    margin-bottom: 5px;
+    overflow: auto;
+}
+.nav-anchor .btn{
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #000;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    background-image: linear-gradient(to bottom, #fff, #e6e6e6);
+    background-repeat: repeat-x;
+    padding: 3px 11px;
+    border-radius: 3px;
+    box-shadow: none;
+    float: right;
+}
+.nav-anchor .btn:hover {
+    color: #000;
+    background-color: #e6e6e6;
+    text-decoration: none;
+    background-position: 0 -15px;
+    transition: background-position .1s linear;
+}
+.nav-anchor .btn.active,.nav-anchor .btn:active {
+    background-image: none;
+    outline: 0;
+    background: #dadada;
+}
+.nav-anchor .nav-list{
+    list-style: none;
+}
+.nav-anchor .nav-list>li>a {
+    display: block;
+    font-size:14px;
+    padding: 3px 15px;
+    color: #08c;
+    text-decoration: none;
+}
+.nav-anchor .nav-list>li>a:hover,.nav-anchor .nav-list>li>a:focus {
+    text-decoration: none;
+    color: #005580;
+    background-color: #eee;
+}
+.nav-anchor .nav-list>.active>a,.nav-anchor .nav-list>.active>a:hover,.nav-anchor .nav-list>.active>a:focus{
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+    background-color: #08c;
+}
+.dropdown .dropdown-menu .active > a,
+.dropdown .dropdown-menu .active > a:hover {
+  border-bottom: 3px solid #0970d6;
+  color: #666666;
+  background: #ffffff;
+}

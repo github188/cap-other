@@ -1,0 +1,202 @@
+@appNavHeight:46px;
+@appNavBg:#fff;
+@appNavHoverBg:#eee;
+@appNavLinkColor:@linkColor;
+@appNavLinkActiveColor:#666;
+@appNavLinkActiveBorderColor:@blue;
+@appNavDropdownToggleBg:#999;
+@appNavDropdownHoverBg:#0081c2;
+@appNavDropdownHoverColor:#fff;
+@appNavDropdownColor:#525252;
+.app-nav{
+    border-bottom: solid 1px @borderColor;
+    margin: 0px 0px 10px 0px;
+    background-color: @appNavBg;
+    padding: 0 10px;
+    height: (@appNavHeight - 2);
+    font-size:14px;
+   .app-logo{
+        width: 32px;
+        height: 32px;
+        margin: 5px 10px 0px 0px;
+        float:left;
+    }
+    .app-name{
+        float:left;
+        font-size:16px;
+        font-weight:bold;
+        color:#333;
+        line-height:(@appNavHeight - 2);
+        height:100%;
+        margin:0px 20px 0px 0px;
+    }
+}
+/**
+ *     下来样式菜单
+ */
+.menu{
+    //float:left;
+    height:@appNavHeight;
+    margin:0px;
+    padding:0px;
+    list-style: none;
+    font-size:14px;
+    //overflow-x: hidden;
+    li{
+        float:left;
+        height:100%;
+        a{
+            display:inline-block;
+            height:@appNavHeight - 3;
+            line-height:@appNavHeight - 3;
+            margin: 0;
+            padding: 0px 10px;
+            color: @appNavLinkColor;
+            text-decoration:none;
+            border-radius: 0;
+            vertical-align: middle;
+            border-bottom: solid 1px transparent;
+            _border-bottom-color:@appNavBg;
+            outline: none;
+            &:hover,
+            &:focus{
+                text-decoration: none;
+                background-color: @appNavHoverBg;
+            }
+        }
+    }
+    
+    .dropdown{
+        position: relative;
+        //下拉菜单
+        .dropdown-menu{
+            list-style:none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 10000;
+            display: none;
+            list-style: none;
+            background-color: @appNavBg;
+            border: 1px solid @borderColor;
+            outline: none;
+            _width: 120px;
+            li{
+                width:100%;
+            }
+            a{
+                display:block;
+                _display: inline;
+                _zoom: 1;
+                padding: 5px 20px;
+                margin:0px;
+                min-width: 100px;
+                _width:120px;
+                _text-overflow: ellipsis;
+                _white-space: nowrap;
+                font-weight: normal;
+                height: 20px;
+                line-height: 20px;
+                color: @appNavDropdownColor;
+                white-space: nowrap;
+                border-radius:0px;
+                text-decoration: none;
+                border:0px;
+                &:hover{
+                    text-decoration: none;
+                    color: @appNavDropdownHoverColor;
+                    background-color: #0081c2;
+                    border:0px;
+                }
+            }
+        }
+    }
+    
+    .caret{
+        content: "";
+        display: inline-block;
+        *display:inline;
+        *zoom:1;
+        vertical-align:middle;
+        width: 0;
+        height: 0;
+        line-height:20px;
+        font-size:0px;
+        vertical-align: middle;
+        border-top: 4px solid @appNavLinkColor;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+        margin: 0px 0px 0px 2px;
+        _margin-top:(@appNavHeight - 6)/2;
+        _border-left-color:#123245;
+        _border-right-color:#123245;
+        _filter: chroma(color=#123245);
+    }
+    
+    //active效果
+    .active{
+        a,a:hover{
+            border-bottom:3px solid @appNavLinkActiveBorderColor;
+            color:@appNavLinkActiveColor;
+            background: @appNavBg;
+        }
+        .active{
+            font-weight:bold;
+        }
+        .caret{
+            border-top-color: @appNavLinkActiveColor;
+        }
+    }
+    
+    //open效果
+    .open{
+        .caret{
+            border-top-color:@appNavDropdownHoverColor;
+        }
+        .dropdown-toggle{
+            color: @appNavBg;
+            background-color: @appNavDropdownToggleBg;
+            border-bottom: solid 1px transparent;
+        }
+        .dropdown-menu {
+            display:block;
+        }
+    }
+}
+
+/**
+ *     tab样式菜单
+ */
+.tab-menu {
+    background: #fff;
+    .nav-tabs {
+        height:40px;
+        overflow: hidden;
+        margin: 0px;
+        border: 0px;
+        background: #E8E8E8;
+        list-style: none;
+        font-size: 14px;
+        *zoom: 1;
+    }
+    .nav-tabs li {
+        float: left;
+        line-height: 20px;
+    }
+    .nav-tabs li a {
+        border-radius: 0;
+        background-color: #E8E8E8;
+        padding: 10px 12px;
+        border: 0px;
+        color: #666;
+        text-decoration: none;
+        display: block;
+    }
+    .nav-tabs li a:hover, .nav-tabs li a:focus {
+        color: #005580;
+    }
+    .nav-tabs .active a, .nav-tabs .active a:hover, .nav-tabs .active a:focus {
+        background-color: #FFF;
+        color: #666;
+    }
+}

@@ -1,0 +1,226 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.sidebar {
+  position: relative;
+}
+.sidebar .main {
+  margin-left: 210px;
+  padding: 0px;
+}
+.sidebar .main .frame-wrap {
+  background-color: #fff;
+  font-size: 0px;
+}
+.sidebar .main iframe {
+  width: 100%;
+}
+.sidebar .side {
+  width: 200px;
+  position: absolute;
+  left: 0px;
+  font-size: 14px;
+  color: #333333;
+}
+.sidebar .side .break-word {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 128px;
+  _width: 122px;
+  display: inline-block;
+}
+.sidebar .side .right-arrow {
+  margin: 0px;
+  height: 100%;
+  width: 12px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(../img/right-arrow1.png) no-repeat center;
+}
+.sidebar .side .active .right-arrow,
+.sidebar .side a:hover .right-arrow,
+.sidebar .side .menu-hove .right-arrow {
+  background-image: url(../img/right-arrow1-white.png);
+}
+.sidebar .side .toggle-btn {
+  float: right;
+  cursor: pointer;
+  width: 16px;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(../img/left-arrow.png) no-repeat center;
+}
+.sidebar .side .menu-title {
+  border: solid 1px #cccccc;
+  border-bottom: 0;
+  background-color: #fff;
+  height: 44px;
+  line-height: 44px;
+  margin: 0px;
+  padding: 0px 10px;
+  width: auto;
+  font-weight: bold;
+}
+.sidebar .side .side-menu {
+  background-color: #fff;
+  overflow: visible;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  border-top: solid 1px #cccccc;
+}
+.sidebar .side .side-menu li {
+  color: #000000;
+  width: 100%;
+  float: left;
+  position: relative;
+}
+.sidebar .side .side-menu li a {
+  display: block;
+  *zoom: 1;
+  color: #333333;
+  cursor: pointer;
+  padding: 0px 10px;
+  height: 42px;
+  line-height: 42px;
+  border: solid 1px #cccccc;
+  border-top: 0px;
+  text-decoration: none;
+}
+.sidebar .side .side-menu li .menu-hove {
+  text-decoration: none;
+  background-color: #999999;
+  border-color: #999999;
+  color: white;
+}
+.sidebar .side .side-menu li a:hover {
+  text-decoration: none;
+  background-color: #999999;
+  border-color: #999999;
+  color: white;
+}
+.sidebar .side .side-menu li.active a {
+  background-color: #0970d6;
+  border-color: #0970d6;
+  color: white;
+}
+.sidebar .side .side-menu li img {
+  width: 28px;
+  height: 28px;
+  margin: 7px 10px 0px 0px;
+}
+.sidebar .side .side-menu .sub-menu {
+  min-height: 400px;
+  _height: expression(this.scrollHeight < 400?'400px':'');
+  max-height: 600px;
+  z-index: 9999;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  overflow: auto;
+}
+.sidebar .side .side-menu .sub-menu .sub-title {
+  line-height: 20px;
+  padding: 10px;
+  margin: 0px;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+}
+.sidebar .side .side-menu .sub-menu .menu-body {
+  padding: 10px;
+}
+.sidebar .side .side-menu .sub-menu .menu-group {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.sidebar .side .side-menu .sub-menu .menu-item {
+  margin: 0px;
+  padding: 5px 10px;
+  float: left;
+  color: #4f4f4f;
+}
+.sidebar .side .side-menu .sub-menu a {
+  display: inline;
+  font-size: 12px;
+  color: #0088cc;
+  padding: 0px;
+  line-height: 20px;
+  height: 20px;
+  border: 0;
+  text-decoration: none;
+}
+.sidebar .side .side-menu .sub-menu a:hover {
+  text-decoration: underline;
+  background-color: transparent;
+  border: 0;
+  color: #0088cc;
+}
+.sidebar .side .side-menu .active .sub-menu a {
+  background-color: transparent;
+  color: #0088cc;
+}
+.sidebar .search {
+  width: 146px;
+  height: 20px;
+  line-height: 20px;
+  border: 1px solid #ccc;
+  padding: 3px 0px 3px 30px;
+  background: url(../img/search.png) no-repeat 5px center;
+}
+.sidebar .toggle .search {
+  width: 126px;
+}
+.sidebar .empty {
+  color: #ABABA7;
+}
+.min-sidebar .side {
+  width: 50px;
+}
+.min-sidebar .side .toggle-btn {
+  background-image: url(../img/right-arrow.png);
+  float: none;
+}
+.min-sidebar .side .side-menu li a,
+.min-sidebar .side .menu-title {
+  text-align: center;
+}
+.min-sidebar .side .right-arrow,
+.min-sidebar .side .break-word,
+.min-sidebar .side .min-hide {
+  display: none;
+}
+/**为TODO定做**/
+.sidebar .side .todo-break-word {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 128px;
+  _width: 122px;
+  display: inline-block;
+}
+.min-sidebar .side .show-span{
+  width: 26px;
+}
+
+.min-sidebar .side .side-menu li img {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.sidebar .app-nav {
+  padding-left: 0px;
+  padding-right: 0px;
+}

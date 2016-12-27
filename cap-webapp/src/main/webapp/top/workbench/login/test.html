@@ -1,0 +1,78 @@
+<!-- 
+<%@ page language="java" pageEncoding="GBK"%>
+
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <title>login</title>
+
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<script type="text/javascript" src="js/RSA.js"></script>
+<script type="text/javascript" src="js/BigInt.js"></script>
+<script type="text/javascript" src="js/Barrett.js"></script>
+<script type="text/javascript">
+function rsalogin()
+{
+   
+   bodyRSA();
+   var result = encryptedString(key, document.getElementById("pwd").value);
+   var obj = document.getElementById("t1");
+   obj.innerHTML="<span style='color:red'>"+result+"</span>"
+   alert(result);
+   //alert(result);
+   loginForm.action="login.do?result="+result;
+   loginForm.submit();
+}
+var key ;
+function bodyRSA()
+{
+	setMaxDigits(130);
+  	key = new RSAKeyPair("10001","","b714c2f131d3d4ec8f95b9f2e223fbaf"); 
+  	var obj = document.getElementById("t1");
+  	obj.innerHTML="<span style='color:red'>"+key+"</span>"
+  	alert("key="+key);
+}
+
+</script>
+  </head>
+  
+  <body >
+    <form action="login" method="post">
+      <table border="0">
+        <tr>
+          <td>Login:</td>
+          <td>
+              <input type="text" name="username" />
+          </td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td>
+  <!--
+          <html:password property="password" styleId="pwd"/>
+  -->
+              <input type="password" name="password" id="pwd"/>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center"><input type="button" value="SUBMIT" onclick="rsalogin();"/></td>
+        </tr>
+        <div id="t1"></div>
+      </table>
+    </form>
+  </body>
+<html>

@@ -1,0 +1,144 @@
+
+.message-container {
+  min-height: 600px;
+  background-color: #fff;
+  font-size: 14px;
+  border:1px solid #a3bdd0;
+}
+.message-container .more-btn {
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #cccccc;
+  color: #0088cc;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  width: 150px;
+  margin: 10px auto;
+}
+.message-container .no-more {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.message-container .message-header {
+  background-color: #fff;
+  padding-left: 32px;
+  font-weight: bold;
+  position: relative;
+  top: 0px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.message-container .message-header .month {
+  display:inline-block;
+  vertical-align: middle;
+  text-align: center;
+  width:91px;
+  height:39px;
+  line-height: 30px;
+  background: url(../img/month-bg.png) center center no-repeat;
+  color:#fff;
+}
+.message-container .message-header-flow {
+  position: fixed;
+  left: 11px;
+  right: 11px;
+  top: 0px;
+  _position: absolute;
+  _width: expression((document.body.clientWidth || document.documentElement.clientWidth ) - 42);
+  _top: expression(eval(document.documentElement.scrollTop));
+}
+.message-container .message-header table{
+    display:none;
+}
+.message-container .message-header:first-child,
+.message-container .message-header-flow{
+    background-color:#bcd3ea;
+    height: 46px;
+    line-height: 46px;
+}
+.message-container .message-header:first-child table,
+.message-container .message-header-flow table{
+    display:table;
+    *display:inline-block;
+}
+.message-container .message-header:first-child .month,
+.message-container .message-header-flow .month{
+    margin-top:7px;
+}
+.message-container .message-body {
+  position: relative;
+  z-index: 999;
+}
+.message-container .message-body .time-point {
+  background: url(../img/date-point.png) no-repeat right;
+  padding-right: 15px;
+  color: #000;
+  font-weight: bold;
+  text-align: right;
+  width: 61px;
+  position: absolute;
+  top: 17px;
+  left: 8px;
+  _left: -68px;
+}
+.message-container .message-body .time-point-flow {
+  background: url(../img/date-point.png) no-repeat right;
+  position: fixed;
+  top: 63px;
+  left: 18px;
+  _position: absolute;
+  _left: -68px;
+  _top: expression(eval(document.documentElement.scrollTop));
+}
+.message-container .message-body .message-list {
+  margin-left: 76px;
+  border-left: 2px solid #4d82b8;
+  padding: 10px 8px 30px 8px;
+}
+.message-container .message-body .message-table {
+  width: 100%;
+  border-spacing: 0px;
+}
+.message-container .message-body .message-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.button_read{
+	display:none;
+}
+.message-container .message-body .message-table .trhover .button_read{
+	display:block;
+}
+.message-container .message-body .message-table td {
+  font-size: 14px;
+  height: 36px;
+}
+.message-container .message-body .message-new {
+  background: url(../img/new.png) no-repeat right top;
+  width: 24px;
+  height: 10px;
+  position: relative;
+  top: 0px;
+  display: inline-block;
+}
+.set-read{
+	cursor: pointer;
+	display: table-cell;
+	font-family: 'Microsoft YaHei', sans-serif;
+	font-size: 12px;
+	height: 26px;
+	line-height: 26px;
+	vertical-align: middle;
+	width: 72px;
+	zoom: 1;
+}
+.message-container table{
+    width:100%;
+    border-collapse: collapse;
+}
+.message-container table th,.message-container table td{
+    padding:0;
+}
