@@ -1,0 +1,100 @@
+*** Settings ***
+Library           RequestsLibrary
+Library           Collections
+Library           XML
+Library           ComtopLibrary.py
+
+*** Keywords ***
+创建Session
+    [Arguments]    ${url}
+    [Documentation]    说明：
+    ...    Create Session
+    ...    ${url}: 输入请求的地址
+    ${content-type}    Create Dictionary    Content-Type=application/x-www-form-urlencoded
+    Create Session    api    ${url}    ${content-type}
+
+创建数据
+    [Arguments]    ${requestData}
+    [Documentation]    说明：
+    ...    Create Request Data
+    ...    ${request-data}: 输入请求的数据
+    ${data}    Create Dictionary    RequestData=${requestData}
+    Set Test Variable    ${request-data}    ${data}
+
+登录CAP
+    [Arguments]    ${account}    ${password}
+    [Documentation]    说明：
+    ...    Login CAP
+    ...    ${account}: 输入登录用户名
+    ...    ${password}: 输入登录密码
+    ${loginData}    Create Dictionary    account=${account}    password=${password}
+    ${resp}    Post Request    api    /CapLogin.ac    data=${loginData}
+    Should Be Equal As Strings    ${resp.status_code}    200
+
+登录TOP
+    [Arguments]    ${account}    ${password}
+    [Documentation]    说明：
+    ...    Login CAP
+    ...    ${account}: 输入登录用户名
+    ...    ${password}: 输入登录密码
+    ${encrypt }    top encrypt    ${password}
+    ${loginData}    Create Dictionary    account=${account}    password=${encrypt }
+    ${resp}    Post Request    api    /login.ac    data=${loginData}
+    Should Be Equal As Strings    ${resp.status_code}    200
+
+发送请求
+    [Documentation]    说明：
+    ...    Send Request
+    ${temp}    Post Request    api    testCase.invoke    data=${request-data}
+    ${content}    decode    ${temp.content}    utf-8
+    ${response-data}    To Json    ${content}
+    Set Test Variable    ${response}    ${response-data}
+
+验证响应数据
+    [Documentation]    说明：返回值变量名称为data
+    ...    Validate Response
+    ${type}    Get From Dictionary    ${response}    type
+    ${data}    Get From Dictionary    ${response}    data
+    Should Be Equal As Strings    ${type}    SUCCESS
+    Set Test Variable    ${data}    ${data}
+
+获取List中的一个数据
+    [Arguments]    ${list}
+    [Documentation]    说明：
+    ...    Get From List
+    ...    ${list}: 输入需要获取数据的List
+    Should Not Be Empty    ${list}
+    ${data}    Get From List    ${list}    0
+    Set Test Variable    ${data}    ${data}
+
+获取对象中的属性值
+    [Arguments]    ${data}    ${property}
+    [Documentation]    说明：
+    ...    Get From Object
+    ...    ${data}: 输入需要获取数据对象
+    ...    ${property}: 输入需要获取数据的属性名称
+    ${value}    Get From Dictionary    ${data}    ${property}
+    Set Test Variable    ${value}    ${value}
+
+两个字符是否相等
+    [Arguments]    ${str1}    ${str2}
+    [Documentation]    说明：
+    ...    Should Be Equal As Strings
+    ...    ${str1}:比较的第一个字符
+    ...    ${str2}: 比较的第二个字符
+    Should Be Equal As Strings    ${str1}    ${str2}
+
+数据是否不为空
+    [Arguments]    ${data}
+    [Documentation]    说明：
+    ...    Should Not Be Empty
+    ...    ${data}:判断的数据
+    Should Not Be Empty    ${data}
+
+两个对象是否相等
+    [Arguments]    ${obj1}    ${obj2}
+    [Documentation]    说明：
+    ...    Should Be Equal
+    ...    ${obj1}:比较的第一个字符
+    ...    ${obj2}: 比较的第二个字符
+    Should Be Equal    ${obj1}    ${obj2}

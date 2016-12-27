@@ -1,0 +1,144 @@
+*** Settings ***
+Resource          element.txt
+Library           ComtopLibrary.py
+
+*** Keywords ***
+打开浏览器
+    [Arguments]    ${url}    ${browser}
+    [Documentation]    说明：
+    ...    open_browser
+    ...    ${url}：登录地址
+    ...    ${browser}：浏览器类型
+    Open Browser    ${url}    ${browser}
+    Maximize Browser Window
+    暂停
+
+选择窗口
+    [Arguments]    ${locator}
+    [Documentation]    说明：
+    ...    Select Window
+    ...    ${locator}:窗口定位
+    Select Window    ${locator}
+    暂停
+
+获取页面标题
+    [Documentation]    说明:
+    ...    Get Title
+    Get Title
+    暂停
+
+关闭窗口
+    [Documentation]    说明:
+    ...    Close Window
+    Close Window
+    暂停
+
+关闭浏览器
+    [Documentation]    说明:
+    ...    Close Browser
+    Close Browser
+
+关闭所有浏览器
+    [Documentation]    说明:
+    ...    Close All Browsers
+    Close All Browsers
+
+选择框架
+    [Arguments]    ${locator}
+    [Documentation]    说明:
+    ...    Select Frame
+    ...    ${locator}:框架定位
+    Select Frame    ${locator}
+    暂停
+
+退出框架
+    [Documentation]    说明:
+    ...    Unselect Frame
+    Unselect Frame
+    暂停
+
+浏览器窗口最大化
+    [Documentation]    说明:
+    ...    Maximize Browser Window
+    Maximize Browser Window
+
+页面不包含内容
+    [Arguments]    ${text}
+    [Documentation]    说明:
+    ...    Page Should Not Contain
+    ...    ${text}:校验内容
+    Page Should Not Contain    ${text}
+
+页面不包含元素
+    [Arguments]    ${locator}
+    [Documentation]    说明:
+    ...    Page Should Not Contain Element
+    ...    ${locator}:元素定位
+    Page Should Not Contain Element    ${locator}
+
+页面包含元素
+    [Arguments]    ${locator}
+    [Documentation]    说明:
+    ...    Page Should Contain Element
+    ...    ${locator}:元素定位
+    Page Should Contain Element    ${locator}
+
+等待元素出现在当前页面
+    [Arguments]    ${locator}    ${timeout}=30
+    [Documentation]    说明:
+    ...    Wait Until Page Contains Element
+    ...    ${locator}:元素定位
+    ...    ${timeout}:超时时间
+    Wait Until Page Contains Element    ${locator}    ${timeout}    元素不能正常显示
+
+等待内容出现在当前页面
+    [Arguments]    ${text}    ${timeout}=60
+    [Documentation]    说明:
+    ...    Wait Until Page Contains
+    ...    ${text}:内容值
+    ...    ${timeout}:超时时间
+    Wait Until Page Contains    ${text}    ${timeout}    页面内容不能正常显示
+
+等待元素显示
+    [Arguments]    ${locator}    ${timeout}=60
+    [Documentation]    说明:
+    ...    Wait Until Element Is Visible
+    ...    ${locator}:元素定位
+    ...    ${timeout}:超时时间
+    Wait Until Element Is Visible    ${locator}    ${timeout}    元素不能正常显示
+
+获取单元格内容
+    [Arguments]    ${table_locator}    ${row}    ${column}
+    [Documentation]    说明:
+    ...    Get Table Cell
+    ...    ${table_locator}:表定位
+    ...    ${row}:行定位
+    ...    ${column}:列定位
+    ${content}    Get Table Cell    ${table_locator}    ${row}    ${column}
+    暂停
+    [Return]    ${content}
+
+验证单元格内容
+    [Arguments]    ${table_locator}    ${row}    ${column}    ${expected}
+    [Documentation]    说明:
+    ...    Table Cell Should Contain
+    ...    ${table_locator}:表定位
+    ...    ${row}:行定位
+    ...    ${column}:列定位
+    ...    ${expected}:期望值
+    Table Cell Should Contain    ${table_locator}    ${row}    ${column}    ${expected}
+    暂停
+
+页面包含内容
+    [Arguments]    ${text}
+    [Documentation]    说明:
+    ...    Page Should Contain
+    ...    ${text}:校验内容
+    page should contain    ${text}
+
+当前框架包含内容
+    [Arguments]    ${text}
+    [Documentation]    说明:
+    ...    Current Frame Contains
+    ...    ${text}:校验的文本内容
+    Current Frame Contains    ${text}

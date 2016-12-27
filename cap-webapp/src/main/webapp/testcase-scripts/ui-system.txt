@@ -1,0 +1,358 @@
+*** Settings ***
+Resource          element.txt
+Resource          page.txt
+Library           ComtopLibrary.py
+
+*** Keywords ***
+登录系统
+    [Arguments]    ${url}    ${browser}    ${userName}    ${password}
+    [Documentation]    说明：
+    ...    Login
+    ...    ${url}:登录地址
+    ...    ${browser}:浏览器类型
+    ...    ${userName}:用户名
+    ...    ${password}:登录密码
+    打开浏览器    ${url}    ${browser}
+    浏览器窗口最大化
+    暂停
+    输入文本    id=userName    ${userName}
+    输入文本    id=passWord    ${password}
+    点击元素    id=loginBtn
+
+进入系统应用
+    [Arguments]    ${appName}    ${appCode}    ${locator}=应用
+    [Documentation]    说明：
+    ...    Enter APP
+    ...    ${locator}:应用管理菜单定位
+    ...    ${appName}:应用名称
+    ...    ${appCode}:应用编码
+    点击链接    ${locator}
+    输入文本    id=app-name    ${appName}
+    按键    id=app-name    \\13    #按Enter键查询
+    点击链接    xpath=//a[@data-url='/top/workbench/app.ac?appCode=${appCode}']
+
+树节点定位
+    [Arguments]    ${linkName}
+    [Documentation]    说明：
+    ...    Click Tree
+    ...    ${linkName}:链接名称
+    点击链接    ${linkName}    #直接输入名称即可
+    暂停
+
+CUI按钮点击
+    [Arguments]    ${id}
+    [Documentation]    说明：
+    ...    Click Cui Button
+    ...    ${id}:按钮id
+    Click Cui Button    ${id}
+
+CUI文本输入
+    [Arguments]    ${id}    ${text}
+    [Documentation]    说明：
+    ...    Cui Input Text
+    ...    ${id}:文本框id
+    ...    ${text}:输入内容
+    Cui Input Text    ${id}    ${text}
+
+退出系统
+    [Arguments]    ${locator}=登出
+    [Documentation]    说明:
+    ...    Logout
+    ...    ${locator}:登出按钮定位
+    点击链接    ${locator}
+
+关浏览器并杀进程
+    [Documentation]    说明:
+    ...    Close All Browser And Kill Driver
+    关闭所有浏览器
+    杀driver进程
+
+重新登录
+    [Arguments]    ${url}    ${browser}    ${userName}    ${password}
+    [Documentation]    说明：
+    ...    Relogin
+    ...    ${url}:登录地址
+    ...    ${browser}:浏览器类型
+    ...    ${userName}:用户名
+    ...    ${password}:登录密码
+    退出系统
+    关闭浏览器
+    登录系统    ${url}    ${browser}    ${userName}    ${password}
+
+快速查询
+    [Arguments]    ${locator}    ${keyword}
+    [Documentation]    说明：
+    ...    Fast Query
+    ...    ${locator}:查询输入框
+    ...    ${keyword}:查询关键字
+    输入文本    ${locator}    ${keyword}
+    按键    ${locator}    \\13
+
+单选框设值
+    [Arguments]    ${id}    ${index}=1
+    [Documentation]    说明：
+    ...    Select Radio
+    ...    ${id}:控件id
+    ...    ${index}:选项索引
+    Select Radio    ${id}    ${index}
+
+复选框设值
+    [Arguments]    ${id}    ${indexes}=[1]
+    [Documentation]    说明：
+    ...    Select Checkbox
+    ...    ${id}:控件id
+    ...    ${indexes}:选项索引
+    Select Checkbox    ${id}    ${indexes}
+
+人员单选设值
+    [Arguments]    ${id}    ${clear}=False
+    [Documentation]    说明：
+    ...    Choose Single User
+    ...    ${id}:控件id
+    ...    ${clear}:是否清除以前的选项
+    Choose Single User    ${id}    ${clear}
+
+人员多选设值
+    [Arguments]    ${id}    ${num}=3    ${clear}=False
+    [Documentation]    说明：
+    ...    Choose Multi User
+    ...    ${id}:控件id
+    ...    ${num}:选择的人员数量
+    ...    ${clear}:是否清除以前的选项
+    Choose Multi User    ${id}    ${num}    ${clear}
+
+组织单选设值
+    [Arguments]    ${id}    ${clear}=False
+    [Documentation]    说明：
+    ...    Choose Single Org
+    ...    ${id}:控件id
+    ...    ${clear}:是否清除以前的选项
+    Choose Single Org    ${id}    ${clear}
+
+组织多选设值
+    [Arguments]    ${id}    ${num}=3    ${clear}=Flase
+    [Documentation]    说明：
+    ...    Choose Multi Org
+    ...    ${id}:控件id
+    ...    ${num}:选择的组织数量
+    ...    ${clear}:是否清除以前的选项
+    Choose Multi Org    ${id}    ${num}    ${clear}
+
+下拉框单选设值
+    [Arguments]    ${id}    ${index}=1
+    [Documentation]    说明：
+    ...    Pulldown Single Select
+    ...    ${id}:控件id
+    ...    ${index}:选项索引
+    Pulldown Single Select    ${id}    ${index}
+
+下拉框多选设值
+    [Arguments]    ${id}    ${indexes}=[1]
+    [Documentation]    说明：
+    ...    Pulldown Multi Select
+    ...    ${id}:控件id
+    ...    ${indexes}:选项索引
+    Pulldown Multi Select    ${id}    ${indexes}
+
+日期组件设值
+    [Arguments]    ${id}
+    [Documentation]    说明：
+    ...    Calender Set Date
+    ...    ${id}:日期组件的id
+    Calender Select    ${id}
+
+eGrid单选框设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${rIndex}=1
+    [Documentation]    说明：
+    ...    Select Editgrid Radio
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${rIndex}:选项索引
+    Select Editgrid Radio    ${tableId}    ${rowIndex}    ${colIndex}    ${rIndex}
+
+eGrid复选框设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${rIndexes}=[1]
+    [Documentation]    说明：
+    ...    Select Editgrid Checkbox
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${rIndexes}:选项索引
+    Select Editgrid Checkbox    ${tableId}    ${rowIndex}    ${colIndex}    ${rIndexes}
+
+eGrid人员单选设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${clear}=False
+    [Documentation]    说明：
+    ...    Choose Editgrid User Single
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${clear}:是否清除以前的选项
+    Choose Editgrid User Single    ${tableId}    ${rowIndex}    ${colIndex}    ${clear}
+
+eGrid人员多选设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${num}    ${clear}=False
+    [Documentation]    说明：
+    ...    Choose Editgrid User Multi
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${num}:多选时选择的数量
+    ...    ${clear}:是否清除以前的选项
+    Choose Editgrid User Multi    ${tableId}    ${rowIndex}    ${colIndex}    ${num}    ${clear}
+
+eGrid组织单选设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${clear}=False
+    [Documentation]    说明：
+    ...    Choose Editgrid Org Single
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${clear}:是否清除以前的选项
+    Choose Editgrid Org Single    ${tableId}    ${rowIndex}    ${colIndex}    ${clear}
+
+eGrid组织多选设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${num}    ${clear}=False
+    [Documentation]    说明：
+    ...    Choose Editgrid Org Multi
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${num}:多选时选择的数量
+    ...    ${clear}:是否清除以前的选项
+    Choose Editgrid Org Multi    ${tableId}    ${rowIndex}    ${colIndex}    ${num}    ${clear}
+
+eGrid下拉框单选设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${rIndex}=1
+    [Documentation]    说明：
+    ...    Select Editgrid Pulldown Single
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${rIndex}:选项索引
+    Select Editgrid Pulldown Single    ${tableId}    ${rowIndex}    ${colIndex}    ${rIndex}
+    [Teardown]
+
+eGrid下拉框多选设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${rIndexes}=[1]
+    [Documentation]    说明：
+    ...    Select Editgrid Pulldown Multi
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${rIndexes}:选项索引
+    Select Editgrid Pulldown Multi    ${tableId}    ${rowIndex}    ${colIndex}    ${rIndexes}
+
+eGrid输入文本
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${text}
+    [Documentation]    说明:
+    ...    Input Editgrid Text
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${text}:需要输入的文本
+    Input Editgrid Text    ${tableId}    ${rowIndex}    ${colIndex}    ${text}
+
+eGrid文本域设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${text}
+    [Documentation]    说明:
+    ...    Input Editgrid Textarea
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${text}:需要输入的文本
+    Input Editgrid Textarea    ${tableId}    ${rowIndex}    ${colIndex}    ${text}
+
+eGrid日期组件设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}
+    [Documentation]    说明:
+    ...    Select Editgrid Calender
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    Select Editgrid Calender    ${tableId}    ${rowIndex}    ${colIndex}
+
+eGrid单元格设值
+    [Arguments]    ${locator}    ${JScode}
+    [Documentation]    说明：
+    ...    Editgrid Cell Set Value
+    ...    ${locator}:单元格定位
+    ...    ${JScode}:JS代码
+    点击元素    ${locator}
+    执行JavaScript    ${JScode}
+
+选择行
+    [Arguments]    ${tableId}    ${rIndexes}=[0]
+    [Documentation]    说明：
+    ...    Grid Select Row
+    ...    ${tableId}:表格定位
+    ...    ${rIndexes}:选项索引
+    执行JavaScript    cui('#${tableId}').selectRowsByIndex(${rIndexes},true)
+
+获取列表记录数
+    [Arguments]    ${tableId}    ${returnValue}=""
+    [Documentation]    说明：
+    ...    Get Grid Totalnum
+    ...    ${tableId}:表ID
+    ...    ${returnValue}:返回的列表记录数
+    ${totalItems}    获取文本    ${tableId}    #xpath=//*[@id="tdid-656892663310282 "]/div/div[3]/div[1]/span[1]
+    ${length}    运算表达式    len('${totalItems}'.decode('utf-8'))
+    ${returnValue}    设置变量值    ${totalItems[0:${length}-6]}
+    [Return]    ${returnValue}
+
+点击列表链接
+    [Arguments]    ${tableId}    ${row}=1    ${col}=2
+    [Documentation]    说明：
+    ...    Click Grid Link
+    点击元素    xpath=//*[@id="${tableId}"]/tbody/tr[${row}]/td[${col}]/a
+
+CUI选择TAB页
+    [Arguments]    ${id}    ${index}
+    [Documentation]    说明：
+    ...    CUI Select TAB
+    ...    ${id}:TAB组件id
+    ...    ${index}：选项索引
+    点击元素    xpath=//div[@id='${id}']/div/div/ul/li[${index}]
+    选择框架    xpath=//div[@id='${id}']/div/div[2]/iframe[${index}]
+
+CUI下拉框设值
+    [Arguments]    ${id}    ${num}=1
+    [Documentation]    说明：
+    ...    CUI Pulldown Select
+    ...    ${id}:下拉框id
+    ...    ${num}:多选时选择的数量
+    点击元素    xpath=//span[@id='${id}']/div/input
+    : FOR    ${i}    IN RANGE    ${num}
+    \    按键    xpath=//span[@id='${id}']/div/input    \ue015
+    \    按键    xpath=//span[@id='${id}']/div/input    \ue007
+
+eGridCUI下拉框设值
+    [Arguments]    ${tableId}    ${rowIndex}    ${colIndex}    ${num}=1
+    [Documentation]    说明：
+    ...    eGrid CUI Pulldown Select
+    ...    ${tableId}:表格定位
+    ...    ${rowIndex}:行索引
+    ...    ${colIndex}:列索引
+    ...    ${num}:多选时选择的数量
+    点击元素    xpath=//table[@id='${tableId}']/tbody/tr[${rowIndex}]/td[${colIndex}]
+    暂停    2
+    点击元素    xpath=//table[@id='${tableId}']/tbody/tr[${rowIndex}]/td[${colIndex}]/div/div/input
+    : FOR    ${i}    IN RANGE    ${num}
+    \    按键    xpath=//table[@id='${tableId}']/tbody/tr[${rowIndex}]/td[${colIndex}]/div/div/input    \ue015
+    \    按键    xpath=//table[@id='${tableId}']/tbody/tr[${rowIndex}]/td[${colIndex}]/div/div/input    \ue007
+
+定义JavaScript报错缓存
+    [Documentation]    说明：
+    ...    Defined Javascript Error Cache
+    Defined Javascript Error Cache
+
+检测是否存在Javascript报错
+    [Documentation]    说明：
+    ...    Check Javascript Error
+    Check Javascript Error
+
+清理JavaScript报错信息
+    [Documentation]    说明：
+    ...    Clean Javascript Error
+    Clean Javascript Error

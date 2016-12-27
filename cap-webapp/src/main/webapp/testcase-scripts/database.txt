@@ -1,0 +1,47 @@
+*** Settings ***
+Library           DatabaseLibrary
+
+*** Keywords ***
+连接Oracle数据库
+    [Arguments]    ${databaseInf}
+    [Documentation]    说明:
+    ...    Connect To Database using custom params
+    ...    ${databaseInf}:数据库信息
+    Connect To Database using custom params    cx_Oracle    ${databaseInf}    #'lcam_pub_cs','lcam_pub_cs1','10.10.50.13'
+
+查询数据
+    [Arguments]    ${sql}
+    [Documentation]    说明:
+    ...    Query Data
+    ...    ${sql}:sql脚本
+    @{data}    query    ${sql}
+    [Return]    @{data}
+
+转换中文
+    [Arguments]    ${data}
+    [Documentation]    说明:
+    ...    Decode to CN
+    ...    ${data}:数据库查询出的数据
+    ${outData}    decode    ${data}    UTF8
+    [Return]    ${outData}
+
+执行SQL String
+    [Arguments]    ${sql}
+    [Documentation]    说明:
+    ...    Execute Sql String
+    ...    ${sql}:sql脚本
+    Execute Sql String    ${sql}
+
+确认数据存在于数据库中
+    [Arguments]    ${sql}
+    [Documentation]    说明:
+    ...    Check If Exists In Database
+    ...    ${sql}:sql脚本
+    Check If Exists In Database    ${sql}
+
+确认数据不存在于数据库中
+    [Arguments]    ${sql}
+    [Documentation]    说明:
+    ...    Check If Not Exists In Database
+    ...    ${sql}:sql脚本
+    Check If Not Exists In Database    ${sql}

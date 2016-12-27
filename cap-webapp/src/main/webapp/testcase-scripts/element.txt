@@ -1,0 +1,205 @@
+*** Settings ***
+Library           ComtopLibrary.py
+
+*** Keywords ***
+输入文本
+    [Arguments]    ${locator}    ${text}
+    [Documentation]    说明：
+    ...    Input Text
+    ...    ${locator}:输入框定位
+    ...    ${text}:输入内容
+    Input Text    ${locator}    ${text}
+    暂停
+
+输入密码
+    [Arguments]    ${locator}    ${text}
+    [Documentation]    说明：
+    ...    Input Password
+    ...    ${locator}:输入框定位
+    ...    ${text}:密码值
+    Input Password    ${locator}    ${text}
+    暂停
+
+点击按钮
+    [Arguments]    ${locator}
+    [Documentation]    说明：
+    ...    Click Button
+    ...    ${locator}:按钮定位
+    Click Button    ${locator}
+    暂停
+
+点击元素
+    [Arguments]    ${locator}
+    [Documentation]    说明：
+    ...    Click Element
+    ...    ${locator}:元素定位
+    Click Element    ${locator}
+    暂停
+
+点击图片
+    [Arguments]    ${locator}
+    [Documentation]    说明：
+    ...    Click Image
+    ...    ${locator}:图片定位
+    Click Image    ${locator}
+    暂停
+
+点击链接
+    [Arguments]    ${locator}
+    [Documentation]    说明：
+    ...    Click Link
+    ...    ${locator}:链接定位
+    Click Link    ${locator}
+    暂停
+
+暂停
+    [Arguments]    ${time}=1
+    [Documentation]    说明:
+    ...    Sleep
+    ...    ${time}:暂停时间
+    Sleep    ${time}
+
+获取焦点
+    [Arguments]    ${locator}
+    [Documentation]    说明:
+    ...    Focus
+    ...    ${locator}:焦点定位
+    Focus    ${locator}
+    暂停
+
+鼠标悬浮
+    [Arguments]    ${locator}
+    [Documentation]    说明:
+    ...    Mouse Over
+    ...    ${locator}:悬浮点定位
+    Mouse Over    ${locator}
+    暂停
+
+确定操作
+    [Documentation]    说明:
+    ...    Confirm Action
+    Confirm Action
+    暂停
+
+取消
+    [Documentation]    说明:
+    ...    Choose Cancel On Next Confirmation
+    Choose Cancel On Next Confirmation
+    暂停
+
+执行JavaScript
+    [Arguments]    ${code}
+    [Documentation]    说明:
+    ...    Execute JavaScript
+    ...    ${code}:JavaScript代码
+    Execute JavaScript    ${code}
+    暂停
+
+选择文件
+    [Arguments]    ${ locator}    ${filepath}
+    [Documentation]    说明:
+    ...    Choose File
+    ...    ${locator}:文件路径输入框定位
+    ...    ${filePath}:文件路径值
+    Choose File    ${ locator}    ${filepath}
+    暂停
+
+杀driver进程
+    [Arguments]    ${expression_killchromedriver}=os.system(r'taskkill /F /IM chromedriver.exe')    ${expression_killIEdriver}=os.system(r'taskkill /F /IM IEDriverServer.exe')
+    [Documentation]    说明:
+    ...    Kill Driver
+    ...    ${expression_killchromedriver}:杀chrome浏览器驱动进程表达式
+    ...    ${expression_killIEdriver}:杀IE浏览器驱动进程表达式
+    Evaluate    ${expression_killchromedriver}    os
+    Evaluate    ${expression_killIEdriver}    os
+    暂停
+
+等待元素
+    [Arguments]    ${locator}
+    [Documentation]    说明:
+    ...    Wait Until Element Is Visible
+    ...    ${locator}:元素定位
+    Wait Until Element Is Visible    ${locator}
+    暂停
+
+双击元素
+    [Arguments]    ${locator}
+    [Documentation]    说明:
+    ...    Double Click Element
+    ...    ${locator}:元素定位
+    Double Click Element    ${locator}
+    暂停
+
+获取值
+    [Arguments]    ${locator}
+    [Documentation]    说明:
+    ...    Get Value
+    ...    ${locator}:元素定位
+    ${locatorvalue}    Get Value    ${locator}
+    [Return]    ${locatorvalue}
+
+获取元素属性
+    [Arguments]    ${attribute_locator}    ${returnValue}=""
+    [Documentation]    说明:
+    ...    Get Element Attribute
+    ...    ${attribute_locator}:属性定位
+    ...    ${returnValue}:获取的元素属性值
+    ${returnValue}    Get Element Attribute    ${attribute_locator}
+    [Return]    ${returnValue}
+
+获取文本
+    [Arguments]    ${locator}    ${returnValue}=""
+    [Documentation]    说明:
+    ...    Get Text
+    ...    ${locator}:元素定位
+    ...    ${returnValue}:获取的本文内容
+    ${returnValue}    Get Text    ${locator}
+    [Return]    ${returnValue}
+
+按键
+    [Arguments]    ${locator}    ${key}
+    [Documentation]    说明:
+    ...    Press Key
+    ...    ${locator}:元素定位
+    ...    ${key}:按键值
+    Press Key    ${locator}    ${key}
+
+设置日志
+    [Arguments]    ${level}
+    [Documentation]    说明:
+    ...    Set Log Level
+    ...    ${level}:日志等级
+    Set Log Level    ${level}    #TRACE, DEBUG, INFO (default)
+
+给元素分配临时id
+    [Arguments]    ${locator}    ${myId}
+    [Documentation]    说明：
+    ...    Assign Id To Element
+    ...    ${locator}:元素定位
+    ...    ${myId}:元素临时ID
+    Assign ID to Element    ${locator}    ${myId}
+
+截取当前页面并嵌入到日志
+    [Arguments]    ${picName}
+    [Documentation]    说明:
+    ...    Capture Page Screenshot
+    ...    ${picName}:图片名称
+    Capture Page Screenshot    ${picName}
+
+设置变量值
+    [Arguments]    ${value}    ${returnValue}=""
+    [Documentation]    说明:
+    ...    set variable
+    ...    ${value}:变量值
+    ...    ${returnValue}:返回值
+    ${returnValue}    set variable    ${value}
+    [Return]    ${returnValue}
+
+运算表达式
+    [Arguments]    ${expression}    ${returnValue}=""
+    [Documentation]    说明：
+    ...    Evaluate
+    ...    ${expression}:表达式
+    ...    ${returnValue}:返回值
+    ${returnValue}    evaluate    ${expression}
+    [Return]    ${returnValue}
