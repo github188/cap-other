@@ -1,0 +1,9 @@
+/* CSS file */
+.loginbackground
+{
+    background-position: center;
+    background-blend: normal;
+    background-size: “auto”;
+	border-skin: ClassReference( "com.degrafa.skins.CSSSkin" );
+}
+
