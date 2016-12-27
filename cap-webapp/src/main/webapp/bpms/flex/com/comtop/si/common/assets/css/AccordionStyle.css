@@ -1,0 +1,9 @@
+/* CSS file */
+/** 导航容器的样式 */
+.accHeader {
+	fillColors: haloSilver, haloSilver;
+	fillAlphas: 1.0, 0.5;
+	selectedFillColors: haloSilver, haloSilver;
+	fontFamily: EmbeddedBase02;
+	fontSize: 13;
+}

@@ -1,0 +1,100 @@
+/* CSS file */
+Application
+{
+	background-image: Embed(source="../images/bg.jpg");
+    background-position: center;
+    background-blend: normal;
+    background-size: “auto”;
+	border-skin: ClassReference( "com.degrafa.skins.CSSSkin" );
+}
+
+.application
+{
+	background-image: Embed(source="../images/bg.jpg");
+	background-position: center;
+	background-blend: normal;
+	background-size: “auto”;
+	border-skin: ClassReference( "com.degrafa.skins.CSSSkin" );
+}
+
+
+.New
+{
+	menuBtnStyleName : "mdiWindowMenuBtnNew";
+	styleNameFocus: "mdiStyleNameFocusNew";
+	styleNameNoFocus: "mdiStyleNameNoFocusNew";
+}
+
+.mdiWindowMenuBtnNew{
+	upSkin:        Embed(source="../images/icono_bam.png");
+	overSkin:      Embed(source="../images/icono_bam.png");
+	downSkin:      Embed(source="../images/icono_bam.png");
+	disabledSkin:  Embed(source="../images/icono_bam.png");
+}
+
+.mdiStyleNameFocusNew
+{
+	
+   borderColor: #0099ff;
+   borderAlpha: 0.90;
+   borderThicknessLeft: 4;
+   borderThicknessTop: 0;
+   borderThicknessBottom: 4;
+   borderThicknessRight: 4;
+   roundedBottomCorners: false;
+   highlightAlphas: 0.42, 0.1;
+   headerColors: #0033ff, #00ccff;
+   backgroundColor: #f5f5f5;
+   shadowDistance: 1;
+   shadowDirection: right;
+   dropShadowColor: #333333;
+   
+   letterSpacing: 1;
+   color: #000066;
+/*titleBackgroundSkin: Embed(source="../swf/WindowsAssets.swf", symbol="headerBgDefault");*/
+}
+
+MDISubStyleMenu{
+	appMenuStyleName: "appSubStyleMenu";
+	
+	/*
+	appSubMenuStyleName: "appSubMenu";
+	appVBoxMenuStyleName: "appVBoxMenu";
+	*/
+}
+
+/** 2011-04-20 黄晓彬添加 */
+.appSubStyleMenu{
+	rollOverColor:#A5A5A5;
+	selectionColor:vE0E0E0;
+	borderThickness:2;
+	fontSize:20;
+	paddingTop:25;
+	paddingBottom:25;
+	openDuration:0;
+	borderStyle:"none";
+	color:#FFFFFF;
+	backgroundAlpha:0.0;
+	dropShadowEnabled:false;
+}
+
+.mdiStyleNameNoFocusNew
+{
+	borderColor: #0099ff;
+      borderThicknessLeft: 4;
+   borderThicknessTop: 0;
+   borderThicknessBottom: 4;
+   borderThicknessRight: 4;
+   roundedBottomCorners: false;
+   highlightAlphas: 0.42, 0.1;
+   headerColors: #0033ff, #00ccff;
+   backgroundColor: #f5f5f5;
+       shadowDistance: 1;
+   shadowDirection: right;
+   dropShadowColor: #333333;
+   
+   letterSpacing: 1;
+   color: #000066;
+/*	titleBackgroundSkin: Embed(source="../swf/WindowsAssets.swf", symbol="headerBgDefaultNoFocus");*/
+	
+}
