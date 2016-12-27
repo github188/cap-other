@@ -1,0 +1,568 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>选择页面</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../cui/themes/default/css/comtop.ui.min.css"/>
+<link rel="stylesheet" href="css/choose.css"/>
+<link rel="stylesheet" href="css/deptfavorite.css"/>
+
+<style type="text/css">
+  body,
+  html {
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+  .listbox {
+    overflow-x: auto;
+  }
+  .listbox .tr {
+    width: auto;
+  }
+  .listbox .tr .td {
+    overflow: visible;
+    text-overflow: inherit;
+    width: auto;
+  }
+  .bottom_left_a {
+    font-size: 13px;
+    margin: 5px 5px 7px;
+    *margin: 23px 5px 5px 5px;
+    float: left;
+  }
+
+</style>
+</head>
+<body>
+<div uitype="Tab" tabs="tabs" id="tab"></div>
+<div id="choose_page_box" class="choose_page_box">
+  <div class="choose_page_top">
+    <div class="choose_page_left">
+      <div class="choose_page_left_top">
+        <div class="left_top">
+          <label style="font-size: 12px;">组织结构：</label>
+          <span uitype="SinglePullDown" name="" id="orgStructure" select="0" editable="false" width="218" datasource="pullDownData" value_field="orgStructureId" label_field="orgStructureName" on_select_data="changeOrgStructure"></span> </div>
+        <div class="left_top">
+          <input type="hidden" id="queryDeptId"/>
+          <span class="query" onclick="fastQuery();"></span> <span uitype="Input" name="" id="keyword" width="285" emptytext="输入名称、全拼、简拼查询" on_keyup="fastQuery"></span>
+          <div id="searchDiv" class="search_div">
+            <div id="queryDataArea" class="queryList"></div>
+            <div id="moreData" class="more_data"> <a href="#" hidefocus="true" onclick="showMoreData();return false;">更多数据...</a> </div>
+          </div>
+        </div>
+      </div>
+      <div id="choose_page_left_bottom" class="choose_page_left_bottom main_tree">
+        <div id="div_tree" class="main_tree_box">
+          <!--TODO:-->
+          <div id="chooseModeTree"></div>
+        </div>
+        <div id="div_none" style="display: none; font-size: 12px;">没有数据</div>
+      </div>
+    </div>
+    <div class="choose_page_center" id="chooseCenterDiv">
+      <div class="center_btns"> 
+          <a class="btns_group addBtn" href="javascript:;" title="添加" onclick="addData();return false;"></a> 
+          <a class="btns_group addChildBtn" href="javascript:;" title="添加子节点" onclick="addDataChild();return false;"></a> 
+          <a class="btns_group deleteBtn" href="javascript:;" title="删除选中节点" onclick="deleteSelectedData();return false;"></a> </div>
+    </div>
+    <div id="choose_page_right" class="choose_page_right">
+      <div class="choose_page_right_top main_right_top"> 
+        <!--TODO:-->
+        <div id="selectCountDiv">已选人员：0 个</div>
+        <div id="sortDIV" class="selectedSot"> <img src="images/arrow_up.png" alt="上移" title="上移" onmouseup="arrowUp();"> <img src="images/arrow_down.png" alt="下移" title="下移" onmouseup="arrowDown();"> </div>
+      </div>
+      <div id="div_selected" class="choose_page_right_bottom"></div>
+    </div>
+  </div>
+  <div class="choose_page_bottom"> 
+    <!--TODO:--> 
+    <a id="batchImportUser" class="bottom_left_a" href="javascript:void(0);">批量导入</a> 
+    <span uitype="Button" label="确定" on_click="submit"></span> 
+    <span uitype="Button" label="清除" on_click="clearSelected"></span> 
+    <span uitype="Button" label="关闭" on_click="winClose"></span> 
+    <!--TODO:--> 
+    <span uitype="Button" id="joinFavorite" label="加入常用联系人"></span><!--on_click="joinFavorite"-->
+    <div id="favoriteSelectWin" style="display: none;">
+      <table>
+        <tr>
+          <td style="text-align: right;font-size: 12px; line-height: 20px; height:20px;">分组：</td>
+          <td><span uitype="PullDown" id="favoriteGroupSelect" mode="Single" select='0' width="150" value_field="favoriteGroupId" label_field="favoriteGroupName" datasource="[]" must_exist="false"></span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- 常用组织start //-->
+<div id="favorite" class="choose_page_box">
+  <div class="choose_page_top">
+    <div class="choose_page_left">
+      <div class="choose_page_left_top">
+        <div class="left_top">
+          <label style="font-size: 12px;">组织结构：</label>
+          <span uitype="SinglePullDown" name="" select="0" id="orgStructure_favorite" editable="false" width="218" datasource="pullDownData" value_field="orgStructureId" label_field="orgStructureName" on_select_data="changeOrgStructureFavorite"></span> </div>
+        <div class="left_top">
+          <input type="hidden" id="queryDeptIdOfFavorite"/>
+          <span class="query" onclick="fastFavoriteQuery();"></span> <span uitype="Input" name="" id="keyword_favorite" width="285" emptytext="输入名称、全拼、简拼查询" on_keyup="fastFavoriteQuery"></span>
+          <div id="searchDivOfFavorite" class="search_div">
+            <div id="queryDataAreaOfFavorite" class="queryList"></div>
+            <div id="moreDataOfFavorite" class="more_data"> <a href="#" hidefocus="true" onclick="showMoreDataOfFavorite();return false;">更多数据...</a> </div>
+          </div>
+        </div>
+      </div>
+      <div class="choose_page_left_bottom">
+        <div id="div_tree_favorite" style="position:relative;overflow: auto;height:100%;width:100%;">
+          <ul class="favoriteTree">
+            <!--TODO:-->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="choose_page_center" id="favoriteCenterDiv">
+      <div class="center_btns"> <a class="btns_group addBtn" href="javascript:;" title="添加" onclick="addData();return false;"></a> <a class="btns_group addChildBtn" href="javascript:;" title="添加分组" onclick="addGroupAll();return false;"></a> <a class="btns_group deleteBtn" href="javascript:;" title="删除选中节点" onclick="deleteSelectedData();return false;"></a> </div>
+    </div>
+    <div id="choose_page_right_favorite" class="choose_page_right">
+      <div class="choose_page_right_top main_right_top"> 
+        <!--TODO:-->
+        <div id="selectCountFavoriteDiv">已选人员：0 个</div>
+        <div id="sortFavoriteDIV" class="selectedSot"> 
+            <img src="images/arrow_up.png" alt="上移" title="上移" onmouseup="arrowUp();"> 
+            <img src="images/arrow_down.png" alt="下移" title="下移" onmouseup="arrowDown();"> 
+        </div>
+      </div>
+      <div id="div_selected_favorite" class="choose_page_right_bottom"></div>
+    </div>
+  </div>
+  <div class="choose_page_bottom"> <span uitype="Button" label="确定" on_click="submit"></span> <span uitype="Button" label="清除" on_click="clearSelected"></span> <span uitype="Button" label="关闭" on_click="winClose"></span> </div>
+</div>
+
+<script type="text/template" id="userTemplate">
+  <!---// data-->
+    <!---
+        for(var i=0;i<data.length;i++){
+    -->
+  <li name="groupLi" favoriteGourpId="+-data[i].favoriteGroupId-+">
+    <span class="favorite_floder" count="+-data[i].children.length-+" style="cursor: pointer" groupName="+-data[i].favoriteGroupName-+"  id="div_+-data[i].favoriteGroupId-+">
+      <span class="showFavoriteGroupName">
+        <span class="favoriteGroupName" id="span_favoriteGroupName_+-data[i].favoriteGroupId-+">+-data[i].favoriteGroupName-+&nbsp;</span>(<span id="span_favoriteGroup_+-data[i].favoriteGroupId-+">+-data[i].children.length-+</span>)
+        <div style="display:none">
+          <a href="#" onmousedown="updateFavoriteGroup('div_+-data[i].favoriteGroupId-+');return false;">&nbsp;修改</a>
+          <a href="#" onclick="deleteFavoriteGroup('+-data[i].favoriteGroupId-+');return false;">&nbsp;删除</a>
+        </div>
+      </span>
+       <span class="editFavoriteGroupName"></span>
+    </span>
+        <ul class="deptName">
+      <!---
+        for(var j=0;j<data[i].children.length;j++){
+          var id=data[i].children[j].objectId;
+            var name=data[i].children[j].objectName;
+          var belongDeptName=data[i].children[j].objectFullName;
+          var sex=data[i].children[j].sex;
+          var favoriteId= data[i].children[j].favoriteId;
+        -->
+      <li id="li_+-favoriteId-+" objectid="+-id-+" favoriteId="+-favoriteId-+" name="+-name-+" fullName="+-belongDeptName-+">
+        <!---
+          if(sex == 2){
+        -->
+            <img class="user_img" src="images/girl.gif" ondblclick="dbClickFavorite('li_+-favoriteId-+');"/>
+        <!---
+          }else{
+        -->
+            <img class="user_img" src="images/boy.gif" ondblclick="dbClickFavorite('li_+-favoriteId-+');"/>
+        <!---
+          }
+        -->
+        <span class="group_delete" favoriteGourpId="+-data[i].favoriteGroupId-+"></span>
+        <a href="#" class="favorite_treenode" ondblclick="dbClickFavorite('li_+-favoriteId-+');return false;" hidefocus="true" title="+-belongDeptName-+" id="a_+-id-+" userid="a_+-id-+">+-name-+</a>
+      </li>
+          <!--- }-->
+      <li id="addFavorite_li" class="addFavoriteUser">
+        <img class="addFavorite" src="images/add.gif"/>
+          <a class="addFavoriteUser" hidefocus="true"  href="javascript:void(0)">添加常用联系人</a>
+        </li>
+        </ul>
+    <!---
+       }
+    -->
+    <li id="addFavoriteGroup_li">
+        <div class="addFavoriteGroup" hidefocus="true" id="addFavoriteGroup">
+      <div onclick="addFavoriteGroup();" class="addFavoriteGroup_click" id="addFavoriteDiv"><img  class="addFavorite" src="images/add.gif"/>&nbsp;添加自定义组</div>
+      <div class="editFavoriteGroupName"><img class="addFavorite" src="images/add.gif"/>&nbsp;<span uitype="Input" maxLength="20" validate="[{'type':'required', 'rule':{'m': '分组名称必填'}},{ 'type':'custom','rule':{'against':'checkGroupName', 'm':'名称不能重复'}}]" id="groupName" name="input" width="100px"></span><a class="submit" hidefocus="true" onclick="saveGroup();return false;" href="#">&nbsp;&nbsp;确定</a>&nbsp;|&nbsp;<a class="cancel" hidefocus="true" onclick="calcelGroup();return false;" href="#">取消</a></div>
+      </div>
+      </li>
+    </li>
+</script> 
+
+<script type="text/template" id="orgTemplate">
+ <!---// data-->
+    <!---
+
+        for(var i=0;i<data.length;i++){
+    -->
+       <li name="groupLi" favoriteGourpId="+-data[i].favoriteGroupId-+">
+        <span class="favorite_floder" count="+-data[i].children.length-+" style="cursor: pointer" groupName="+-data[i].favoriteGroupName-+"  id="div_+-data[i].favoriteGroupId-+">
+      <span class="showFavoriteGroupName">
+        <span class="favoriteGroupName" id="span_favoriteGroupName_+-data[i].favoriteGroupId-+">+-data[i].favoriteGroupName-+&nbsp;</span>(<span id="span_favoriteGroup_+-data[i].favoriteGroupId-+">+-data[i].children.length-+</span>)
+        <div style="display:none"><a href="#" onmousedown="updateFavoriteGroup('div_+-data[i].favoriteGroupId-+');return false;">&nbsp;修改</a><a href="#" onclick="deleteFavoriteGroup('+-data[i].favoriteGroupId-+');return false;">&nbsp;删除</a></div>
+      </span>
+       <span class="editFavoriteGroupName"></span>
+    </span>
+        <ul class="deptName">
+       <!---for(var j=0;j<data[i].children.length;j++){
+            var id=data[i].children[j].objectId;
+        var name=data[i].children[j].objectName;
+        var showName=data[i].children[j].objectShowName;
+        var fullName = data[i].children[j].objectFullName;
+        var favoriteId = data[i].children[j].favoriteId;
+
+        if(data[i].children[j].unselectable){
+    -->
+    <li id="li_+-favoriteId-+" objectid="+-id-+" unselectable="true"  favoriteId="+-favoriteId-+" fullname="+-fullName-+" name="+-name-+">
+        <img class="dept_img" src="images/folder_close_readonly.gif"/>
+        <span class="group_delete"  favoriteGourpId="+-data[i].favoriteGroupId-+"></span>
+        <a  href="#" hidefocus="true" title="+-fullName-+" id="a_+-id-+">
+          +-showName-+
+        </a>
+       </li>
+    <!---
+      }else{
+    -->
+           <li id="li_+-favoriteId-+" objectid="+-id-+" favoriteId="+-favoriteId-+" fullname="+-fullName-+" name="+-name-+">
+        <img class="dept_img" src="images/folder_close.gif" ondblclick="dbClickFavorite('li_+-favoriteId-+');"/>
+        <span class="group_delete"  favoriteGourpId="+-data[i].favoriteGroupId-+"></span>
+        <a class="favorite_treenode" ondblclick="dbClickFavorite('li_+-favoriteId-+');return false;" href="#" hidefocus="true" title="+-fullName-+" id="a_+-id-+">
+          +-showName-+
+        </a>
+       </li>
+    <!---
+      } 
+       -->
+
+         <!--- }-->
+      <li  id="addFavorite_li" class="addFavoriteDept">
+        <img class="addFavorite" src="images/add.gif"/>         
+        <a class="addFavoriteDept" hidefocus="true"  onclick="addFavoriteDept('+-data[i].favoriteGroupId-+');return false;"  href="#">添加常用组织</a>
+        </li>
+        </ul>
+    <!---
+       }
+    -->
+    <li id="addFavoriteGroup_li">
+        <div class="addFavoriteGroup" hidefocus="true" id="addFavoriteGroup">
+      <div onclick="addFavoriteGroup();" class="addFavoriteGroup_click" id="addFavoriteDiv"><img  class="addFavorite" src="images/add.gif"/>&nbsp;添加自定义组</div>
+      <div class="editFavoriteGroupName"><img class="addFavorite" src="images/add.gif"/>&nbsp;<span uitype="Input" maxLength="20" validate="[{'type':'required', 'rule':{'m': '分组名称必填'}},{ 'type':'custom','rule':{'against':'checkGroupName', 'm':'名称不能重复'}}]" id="groupName" name="input" width="100px"></span><a class="submit" hidefocus="true" onclick="saveGroup();return false;" href="#">&nbsp;&nbsp;确定</a>&nbsp;|&nbsp;<a class="cancel" hidefocus="true" onclick="calcelGroup();return false;" href="#">取消</a></div>
+      </div>
+      </li>
+    </li>
+</script> 
+</body>
+
+<script src="../cui/js/comtop.ui.all.js"></script>
+<script src="../cui/js/overload.loadtemplate.js"></script>
+<script src="js/messenger.js"></script>
+<script src="js/deptUserCommon.src.js"></script>
+<script src="js/favoriteCommon.src.js"></script>
+<script>
+var $ = comtop.cQuery,
+    param =  function(query){
+    var reg = /([^=&\s]+)[=\s]*([^=&\s]*)/g,
+      obj = {};
+    while(reg.exec(query)){
+      obj[RegExp.$1] = RegExp.$2;
+    }
+    return obj;
+  }(location.search.substr(1)),
+  
+
+  //标签的id
+  thisId = param.id,
+  winType = param.winType || "dialog";
+  //标签
+    //cmp = getCmpObj(thisId);  
+  //选择类型
+  chooseType = param.chooseType == 'ChooseUser' ? 'user' : 'org',
+  //选择模式
+  chooseMode = param.chooseMode,
+  //用户类型
+  userType = param.userType,
+  //组织结构ID
+  orgStructureId= param.orgStructureId,
+    //根节点ID
+//    rootId = param.rootId,
+//  //初始默认组织节点ID ,返回上级用到
+//  defaultOrgId = param.defaultOrgId,
+  //展示层级
+//  showLevel = param.showLevel,
+//  //全路径显示顺序，reverse:倒序，order:正序
+//  showOrder = param.showOrder,
+    //树型结构展示到的层级
+    levelFilter = param.levelFilter || "999",
+//    //只读组织id
+//    unselectableCode = param.unselectableCode,
+    //回调函数
+    callback = param.callback,
+    //选择的数据对象集合
+    //selected = cmp.getValue()
+  selected = [],
+    //搜索结果为1个，按回车是否选中结果
+    singleChoose = param.singleChoose,
+    //点击添加子节点，是否级联选中全部下级部门，默认为false
+    childSelect = param.childSelect,
+
+    otherVo = [], //定义数组，保存外部输入的对象
+  
+  favoriteName = param.chooseType == "org" ? "常用组织" : "常用联系人",
+  
+  dataSource = param.chooseType == 'ChooseUser' ? $.parseJSON('[{"orgStructureId":"A","orgStructureName":"康拓普公司","favorite":[{"favoriteClassify":0,"favoriteGroupName":"常用联系人","children":[{"belongedOrgName":"深圳市康拓普信息技术有限公司","children":null,"favoriteGroupName":"常用联系人","favoriteId":"ECA04E7F86294584AA45E3373E8EAED3","objectFullName":"康拓普公司/超级管理员","objectId":"SuperAdmin","objectName":"超级管理员","objectShowName":"超级管理员","sex":2,"unselectable":false}]}],"tree":[{"title":"深圳市康拓普信息技术有限公司","key":"0","isFolder":true,"isLazy":true,"icon":"./images/folder_open.gif","expand":true,"hideCheckbox":true,"unselectable":true,"children":[{"title":"超级管理员","key":"SuperAdmin","icon":"./images/boy.gif","fullName":"康拓普公司/超级管理员","parentId":null},{"title":"小明","key":"xiaoming","icon":"./images/boy.gif","fullName":"康拓普公司/小明","parentId":null},{"title":"小琳","key":"xiaolin","icon":"./images/boy.gif","fullName":"康拓普公司/小琳","parentId":null},{"title":"小强","key":"xiaoqiang","icon":"./images/boy.gif","fullName":"康拓普公司/小强","parentId":null}]}]},{"orgStructureId":"B","orgStructureName":"外协单位"}]') :
+  $.parseJSON('[{"orgStructureId":"A","orgStructureName":"康拓普公司","favorite":[{"favoriteClassify":0,"favoriteGroupName":"常用联系人","children":[{"belongedOrgName":"深圳市康拓普信息技术有限公司","children":null,"favoriteGroupName":"常用联系人","favoriteId":"ECA04E7F86294584AA45E3373E8EAED3","objectFullName":"康拓普公司/超级管理员","objectId":"SuperAdmin","objectName":"超级管理员","objectShowName":"超级管理员","sex":2,"unselectable":false}]}],"tree":[{"title":"深圳市康拓普信息技术有限公司","key":"D9FF0AB7C85C48768CEDF87ABD7CBC3E","isFolder":true,"isLazy":true,"icon":"./images/folder_open.gif","expand":true,"children":[{"title":"总部","key":"7FCC9DFAEAE94B46B7908D9D603F2CDB","isFolder":true,"icon":"./images/folder_close.gif","fullName":"中国南方电网有限责任公司/总部","orgCode":"0000"},{"title":"物资部","key":"AD5D800278F6498286436D1708FBC301","isFolder":true,"icon":"./images/folder_close.gif","fullName":"中国南方电网有限责任公司/物资部","orgCode":"000020"},{"title":"生产技术部","key":"0F3FCFE1CCBD46BEAE7036F11F4BE8AE","isFolder":true,"icon":"./images/folder_close.gif","orgCode":"000001"}]}]},{"orgStructureId":"B","orgStructureName":"外协单位"}]');
+  
+  treeData = [],
+  
+  //设置tab页名称
+  tabs = [
+    {
+      title: '组织结构',
+      html: $('#choose_page_box')
+    }, {
+      title: favoriteName,
+      html: $('#favorite'),
+      tab_width: '70px'
+    }
+  ];
+    //获取标签对象
+//    function getCmpObj(id) {
+//        if (id != "") {
+//            if (winType === "window") {
+//                return window.opener.cui('#' + id);
+//            } else {
+//                return cui("#" + id);
+//            }
+//        } else {
+//            return {};
+//        }
+//    }
+
+
+function initView(){
+  createTree(chooseMode);
+  changeText(chooseType)
+}
+
+function createTree(mode){
+  var str = '<div uitype="Tree" id="tree" children="[]" select_mode="2" checkbox="true" on_activate="selectNode" on_dbl_click="dbclickNode" on_expand="onExpand" on_lazy_read="lazyData" click_folder_mode="3" min_expand_level="2"></div>';
+  
+  if(mode == 1){
+    str = '<div uitype="Tree" id="tree" children="[]" on_dbl_click="dbclickNode" on_expand="onExpand" on_lazy_read="lazyData" click_folder_mode="3" min_expand_level="2"></div>'
+  }
+  $('#chooseModeTree').html(str);
+}
+
+function changeText(type){
+    if(type === 'org'){
+      $('#selectCountDiv').html('已选人员：0 个');
+  } else {
+      $('#selectCountDiv').html('已选组织：0 个');
+    }
+}
+
+function handleStr(str){
+  str = str.replace(new RegExp("/", "gm"), "//");
+  str = str.replace(new RegExp("%", "gm"), "/%");
+  str = str.replace(new RegExp("_", "gm"), "/_");
+  str = str.replace(new RegExp("'", "gm"), "''");
+  return str;
+}
+
+//页面初始化方法
+function init() {
+
+  if (orgStructureId) {
+    cui('#orgStructure').setValue(orgStructureId);
+    cui('#orgStructure_favorite').setValue(orgStructureId);
+  }
+  if (chooseMode == 1) { //单选
+    $('#choose_page_right').hide();
+    $("#chooseCenterDiv").hide();
+    $('#choose_page_box').attr('class', 'choose_page_box_one');
+    if (chooseType == "user") {
+      $('#batchImportUser').hide();
+    }
+    $('#choose_page_right_favorite').hide();
+    $("#favoriteCenterDiv").hide();
+    cui('#favorite').attr('class', 'choose_page_box_one');
+  } else {
+    //初始化已选记录框
+    for (var i = 0; i < selected.length; ++i) {
+      //deptUserCommon.js中的函数
+      putToSelectedBox(selected[i]);
+    }
+    //初始化tab页点击事件
+    changeTab();
+    selectedClick();
+  }
+  repaint();
+  //页面加载完毕后，绑定下拉框事件，两个tab页都绑定。
+  keyboardEvent(false); //部门结构
+  keyboardEvent(true); //常用联系人
+}
+
+//切换常用组织下的组织结构
+function changeOrgStructureFavorite(obj) {
+  if (!obj) {
+    return;
+  }
+  //重新初始化外协单位数据
+  //切换组织结构的时候，查询条件清空
+  setTimeout("initFavoriteDept();cui('#keyword_favorite').setValue('');", 100);
+}
+
+//切换组织结构
+function changeOrgStructure(data) {
+  orgStructureId = data.orgStructureId;
+  
+  if (!orgStructureId) {
+    return;
+  }
+  
+  //初始化组织结构
+  //切换组织结果的时候,查询条件清空
+  //避免初始化时无法联动CUI，延迟执行
+  setTimeout("initRoot(orgStructureId);cui('#keyword').setValue('');", 100);
+}
+
+//组织结构下拉列表数据源
+function pullDownData(obj) {
+  obj.setDatasource(dataSource);
+}
+
+/***
+初始化树根节点
+@param treeRootId 树的根节点
+*/
+function initRoot() {
+  var data = null;
+  $.each( dataSource, function(i, n){ 
+     if(n.orgStructureId === orgStructureId){
+      data = n;
+     }
+  });
+
+  if (!data.tree) {
+    $('#div_none').show();
+    $('#div_tree').hide();
+  } else {
+    treeData = data.tree;
+    handleNodeData(data.tree);
+    cui('#tree').setDatasource(data.tree);
+    if (data.isLazy) {
+      cui('#tree').getNode(data.tree.key).expand();
+    }
+    $('#div_none').hide();
+    $('#div_tree').show();
+  }
+
+  if (chooseMode == 1 && selected.length > 0) {
+    //选人时传入的人员id及所属组织id 选组织时传入的组织id及undefined
+    setTimeout(function() {
+      locationInTree(selected[0].id);
+    }, 500);
+  }
+}
+
+//常用组织快速查询
+function fastFavoriteQuery(event) {
+  queryDataOfFavorite(event);
+}
+
+//快速查询
+function fastQuery(event) {
+  queryData(event);
+}
+
+/**
+ * 添加常用分组的所有组织
+ */
+function addGroupAll() {
+  var $AllLi;
+  if (globalGroupId !== "") {
+    $AllLi = $("li[name='groupLi'][favoriteGourpId='" + globalGroupId + "']").find("li[id^=li_]");
+    putSelectedFavoriteToBox($AllLi);
+  }
+}
+
+//点击确定按钮 提交
+function submit(){
+	var selectedItem = [];
+	if(chooseMode!=1){  //多选
+		var container = getSelectedBox();
+		var $SelectData = container.children("div");
+		var oneData,text;
+		for(var i=0;i<$SelectData.length;i++){
+			oneData = $SelectData.eq(i);
+			text = oneData.children("span").eq(0).text();
+			if(oneData.hasClass("block_stand_other")){
+				otherVo.push(text);
+			}else{
+				otherVo.push(null);
+				selectedItem.push(text);
+			}
+		}
+	}else{ //单选时，直接获取选择的节点
+		selectedItem = [];
+		if(getTab()) {
+			var node = cui('#tree').getActiveNode();
+			if(node){
+				selectedItem.push(node.getData().title);
+			}
+		}else{
+			//TODO:屏蔽添加常用联系人功能
+			//var selectEle = getAllSelectedFavorite();
+			//if(selectEle&&selectEle.length){
+			//	selectedItem.push(selectEle.eq(0).attr("objectid"));
+			//}
+		}
+	}
+	submitSelected(selectedItem);
+}
+
+//点击确定后，将获取到的数据写回标签对象并调用回调，关闭窗口
+function submitSelected(selectedItem){
+	 messenger.targets['parent'].send(JSON.stringify ({
+	    action:"submit",
+		id : thisId,
+		value : selectedItem.join(';')
+	 }));
+  winClose();
+}
+
+//关闭窗口
+function winClose() {
+
+  if (winType === "window") {
+    window.close();
+  } else {
+	 messenger.targets['parent'].send(JSON.stringify ({
+	    action:"winClose",
+		id : thisId,
+	 }));
+  }
+}
+$(function(){
+  messenger = new Messenger(param.id, 'chooser'),
+  messenger.listen(function (msg) {
+    var obj = JSON.parse(msg);
+    dataSource = obj.dataSource || dataSource;
+    selected = obj.selected && obj.selected.split(';') || selected; 
+    initView();
+    comtop.UI.scan();
+    init();
+  });
+
+  messenger.addTarget(window.parent || window.opener, 'parent');
+});
+
+</script>
+</html>

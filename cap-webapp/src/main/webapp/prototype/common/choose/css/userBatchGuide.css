@@ -1,0 +1,162 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    font: 12px Arial, "\5B8B\4F53", Helvetica, sans-serif;
+    color: #333333;
+    padding:0;
+    overflow:hidden;
+}
+.box {
+    width:450px;
+    border:1px solid #cdcfd4;
+    overflow: hidden;
+    border-bottom:0;
+}
+.main_top {
+    width: 100%;
+    height:55px;
+    padding:20px 5px;
+    color: #666;
+    background-color: #eceff5;
+    border-bottom: 1px solid #cdcfd4;
+}
+.left_img {
+    float: left;
+    width:46px;
+}
+.center_word {
+    width:46px;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    height:45px;
+    padding-left:5px;
+    padding-top:5px;
+    margin-left: 5px;
+}
+.right_div {
+    float: left;
+    border: 1px dashed #cdcfd4;
+    height:46px;
+    width:320px ;
+    background-color: #eee;
+    padding-left:10px;
+}
+.right_div .button {
+    height:30px;
+    width:55px;
+    border:1px solid #333;
+    float: right;
+    line-height: 30px;
+    margin:8px 5px 0 0 ;
+    padding-left:4px;
+
+}
+.download_span{
+    line-height: 45px;
+    float: left
+}
+.download_button{
+	height:25px;
+    float: right;
+    margin:10px 5 0 0 ;
+    padding:10px;
+}
+.import {
+    float: left;
+    height:46px;
+    width:320px ;
+    padding:2px 0 5px 10px;
+}
+.import .description{
+    padding-bottom:10px ;
+}
+.import_process {
+	border-top:0;
+    padding: 10px;
+    width:100%;
+    background-color: #eceff5;
+    height:15px;
+}
+.error_total {
+	overflow:auto;
+	height:130px;
+}
+.error_object {
+    border-top:1px solid #cdcfd4;
+}
+.error_description {
+    margin:5px 0 5px 10px;
+    table-layout:fixed;
+    word-break: break-all;
+    overflow:hidden;
+}
+.error_object table {
+    font: 12px Arial, "\5B8B\4F53", Helvetica, sans-serif;
+    color: #333333;
+}
+.error_object tr {
+    height:20px;
+}
+.error_object .col0{
+    width:3%;
+}
+.error_object .col1{
+    width:12%;
+    font-weight: bold;
+}
+.error_object .col2{
+    width:75%;
+}
+.error_object .col3{
+    width:10%;
+}
+.bottom {
+    height:30px;
+    height:22px\9;
+    line-height: 26px;
+    line-height: 20px\9;
+    float: right;
+    padding:3px 3px 3px 0 ;
+}
+
+.resultBody{
+	padding:0;
+}
+
+.resultBox {
+	overflow:hidden;
+    width:450px;
+    border:1px solid #cdcfd4;
+    border-top : 0;
+}
+
+#uploadIframe{
+	display:none;
+	frameborder:0;
+	border:0;
+	marginwidth:0;
+	marginheight:0;
+	width:452px;
+	height:250px;
+}
+
+.upload-input {
+	background-color: #000;
+	position: absolute;
+	display: none;
+	cursor: pointer;
+	padding: 0px;
+	border: no;
+	filter:alpha(opacity=0);
+	opacity:0;
+	display: block\9;/* 所有IE有效 */
+	width:40px\9;/* 所有IE有效 */
+	height:25px\9;/* 所有IE有效 */
+	margin-left: 185px\9;/* 所有IE有效 */
+	height:22px\9\0;/* 所有IE9和10有效 */
+	margin-left: 219px\9\0;/* 所有IE9和10有效 */
+
+}
