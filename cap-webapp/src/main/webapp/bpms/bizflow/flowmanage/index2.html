@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	    <style type="text/css">
+	        body{font-size: 12px;}
+	    </style>
+
+		<!-- 模拟的数据，定义了data对象 -->
+		<script type="text/javascript" src="../common/js/userSelect/data.js"></script>
+        <script type="text/javascript" src="../common/js/userSelect/data1.js"></script>
+		<script type="text/javascript" src="../common/js/component/jquery/jquery-1.8.2.min.js"></script>
+		
+	</head>
+	<body>
+		<h1>人员选择界面</h1>
+		<input type="button" value=" 打开选人页面 " onclick="openUserSelectPage()"/><br><br>
+
+		<table cellspacing="0" cellpadding="0" align="center" border="1" width="100%" style="font-size: 14px">
+			<tr>
+				<td align="right" width="18%">actionType: &nbsp;</td>
+				<td align="left" width="20%"><input type="text" id="actionType" name="actionType" value="specialEntry" size="36"/></td>
+				<td align="left" width="62%">&nbsp;&nbsp;操作类型(specialEntry | specialFore | specialBack | transmit)</td>
+			<tr>
+			<tr>
+				<td align="right">isOpinionDisplay: &nbsp;</td>
+				<td align="left"><input type="text" id="isOpinionDisplay" name="isOpinionDisplay" value="true" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;控制结论选择和意见输入是否显示(true | false)</td>
+			<tr>
+			<tr>
+				<td align="right">isSelectNodeUser: &nbsp;</td>
+				<td align="left"><input type="text" id="isSelectNodeUser" name="isSelectNodeUser" value="true" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;控制选人选节点部分是否显示(true | false)</td>
+			<tr>
+			<tr>
+				<td align="right">isLimitOpinionValue: &nbsp;</td>
+				<td align="left"><input type="text" id="isLimitOpinionValue" name="isLimitOpinionValue" value="true" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;控制是否回退操作时必须选择不同意(true | false)</td>
+			<tr>
+			<tr>
+				<td align="right">isOpinionRequired: &nbsp;</td>
+				<td align="left"><input type="text" id="isOpinionRequired" name="isOpinionRequired" value="false" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;控制意见框必须有值(true | false)</td>
+			<tr>
+			<tr>
+				<td align="right">isEmailColHide: &nbsp;</td>
+				<td align="left"><input type="text" id="isEmailColHide" name="isEmailColHide" value="false" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;控制邮件列隐藏(true | false)</td>
+			<tr>
+			<tr>
+				<td align="right">isSmsColHide: &nbsp;</td>
+				<td align="left"><input type="text" id="isSmsColHide" name="isSmsColHide" value="false" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;控制短信列隐藏(true | false)</td>
+			<tr>
+			<tr>
+				<td align="right">isViewSelectDept: &nbsp;</td>
+				<td align="left"><input type="text" id="isViewSelectDept" name="isViewSelectDept" value="true" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;控制是否显示部门选择框(true | false)</td>
+			<tr>
+			<tr>
+				<td align="right">sameOrgUserOrgStructureId: &nbsp;</td>
+				<td align="left"><input type="text" id="sameOrgUserOrgStructureId" name="sameOrgUserOrgStructureId" value="" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;同组用户过滤部门ID</td>
+			<tr>
+			<tr>
+				<td align="right">sameOrgUserDeptPath: &nbsp;</td>
+				<td align="left"><input type="text" id="sameOrgUserDeptPath" name="sameOrgUserDeptPath" value="" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;同组用户截取部门名称</td>
+			<tr>
+			<tr><td colspan='3'>&nbsp;</td></tr>
+			<tr>
+				<td align="right">processId: &nbsp;</td>
+				<td align="left"><input type="text" id="processId" name="processId" value="us_test_001" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;流程ID</td>
+			<tr>
+			<tr>
+				<td align="right">processVersion: &nbsp;</td>
+				<td align="left"><input type="text" id="processVersion" name="processVersion" value="3" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;流程版本</td>
+			<tr>
+			<tr>
+				<td align="right">toTaskId: &nbsp;</td>
+				<td align="left"><input type="text" id="toTaskId" name="toTaskId" value="b84865d89a2d46d5857347b2144f5efb_195" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;待办ID</td>
+			<tr>
+			<tr>
+				<td align="right">userId: &nbsp;</td>
+				<td align="left"><input type="text" id="userId" name="userId" value="SuperAdmin" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;用户ID</td>
+			<tr>
+
+			<tr><td colspan='3'>&nbsp;</td></tr>
+
+			<tr>
+				<td align="right">isNodeSingleSelect: &nbsp;</td>
+				<td align="left"><input type="text" id="isNodeSingleSelect" name="isNodeSingleSelect" value="true" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;节点单选(true | false)</td>
+			<tr>
+			<tr>
+				<td align="right">businessValidate: &nbsp;</td>
+				<td align="left"><input type="text" id="businessValidate" name="businessValidate" value="失败" size="36"/></td>
+				<td align="left">&nbsp;&nbsp;已选人员校验，若校验成功，则返回true，否则返回错误信息(true | '错误提示信息')</td>
+			<tr>
+		</table>
+		<script type="text/javascript">
+
+			function toBoolean(field) {
+				if ('true' == $('#'+field).val()) {
+					return true;
+				} else if ('false' == $('#'+field).val())  {
+					return false;
+				} else {
+					return '';
+				}
+			}
+
+			function openUserSelectPage() {
+				var actionType = $('#actionType').val(); 
+				openDialog(actionType);
+			}
+			
+			//下发、回退等操作时调用的方法，功能为打开人员选择界面
+			function openDialog(actionType) {
+				var isOpinionDisplay = toBoolean('isOpinionDisplay');    //控制结论选择和意见输入是否显示
+				var isSelectNodeUser = toBoolean('isSelectNodeUser');    //控制选人选节点部分是否显示
+				var isLimitOpinionValue = toBoolean('isLimitOpinionValue'); //控制是否回退操作时必须选择不同意
+				var isOpinionRequired = toBoolean('isOpinionRequired');  //控制意见框必须有值
+				var isEmailColHide = toBoolean('isEmailColHide');      //控制邮件列隐藏
+				var isSmsColHide = toBoolean('isSmsColHide');      //控制短信列隐藏
+				var isViewSelectDept = toBoolean('isViewSelectDept');      //是否显示部门选择框
+                var sameOrgUserOrgStructureId = $('#sameOrgUserOrgStructureId').val(); //同组用户过滤部门ID
+                var sameOrgUserDeptPath = $('#sameOrgUserDeptPath').val(); //同组用户截取部门名称
+
+				/*
+				 * isOpinionDisplay和isSelectNodeUser都为true,winHeight = 584
+				 * isSelectNodeUser为true,winHeight = 407
+				 * isOpinionDisplay为true,winHeight = 158
+				 */
+				var winWidth = 750;
+				var winHeight = (isOpinionDisplay && isSelectNodeUser) ? 620 : 
+					(isSelectNodeUser ? 510 : (isOpinionDisplay ? 158 : 0));
+				
+				var windowSrc = "UserSelect.jsp"
+						+ "?actionType=" + actionType
+						+ "&isOpinionDisplay=" + isOpinionDisplay 
+						+ "&isLimitOpinionValue=" + isLimitOpinionValue 
+						+ "&isOpinionRequired=" + isOpinionRequired
+						+ "&isSelectNodeUser=" + isSelectNodeUser 
+						+ "&isEmailColHide=" + isEmailColHide 
+						+ "&isSmsColHide=" + isSmsColHide 
+						+ "&winHeight=" + winHeight 
+                        + "&winWidth=" + winWidth
+						//+ "&isViewSelectDept=" + isViewSelectDept
+                        + "&sameOrgUserOrgStructureId=" + sameOrgUserOrgStructureId
+                        + "&sameOrgUserDeptPath=" + decToHex(sameOrgUserDeptPath);
+				
+				var iTop = (window.screen.availHeight - 30 - winHeight) / 2; // 获得窗口的垂直位置;
+				var iLeft = (window.screen.availWidth - 10 - winWidth) / 2; // 获得窗口的水平位置;
+				window.open(windowSrc,
+							"userSelectPage",
+							'height='+ winHeight +
+							',width='+ winWidth +
+							',top='+ iTop + 
+							',left='+ iLeft + 
+							',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
+	        }
+
+	        function decToHex(str) {
+	        	if('' == str || null == str) {
+	        		return '';
+	        	}
+			    var res=[];
+			    for(var i=0;i < str.length;i++)
+			        res[i]=("00"+str.charCodeAt(i).toString(16)).slice(-4);
+			    return "\\u"+res.join("\\u");
+			}
+			var processId = '';
+			function getNodeAllUsers(currSelectNodeId, version, nameKeyWord,orgId) {
+				processId = $("#processId").val();
+				var processVersion = $("#processVersion").val();
+				orgId = (orgId == undefined) ? "" : orgId;
+				version = (version == undefined) ? processVersion : version;
+				nameKeyWord = (nameKeyWord == undefined) ? "" : nameKeyWord;
+			   	return asynAjax("action=2&processId="+processId+"&orgId="+orgId+"&version="+version+"&nodeId="+currSelectNodeId+"&nameKeyWord="+nameKeyWord);
+			}
+			
+			//人员选择界面通过window.opener.getData()方法获取数据，并展示
+			function getNodeInfoList() {
+				processId = $("#processId").val();
+				var toTaskId = $("#toTaskId").val();
+				var userId = $("#userId").val();
+			    return asynAjax("action=1&processId="+processId+"&orgId=&toTaskId="+toTaskId+"&userId="+userId);
+			}
+
+			/*
+			 * 通过nodeinfolist内的节点数据信息，决定选人页面是节点单选还是多选
+			 * @param nodeinfolist 节点数组
+			 */
+			function isNodeSingleSelect(nodeinfolist) {
+				return toBoolean('isNodeSingleSelect');
+			}
+
+			/*
+			 * 校验选人页面传过来的已选节点人员信息，看已选数据是否符合业务要求，主要检查节点单选和多选
+			 * @param selectedNodeUserMap 已选节点人员信息
+			 * @return 若校验成功，则返回true，否则返回错误信息
+			 */
+			function businessValidate(selectedNodeUserMap) {
+				if ('true' == $('#businessValidate').val()) {
+					return toBoolean('businessValidate');
+				}
+				return $('#businessValidate').val();
+			}
+
+			// function getViewSelectDeptFlag(nodeInfo) {
+			// 	return false;
+			// }
+
+			function getNodeFilterDeptParam(nodeInfo) {
+				return {sameOrgUserOrgStructureId:'0', sameOrgUserDeptPath:'广东电网公司'};
+			}
+			
+		    /**
+	         * 选择人员后的回调方法
+	         * @param opinion 是否同意（1：同意, 0：不同意）
+	         * @param opinionText 意见文本
+	         * @param map 用户选择的节点和人员信息，以map结构存储
+	         */
+			function bpmsUserSelectCallback(opinion, opinionText, map, actionType) {
+				//业务系统根据返回值，处理对应的下发、回退等操作
+				alert(opinion + ', ' + opinionText + ', ' + map);
+			}
+
+			//在填写意见页面已经填了流程意见，通过这个函数这里传递给选人页面
+			function getOpinionInfo() {
+				return "\u6211\u662f\u6d41\u7a0b\u610f\u89c1\uff0c\u54c8\u54c8\u54c8\uff01";
+			}
+			
+			function asynAjax(data) {
+				var returnJson;
+				$.ajax(
+		    	  	{
+			    	    url: "servlet.jsp",
+			    	    dataType: "json",
+			    	    data: data,
+						async : false,
+			   	    	success: function(returnData){
+				   			returnJson = returnData;
+			   			}
+			    	}
+      			);
+				return returnJson;
+			}
+		</script>
+	</body>
+</html>

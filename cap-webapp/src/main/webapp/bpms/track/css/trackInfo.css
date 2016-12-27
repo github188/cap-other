@@ -1,0 +1,58 @@
+body,html{font-family:'Microsoft YaHei','Hiragino Sans GB',Helvetica,Arial,'Lucida Grande',sans-serif;}
+	.head_table {
+		width: 256px;
+		border: 1px;
+		margin: 0px;
+		border-bottom-style: 1px dashed;
+		border-bottom: 1px dashed;
+		padding-bottom: 5px;
+	}
+	.msg_table {
+		width: 256px;
+		border: 0px;
+		margin: 0px;
+		padding-top: 5px;
+		padding-bottom: 0px;
+	}
+	.ctip {
+		font-size: 12px;
+		position: absolute;
+		padding: 5px;
+		padding-top: 4.5px;
+		z-index: 9999;
+		display: none;
+	}
+	.ctip-content {
+		max-width: 260px;
+		padding: 8px;
+		text-align: left;
+		background-color: #ffffff;
+		border: 1px solid #4585e5;
+		color: #333;
+		box-shadow: 0 0 3px rgba(0,0,0,.1);
+	}
+	.tip-arrow-bg {
+		color: #ffffff;
+		/**background: url('images/arrow.png') no-repeat;**/
+		background-image: url('images/arrow.png') no-repeat;
+	}
+	
+	.tip-arrow-border {
+		color: #4585e5;
+	}
+	/**
+	.ctip-content {
+		max-width: 150px;
+		padding: 8px;
+		text-align: left;
+		background-color: #fff9d4;
+		border: 1px solid #e6b803;
+		color: #333;
+		box-shadow: 0 0 3px rgba(0,0,0,.1);
+	}**/
+	element.style {
+		max-width: 260px;
+	}
+	.process_message {color:#0077ff; font-size: 12px;}
+	.node_name {color:#666666; font-size: 12px;}
+	.message {font-size: 12px;overflow:hidden;overflow-x:hidden;text-overflow:ellipsis;}

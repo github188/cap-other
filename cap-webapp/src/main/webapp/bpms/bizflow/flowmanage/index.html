@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+	    <style type="text/css">
+	        body{font-size: 12px;}
+	    </style>
+
+		<!-- 模拟的数据，定义了data对象 -->
+		<script type="text/javascript" src="../common/js/userSelect/data.js"></script>
+        <script type="text/javascript" src="../common/js/userSelect/data1.js"></script>
+		<script type="text/javascript" src="../common/js/component/jquery/jquery-1.8.2.min.js"></script>
+		
+	</head>
+	<body>
+		<h1>人员选择界面</h1>
+		<input type="button" value=" 下 发 " onclick="openDialog('defaultBack')"/>
+
+		<script type="text/javascript">
+			
+			//下发、回退等操作时调用的方法，功能为打开人员选择界面
+			function openDialog(actionType) {
+				var isOpinionDisplay = true;    //控制结论选择和意见输入是否显示
+				var isSelectNodeUser = true;    //控制选人选节点部分是否显示
+				var isLimitOpinionValue = true; //控制是否回退操作时必须选择不同意
+				var isOpinionRequired = false;  //控制意见框必须有值
+				var isSingleSelect = false;      //控制是单选还是多选
+				var isEmailColHide = false;      //控制邮件列隐藏
+				var isSmsColHide = false;      //控制邮件列隐藏
+				var isViewSelectDept = true;      //显示部门选择框
+                var sameOrgUserOrgStructureId = '';      //显示部门选择框
+                var sameOrgUserDeptPath = '';      //显示部门选择框
+
+				/*
+				 * isOpinionDisplay和isSelectNodeUser都为true,winHeight = 584
+				 * isSelectNodeUser为true,winHeight = 407
+				 * isOpinionDisplay为true,winHeight = 158
+				 */
+				var winWidth = 750;
+				var winHeight = (isOpinionDisplay && isSelectNodeUser) ? 620 : 
+					(isSelectNodeUser ? 510 : (isOpinionDisplay ? 158 : 0));
+				
+				var windowSrc = "UserSelect.jsp"
+						+ "?actionType=" + actionType
+						+ "&isOpinionDisplay=" + isOpinionDisplay 
+						+ "&isLimitOpinionValue=" + isLimitOpinionValue 
+						+ "&isOpinionRequired=" + isOpinionRequired
+						+ "&isSingleSelect=" + isSingleSelect
+						+ "&isSelectNodeUser=" + isSelectNodeUser 
+						+ "&isEmailColHide=" + isEmailColHide 
+						+ "&isSmsColHide=" + isSmsColHide 
+						+ "&winHeight=" + winHeight 
+						+ "&isViewSelectDept=" + isViewSelectDept
+                        + "&sameOrgUserDeptPath=" + decToHex(sameOrgUserDeptPath)
+                        + "&sameOrgUserOrgStructureId=" + sameOrgUserOrgStructureId
+                        + "&winWidth=" + winWidth;
+				
+				var iTop = (window.screen.availHeight - 30 - winHeight) / 2; // 获得窗口的垂直位置;
+				var iLeft = (window.screen.availWidth - 10 - winWidth) / 2; // 获得窗口的水平位置;
+				window.open(windowSrc,
+							"userSelectPage",
+							'height='+ winHeight +
+							',width='+ winWidth +
+							',top='+ iTop + 
+							',left='+ iLeft + 
+							',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
+	        }
+
+	        function decToHex(str) {
+	        	if('' == str || null == str) {
+	        		return '';
+	        	}
+			    var res=[];
+			    for(var i=0;i < str.length;i++)
+			        res[i]=("00"+str.charCodeAt(i).toString(16)).slice(-4);
+			    return "\\u"+res.join("\\u");
+			}
+			
+			//人员选择界面通过window.opener.getData()方法获取数据，并展示
+			function getNodeInfoList() {
+			    return data;
+			}
+
+			function getNodeAllUsers(currSelectNodeId, version, nameKeyWord,orgId) {
+				orgId = ('' == orgId || 'null' == orgId || null == orgId || undefined == orgId) ? "" : orgId;
+				nameKeyWord = ('' == nameKeyWord || 'null' == nameKeyWord || null == nameKeyWord || undefined == nameKeyWord) ? "" : nameKeyWord;
+	
+				var nodes = getNodeInfoList();
+				var returnUsers = [];
+				if (nodes) {
+					for (var m = 0; m < nodes.length; m++) {
+						var node = nodes[m];
+						if (node.nodeId == currSelectNodeId) {
+							var users = node.users;
+							if (users) {
+								for (var n = 0; n < users.length; n++) {
+									var user = users[n];
+									//如果传入的orgId为空，则表示不需要用这个过滤
+									if (('' != orgId && orgId == user.deptId) || '' == orgId) {
+										if (('' != nameKeyWord && (user.userName.indexOf(nameKeyWord) != -1 || user.deptPath.indexOf(nameKeyWord) != -1))
+											|| '' == nameKeyWord){
+											var returnUser = {};//需要重新拷贝一份，以免引用数据改动导致源数据被改
+											returnUser.userId = user.userId;
+											returnUser.userName = user.userName;
+											returnUser.deptId = user.deptId;
+											returnUser.deptPath = user.deptPath;
+											returnUser.postName = user.postName;
+											returnUser.sendSMS = user.sendSMS;
+											returnUser.sendEmail = user.sendEmail;
+											returnUsers[returnUsers.length] = returnUser;
+									
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				return returnUsers;
+			}
+
+		    /**
+	         * 选择人员后的回调方法
+	         * @param opinion 是否同意（1：同意, 0：不同意）
+	         * @param opinionText 意见文本
+	         * @param map 用户选择的节点和人员信息，以map结构存储
+	         */
+			function bpmsUserSelectCallback(opinion, opinionText, map, actionType) {
+				//业务系统根据返回值，处理对应的下发、回退等操作
+				alert(opinion + ', ' + opinionText + ', ' + map);
+			}
+
+			//在填写意见页面已经填了流程意见，通过这个函数这里传递给选人页面
+			function getOpinionInfo() {
+				return "我是流程意见，哈哈哈！";
+			}
+			
+			function asynAjax(data) {
+				var returnJson;
+				$.ajax(
+		    	  	{
+			    	    url: "servlet.jsp",
+			    	    dataType: "json",
+			    	    data: data,
+						async : false,
+			   	    	success: function(returnData){
+				   			returnJson = returnData;
+			   			}
+			    	}
+      			);
+				return returnJson;
+			}
+		</script>
+	</body>
+</html>

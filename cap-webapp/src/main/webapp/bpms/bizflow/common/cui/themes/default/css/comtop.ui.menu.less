@@ -1,0 +1,93 @@
+﻿@import "common";
+
+@menuRadius: 3px;    /*定义menu的圆角*/
+@menuBorder: 1px solid @common-border-color-default;    /*定义menu边框*/
+@menuItemLine: 1px solid #e0e0e0;    /*定义menu item 之间的分割线*/
+@menuBg: @common-bg;    /*定义menu背景颜色*/
+@menuHoverBg: @common-bg-hover;    /*定义hover时候背景颜色*/
+@menuHoverColor: @common-font-color;    /*定义hover时候字体的颜色*/
+@menuBoxShadow: 4px 4px 4px rgba(0,0,0,0.1);    /*定义menu的阴影*/
+@menuLineHeight: 28px;    /*定义menu item 高度*/
+@menuPaddingLeft: 11px;    /*定义menu的左边距*/
+@menuDefaultColor: @common-font-color;   /*定义menu的默认字体颜色*/
+@menuDisableColor: @common-font-color-form-readonly;  /*定义menu的disable时候字体颜色*/
+.menu_box {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+    z-index: 2000;
+}
+.menu_box .menu{
+	border: @menuBorder;
+    border-radius: @menuBorder;
+    box-shadow: @menuBoxShadow;
+	background-color: @menuBg;
+	padding: 0;
+	position: absolute;
+	line-height: @menuLineHeight!important;
+	cursor: pointer;
+	margin: 0px;
+    list-style-type: none;
+    font-size: 12px;
+    color:@menuDefaultColor;
+}
+.menu_box .menu_item{
+	position: relative;
+	height: @menuLineHeight;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	z-index: 1;
+	*float: left;
+    line-height: inherit;
+}
+.menu_box .menu_item_a{
+	position: relative;
+	display: block;
+    outline: none;
+	height: 100%;
+    color: @menuDefaultColor;
+	/*border-left: 3px solid @menuBg;*/
+	text-decoration: none!important;
+}
+.menu_box .menu_item_sp{
+	padding-left: @menuPaddingLeft - 3;
+	padding-right: 20px;
+	white-space: nowrap;
+}
+.menu_box .menu_item_a_background{
+    /*background: url(../images/menu/right_arrow.png) 90% center no-repeat;*/
+}
+.menu_box .menu_item_a i{
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 0;
+  font-style: normal;
+  color: @common-icon-color;
+}
+.menu_box .menu_item_a_background i{
+  display: block;
+}
+.menu_box .menu_item_a:hover{
+	background-color: @menuHoverBg;
+    color: @menuHoverColor;
+	/*border-left:3px solid @menuHoverBg;*/
+}
+
+.menu_box .menu_item_line{
+	border-bottom: @menuItemLine;
+}
+
+.menu_box .menu_item_disable{
+    cursor: default;
+	color: @menuDisableColor;
+}
+.menu_box iframe{
+	position: absolute;
+	background-color: @menuBg;
+	left:0;
+	top:3;
+	z-index: -1;
+}

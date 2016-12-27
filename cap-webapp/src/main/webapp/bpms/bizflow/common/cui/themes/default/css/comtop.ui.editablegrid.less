@@ -1,0 +1,166 @@
+﻿@import "common";
+@import "function";
+
+//所有边框颜色
+@bd:1px solid @common-border-color-default;
+
+//td 下边颜色
+@bd1:1px solid @grid-border-td-bottom;
+
+//所有文字颜色
+@fc: @common-font-color;
+//链接文字颜色
+@fc1: @common-font-color-link;
+//空列表文字
+@fc2: @common-font-color-form-empty;
+
+//选择行颜色及背景
+.select(){background-color: @grid-select-bg;color:@grid-select-font-color;}
+
+//checkbox和radio
+@checkbox: url(../images/checkbox-radio/checkbox-default.png);
+@checkbox-checked: url(../images/checkbox-radio/checkbox-checked.png);
+@checkbox-disabled: url(../images/checkbox-radio/checkbox-checked-readonly.png);
+@checkbox-default-disabled: url(../images/checkbox-radio/checkbox-default-readonly.png);
+@radio: url(../images/checkbox-radio/radio-default.png);
+@radio-checked: url(../images/checkbox-radio/radio-checked.png);
+@radio-default-disabled: url(../images/checkbox-radio/radio-default-readonly.png);
+@loading: url(../images/core/loading.gif);
+
+/*可编辑grid专有*/
+@insert-image: url(../images/editablegrid/grid-insert.png);
+@update-image: url(../images/editablegrid/grid-update.png);
+@edit-image: url(../images/editablegrid/grid-edit.png);
+@error-image:url(../images/editablegrid/grid-error.png);
+/*以上可编辑Grid专有*/
+.elle(){white-space: nowrap;-o-text-overflow:ellipsis;text-overflow: ellipsis; word-break:break-all; overflow: hidden;}
+.pr(){position: relative;}
+.pa(){position: absolute;}
+.lt(){.pa;left:0;top:0;}
+.dn(){display: none;}
+.h0(){border:none;font-size:0;}
+/*样式*/
+.eg-container {border:@bd;color:@fc;border-radius:@radius-big;overflow:hidden;clear:both;font-size:12px; line-height: 21px;.pr;background-color:@common-bg;z-index: 1}
+.eg-container table{table-layout:fixed;border-collapse:collapse;border-spacing:0;empty-cells:show;font-size:12px; background: @common-bg;}
+.eg-container td, .eg-container th{padding:0;border-right:@bd;word-break: break-all;}
+.eg-ellipsis td, .eg-ellipsis.th,
+.eg-ellipsis .eg-fixed-s,
+.eg-ellipsis button{.elle}
+
+.eg-ellipsis td.eg-fixed{overflow: visible;}
+.eg-box{.pr;overflow:hidden;width:100%;}
+
+.eg-style{.dn}
+.eg-head{zoom:1;background-color: @grid-header-bg; float: left;}
+.eg-container .eg-head-table{background-color:@grid-header-bg;}
+.eg-head-table th{border-bottom:@bd;height:29px;_height:30px;}
+.eg-fixed-s{display:block;padding-top:3px;width:100%;}
+
+.eg-null-text{font-size:0; line-height: 0;}
+
+.eg-container .eg-thead-text{cursor: text; color:@grid-header-font-color;}
+
+.eg-sort .eg-thead-text{cursor: pointer;text-decoration: underline;}
+
+.eg-sort b{display: none;padding-right: 3px; color: @common-icon-color;}
+
+
+.eg-container .eg-all-checkbox{padding-left:15px;background:@checkbox no-repeat 2px 3px; cursor: pointer;display:inline-block;height: 100%;}
+.eg-all-checkbox b{display: block; width: 1px;height: 16px;}
+.eg-container .eg-all-checkbox-checked{background-image:@checkbox-checked}
+
+
+.eg-editable{background: @edit-image no-repeat;}
+.eg-editable i{font-style: normal;color: @editablegrid-header-require;}
+
+.eg-container .eg-select{width:12px;right:0;.pa;height:28px;top:50%; margin-top: -14px;cursor:pointer;.dn; color: @common-icon-color; font-size: 11px; line-height: 28px;}
+.eg-select:hover{color: @common-icon-color-hover}
+.eg-ittab{.pa;height:100%; top:0;right:-1px; width:4px; cursor:col-resize; line-height: 29px;.dn}
+.eg-thead-mouseover{background-color: @grid-header-bg-hover;}
+.eg-thead-mouseover .eg-select, .eg-thead-select .eg-select{display: block;}
+
+.eg-container .eg-empty-th{.h0;height: 29px;width:0;}
+.eg-width-norm{*display: none;}
+.eg-width-norm .eg-empty-th{height: 0;}
+.eg-width-norm th{.h0;height:0;}
+
+.eg-body{overflow:auto;width:100%;overflow-x: hidden;.pr}
+.eg-table-hide, .eg-table-box{.pr;width: 100%;overflow:hidden}
+.eg-table-hide{border-bottom: @bd1;background-color:@grid-header-shadow;width: auto; padding-top: 1px;float: left;}
+.eg-body-table{margin-bottom:-1px;}
+.eg-body-table td{border-bottom:@bd1;height:27px;padding:0 3px;}
+.eg-body-table a{color: @common-font-color-link;text-decoration:none}
+.eg-body-table a:hover{color: @common-font-color-link-hover;text-decoration:underline}
+
+.eg-container .eg-fixed{vertical-align: top;padding:0;}
+.eg-fixed-d{.pr;width:100%;padding-bottom:3px;}
+.eg-fixed .eg-fixed-d {text-indent:3px;}
+.eg-fixed .eg-fixed-s{.pa;height:1200px;top:-1px;left:0;border-top:@bd1; border-right:@bd;background-color:@common-bg;}
+
+
+.eg-head .eg-fixed .eg-fixed-s{background-color: @grid-header-bg;padding:0;border-top:@bd;}
+.eg-even-row, .eg-even-row .eg-fixed-s{background-color: @grid-tr-even-bg;}
+.eg-tr-over, .eg-tr-over .eg-fixed-s{background-color: @grid-tr-bg-hover}
+.eg-select-row, .eg-select-row .eg-fixed-s{.select}
+.eg-select-row a, .eg-select-row a:hover{color: @grid-select-font-color;}
+
+.eg-checkbox{background-image:@checkbox; background-repeat:no-repeat;background-position: center center;}
+.eg-select-row .eg-checkbox{background-image:@checkbox-checked; }
+.eg-radio{background:@radio no-repeat center center;}
+.eg-select-row .eg-radio{background-image:@radio-checked;}
+.eg-disable-row .eg-checkbox{background-image: @checkbox-default-disabled; }
+.eg-disable-row .eg-radio{background-image: @radio-default-disabled;}
+
+
+.eg-fixed-d .eg-checkbox, .eg-fixed-d .eg-radio{background-position: center 7px;}
+
+.eg-highlight{background-color: @grid-tr-highlight}
+
+.eg-line{border-left:@bd; height:5000px; .pa; top:0;.dn;width:1px; overflow: hidden; z-index: 39;}
+.eg-overlay{position: absolute;.dn;height:100px; width: 100%;background:url(about:blank) no-repeat -9999cm -9999cm; opacity: 0; filter:alpha(opacity=0); left: 0; top: 0; z-index: 40;}
+
+.eg-scroll{height:17px;overflow: hidden; overflow-x: scroll; width: 100%; position: absolute; bottom:0; z-index:99; left: -999999px;}
+.eg-scroll div{font-size:0;height:1px; overflow: hidden;}
+
+.eg-tfoot{border-top:@bd;padding:6px 11px; height:28px; display: none;background:@grid-pagelist-bg;}
+
+.eg-hidecol {outline:none;.dn;.lt; width:134px;z-index: 100;border:@bd;box-shadow:2px 2px 2px rgba(0,0,0,.1);background:@grid-hidecol-bg;margin-top: -1px;}
+.eg-hidecol .eg-hidecol-list{border-bottom:@bd;  overflow:auto;width:100%;}
+.eg-hidecol .eg-hidecol-button{padding:6px 0;background-color:@grid-hidecol-toolbar-bg;text-align: right}
+.eg-hidecol-list a{outline:none;line-height:28px;height:28px;color:@fc;padding-left:30px; display:block;text-decoration: none;background:@checkbox-checked no-repeat 11px center;.elle}
+a.eg-hidecol-nochecked{background-image:@checkbox; color: @fc;}
+a.eg-hidecol-disabled{background-image:@checkbox-disabled;}
+a.eg-hidecol-hide{.dn}
+.eg-hidecol-list a:hover{background-color:@grid-hidecol-list-bg-hover;}
+.eg-hidecol-button a{margin:0 13px 0 0;display: inline-block;}
+.eg-hidecol-button .blue-button{color: @button-blue-color;}
+.eg-hidecol-button .red-button{color: @button-red-color;}
+
+.eg-loading-bg{width:100%; height:100%;background-color:@grid-loadingoverlay-bg; opacity: .5; filter: alpha(opacity=50);.lt;.dn; z-index: 100;}
+.eg-loading-bg-over {opacity:1; filter: alpha(opacity=100);}
+.eg-loading-box{width:102px; height:32px; position: absolute; left:50%; margin-left: -54px; top:50%; margin-top: -19px; border:@bd; padding: 2px; background-color: @grid-loadingbox-bg; .dn; z-index: 101;border-radius: 3px; overflow: hidden;}
+.eg-loading-box span{display: block; line-height: 30px; height:30px; padding-left: 32px; background:@loading no-repeat 8px 8px; font-size:12px; }
+
+.eg-empty{text-align: center; line-height: 50px;color:@fc2; font-size: 14px;}
+
+.eg-col-move .eg-fixed-s {cursor: move;}
+.eg-col-move .eg-no-move{cursor: default;}
+.eg-col-move-insert{height:26px; border:2px solid @fc; width:5px; position: absolute; z-index: 34;display: none; left:-100px; top:0; margin-left: -5px;}
+.eg-col-move-tag{height:30px; border-left:@bd;border-right:@bd; width:200px;text-align: center; line-height: 30px;display: none;position: absolute; z-index: 30; top:0;background: @grid-header-bg-hover;.elle;}
+
+/*可编辑Grid专有*/
+.eg-container .eg-update{background-image: @update-image; background-repeat: no-repeat;}
+.eg-container .eg-insert{background-image: @insert-image; background-repeat: no-repeat;}
+.eg-container .eg-error{border-bottom:1px solid @common-border-color-error; background: @error-image repeat-x left bottom}
+.eg-container .eg-editable-td{cursor:text; text-decoration:underline;}
+.eg-container .eg-edit-box{margin-top:-1px;.pr;_float: left;text-align: left;}
+.eg-edit-box .cui_inputCMP_wrap{_float: left;}
+.eg-editing{color: @fc;} /*权重问题，颜色单独写*/
+.eg-container .eg-editing{background-color: @editablegrid-editing-bg;overflow: visible; background-image: none; border-bottom:@bd1; padding: 0; }
+.eg-editing a, .eg-editing a:hover{text-decoration:none;}
+/*以上可编辑Grid专有*/
+
+.eg-container-qm .eg-fixed{border-right:none;}
+.eg-container-qm td, .eg-container-qm th, .eg-container-qm .eg-empty-th{height: auto;line-height: 22px;}
+.eg-container-qm .eg-width-norm .eg-empty-th{height: 0;}
+.eg-container-qm .eg-hidecol-list a{width: 100%;}
