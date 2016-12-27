@@ -1,0 +1,310 @@
+<tpls>
+<cmptpl uiType="GridEX" var="tFootDom" parse="false">
+    <!---// options-->
+    <div class="gridEX_tfoot">
+        <div class="paginationEX_wrap"></div>
+        <div class="cui_gridEX_pagination_tip">正在加载分页数据</div>
+    </div>
+</cmptpl>
+
+<cmptpl uiType="GridEX" var="emptyRow" parse="false">
+    <!---// options-->
+    <tr>
+        <td id="+-options.id-+_empty_cell" colspan="+-options.emptycolspan-+" class="td_empty">
+            <div id="zoom" align="center" style="font-size: 12px;color: #191970;border: 0 none;padding:5px 0;">
+                本 列 表 暂 无 记 录
+            </div>
+        </td>
+    </tr>
+</cmptpl>
+
+<cmptpl uiType="GridEX" var="popMenu" parse="false">
+    <!---// options -->
+    <div class="x-menu">
+        <ul class="x-menu-list">
+            <li>
+                <a href="javascript:;" class="x-menu-item asc" menuType="ASC">升序</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="x-menu-item desc" menuType="DESC">降序</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="x-menu-item columns" menuType="columns">所有列</a>
+            </li>
+        </ul>
+    </div>
+</cmptpl>
+
+<cmptpl uiType="GridEX" var="subPopMenu" parse="false">
+    <!---// options -->
+    <div class="submenu">
+        <div class="submenu-body">
+            <ul class='x-menu-list'>
+                <!---
+                    var headList = options.headList;
+
+                    for (var i = 0; i < headList.length; i++) {
+                        var head = headList[i],
+                            bindName = head.bindName,
+                            $item = comtop.cQuery(head.el),
+                            text = comtop.cQuery.trim($item.text());
+                            if ((options.selectrows == "multi" || options.selectrows == "single") && i == 0) continue;
+                -->
+                <li>
+                    <a href="javascript:;" class="x-menu-item x-m_a" >
+                        <input type="checkbox" checked="true" bindName="+-bindName-+" textValue="+-text-+" />+-text-+
+                    </a>
+                </li>
+                <!---
+                    }
+                -->
+            </ul>
+        </div>
+        <div class="submenu-button">
+            <button class="btn-normal" events="click=_filterClickHandler">确&nbsp;定</button><button events="click=_filterCancelHandler"  class="btn-normal">取&nbsp;消</button>
+        </div>
+    </div>
+
+</cmptpl>
+<cmptpl uiType="GridEX" var="gridHeadRender" parse="false">
+    <!---// options -->
+    <div class="c nobreak">
+        <p></p>
+        <a href="javascript:;" style="display: none;"></a>
+        <span class="head_sp +-options.headSpanSort-+" bindName="+-options.bindName-+">+-options.text-+</span>
+    </div>
+</cmptpl>
+
+<cmptpl uiType="PaginationEX" var="paginationEX" parse="false">
+    <!---// data-->
+    <!---
+   if(data.selectList || selectList.length>0){
+    -->
+
+    <span class="page-selector-text">共&nbsp;+-data.totalItems-+&nbsp;条记录 &nbsp;&nbsp;&nbsp;每页显示</span>
+    <!---
+    for(var i=0; i<data.selectList.length; i++){
+        if(data.selectList[i] == data.itemsPerPage){
+    -->
+    <span class="pagesize-selected">+-data.selectList[i]-+</span>
+    <!---
+    } else {
+    -->
+    <a href="#" class="page-size" act="sizePage">+-data.selectList[i]-+</a>
+    <!---
+        }
+    }
+    -->
+    <span class="page-selector-text">条</span>
+    <!---
+   }
+   -->
+
+    <!---
+    if(data.currentPage==1){
+    -->
+    <span class="page-first">上一页</span>
+    <!---
+    } else {
+    -->
+    <a href="#" class="page-prev" act="prevPage">上一页</a>
+    <!---
+    }
+    -->
+
+    <!---
+    if(data.toFirst > 2){
+    -->
+    <a href="#" class="page-num" act="numPage">1</a><span class="page-break">...</span>
+    <!---
+    } else if(data.toFirst==2){
+    -->
+    <a href="#" class="page-num" act="numPage">1</a>
+    <!---
+    }
+    -->
+
+    <!---
+    for(var i= data.displayPreCount; i>=1 && data.currentPage-i >= 1; i--){
+        var num = data.currentPage-i;
+     -->
+    <a href="#" class="page-num" act="numPage">+-num-+</a>
+    <!---
+    }
+     -->
+
+    <span class="page-selected">+-data.currentPage-+</span>
+
+    <!---
+    for(var i=1; i<=data.displayNextCount && data.currentPage+i <= data.totalPage; i++){
+        var num = data.currentPage + i
+    -->
+    <a href="#" class="page-num" act="numPage">+-num-+</a>
+    <!---
+    }
+    -->
+
+    <!---
+    if(data.toLast<data.totalPage-1){
+    -->
+    <span class="page-break">...</span><a href="#" class="page-num" act="numPage">+-data.totalPage-+</a>
+    <!---
+    } else if(data.toLast == data.totalPage-1){
+    -->
+    <a href="#" class="page-num" act="numPage">+-data.totalPage-+</a>
+    <!---
+    }
+     -->
+
+    <!---
+    if(data.currentPage==data.totalPage){
+    -->
+    <span class="page-end">下一页</span>
+    <!---
+    } else {
+    -->
+    <a href="#" class="page-next" act="nextPage">下一页</a>
+    <!---
+    }
+    -->
+    <span class="page-skip">跳到第<input act="cusPage" type="text" class="page-skip-num" value="+-data.currentPage-+" maxlength="+-data.totalPage.toString().length-+"/>页</span>
+    <a href="#" class="btn-normal" act="goPage">GO</a>
+</cmptpl>
+
+<cmptpl uiType="PaginationEX" var="paginationEX_min_1" parse="false">
+    <!---// data-->
+    <div class="page-numlist">
+        <!---
+        if(data.selectList || selectList.length>0){
+        -->
+        <span>共+-data.totalItems-+条记录&nbsp;每页显示：</span>
+        <span class="page-numlist-num">
+        <!---
+        for(var i=0; i<data.selectList.length; i++){
+            if(data.selectList[i] == data.itemsPerPage){
+        -->
+        <em class="pagesize-selected">+-data.selectList[i]-+</em>
+        <!---
+        } else {
+        -->
+        <a href="#" class="page-size" act="sizePage">+-data.selectList[i]-+</a>
+        <!---
+            }
+        }
+        -->
+        条</span>
+        <!---
+       }
+       -->
+    </div>
+    <div class="page-opbar">
+        <!---
+        if(data.currentPage!=1){
+        -->
+        <a href="#" class="page-prev" act="prevPage">上一页</a>
+        <!---
+        }
+        -->
+        <span class="">+-data.currentPage-+/+-data.totalPage-+</span>
+        <!---
+        if(data.currentPage!=data.totalPage){
+        -->
+        <a href="#" class="page-next" act="nextPage">下一页</a>
+        <!---
+        }
+        -->
+        <span class="page-skip">跳转至</span><span class="page-skip-input"><input type="text" act="cusPage"
+        class="page-skip-num" value="+-data.currentPage-+" maxlength="+-data.totalPage.toString().length-+"/></span><span class="page-skip-last">页</span>
+        <a href="#" class="btn-normal" act="goPage">GO</a>
+    </div>
+</cmptpl>
+
+<cmptpl uiType="PaginationEX" var="paginationEX_min_2" parse="false">
+    <!---// data-->
+    <!---if(data.currentPage!=1){-->
+    <a href="#" class="page-prev" act="prevPage"><em></em></a>
+    <!---}else{-->
+    <span class="page-prev-dis"><em></em></span>
+    <!---}-->
+    <span class="page-info">+-data.currentPage-+/+-data.totalPage-+</span>
+    <!---if(data.currentPage!=data.totalPage){-->
+    <a href="#" class="page-next" act="nextPage"><em></em></a>
+    <!---}else{-->
+    <span class="page-next-dis"><em></em></span>
+    <!---}-->
+</cmptpl>
+
+<cmptpl uiType="PaginationEX" var="paginationEX_min_3" parse="false">
+    <!---// data-->
+    <div class="page-numlist">
+        <!---
+        if(data.selectList || selectList.length>0){
+        -->
+        <span>共+-data.totalItems-+条记录</span>
+        <!---
+       }
+       -->
+    </div>
+    <div class="page-opbar">
+        <!---if(data.currentPage!=1){-->
+        <a href="#" class="page-prev" act="prevPage"><em></em></a>
+        <!---}else{-->
+        <span class="page-prev-dis"><em></em></span>
+        <!---}-->
+        <span class="page-info">+-data.currentPage-+/+-data.totalPage-+</span>
+        <!---if(data.currentPage!=data.totalPage){-->
+        <a href="#" class="page-next" act="nextPage"><em></em></a>
+        <!---}else{-->
+        <span class="page-next-dis"><em></em></span>
+    <!---}-->
+    </div>
+</cmptpl>
+
+<cmptpl uiType="PaginationEX" var="paginationEX_min_4" parse="false">
+    <!---// data-->
+    <div class="page-numlist">
+        <!---
+        if(data.selectList || selectList.length>0){
+        -->
+        <span>共+-data.totalItems-+条记录&nbsp;每页显示：</span>
+        <span class="page-numlist-num">
+        <!---
+        for(var i=0; i<data.selectList.length; i++){
+            if(data.selectList[i] == data.itemsPerPage){
+        -->
+        <em class="pagesize-selected">+-data.selectList[i]-+</em>
+        <!---
+        } else {
+        -->
+        <a href="#" class="page-size" act="sizePage">+-data.selectList[i]-+</a>
+        <!---
+            }
+        }
+        -->
+        条</span>
+        <!---
+       }
+       -->
+    </div>
+    <div class="page-opbar">
+        <!---
+        if(data.currentPage!=1){
+        -->
+        <a href="#" class="page-prev" act="prevPage">上一页</a>
+        <!---
+        }
+        -->
+        <span class="">+-data.currentPage-+/+-data.totalPage-+</span>
+        <!---
+        if(data.currentPage!=data.totalPage){
+        -->
+        <a href="#" class="page-next" act="nextPage">下一页</a>
+        <!---
+        }
+        -->
+        <input type="text" class="page-skip-num" value="+-data.currentPage-+"
+               maxlength="+-data.totalPage.toString().length-+" act="cusPage"/>
+        <span class="page-skin-label" act="goPage">GO</span>
+    </div>
+</cmptpl>
+</tpls>

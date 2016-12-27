@@ -1,0 +1,216 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*组件的高度*/
+/**圆角全局有效**/
+/*组件的圆角*/
+/*msgbox,dialog,grid*/
+/*渐变*/
+/*配合上面的函数使用，禁用IE的渐变*/
+/*组件发光效果的动画*/
+/*
+* tip组件样式
+*/
+.ctip {
+  font-size: 12px;
+  position: absolute;
+  padding: 5px;
+  z-index: 9999;
+  *zoom: 1;
+  display: none;
+}
+.ctip-content {
+  max-width: 150px;
+  padding: 8px;
+  text-align: left;
+  background-color: #fff9d4;
+  border: 1px solid #e6b803;
+  color: #333333;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.ctip-closed {
+  padding-right: 15px;
+}
+.ctip-content {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.ctip .ctip-msg {
+  line-height: 1.5;
+  word-break: break-all;
+  word-wrap: break-word;
+  _display: inline;
+}
+.ctip-arrow {
+  position: absolute;
+  overflow: hidden;
+  font-family: "\5B8B\4F53";
+}
+.ctip-arrow span {
+  position: absolute;
+  font-size: 20px;
+  line-height: 20px;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+}
+.tip-arrow-border {
+  color: #e6b803;
+}
+.tip-arrow-bg {
+  color: #fff9d4;
+}
+.ctip-content .ctip-x {
+  position: absolute;
+  top: 9px;
+  right: 8px;
+  display: block;
+  width: 11px;
+  height: 11px;
+  line-height: 11px;
+  cursor: pointer;
+  *zoom: 1;
+  color: #cc8314;
+  font-size: 10px;
+  text-decoration: none;
+  text-align: center;
+}
+.ctip-x:hover {
+  color: #333333;
+}
+.ctip-b .ctip-arrow {
+  width: 20px;
+  height: 10px;
+  left: 50%;
+  margin-left: -10px;
+  top: -4px;
+}
+.ctip-lb .ctip-arrow {
+  width: 20px;
+  height: 10px;
+  left: 20px;
+  top: -4px;
+}
+.ctip-rb .ctip-arrow {
+  width: 20px;
+  height: 10px;
+  right: 20px;
+  top: -4px;
+}
+.ctip-rb .tip-arrow-border,
+.ctip-lb .tip-arrow-border,
+.ctip-b .tip-arrow-border {
+  _top: 2px;
+}
+.ctip-rb .tip-arrow-bg,
+.ctip-lb .tip-arrow-bg,
+.ctip-b .tip-arrow-bg {
+  top: 2px;
+  _top: 4px;
+}
+.ctip-t .ctip-arrow {
+  width: 20px;
+  height: 10px;
+  left: 50%;
+  margin-left: -10px;
+  bottom: -4px;
+}
+.ctip-rt .ctip-arrow {
+  width: 20px;
+  height: 10px;
+  right: 20px;
+  bottom: -4px;
+}
+.ctip-lt .ctip-arrow {
+  width: 20px;
+  height: 10px;
+  left: 10px;
+  bottom: -4px;
+}
+.ctip-rt .tip-arrow-border,
+.ctip-lt .tip-arrow-border,
+.ctip-t .tip-arrow-border {
+  top: -10px;
+  _top: -8px;
+}
+.ctip-rt .tip-arrow-bg,
+.ctip-lt .tip-arrow-bg,
+.ctip-t .tip-arrow-bg {
+  top: -12px;
+  _top: -10px;
+}
+.ctip-r .ctip-arrow {
+  width: 10px;
+  height: 20px;
+  left: -4px;
+  top: 13px;
+}
+.ctip-r .tip-arrow-bg {
+  left: 2px;
+}
+.ctip-l .ctip-arrow {
+  width: 10px;
+  height: 20px;
+  right: -4px;
+  top: 13px;
+  background-position: -12px 0;
+}
+.ctip-l .tip-arrow-border {
+  left: -10px;
+}
+.ctip-l .tip-arrow-bg {
+  left: -12px;
+}
+/* error类样式 */
+.ctip-error .ctip-content {
+  background-color: #ffe8e5;
+  border: 1px solid #e5bcb8;
+  color: #333333;
+}
+.ctip-error .tip-arrow-border {
+  color: #e5bcb8;
+}
+.ctip-error .tip-arrow-bg {
+  color: #ffe8e5;
+}
+.ctip-error .ctip-content .ctip-x {
+  color: #b34236;
+}
+.ctip-error .ctip-x:hover {
+  color: #333333;
+}

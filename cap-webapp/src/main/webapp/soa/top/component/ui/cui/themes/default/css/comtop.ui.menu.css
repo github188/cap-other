@@ -1,0 +1,123 @@
+/**全局颜色**/
+/*文字*/
+/*图标*/
+/*背景*/
+/*边框*/
+/**borderlayout**/
+/**button**/
+/*默认按钮*/
+/*红色按钮*/
+/*蓝色按钮*/
+/*绿色按钮*/
+/*橙色按钮*/
+/*禁用状态按钮*/
+/**calender**/
+/*主体颜色*/
+/*顶部面板*/
+/*星期条*/
+/*日期面板*/
+/*时间面板*/
+/*按钮条*/
+/**clickInput**/
+/**dialog**/
+/**grid and editableGrid**/
+/*表头*/
+/*表体*/
+/*隐藏列面板*/
+/*editable特有*/
+/**listbox**/
+/**msgBox**/
+/**Pagination**/
+/**panel**/
+/**tab**/
+/**tree**/
+/**tip**/
+/*定义menu的圆角*/
+/*定义menu边框*/
+/*定义menu item 之间的分割线*/
+/*定义menu背景颜色*/
+/*定义hover时候背景颜色*/
+/*定义hover时候字体的颜色*/
+/*定义menu的阴影*/
+/*定义menu item 高度*/
+/*定义menu的左边距*/
+/*定义menu的默认字体颜色*/
+/*定义menu的disable时候字体颜色*/
+.menu_box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  z-index: 2000;
+}
+.menu_box .menu {
+  border: 1px solid #dddddd;
+  border-radius: 1px solid #dddddd;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 0;
+  position: absolute;
+  line-height: 28px !important;
+  cursor: pointer;
+  margin: 0px;
+  list-style-type: none;
+  font-size: 12px;
+  color: #333333;
+}
+.menu_box .menu_item {
+  position: relative;
+  height: 28px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  z-index: 1;
+  *float: left;
+  line-height: inherit;
+}
+.menu_box .menu_item_a {
+  position: relative;
+  display: block;
+  outline: none;
+  height: 100%;
+  color: #333333;
+  /*border-left: 3px solid @menuBg;*/
+  text-decoration: none!important;
+}
+.menu_box .menu_item_sp {
+  padding-left: 8px;
+  padding-right: 20px;
+  white-space: nowrap;
+}
+.menu_box .menu_item_a_background {
+  /*background: url(../images/menu/right_arrow.png) 90% center no-repeat;*/
+}
+.menu_box .menu_item_a i {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 0;
+  font-style: normal;
+  color: #666666;
+}
+.menu_box .menu_item_a_background i {
+  display: block;
+}
+.menu_box .menu_item_a:hover {
+  background-color: #eeeeee;
+  color: #333333;
+  /*border-left:3px solid @menuHoverBg;*/
+}
+.menu_box .menu_item_line {
+  border-bottom: 1px solid #e0e0e0;
+}
+.menu_box .menu_item_disable {
+  cursor: default;
+  color: #888888;
+}
+.menu_box iframe {
+  position: absolute;
+  background-color: #ffffff;
+  left: 0;
+  top: 3;
+  z-index: -1;
+}

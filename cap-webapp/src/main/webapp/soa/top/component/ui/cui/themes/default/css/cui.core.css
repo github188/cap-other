@@ -1,0 +1,17 @@
+/*字体图标*/
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../images/core/fonts/fontawesome-webfont.eot?v=4.0.3');
+    src: url('../images/core/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'),
+    url('../images/core/fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'),
+    url('../images/core/fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'),
+    url('../images/core/fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+}
+.cui-icon {
+    font-family: FontAwesome !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    font-size: 14px;
+}
