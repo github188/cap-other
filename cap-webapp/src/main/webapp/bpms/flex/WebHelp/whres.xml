@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='gb2312' ?>
+<resource>
+<item name="Prev" value="&lt;&lt;" />
+<item name="Hide" value="隐藏" />
+<item name="SyncTocTooltip" value="同步主题" />
+<item name="InTopicSearchBtnText" value="转至" />
+<item name="FtsInputPrompt" value="请输入要搜索的文字:" />
+<item name="Done" value="完成" />
+<item name="MergeError1" value="The merged Help system" />
+<item name="JS_alert_cantLoadProject" value="无法加载项目：" />
+<item name="Next" value="&gt;&gt;" />
+<item name="SyncToc" value="同步主题" />
+<item name="MergeError2" value="is using a different language from the master Help system, which will cause the index and full-text search functionality to be disabled in the merged Help system." />
+<item name="nls_body_instruction" value="Enter your question in the text box above, then click GO." />
+<item name="ToolBarSearchBtnText" value="转至" />
+<item name="SuggestViewNoFrameMessage" value="要在没有框架的情况下查看“帮助”系统，请单击此超级链接。" />
+<item name="Hide_Navigation_Component" value="隐藏导航组件" />
+<item name="FtsBtnText" value="转至" />
+<item name="TopicsFound" value="找到所需标题" />
+<item name="LoadingContentsData" value="正在加载，单击此处可取消..." />
+<item name="Definition" value="定义:" />
+<item name="CompletingContents" value="载入目录表格..." />
+<item name="Seperate" value="|" />
+<item name="IndexAlphabetBookmarks" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ" />
+<item name="Contents" value="目录" />
+<item name="IndexSelectTopicLabel" value="选择一个主题，然后单击“显示”" />
+<item name="Disabled Prev" value="&lt;&lt;" />
+<item name="Glossary" value="术语表" />
+<item name="Search" value="搜索" />
+<item name="CantSearch" value="无法搜索该短语。" />
+<item name="LoadingIndex" value="载入索引..." />
+<item name="LoadingData" value="正在加载数据，请稍候..." />
+<item name="Show_Navigation_Component" value="显示导航组件" />
+<item name="Book" value="书本" />
+<item name="Disabled Next" value="&gt;&gt;" />
+<item name="nls_body_empty" value="Sorry, we were unable to find a good answer for your question." />
+<item name="nls_button_go_hint" value="Go Search" />
+<item name="Find" value="搜索" />
+<item name="CantOpenURLorFile" value="无法打开URL或文件" />
+<item name="IndexSelectTopicTitle" value="选择主题" />
+<item name="Blank_topic_text" value="本主题系由 WinHelp Project Conversion Wizard（项目转换向导）创建的，并且是遗失或断开的超级链接的链接目标。" />
+<item name="BrowserLimitedMessage" value="您的浏览器不支持框架。我们建议您将浏览器更新到支持框架的版本。" />
+<item name="LoadingTOCItem" value="载入目录表格:" />
+<item name="Display" value="显示" />
+<item name="Cancel" value="取消" />
+<item name="IndexSelectTopicError" value="请选择一个主题。" />
+<item name="nls_edit_label" value="Type in your question:" />
+<item name="SearchLabel" value="搜索" />
+<item name="RelateTopicListPrompt" value="请单击一个标题，再单击显示按钮。" />
+<item name="NextTooltip" value="下一主题" />
+<item name="JS_alert_colorlimitation" value="WebHelp 检测到您的显示器已设置为 16 色。要完全支持 WebHelp，请将您的显示器设置为使用 256 色或更多色彩。" />
+<item name="TopicsNotFound" value="没有找到所需标题。" />
+<item name="Show" value="显示" />
+<item name="PreTooltip" value="上一主题" />
+<item name="SearchPrompt" value="- 搜索 -" />
+<item name="IndexBtnText" value="转至" />
+<item name="JS_alert_ProjectLoadingFail" value="无法正确加载，请单击“刷新”。" />
+<item name="LoadingContents" value="载入目录表格..." />
+<item name="Term" value="词汇:" />
+<item name="WebSearchButton" value="WebSearch" />
+<item name="Remote_Page" value="远程页面" />
+<item name="WebSearch" value="WebSearch" />
+<item name="LoadingFTS" value="载入搜索数据..." />
+<item name="Index" value="索引" />
+<item name="JS_alert_ErrorInLoading" value="加载导航组件时发生错误。请重新生成 WebHelp。" />
+<item name="JS_alert_appletNotLoad" value="无法加载 applet。如果您在使用旧版本的 Netscape，则需要编辑 prefs.js 文件。" />
+<item name="IndexInputPrompt" value="请输入要查找的关键字:" />
+<item name="Page" value="页面" />
+<item name="nls_button_go_text" value="Go" />
+<item name="Searching" value="搜索..." />
+
+  <item name="English"   value="" />
+
+
+  <panes show="0">
+    <toc />
+    <index />
+    <fts />
+  </panes>
+
+  <stopwords>
+    <word name="a" />
+    <word name="about" />
+    <word name="after" />
+    <word name="against" />
+    <word name="all" />
+    <word name="also" />
+    <word name="among" />
+    <word name="an" />
+    <word name="and" />
+    <word name="are" />
+    <word name="as" />
+    <word name="at" />
+    <word name="be" />
+    <word name="became" />
+    <word name="because" />
+    <word name="been" />
+    <word name="between" />
+    <word name="but" />
+    <word name="by" />
+    <word name="can" />
+    <word name="come" />
+    <word name="do" />
+    <word name="during" />
+    <word name="each" />
+    <word name="early" />
+    <word name="for" />
+    <word name="form" />
+    <word name="found" />
+    <word name="from" />
+    <word name="had" />
+    <word name="has" />
+    <word name="have" />
+    <word name="he" />
+    <word name="her" />
+    <word name="his" />
+    <word name="however" />
+    <word name="in" />
+    <word name="include" />
+    <word name="into" />
+    <word name="is" />
+    <word name="it" />
+    <word name="its" />
+    <word name="late" />
+    <word name="later" />
+    <word name="made" />
+    <word name="many" />
+    <word name="may" />
+    <word name="me" />
+    <word name="med" />
+    <word name="more" />
+    <word name="most" />
+    <word name="near" />
+    <word name="no" />
+    <word name="non" />
+    <word name="not" />
+    <word name="of" />
+    <word name="on" />
+    <word name="only" />
+    <word name="or" />
+    <word name="other" />
+    <word name="over" />
+    <word name="several" />
+    <word name="she" />
+    <word name="some" />
+    <word name="such" />
+    <word name="than" />
+    <word name="that" />
+    <word name="the" />
+    <word name="their" />
+    <word name="then" />
+    <word name="there" />
+    <word name="these" />
+    <word name="they" />
+    <word name="this" />
+    <word name="through" />
+    <word name="to" />
+    <word name="under" />
+    <word name="until" />
+    <word name="use" />
+    <word name="was" />
+    <word name="we" />
+    <word name="were" />
+    <word name="when" />
+    <word name="where" />
+    <word name="which" />
+    <word name="who" />
+    <word name="with" />
+    <word name="you" />
+  </stopwords>
+
+  <stems>
+    <stem name="ed" />
+    <stem name="es" />
+    <stem name="er" />
+    <stem name="e" />
+    <stem name="s" />
+    <stem name="ingly" />
+    <stem name="ing" />
+    <stem name="ly" />
+  </stems>
+
+	<paneskin>
+		<background color="#367fcb" img="" />
+		<font name="Tahoma" size="8pt" color="#ffffff" style="Normal" weight="Normal" decoration="none" />
+		<toc>
+			<background color="#edeee6" img="" />
+			<icons>
+				<book open="bookopen.gif" close="book_closed.gif" />
+				<item  local="page.gif" remote="urls.gif" />
+				<newbook open="" close="" />
+				<newitem  local="" remote="" />
+			</icons>
+			<fonts>
+				<normal name="Tahoma" size="8pt" color="#000000" style="Normal" weight="Normal" decoration="none" />
+				<hover name="Tahoma" size="8pt" color="#000080" style="Normal" weight="Normal" decoration="underline" />
+			</fonts>
+			<activebackgroundcolor attr="#beddfc" />
+			<margin attr="" />
+			<indent attr="" />
+		</toc>
+		<index>
+			<form>
+				<fonts>
+					<title name="Tahoma" size="8pt" color="#ffffff" style="Normal" weight="Normal" decoration="none" />
+				</fonts>
+				<button normal="" hover="" />
+				<editwith value="20" />
+			</form>
+			<background color="#edeee6" img="" />
+			<fonts>
+				<normal name="Tahoma" size="8pt" color="#000000" style="Normal" weight="Normal" decoration="none" />
+				<hover name="Tahoma" size="8pt" color="#000080" style="Normal" weight="Normal" decoration="underline" />
+				<empty name="" size="8pt" color="" style="" weight="" decoration="" />
+			</fonts>
+			<activebackgroundcolor attr="#beddfc" />
+			<margin attr="" />
+			<indent attr="" />
+		</index>
+		<fts>
+			<form>
+				<fonts>
+					<title name="Tahoma" size="8pt" color="#ffffff" style="Normal" weight="Normal" decoration="none" />
+				</fonts>
+				<button normal="" hover="" />
+				<editwith value="20" />
+			</form>
+			<background color="#edeee6" img="" />
+			<fonts>
+				<normal name="Tahoma" size="8pt" color="#000000" style="Normal" weight="Normal" decoration="none" />
+				<hover name="Tahoma" size="8pt" color="#000080" style="Normal" weight="Normal" decoration="underline" />
+				<error name="Tahoma" size="8pt" color="#000000" style="Normal" weight="Normal" decoration="none" />
+			</fonts>
+			<activebackgroundcolor attr="#beddfc" />
+			<margin attr="" />
+			<indent attr="" />
+		</fts>
+		<glossary>
+			<background color="#edeee6" img="" />
+			<fonts>
+				<normal name="Tahoma" size="8pt" color="#000000" style="Normal" weight="Normal" decoration="none" />
+				<hover name="Tahoma" size="8pt" color="#000080" style="Normal" weight="Normal" decoration="underline" />
+			</fonts>
+			<activebackgroundcolor attr="#beddfc" />
+			<margin attr="" />
+			<indent attr="" />
+		</glossary>
+	</paneskin>
+</resource>

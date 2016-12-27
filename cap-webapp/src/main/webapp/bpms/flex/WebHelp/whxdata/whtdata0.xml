@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='gb2312' ?>
+<tocdata>
+<item name="流程设计器简介" url="index.htm" />
+<book name="流程设计器元素" >
+  <item name="选择" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/Selector.htm" />
+  <item name="拖动" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/Drag.htm" />
+  <item name="顺序流" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/sequenceFlow.htm" />
+  <item name="数据关联" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/dataAssociation.htm" />
+  <item name="关联" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/association.htm" />
+  <item name="事件驱动流" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/eventDriveFlow.htm" />
+  <item name="开始事件" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/startEvent.htm" />
+  <item name="结束事件" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/endEvent.htm" />
+  <item name="中间事件" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/intermediateCatchEvent.htm" />
+  <item name="任务" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/task.htm" />
+  <item name="用户任务" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/userTask.htm" />
+  <item name="服务任务" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/serviceTask.htm" />
+  <item name="子流程" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/subProcess.htm" />
+  <item name="网关" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/exclusiveGateway.htm" />
+  <item name="数据对象" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/dataObject.htm" />
+  <item name="道" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/lane.htm" />
+  <item name="业务活动" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/taskGroupRef.htm" />
+  <item name="文本标注" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/textAnnotation.htm" />
+</book>
+
+</tocdata>

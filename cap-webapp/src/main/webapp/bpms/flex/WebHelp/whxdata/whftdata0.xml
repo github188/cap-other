@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='gb2312' ?>
+<ftstdata>
+<topic name="流程设计器简介" url="index.htm" />
+<topic name="关联" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/association.htm" />
+<topic name="数据关联" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/dataAssociation.htm" />
+<topic name="数据对象" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/dataObject.htm" />
+<topic name="拖动" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/Drag.htm" />
+<topic name="结束事件" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/endEvent.htm" />
+<topic name="事件驱动流" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/eventDriveFlow.htm" />
+<topic name="网关" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/exclusiveGateway.htm" />
+<topic name="中间事件" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/intermediateCatchEvent.htm" />
+<topic name="道" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/lane.htm" />
+<topic name="选择" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/Selector.htm" />
+<topic name="顺序流" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/sequenceFlow.htm" />
+<topic name="服务任务" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/serviceTask.htm" />
+<topic name="开始事件" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/startEvent.htm" />
+<topic name="子流程" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/subProcess.htm" />
+<topic name="任务" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/task.htm" />
+<topic name="业务活动" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/taskGroupRef.htm" />
+<topic name="文本标注" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/textAnnotation.htm" />
+<topic name="用户任务" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/userTask.htm" />
+
+</ftstdata>  

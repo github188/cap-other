@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='gb2312' ?>
+<indexdata>
+<key name="业务活动" >
+  <topic name="业务活动" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/taskGroupRef.htm" />
+</key>
+<key name="中间事件" >
+  <topic name="中间事件" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/intermediateCatchEvent.htm" />
+</key>
+<key name="事件驱动流" >
+  <topic name="事件驱动流" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/eventDriveFlow.htm" />
+</key>
+<key name="任务" >
+  <topic name="任务" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/task.htm" />
+</key>
+<key name="关联" >
+  <topic name="关联" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/association.htm" />
+</key>
+<key name="子流程" >
+  <topic name="子流程" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/subProcess.htm" />
+</key>
+<key name="开始事件" >
+  <topic name="开始事件" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/startEvent.htm" />
+</key>
+<key name="拖动" >
+  <topic name="拖动" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/Drag.htm" />
+</key>
+<key name="数据关联" >
+  <topic name="数据关联" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/dataAssociation.htm" />
+</key>
+<key name="数据对象" >
+  <topic name="数据对象" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/dataObject.htm" />
+</key>
+<key name="文本标注" >
+  <topic name="文本标注" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/textAnnotation.htm" />
+</key>
+<key name="服务任务" >
+  <topic name="服务任务" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/serviceTask.htm" />
+</key>
+<key name="用户任务" >
+  <topic name="用户任务" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/userTask.htm" />
+</key>
+<key name="结束事件" >
+  <topic name="结束事件" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/endEvent.htm" />
+</key>
+<key name="网关" >
+  <topic name="网关" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/exclusiveGateway.htm" />
+</key>
+<key name="选择" >
+  <topic name="选择" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/Selector.htm" />
+</key>
+<key name="道" >
+  <topic name="道" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/lane.htm" />
+</key>
+<key name="顺序流" >
+  <topic name="顺序流" url="xc1xf7xb3xccxc9xe8xbcxc6xc6xf7xd4xaaxcbxd8/sequenceFlow.htm" />
+</key>
+
+</indexdata>
