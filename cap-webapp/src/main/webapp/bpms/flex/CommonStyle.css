@@ -1,0 +1,160 @@
+/* 公共的样式  */
+Panel {
+	background-alpha: 1;
+	background-color: #f6f6f6;
+	border-alpha: 1;
+}
+
+CtpDesigner {
+	background-alpha: 1;
+	background-color: #f6f6f6;
+}
+
+/*
+DesignerMenuBar {
+	
+}
+*/
+ 
+mx|TitleWindow{  
+	modalTransparency:0;  
+	modal-transparency-blur:0;  
+	background-alpha:1;
+	background-color:#F6F6F6;
+	border-color:#50B6EC;
+	border-thickness-left:3;
+	border-thickness-right:3;
+	border-thickness-bottom:3;
+} 
+
+mx|Alert{  
+	modalTransparency:0;  
+	modal-transparency-blur:0;  
+} 
+
+/* 工具栏 */
+DesignerToolBar {
+	background-alpha: 1;
+	background-color: #eeeeee;
+}
+
+/* 工程树：标题 */
+FileNavigatorControlView {
+	border-style: solid;
+	border-thickness: 1;
+	fill-colors: #dfeafb, #d1e2fa;
+	drop-shadow-enabled: false;
+}
+
+/* 工程树：树容器 */
+FileNavigatorView {
+	background-alpha: 1;
+	background-color: #f3faff;
+}
+
+/* 缩略图 */
+Microimage {
+	border-style: solid;
+	border-thickness: 1;
+	background-alpha: 1;
+	background-color: #f3faff;
+}
+
+/* 绘图区 */
+EditorNavigator {
+	background-alpha: 1;
+	background-color: #f6f6f6;
+/*	tabStyleName: "editorTabStyle";
+	selectedTabTextStyleName: "editorSelectedTabStyle";*/
+}
+
+/* 绘图工具栏 */
+ToolPanel {
+	border-style: solid;
+	border-thickness-top: 1;
+	border-thickness-bottom: 1;
+	border-thickness-right: 0;
+	border-thickness-left: 0;
+	background-alpha: 1;
+	background-color: #ebf8ff;
+}
+
+/* 属性面板:容器 */
+AttributeView {
+	background-alpha: 1;
+	background-color: #f6f6f6;
+}
+
+/* 属性面板:具体的属性面板对象 */
+BasicAttribute {
+	background-alpha: 1;
+	background-color: #f6f6f6;
+}
+
+
+/* 属性面板的tab页导航器 */
+SuperTabNavigator {
+/*	background-alpha: 1;
+	background-color: #f6f6f6;
+	tabStyleName: "superTabStyle";
+	selectedTabTextStyleName: "superSelectedTabStyle";*/
+}
+
+/* 属性面板的tab页 */
+.superTabStyle{
+/*	color: #174570;
+	background-color: #d0def3;
+	font-weight: normal;
+	corner-radius: 0;
+	border-style: solid;
+	border-thickness: 1;
+	border-color: #8ba0b5;*/
+	
+/*	up-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.SuperTabSkin");
+	down-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.SuperTabSkin");
+	over-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.SuperTabSkin");
+	disabled-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.SuperTabSkin");
+	selected-up-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.SuperTabSelectedSkin");
+	selected-down-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.SuperTabSelectedSkin");
+	selected-over-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.SuperTabSelectedSkin");
+	selected-disabled-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.SuperTabSelectedSkin");*/
+	
+/*	tab-colors:#d7dadb, #ffffff;
+	tab-selected-colors:#ceddf3, #f6f6f6;*/
+	
+/*	border-style: solid;
+	border-thickness: 1;*/
+	
+}
+
+/* 属性面板的tab页导航器 */
+CtpTabNavigator {
+	background-alpha: 1;
+	background-color: #f3faff;
+	tabStyleName: "attrTabStyle";
+	horizontal-gap: 0;
+}
+
+/* 属性面板的tab页 */
+.attrTabStyle{
+	up-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.AttrTabSkin");
+	down-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.AttrTabSkin");
+	over-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.AttrTabSkin");
+	disabled-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.AttrTabSkin");
+	selected-up-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.AttrTabSelectedSkin");
+	selected-down-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.AttrTabSelectedSkin");
+	selected-over-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.AttrTabSelectedSkin");
+	selected-disabled-skin: ClassReference("com.comtop.bpms.monitor.runtime.skin.AttrTabSelectedSkin");
+	
+	tab-colors:#d7dadb, #ffffff;
+	tab-selected-colors:#f3faff, #f3faff;
+	
+	border-style: solid;
+	border-thickness: 1;
+	border-sides: "right";
+	drop-shadow-enabled: false;
+	
+	font-weight: normal;
+	corner-radius: 0;
+	
+}

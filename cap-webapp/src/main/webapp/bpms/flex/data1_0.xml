@@ -1,0 +1,276 @@
+<root versionNum="1.0">
+	<figures>
+		<node name="definitions" title="流程定义" typename="流程定义"/> 
+	</figures>
+	<editors>
+		<editor name="process">
+			<rootfigure>
+				<node name="process"  typename="流程"/>
+			</rootfigure>
+			<figures>
+				<!-- (1)title：绘图工具栏中展现。(2)remark:在任务等的属性面板中切换任务类型时的下拉框中展现。(3)typename：在图元查找的列表中展现节点类型名称时使用。   -->
+				<node name="sequenceFlow" typename="顺序流"/> 
+				<node name="dataAssociation" typename="数据关联"/> 
+				<node name="association" typename="关联" validatorClass="AssociationValidator" attr="AssociationAttribute" figure="AssociationFigure"/>
+				<node name="eventDriveFlow" typename="事件驱动流" swf="EventDriveFlow.swf" validatorClass="p1_0.EventDriveFlowValidator" attr="p1_0.EventDriveFlowAttribute" figure="p1_0.EventDriveFlowFigure"/> 
+				<node name="startEvent" typename="开始事件" />
+				<node name="endEvent" typename="结束事件" /> 
+				<node name="intermediateEvent" title="中间事件" typename="中间事件" /> 
+				<node name="intermediateCatchEvent" typename="中间捕获事件" remark="捕获" extend="intermediateEvent"/>
+				<node name="intermediateThrowEvent" title="中间触发事件" typename="中间触发事件" remark="触发" extend="intermediateEvent"/>
+				<node name="task" typename="任务" /> 
+				<node name="userTask" typename="用户任务" remark="用户" swf="UserTask.swf" validatorClass="p1_0.UserTaskValidator" attr="p1_0.UserTaskAttribute" figure="p1_0.UserTaskFigure" extend="task"/> 
+				<node name="sendTask" typename="发送任务" remark="发送" swf="SendTask.swf" validatorClass="p1_0.SendTaskValidator" attr="p1_0.SendTaskAttribute" figure="p1_0.SendTaskFigure" extend="task"/> 
+				<node name="receiveTask"  typename="接收任务" remark="接收" swf="ReceiveTask.swf" validatorClass="p1_0.ReceiveTaskValidator" attr="p1_0.ReceiveTaskAttribute" figure="p1_0.ReceiveTaskFigure" extend="task"/>  
+				<node name="serviceTask"  typename="服务任务" remark="服务" swf="ServiceTask.swf" validatorClass="p1_0.ServiceTaskValidator" attr="p1_0.ServiceTaskAttribute" figure="p1_0.ServiceTaskFigure" extend="task"/> 
+				<node name="scriptTask" typename="脚本任务" remark="脚本" swf="PcriptTask.swf" validatorClass="p1_0.ScriptTaskValidator" attr="p1_0.ScriptTaskAttribute" figure="p1_0.ScriptTaskFigure" extend="task"/>
+				<node name="CCTask"  typename="抄送任务" remark="抄送" swf="CCTask.swf" validatorClass="p1_0.CCTaskValidator" attr="p1_0.CCTaskAttribute" figure="p1_0.CCTaskFigure" extend="task"/> 
+				<node name="subProcess" typename="子流程"/> 
+				<node name="gateway"  typename="网关"/> 
+			  	<node name="exclusiveGateway" typename="互斥网关" remark="互斥" swf="ExclusiveGateway.swf" validatorClass="p1_0.ExclusiveGatewayValidator" attr="p1_0.ExclusiveGatewayAttribute" figure="p1_0.ExclusiveGatewayFigure" extend="gateway"/> 
+			  	<node name="inclusiveGateway" typename="包含网关" remark="包含" swf="InclusiveGateway.swf" validatorClass="p1_0.InclusiveGatewayValidator" attr="p1_0.InclusiveGatewayAttribute" figure="p1_0.InclusiveGatewayFigure" extend="gateway"/> 
+			  	<node name="parallelGateway" typename="并行网关" remark="并行" swf="ParallelGateway.swf" validatorClass="p1_0.ParallelGatewayValidator" attr="p1_0.ParallelGatewayAttribute" figure="p1_0.ParallelGatewayFigure" extend="gateway"/> 
+				<node name="dataObject"  typename="数据对象" /> 
+				<node name="lane" typename="道"/>   
+				<node name="taskGroupRef" typename="业务活动" needValidator="false" />
+				<node name="dataInputAssociation" title="流程输入" typename="流程输入"/> 
+				<node name="dataOutputAssociation" title="流程输出" typename="流程输出"/> 
+				<node name="textAnnotation" typename="文本标注" /> 
+				<node name="BPMNDiagram" title="流程图" typename="流程图"/>
+				<node name="boundaryEvent" title="边界事件" typename="边界事件" remark="边界" extend="intermediateCatchEvent"/>
+				<node name="process"  typename="流程"/>
+			</figures>
+			<toolPanel> 
+				<node name="sequenceFlow" 
+					title="顺序流"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/sequenceFlow.png"></node>
+				<node name="dataAssociation" 
+					title="数据关联"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/dataAssociation.png"></node>
+				<node name="association"
+					title="关联"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/association.png"></node>
+				<node name="eventDriveFlow" 
+					title="事件驱动流" 
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/eventDriveFlow.png"></node>
+				<node name="startEvent" 
+					title="开始事件"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/startEvent.png"></node>
+				<node name="endEvent"
+					title="结束事件"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/endEvent.png"></node>
+				<node name="intermediateCatchEvent"
+					title="中间事件"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/event.png"></node>
+				<node name="task"
+					title="任务"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/task.png"></node>
+				<node name="userTask"
+					title="用户任务"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/userTask.png"></node>
+				<node name="serviceTask"
+					title="服务任务"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/serviceTask.png"></node>
+				<node name="subProcess"
+					title="子流程"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/subProcess.png"></node>
+				<node name="exclusiveGateway"
+					title="网关"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/gateway.png"></node>
+				<node name="dataObject"
+					title="数据对象"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/dataObject.png"></node>
+				<node name="lane"
+					title="道" 
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/lane.png"></node>
+				<node name="taskGroupRef"
+					title="业务活动"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/taskGroup.png"></node>
+				<node name="textAnnotation"
+					title="文本标注"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/textAnnotation.png"></node>
+			</toolPanel>
+			<canvas>
+			</canvas>
+		</editor>
+		<editor name="trackProcess">
+			<rootfigure>
+				<node name="trackProcess" typename="业务流程"/>
+			</rootfigure>
+			<figures>
+				<node name="sequenceFlow" typename="顺序流"/> 
+				<node name="startEvent" typename="开始事件" />
+				<node name="endEvent" typename="结束事件" />
+				<node name="taskGroup" typename="业务活动" needValidator="false" />
+				<node name="BPMNDiagram" title="流程图" typename="流程图"/>
+				<node name="trackProcess" typename="业务流程" needValidator="false" />
+			</figures>
+			<toolPanel>
+				<node name="sequenceFlow" 
+					title="顺序流"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/sequenceFlow.png"></node>
+				<node name="startEvent" 
+					title="开始事件"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/startEvent.png"></node>
+				<node name="endEvent"
+					title="结束事件"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/endEvent.png"></node>
+				<node name="taskGroup" 
+					title="业务活动" 
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/taskGroup.png"
+					/>
+			</toolPanel>
+			<canvas>
+			</canvas>
+		</editor>
+		<editor name="subProcess">
+			<rootfigure>
+				<node name="subProcess" typename="子流程" figure="SubProcessFigureContainer"/>
+			</rootfigure>
+			<figures>
+				<!-- (1)title：绘图工具栏中展现。(2)remark:在任务等的属性面板中切换任务类型时的下拉框中展现。(3)typename：在图元查找的列表中展现节点类型名称时使用。   -->
+				<node name="sequenceFlow" typename="顺序流"/> 
+				<node name="dataAssociation" typename="数据关联"/> 
+				<node name="association" typename="关联" validatorClass="AssociationValidator" attr="AssociationAttribute" figure="AssociationFigure"/>
+				<node name="eventDriveFlow" typename="事件驱动流" swf="EventDriveFlow.swf" validatorClass="p1_0.EventDriveFlowValidator" attr="p1_0.EventDriveFlowAttribute" figure="p1_0.EventDriveFlowFigure"/> 
+				<node name="startEvent" typename="开始事件" />
+				<node name="endEvent" typename="结束事件" /> 
+				<node name="intermediateEvent" title="中间事件" typename="中间事件" /> 
+				<node name="intermediateCatchEvent" typename="中间捕获事件" remark="捕获" extend="intermediateEvent"/>
+				<node name="intermediateThrowEvent" title="中间触发事件" typename="中间触发事件" remark="触发" extend="intermediateEvent"/>
+				<node name="task" typename="任务" /> 
+				<node name="userTask" typename="用户任务" remark="用户" swf="UserTask.swf" validatorClass="p1_0.UserTaskValidator" attr="p1_0.UserTaskAttribute" figure="p1_0.UserTaskFigure" extend="task"/> 
+				<node name="serviceTask"  typename="服务任务" remark="服务" swf="ServiceTask.swf" validatorClass="p1_0.ServiceTaskValidator" attr="p1_0.ServiceTaskAttribute" figure="p1_0.ServiceTaskFigure" extend="task"/> 
+				<node name="scriptTask" typename="脚本任务" remark="脚本" swf="PcriptTask.swf" validatorClass="p1_0.ScriptTaskValidator" attr="p1_0.ScriptTaskAttribute" figure="p1_0.ScriptTaskFigure" extend="task"/>
+				<node name="CCTask"  typename="抄送任务" remark="抄送" swf="CCTask.swf" validatorClass="p1_0.CCTaskValidator" attr="p1_0.CCTaskAttribute" figure="p1_0.CCTaskFigure" extend="task"/> 
+				<node name="subProcess" typename="子流程"/> 
+				<node name="gateway"  typename="网关"/> 
+			  	<node name="exclusiveGateway" typename="互斥网关" remark="互斥" swf="ExclusiveGateway.swf" validatorClass="p1_0.ExclusiveGatewayValidator" attr="p1_0.ExclusiveGatewayAttribute" figure="p1_0.ExclusiveGatewayFigure" extend="gateway"/> 
+			  	<node name="inclusiveGateway" typename="包含网关" remark="包含" swf="InclusiveGateway.swf" validatorClass="p1_0.InclusiveGatewayValidator" attr="p1_0.InclusiveGatewayAttribute" figure="p1_0.InclusiveGatewayFigure" extend="gateway"/> 
+			  	<node name="parallelGateway" typename="并行网关" remark="并行" swf="ParallelGateway.swf" validatorClass="p1_0.ParallelGatewayValidator" attr="p1_0.ParallelGatewayAttribute" figure="p1_0.ParallelGatewayFigure" extend="gateway"/> 
+				<node name="dataObject"  typename="数据对象" /> 
+				<node name="lane" typename="道"/> 
+				<node name="dataInputAssociation" title="流程输入" typename="流程输入"/> 
+				<node name="dataOutputAssociation" title="流程输出" typename="流程输出"/> 
+				<node name="textAnnotation" typename="文本标注" /> 
+				<node name="BPMNDiagram" title="流程图" typename="流程图"/>
+				<node name="boundaryEvent" title="边界事件" typename="边界事件" remark="边界" extend="intermediateCatchEvent"/>
+			</figures>
+			<toolPanel>
+				<node name="sequenceFlow" 
+					title="顺序流"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/sequenceFlow.png"></node>
+				<node name="dataAssociation" 
+					title="数据关联"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/dataAssociation.png"></node>
+				<node name="association"
+					title="关联"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/association.png"></node>
+				<node name="eventDriveFlow" 
+					title="事件驱动流" 
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/eventDriveFlow.png"></node>
+				<node name="startEvent" 
+					title="开始事件"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/startEvent.png"></node>
+				<node name="endEvent"
+					title="结束事件"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/endEvent.png"></node>
+				<node name="intermediateCatchEvent"
+					title="中间事件"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/event.png"></node>
+				<node name="task"
+					title="任务"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/task.png"></node>
+				<node name="userTask"
+					title="用户任务"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/userTask.png"></node>
+				<node name="serviceTask"
+					title="服务任务"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/serviceTask.png"></node>
+				<node name="subProcess"
+					title="子流程"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/subProcess.png"></node>
+				<node name="exclusiveGateway"
+					title="网关"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/gateway.png"></node>
+				<node name="dataObject"
+					title="数据对象"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/dataObject.png"></node>
+				<node name="lane"
+					title="道" 
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/lane.png"></node>
+				<node name="textAnnotation"
+					title="文本标注"
+					icon="com/comtop/bpms/monitor/designer/assets/images/figureToolbar/textAnnotation.png"></node>
+			</toolPanel>
+			<canvas>
+			</canvas>
+		</editor>
+		<editor name="collaboration">
+			<rootfigure>
+				<node name="collaboration" typename="协作"/>
+			</rootfigure>
+			<figures>
+				<node name="sequenceFlow" typename="顺序流"/> 
+				<node name="startEvent" typename="开始事件" />
+				<node name="endEvent" typename="结束事件" />
+				<node name="taskGroup" typename="业务活动" needValidator="false" />
+				<node name="collaboration" title="协作" typename="协作" needValidator="false" /> 
+				<node name="participant" title="参与者" typename="参与者" needValidator="false" />
+				<node name="messageFlow" title="消息流" typename="消息流" needValidator="false" />
+				<node name="BPMNDiagram" title="流程图" typename="流程图"/>
+			</figures>
+			<toolPanel>
+			</toolPanel>
+			<canvas>
+			</canvas>
+		</editor>
+	</editors>
+	<filenavtree>
+		<node name="definitions" title="流程定义" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/definitions.png">
+			<node name="process" title="流程" type="process" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/process.png">
+				<node name="BPMNDiagram" title="流程图" isBranch="false" type="diagram" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/diagram.png"/>
+				<node name="startEvent" title="开始事件" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/startEvent.png"></node>
+				<node name="task" title="任务" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/task.png"/> 		
+				<node name="userTask" title="用户任务" type="userTask" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/task.png"></node>
+				<node name="scriptTask" title="脚本任务" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/task.png"></node>
+				<node name="serviceTask" title="服务任务" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/task.png"></node>	
+				<node name="sendTask" title="发送任务" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/task.png"></node>
+				<node name="receiveTask" title="接收任务" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/task.png"></node>
+				<node name="CCTask" nsPrefix="ctp" title="抄送任务" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/task.png"></node>		
+				<node name="taskGroupRef" type="taskGroupRef" nsPrefix="ctp" title="业务活动" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/taskGroup.png"></node>					
+				<node name="subProcess" title="子流程" type="subProcess" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/subProcess.png"></node>
+				<node name="intermediateThrowEvent" title="中间抛出事件" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/intermediateEvent.png"></node>				
+				<node name="intermediateCatchEvent" title="中间捕获事件" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/intermediateEvent.png"></node>	
+				<node name="boundaryEvent" title="边界事件" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/intermediateEvent.png"></node>							
+				<node name="gateway" title="网关" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/gateway.png"></node>
+				<node name="exclusiveGateway" title="网关" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/gateway.png"></node>
+				<node name="inclusiveGateway" title="网关" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/gateway.png"></node>
+				<node name="parallelGateway" title="网关" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/gateway.png"></node>
+				<node name="dataObject" title="数据对象" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/dataObject.png"></node>
+				<node name="endEvent" title="结束事件" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/endEvent.png"></node>
+				<node name="eventDriveFlow" nsPrefix="ctp" title="事件驱动流" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/eventDriveFlow.png"></node>
+				<node name="laneSet" title="道集合" type="laneSet" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/laneSet.png">
+					<node name="lane" title="道" type="lane" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/lane.png"></node>
+				</node>
+				<node name="sequenceFlow" title="顺序流" type="sequenceFlow" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/sequenceFlow.png"></node>
+				<node name="textAnnotation" title="文本标注" type="artifact" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/textAnnotation.png"></node>
+				<node name="association" title="关联" type="artifact" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/association.png"></node>
+				<node name="dataInput" title="数据输入" type="dataInput" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/dataInputOutput.png"></node>
+                <node name="dataOutput" title="数据输出" type="dataOutput" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/dataInputOutput.png"></node>   
+			</node>
+			<node name="trackProcess" nsPrefix="ctp" title="业务流程" type="trackProcess" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/trackProcess.png">
+				<node name="BPMNDiagram" title="业务流程图" isBranch="false" type="diagram" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/diagram.png"/>
+				<node name="startEvent" title="开始事件" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/startEvent.png"></node>
+				<node name="taskGroup" title="业务活动" nsPrefix="ctp" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/taskGroup.png"/> 	
+				<node name="endEvent" title="结束事件" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/endEvent.png"></node>
+				<node name="sequenceFlow" title="顺序流" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/sequenceFlow.png"></node>
+			</node> 
+			<node name="collaboration" title="协作" type="collaboration" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/collaboration.png">
+				<node name="BPMNDiagram" title="协作图" isBranch="false" type="diagram" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/diagram.png"/>
+				<node name="participant" title="参与者" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/lane.png"></node>
+				<node name="messageFlow" title="消息流" icon="com/comtop/bpms/monitor/designer/assets/images/filenav/sequenceFlow.png"></node>
+			</node> 
+		</node>
+	</filenavtree>
+</root>

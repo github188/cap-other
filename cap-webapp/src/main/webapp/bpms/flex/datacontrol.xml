@@ -1,0 +1,4 @@
+<versions>
+	<version versionNum="1.0" dataUrl="data1_0.xml" patchVersionNum = "1.33"/>
+	<version versionNum="1.1" dataUrl="data1_1.xml" patchVersionNum = "1.33"/>
+</versions>
