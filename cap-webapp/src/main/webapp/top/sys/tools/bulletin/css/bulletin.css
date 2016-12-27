@@ -1,0 +1,23 @@
+.pop{ border-bottom:dotted 1px #CCCCCC}
+h3{
+    font: bold 14px/1.5 Arial, "ËÎÌו", Helvetica, sans-serif;
+	color:#383838;
+}
+.pop_content{
+ margin-left:20px;     
+ font: 12px/2 Arial, "ËÎÌו", Helvetica, sans-serif;	    
+ color:#666666;
+}
+.icon_bottom{
+text-align:right;
+
+}
+a{
+    color:#0078ff;
+    font: 12px/2 Arial, "ËÎÌו", Helvetica, sans-serif;	 
+}
+.download{
+  padding-left:16px;
+  background:url(<cui:webRoot/>/top/sys/images/att.jpg) no-repeat; 
+}
+.blank{ margin:0px 5px;}

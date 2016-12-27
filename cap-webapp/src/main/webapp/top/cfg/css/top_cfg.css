@@ -1,0 +1,83 @@
+/**
+ * Css reset(for CFG)
+ */
+.hide {
+	display: none;
+}
+.form_table td{
+  	height:30px;
+}
+.input_mouseout{
+	width:90%;
+	border-style:solid;
+	border-color:#fff;
+	margin:0px;
+	padding: 2px;
+}
+.input_mouseover{
+	width:90%;
+	margin:0px;
+	padding: 2px;
+}
+#attr{
+	width:200;
+	height:100;
+	z-index:999;
+	border:1px solid #ccc;
+	position:absolute;
+/* 	opacity: 1;  */
+/* 	filter: alpha(opacity = 100); */
+	background-color:white;
+	display:none;
+}
+#autoDiv table tr{
+	height:30px;
+}
+#autoDiv table tr td{
+	padding: 0;
+}
+#first table tr{
+	height:30px;
+}
+#first table tr td{
+	padding: 0;
+}
+html,body{
+	_overflow-y:scroll;
+	_overflow-x:hidden;
+}
+.td_title0{
+	white-space: nowrap;
+}
+a:link{
+	color: #096DD1;
+	text-decoration: none;
+}
+.td0_div_style{
+	text-align:center;
+	padding-top:2px; 
+	height: 100%;
+	vertical-align: middle;
+	position:relative;
+	float:left; 
+	width:100px;
+	display:block;
+	white-space:nowrap;
+	word-break:keep-all;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	cursor:pointer;
+}
+.imgStyle{
+	padding-top: 7px;
+	cursor:pointer;
+}
+.deleteColumnImgStyle{
+	cursor:pointer;
+	padding-top: 3px;
+	float:right
+}
+/* 
+ *	<end> common css(for CFG)
+ */
+ 

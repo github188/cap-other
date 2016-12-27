@@ -1,0 +1,45 @@
+.access_table{
+			width:100%;
+}
+		 
+.access_table td{
+			line-height:22px;
+			padding:1px 3px 3px 3px;
+			background-color:#FFFFFF;
+}
+
+       
+.td_content {
+		    background-color: #ffffff;
+		    padding-left:  10px;
+		    border:#000000;
+		    border:#bec2cd 1px solid;
+		    padding-right:2px;
+		    padding-top:2px;
+}
+        
+
+        
+.sad{background:url(/web/top/sys/images/sad.png) no-repeat;width:32px;height: 32px;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/web/top/sys/images/sad.png'); /* IE6 */
+_ background-image: none; /* IE6 */}
+.alert{background:url(/web/top/sys/images/alert.png) no-repeat;width:48px;height:48px;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/web/top/sys/images/alert.png'); /* IE6 */
+_ background-image: none; /* IE6 */
+}
+
+
+
+
+.cut_word{
+		 	width:100%;
+		 	white-space:nowrap;
+		 	overflow:hidden;
+		 	text-overflow:ellipsis;
+	}
+
+.large{background:url(/web/top/sys/images/allTips.png) no-repeat 0px 0px;width:133px;padding-top:32px;}
+.same{background:url(/web/top/sys/images/allTips.png) no-repeat -133px 0px;width:133px;padding-top:32px;}
+.diff{background:url(/web/top/sys/images/allTips.png) no-repeat -266px 0px;width:133px;padding-top:32px;}
+
+		 
